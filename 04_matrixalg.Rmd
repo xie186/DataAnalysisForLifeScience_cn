@@ -605,3 +605,5 @@ solve(X)%*%y #equivalent to solve(X,y)
 ```
 
 Please note that `solve` is a function that should be used with caution as it is not generally numerically stable. We explain this in much more detail in the QR factorization section. 
+
+

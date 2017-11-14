@@ -1,156 +1,380 @@
-\mainmatter
+# Getting Started
 
-{frontmatter}
-
-# Acknowledgments
-
-The authors would like to thank Alex Nones for proofreading the manuscript during its various stages. Also, thanks to Karl Broman for contributing the "Plots to Avoid" section and to Stephanie Hicks for designing some of the exercises. Finally, thanks to John Kimmel and three anonymous referees for excellent feedback and constructive criticism of the book.
-
-This book was conceived during the teaching of several HarvardX courses, coordinated by Heather Sternshein. We are also grateful 
-to our TAs, Idan Ginsburg and Stephanie Chan, and all the students whose questions and comments helped us improve the book. The courses were
-partially funded by NIH grant R25GM114818.  We are very grateful to the National Institute of Health for its support.  
-
-A special thanks goes to all those that edited the book via GitHub pull requests: vjcitn, yeredh, ste-fan, molx, kern3020, josemrecio, hcorrada, neerajt, massie, jmgore75, molecules, lzamparo, eronisko, obicke, knbknb, and devrajoh. 
+In this book we will be using the
+[R programming language](https://cran.r-project.org/) for all our
+analysis. You will learn R and statistics simultaneously. However, we
+assume you have some basic programming skills and knowledge of R
+syntax. If you don't, your first homework, listed below, is to
+complete a tutorial. Here we give step-by-step instructions on how to
+get set up to follow along. 
 
 
-Cover image credit: this photograph is La Mina Falls, El Yunque National Forest, Puerto Rico, taken by Ron Kroetz
-https://www.flickr.com/photos/ronkroetz/14779273923
-Attribution-NoDerivs 2.0 Generic (CC BY-ND 2.0)
+## Installing R
 
-{mainmatter}
+The first step is to install R. You can download and install R from
+the [Comprehensive R Archive Network](https://cran.r-project.org/)
+(CRAN). It is relatively straightforward, but if you need further help
+you can try the following resources: 
 
-# Introduction
+* [Installing R on Windows](https://github.com/genomicsclass/windows#installing-r) 
+* [Installing R on Mac](http://youtu.be/Icawuhf0Yqo)
+* [Installing R on Ubuntu](http://cran.r-project.org/bin/linux/ubuntu/README)
 
-The unprecedented advance in digital technology during the second half
-of the 20th century has produced a measurement revolution that is
-transforming science. In the life sciences, data analysis is now part
-of practically every research project. Genomics, in particular, is
-being driven by new measurement technologies that permit us to observe certain molecular entities for the first time. These observations are leading to discoveries analogous to identifying microorganisms and other breakthroughs permitted by the invention of the microscope. Choice examples of these technologies are microarrays and next generation sequencing.
+## Installing RStudio
 
-Scientific fields that have traditionally relied upon simple data
-analysis techniques have been turned on their heads by these
-technologies. In the past, for example, researchers would measure the
-transcription levels of a single gene of interest. Today, it is
-possible to measure all 20,000+ human genes at once.  Advances such as
-these have brought about a shift from hypothesis to discovery-driven
-research. However, interpreting information extracted from these
-massive and complex datasets requires sophisticated statistical skills
-as one can easily be fooled by patterns arising by chance. This has
-greatly elevated the importance of statistics and data analysis in
-the life sciences.
+The next step is to install RStudio, a program for viewing and running
+R scripts. Technically you can run all the code shown here without
+installing RStudio, but we highly recommend this integrated
+development environment (IDE). Instructions are
+[here](http://www.rstudio.com/products/rstudio/download/) and for
+Windows we have special
+[instructions](https://github.com/genomicsclass/windows). 
 
+## Learn R Basics
 
-## Who Will Find This Book Useful?
+The first homework assignment is to complete an R tutorial to
+familiarize yourself with the basics of programming and R syntax. 
+To follow this book you should be familiar with the difference between lists (including data frames) and numeric vectors, for-loops, how to create functions, and how to use the `sapply` and `replicate` functions. 
 
-This book was written with the many life science researchers who are becoming data analysts due to the increased reliance on data described above. If you are performing your own analysis you have probably computed p-values, applied Bonferroni corrections, performed principal component  analysis, made a heatmap, or used one or more of the techniques listed in the next section. If you don't quite understand what these techniques are actually doing or if you are not sure if you are using them appropriately, this book is for you. 
+If you are already familiar with R, you can skip to the next section. Otherwise, you should go through the [swirl](http://swirlstats.com/) tutorial, which teaches you R programming and data science interactively, at your own pace and in the R console. Once you have R installed, you can install `swirl` and run it the following way: 
 
-Although the content of the book is mostly focused on advanced statistical concepts we start by covering the basics to make sure all readers have a strong grounding on the fundamental statistical concepts required for all data analysis. I find that many introductory statistics courses are taught in a way that makes it hard to relate the concepts to data analysis. Our approach ensures that you learn the connection between practice and theory. For this reason, the first two chapters, Inference and Exploratory Data Analysis, are appropriate for an introductory undergraduate statistics or data science course. After these two chapters the level of statistical sophistication ramps up relatively fast.
-
-Although the typical reader of this book will have a masters or PhD, we try to keep the mathematical content at undergraduate introductory level. You do not need calculus to use this book. However, we do introduce and use linear algebra which is considered more advanced than calculus. By explaining linear algebra in context of data analysis we believe you will be able to learn the basics without knowing calculus. The harder part may be getting used to the symbols and notation. More on this below.
-
-
-
-## What Does This Book Cover?
-
-This book will cover several of the statistical concepts and data
-analytic skills needed to succeed in data-driven life science
-research. We go from relatively basic concepts related to computing
-p-values to advanced topics related to analyzing high-throughput data.
-
-We start with one of the most important topics in statistics and in
-the life sciences: statistical inference. Inference is the use of
-probability to learn population characteristics from data. A typical example
-is deciphering if two groups (for example, cases versus controls) are
-different on average. Specific topics covered include the t-test,
-confidence intervals, association tests, Monte Carlo methods,
-permutation tests and statistical power. We make use of approximations
-made possible by mathematical theory, such as the Central Limit
-Theorem, as well as techniques made possible by modern computing. We
-will learn how to compute p-values and confidence intervals and
-implement basic data analyses. Throughout the book we will describe
-visualization techniques in the statistical computer language *R* that
-are useful for exploring new datasets. For example, we will use these
-to learn when to apply robust statistical techniques.
-
-We will then move on to an introduction to linear models and matrix
-algebra. We will explain why it is beneficial to use linear models to
-analyze differences across groups, and why matrices are useful to
-represent and implement linear models. We continue with a review of
-matrix algebra, including matrix notation and how to multiply matrices
-(both on paper and in R). We will then apply what we covered on matrix
-algebra to linear models. We will learn how to fit linear models in R,
-how to test the significance of differences, and how the standard
-errors for differences are estimated. Furthermore, we will review some
-practical issues with fitting linear models, including collinearity
-and confounding. Finally, we will learn how to fit complex models,
-including interaction terms, how to contrast multiple terms in R, and
-the powerful technique which the functions in R actually use to
-stably fit linear models: the QR decomposition.
-
-In the third part of the book we cover topics related to
-high-dimensional data. Specifically, we describe multiple testing,
-error rate controlling procedures, exploratory data analysis for
-high-throughput data, p-value corrections and the false discovery
-rate. From here we move on to covering statistical modeling. In
-particular, we will discuss parametric distributions, including
-binomial and gamma distributions. Next, we will cover maximum
-likelihood estimation. Finally, we will discuss hierarchical models
-and empirical Bayes techniques and how they are applied in genomics.
-
-We then cover the concepts of distance and dimension reduction. We
-will introduce the mathematical definition of distance and use this to
-motivate the singular value decomposition (SVD) for dimension
-reduction and multi-dimensional scaling. Once we learn this, we will
-be ready to cover hierarchical and k-means clustering. We will follow
-this with a basic introduction to machine learning.
-
-We end by learning about batch effects and how component and factor
-analysis are used to deal with this challenge. In particular, we will
-examine confounding, show examples of batch effects, make the
-connection to factor analysis, and describe surrogate variable
-analysis.
-
-## How Is This Book Different?
-
-While statistics textbooks focus on mathematics, this book focuses on
-using a computer to perform data analysis. This book follows the approach of [Stat Labs](https://www.stat.berkeley.edu/~statlabs/), by Deborah Nolan and Terry Speed.
-Instead of explaining the
-mathematics and theory, and then showing examples, we start by stating
-a practical data-related challenge. This book also includes the computer code that provides a solution to the problem and helps illustrate the
-concepts behind the solution. By running the code yourself, and seeing
-data generation and analysis happen live, you will get a better
-intuition for the concepts, the mathematics, and the theory.
-
-We focus on the practical challenges faced by data analysts in the
-life sciences and introduce mathematics as a tool that can help us
-achieve scientific goals. Furthermore, throughout the book we show the
-R code that performs this analysis and connect the lines of code to
-the statistical and mathematical concepts we explain. All sections of
-this book are reproducible as they were made using *R markdown*
-documents that include R code used to produce the figures, tables and
-results shown in the book. In order to distinguish it, the code is
-shown in the following font:
-
-```{r,eval=FALSE} 
-x <- 2 
-y <- 3 
-print(x+y) 
+```{r, eval=FALSE}
+install.packages("swirl")
+library(swirl)
+swirl()
 ```
 
-and the results in different colors, preceded by two hash
-characters (*##*):
+Alternatively you can take the [try R](http://tryr.codeschool.com/) interactive class from Code School. 
 
-```{r,echo=FALSE} 
-x <- 2 
-y <- 3 
-print(x+y) 
+There are also many open and free resources and reference
+guides for R. Two examples are:
+
+* [Quick-R](http://www.statmethods.net/): a quick online reference for data input, basic statistics and plots
+* R reference card (PDF)[https://cran.r-project.org/doc/contrib/Short-refcard.pdf] by Tom Short 
+
+Two key things you need to know about R is that you can get help for a function using `help` or `?`, like this:
+```{r,eval=FALSE}
+?install.packages
+help("install.packages")
 ```
 
-We will provide links that will give you access to the raw R markdown
-code so you can easily follow along with the book by programming in R.
+and the hash character represents comments, so text following these
+characters is not interpreted:
 
-At the beginning of each chapter you will see the sentence:
+```{r}
+##This is just a comment
+```
 
->> The R markdown document for this section is available here.
+## Installing Packages
 
-The word "here" will be a hyperlink to the R markdown file. The best way to read this book is with a computer in front of you, scrolling through that file, and running the R code that produces the results included in the book section you are reading.
+The first R command we will run is `install.packages`. If you took the
+`swirl` tutorial you should have already done this. R only includes a basic set of
+functions. It can do much more than this, but not everybody needs
+everything so we instead make some functions available via
+packages. Many of these functions are stored in CRAN. Note that these
+packages are vetted: they are checked for common errors and they must have
+a dedicated maintainer. You can easily install packages from within R if you know
+the name of the packages. As an example, we are going to install the
+package `rafalib` which we use in our first data
+analysis examples: 
+
+```{r,eval=FALSE}
+install.packages("rafalib")
+```
+
+We can then load the package into our R sessions using the `library` function:
+
+```{r}
+library(rafalib)
+```
+
+From now on you will see that we sometimes load packages without
+installing them. This is because once you install the package, it
+remains in place and only needs to be loaded with `library`. If you
+try to load a package and get an error, it probably means you need to
+install it first.
+
+## Importing Data into R
+
+The first step when preparing to analyze data is to read in the data into R. There are several ways to do this and we will discuss three of them. But you only need to learn one to follow along. 
+
+In the life sciences, small datasets such as the one used as an
+example in the next sections are typically stored as Excel files. Although there
+are R packages designed to read Excel (xls) format, you generally want
+to avoid this and save files as comma delimited (Comma-Separated
+Value/CSV) or tab delimited (Tab-Separated Value/TSV/TXT) files.
+These plain-text formats are often easier for sharing data with
+collaborators, as commercial software is not required for viewing or
+working with the data.
+We will start with a simple example dataset containing
+[female mouse weights](https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv).
+
+The first step is to find the file containing your data and know its *path*. 
+
+
+#### Paths and the Working Directory
+
+When you are working in R it is useful to know your _working directory_. This is the directory or folder in which R will save or look for files by default. You can see your working directory by typing:
+
+```{r, eval=FALSE}
+getwd()
+```
+
+You can also change your working directory using the function `setwd`. Or you can change it through RStudio by clicking on "Session". 
+
+The functions that read and write files (there are several in R) assume you mean to look for files or write files in the working directory. Our recommended approach for beginners will have you reading and writing to the working directory. However, you can also type the [full path](http://www.computerhope.com/jargon/a/absopath.htm), which will work independently of the working directory.
+
+#### Projects in RStudio
+
+We find that the simplest way to organize yourself is to start a Project in RStudio (Click on "File" and "New Project"). When creating the project, you will select a folder to be associated with it. You can then download all your data into this folder. Your working directory will be this folder.
+
+#### Option 1: Read file over the Internet
+You can navigate to the `femaleMiceWeights.csv` file by visiting the
+data directory of dagdata on
+[GitHub](https://github.com/genomicsclass/dagdata/tree/master/inst/extdata). If you navigate to the file, you need to click on *Raw* on the
+upper right hand corner of the page. 
+
+![GitHub page screenshot.](images/handmade/screenshot1.png)
+
+Now you can copy and paste the URL and use this as the argument to `read.csv`.
+Here we break the URL into a base directory and a filename and then combine
+with `paste0` because the URL would otherwise be too long for the page.
+We use `paste0` because we want to put the strings together as is, if you were
+specifying a file on your machine you should use the smarter function, `file.path`,
+which knows the difference between Windows and Mac file path connectors.
+You can specify the URL using a single string to avoid this extra step.
+
+```{r,message=FALSE}
+dir <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/"
+url <- paste0(dir, "femaleMiceWeights.csv")
+dat <- read.csv(url)
+```
+
+#### Option 2: Download file with your browser to your working directory
+
+There are reasons for wanting to keep a local copy of the file. For example, you may want to run the analysis while not connected to the Internet or you may want to ensure reproducibility regardless of the file being available on the original site. To download the file, as in option 1, you can navigate to the `femaleMiceWeights.csv`. In this option we use your browser's "Save
+As" function to ensure that the downloaded file is in a CSV
+format. Some browsers add an extra suffix to your filename by
+default. You do not want this. You want your file to be named
+`femaleMiceWeights.csv`. Once you have this file in your working directory, then you can simply read it in like this:
+
+```{r,eval=FALSE}
+dat <- read.csv("femaleMiceWeights.csv")
+```
+
+If you did not receive any message, then you probably read in the file successfully.
+
+#### Option 3: Download the file from within R
+
+We store many of the datasets used here on [GitHub](https://github.com/genomicsclass/). You can save these files directly from the Internet to your computer using R. In this example, we are using the `download.file` function in the `downloader` package to download the file to a specific location and then read it in. We can assign it a random name and a random directory using the function `tempfile`, but you can also save it in directory with the name of your choosing.
+
+```{r,message=FALSE}
+library(downloader) ##use install.packages to install
+dir <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/"
+filename <- "femaleMiceWeights.csv" 
+url <- paste0(dir, filename)
+if (!file.exists(filename)) download(url, destfile=filename)
+```
+
+We can then proceed as in option 2:
+```{r}
+dat <- read.csv(filename)
+```
+
+#### Option 4: Download the data package (Advanced)
+
+Many of the datasets we include in this book are available in custom-built packages from GitHub. The reason we use GitHub, rather than CRAN, is that on GitHub we do not have to vet packages, which gives us much more flexibility. 
+
+To install packages from GitHub you will need to install the `devtools` package:
+
+```{r,eval=FALSE}
+install.packages("devtools")
+```
+
+Note to Windows users: to use devtools you will have to also install `Rtools`. In general you will need to install packages as administrator. One way to do this is to start R as administrator. If you do not have permission to do this, then it is a bit [more complicated](http://www.magesblog.com/2012/04/installing-r-packages-without-admin.html). 
+
+Now you are ready to install a package from GitHub. For this we use a different function:
+
+```{r,message=FALSE,eval=FALSE}
+library(devtools)
+install_github("genomicsclass/dagdata")
+```
+
+The file we are working with is actually included in this package. Once you install the package, the file is on your computer. However, finding it requires advanced knowledge. Here are the lines of code:
+
+```{r}
+dir <- system.file(package="dagdata") #extracts the location of package
+list.files(dir)
+list.files(file.path(dir,"extdata")) #external data is in this directory
+```
+
+And now we are ready to read in the file:
+
+```{r}
+filename <- file.path(dir,"extdata/femaleMiceWeights.csv")
+dat <- read.csv(filename)
+```
+
+
+## Brief Introduction to `dplyr`
+
+The learning curve for R syntax is slow. One of the more difficult aspects that requires some getting used to is subsetting data tables. The `dplyr` package brings these tasks closer to English and we are therefore going to introduce two simple functions: one is used to subset and the other to select columns.
+
+Take a look at the dataset we read in:
+```{r}
+filename <- "femaleMiceWeights.csv"
+dat <- read.csv(filename)
+head(dat) #In R Studio use View(dat)
+```
+
+There are two types of diets, which are denoted in the first column. If we want just the weights, we only need the second column. So if we want the weights for mice on the `chow` diet, we subset and filter like this:
+
+```{r,message=FALSE}
+library(dplyr) 
+chow <- filter(dat, Diet=="chow") #keep only the ones with chow diet
+head(chow)
+```
+
+And now we can select only the column with the values:
+
+```{r}
+chowVals <- select(chow,Bodyweight)
+head(chowVals)
+```
+
+A nice feature of the `dplyr` package is that you can perform consecutive tasks by using what is called a "pipe". In `dplyr` we use `%>%` to denote a pipe. This symbol tells the program to first do one thing and then do something else to the result of the first. Hence, we can perform several data manipulations in one line. For example:
+
+```{r}
+chowVals <- filter(dat, Diet=="chow") %>% select(Bodyweight)
+```
+
+In the second task, we no longer have to specify the object we are editing since it is whatever comes from the previous call. 
+
+Also, note that if `dplyr` receives a `data.frame` it will return a `data.frame`. 
+```{r}
+class(dat)
+class(chowVals)
+```
+
+For pedagogical reasons, we will often want the final result to be a simple `numeric` vector. To obtain such a vector with `dplyr`, we can apply the `unlist` function which turns `lists`, such as `data.frames`, into `numeric` vectors:
+
+```{r}
+chowVals <- filter(dat, Diet=="chow") %>% select(Bodyweight) %>% unlist
+class( chowVals )
+```
+
+
+To do this in R without `dplyr` the code is the following:
+
+```{r}
+chowVals <- dat[ dat$Diet=="chow", colnames(dat)=="Bodyweight"]
+```
+
+
+
+
+
+## Mathematical Notation
+
+This book focuses on teaching statistical concepts and data analysis programming skills. We avoid mathematical notation as much as possible, but we do use it.  We do not want readers to be intimidated by the notation though. Mathematics is actually the easier part of learning statistics. Unfortunately, many text books use mathematical notation in what we believe to be an over-complicated way. For this reason, we do try to keep the notation as simple as possible. However, we do not want to water down the material, and some mathematical notation facilitates a deeper understanding of the concepts. Here we describe a few specific symbols that we use often. If they appear intimidating to you, please take some time to read this section carefully as they are actually simpler than they seem. Because by now you should be somewhat familiar with R, we will make the connection between mathematical notation and R code.
+
+
+#### Indexing
+
+Those of us dealing with data almost always have a series of numbers. To describe the concepts in an abstract way, we use indexing. For example 5 numbers:
+
+```{r}
+x <- 1:5
+```
+
+can be generally represented like this $x_1, x_2, x_3, x_4, x_5$. We use dots to simplify this $x_1,\dots,x_5$ and indexing to simplify even more $x_i, i=1,\dots,5$. If we want to describe a procedure for a list of any size $n$, we write $x_i, i=1,\dots,n$. 
+
+We sometimes have two indexes. For example, we may have several measurements (blood pressure, weight, height, age, cholesterol level) for 100 individuals. We can then use double indexes: $x_{i,j}, i=1,\dots,100, j=1,\dots,5$. 
+
+
+#### Summation
+
+A very common operation in data analysis is to sum several numbers. This comes up, for example, when we compute averages and standard deviations. If we have many numbers, there is a mathematical notation that makes it quite easy to express the following:
+
+```{r}
+n <- 1000
+x <- 1:n
+S <- sum(x)
+```
+
+and it is the $\sum$ notation (capital S in Greek):
+
+$$
+S = \sum_{i=1}^n x_i
+$$
+
+Note that we make use of indexing as well. We will see that what is included inside the summation can become quite complicated. However, the summation part should not confuse you as it is a simple operation.
+
+#### Greek letters
+
+We would prefer to avoid Greek letters, but they are ubiquitous in the statistical literature so we want you to become used to them. They are mainly used to distinguish the unknown from the observed. Suppose we want to find out the average height of a population and we take a sample of 1,000 people to estimate this. The unknown average we want to estimate is often denoted with $\mu$, the Greek letter for m (m is for mean). The standard deviation is often denoted with $\sigma$, the Greek letter for s. Measurement error or other unexplained random variability is typically denoted with $\varepsilon$, the Greek letter for e. Effect sizes, for example the effect of a diet on weight, are typically denoted with $\beta$. We may use other Greek letters but those are the most commonly used. 
+
+You should get used to these four Greek letters as you will be seeing them often: $\mu$, $\sigma$, $\beta$ and $\varepsilon$. 
+
+Note that indexing is sometimes used in conjunction with Greek letters to denote different groups. For example, if we have one set of numbers denoted with $x$ and another with $y$ we may use $\mu_x$ and $\mu_y$ to denote their averages.
+
+#### Infinity
+
+In the text we often talk about _asymptotic_ results. Typically, this refers to an approximation that gets better and better as the number of data points we consider gets larger and larger, with perfect approximations occurring when the number of data points is $\infty$. In practice, there is no such thing as $\infty$, but it is a convenient concept to understand. One way to think about asymptotic results is as results that become better and better as some number increases and we can pick a number so that a computer can't tell the difference between the approximation and the real number. Here is a very simple example that approximates 1/3 with decimals:
+
+```{r}
+onethird <- function(n) sum( 3/10^c(1:n))
+1/3 - onethird(4)
+1/3 - onethird(10)
+1/3 - onethird(16)
+```
+
+In the example above, 16 is practically $\infty$.
+
+
+
+
+#### Integrals
+
+We only use these a couple of times so you can skip this section if you prefer. However, integrals are actually much simpler to understand than perhaps you realize. 
+
+For certain statistical operations, we need to figure out areas under the curve. For example, for a function $f(x)$ ... 
+
+```{r intergrals, fig.cap="Integral of a function.",echo=FALSE}
+f <- dnorm
+x <- seq(-4,4,length=100)
+plot(x, f(x), type="l")
+x0 <- x[x>2]
+y0 <- f(x0)
+x0 <- c(min(x0),x0,max(x0))
+y0 <- c(0,y0,0)
+polygon(x0,y0,col="grey")
+```
+
+...we need to know what proportion of the total area under the curve is grey. 
+
+The grey area can be thought of as many small grey bars stacked next to each other. The area is then just the sum of the areas of these little bars. The problem is that we can't do this for every number between 2 and 4 because there are an infinite number. The integral is the mathematical solution to this problem. In this case, the total area is 1 so the answer to what proportion is grey is the following integral:
+
+$$
+\int_2^4 f(x) \, dx
+$$
+
+Because we constructed this example, we know that the grey area is 2.27% of the total. Note that this is very well approximated by an actual sum of little bars:
+
+```{r}
+width <- 0.01
+x <- seq(2,4,width)
+areaofbars <-  f(x)*width
+sum( areaofbars )
+```
+
+The smaller we make `width`, the closer the sum gets to the integral, which is equal to the area.
+
+
+
+
+
+
+
+
+

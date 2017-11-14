@@ -1,0 +1,899 @@
+```{r,include=FALSE}
+set.seed(1)
+```
+
+# Exploratory Data Analysis
+
+"The greatest value of a picture is when it forces us to notice what we never expected to see." -John W. Tukey
+
+Biases, systematic errors and unexpected variability are common in
+data from the life sciences. Failure to discover these problems often
+leads to flawed analyses and false discoveries. As an example,
+consider that experiments sometimes fail and not all data processing
+pipelines, such as the `t.test` function in R, are designed to detect
+these. Yet, these pipelines still give you an answer. Furthermore, it
+may be hard or impossible to notice an error was made just from the
+reported results. 
+
+Graphing data is a powerful approach to detecting these problems. We
+refer to this as _exploratory data analysis_ (EDA). Many important
+methodological contributions to existing techniques in
+data analysis were initiated by discoveries made via EDA.
+In addition, EDA can lead to interesting biological discoveries which
+would otherwise be missed through simply subjecting the data to a
+battery of hypothesis tests.
+Through this book, we make use of exploratory plots to motivate the analyses we
+choose. Here we present a general introduction to EDA using height
+data.
+
+We have already introduced some EDA approaches for _univariate_ data,
+namely the histograms and qq-plot. Here we describe the qq-plot in more detail and
+some EDA and summary statistics for paired data. We also give a
+demonstration of commonly used figures that we recommend against. 
+
+## Quantile Quantile Plots
+
+To corroborate that a theoretical distribution, for example the normal distribution, is in fact a good
+approximation, we can use quantile-quantile plots
+(qq-plots). Quantiles are best understood by considering the special
+case of percentiles. The p-th percentile of a list of a distribution
+is defined as the number q that is bigger than p% of numbers (so the inverse of
+the cumulative distribution function we defined earlier). For
+example, the median 50-th percentile is the median.
+We can compute the percentiles for our list of heights:
+
+
+```{r definingHeights1, message=FALSE}
+### This comment line is added by xie186. definingHeights1 was "definingHeights"
+library(rafalib)
+data(father.son,package="UsingR") ##available from CRAN
+x <- father.son$fheight
+```
+
+and for the normal distribution:
+
+```{r qqplot_example1, fig.cap="First example of qqplot. Here we compute the theoretical quantiles ourselves."}
+ps <- ( seq(0,99) + 0.5 )/100 
+qs <- quantile(x, ps)
+normalqs <- qnorm(ps, mean(x), popsd(x))
+plot(normalqs,qs,xlab="Normal percentiles",ylab="Height percentiles")
+abline(0,1) ##identity line
+```
+
+Note how close these values are. Also, note that we can see these
+qq-plots with less code (this plot has more points than the one we
+constructed manually, and so tail-behavior can be seen more clearly).
+
+```{r qqplot_example2, fig.cap="Second example of qqplot. Here we use the function qqnorm which computes the theoretical normal quantiles automatically."}
+qqnorm(x)
+qqline(x) 
+```
+
+However, the `qqnorm` function plots against a standard normal distribution. This is why the line has slope `popsd(x)` and intercept `mean(x)`.
+
+In the example above, the points match the line very well. In fact, we can run Monte Carlo simulations to see plots like this for data known to be normally distributed.
+
+
+```{r qqnorm_example, fig.cap="Example of the qqnorm function. Here we apply it to numbers generated to follow a normal distribution."}
+n <-1000
+x <- rnorm(n)
+qqnorm(x)
+qqline(x)
+```
+
+We can also get a sense for how non-normally distributed data will
+look in a qq-plot. Here we generate data from the t-distribution with
+different degrees of freedom. Notice that the smaller the degrees of
+freedom, the fatter the tails. We call these "fat tails" because if we
+plotted an empirical density or histogram, the density at the extremes would be
+higher than the theoretical curve. In the qq-plot, this can be seen in
+that the curve is lower than the identity line on the left
+side and higher on the right side. This means that there are more
+extreme values than predicted by the theoretical density plotted on
+the x-axis.
+
+```{r qqnorm_of_t, fig.cap="We generate t-distributed data for four degrees of freedom and make qqplots against normal theoretical quantiles.",fig.width=7.5,fig.height=7.5}
+dfs <- c(3,6,12,30)
+mypar(2,2)
+for(df in dfs){
+  x <- rt(1000,df)
+  qqnorm(x,xlab="t quantiles",main=paste0("d.f=",df),ylim=c(-6,6))
+  qqline(x)
+}
+```
+
+<a name="boxplots"></a>
+
+## Boxplots
+
+Data is not always normally distributed. Income is a widely cited
+example. In these cases, the average and standard deviation are not
+necessarily informative since one can't infer the distribution from
+just these two numbers. The properties described above are specific to
+the normal. For example, the normal distribution does not seem to be a
+good approximation for the direct compensation for 199 United States
+CEOs in the year 2000.
+
+```{r execpay, fig.width=10.5, fig.height=5.25, fig.cap="Histogram and QQ-plot of executive pay."}
+data(exec.pay,package="UsingR")
+mypar(1,2)
+hist(exec.pay) 
+qqnorm(exec.pay)
+qqline(exec.pay)
+```
+
+In addition to qq-plots, a practical summary of data is to compute 3
+percentiles: 25th, 50th (the median) and the 75th. A boxplot shows
+these 3 values along with a 
+range of the points within median $\pm$ 1.5 (75th percentile -
+25th percentile). Values outside this range are shown as points and
+sometimes referred to as _outliers_. 
+
+```{r fig.width=6, fig.height=6, fig.cap="Simple boxplot of executive pay."}
+boxplot(exec.pay, ylab="10,000s of dollars", ylim=c(0,400))
+```
+
+Here we show just one boxplot.
+However, one of the great benefits of boxplots is that we could easily
+show many distributions in one plot, by lining them up, side by side. We will see several examples of this throughout the book.
+
+<a name="scatterplots"></a>
+
+## Scatterplots and Correlation
+
+The methods described above relate to _univariate_ variables. In the
+biomedical sciences, it is common to be interested in the relationship
+between two or more variables. A classic example is the father/son
+height data used by
+[Francis Galton](https://en.wikipedia.org/wiki/Francis_Galton) to
+understand heredity. If we were to summarize these data, we could use
+the two averages and two standard deviations since both distributions are
+well approximated by the normal distribution. This summary, however,
+fails to describe an important characteristic of the data. 
+
+```{r scatterplot, fig.cap="Heights of father and son pairs plotted against each other."}
+data(father.son,package="UsingR")
+x=father.son$fheight
+y=father.son$sheight
+plot(x,y, xlab="Father's height in inches", 
+     ylab="Son's height in inches", 
+     main=paste("correlation =",signif(cor(x,y),2)))
+```
+
+The scatter plot shows a general trend: the taller the father, the
+taller the son. A summary of this trend is the correlation coefficient,
+which in this case is 0.5. We will motivate this statistic by trying to
+predict the son's height using the father's height.
+
+## Stratification
+
+Suppose we are asked to guess the height of randomly selected sons. The
+average height, 68.7 inches, is the value with the highest proportion
+(see histogram) and would be our prediction. But what if we are told
+that the father is 72 inches tall, do we still guess 68.7? 
+
+The father is taller than average. Specifically, he is 1.75
+standard deviations taller than the average father. So should we
+predict that the son is also 1.75 standard deviations taller? It turns
+out that this would be an overestimate. To see this, we look at all the sons
+with fathers who are about 72 inches. We do this by _stratifying_ the
+father heights. 
+
+```{r boxplot, fig.cap="Boxplot of son heights stratified by father heights.", fig.width=10.5, fig.height=5.25}
+groups <- split(y,round(x)) 
+boxplot(groups)
+print(mean(y[ round(x) == 72]))
+```
+Stratification followed by boxplots lets us see the distribution of
+each group. The average height of sons with fathers that are 72 inches
+tall is 70.7 inches. We also see that the *medians* of the strata appear
+to follow a straight line (remember the middle line in the boxplot
+shows the median, not the mean). This line is similar to the *regression
+line*, with a slope that is related to the correlation, as we will learn
+below. 
+
+## Bivariate Normal Distribution
+
+Correlation is a widely used summary statistic in the life sciences. However, it is often misused or misinterpreted. To properly interpret correlation we actually have to understand the bivariate normal distribution.
+
+A pair of random variables $(X,Y)$ is considered to be approximated by
+bivariate normal when the proportion of values below, for example $a$
+and $b$, is approximated by this expression: 
+
+$$ 
+\mbox{Pr}(X<a,Y<b) = 
+$$
+
+$$
+\int_{-\infty}^{a} \int_{-\infty}^{b} \frac{1}{2\pi\sigma_x\sigma_y\sqrt{1-\rho^2}}
+\exp{ \left(
+\frac{1}{2(1-\rho^2)}
+\left[\left(\frac{x-\mu_x}{\sigma_x}\right)^2 -  
+2\rho\left(\frac{x-\mu_x}{\sigma_x}\right)\left(\frac{y-\mu_y}{\sigma_y}\right)+
+\left(\frac{y-\mu_y}{\sigma_y}\right)^2
+\right]
+\right)
+}
+$$
+
+This may seem like a rather complicated equation, but the concept behind it is rather intuitive. An alternative definition is the following: fix a value $x$
+and look at all the pairs $(X,Y)$ for which $X=x$. Generally, in
+statistics we call this exercise _conditioning_. We are conditioning
+$Y$ on $X$. If a pair of random variables is approximated by a
+bivariate normal distribution, then the distribution of $Y$ conditioned
+on $X=x$ is approximated with a normal distribution, no matter what $x$ we choose. Let's
+see if this holds with our height data. We show 4 different strata: 
+
+```{r qqnorm_of_strata, fig.cap="qqplots of son heights for four strata defined by father heights.",fig.width=7.5,fig.height=7.5}
+groups <- split(y,round(x)) 
+mypar(2,2)
+for(i in c(5,8,11,14)){
+  qqnorm(groups[[i]],main=paste0("X=",names(groups)[i]," strata"),
+         ylim=range(y),xlim=c(-2.5,2.5))
+  qqline(groups[[i]])
+}
+```
+
+
+Now we come back to defining correlation. Mathematical statistics tells us that when two variables follow a bivariate normal distribution, then for any given value of $x$, the average of the $Y$ in pairs for which $X=x$ is:
+
+$$ 
+\mu_Y +  \rho \frac{X-\mu_X}{\sigma_X}\sigma_Y
+$$
+
+
+Note that this is a line with slope $\rho \frac{\sigma_Y}{\sigma_X}$. This is referred to as the _regression line_. If the SDs are the same, then the slope of the regression line is the correlation $\rho$. Therefore, if we standardize $X$ and $Y$, the correlation is the slope of the regression line. 
+
+
+
+
+Another way to see this is to form a prediction $\hat{Y}$: for every SD away from the mean in $x$, we predict $\rho$ SDs away for $Y$: 
+
+$$
+\frac{\hat{Y} - \mu_Y}{\sigma_Y} = \rho \frac{x-\mu_X}{\sigma_X}
+$$
+
+If there is perfect correlation, we predict the same number of SDs. If there is 0 correlation, then we don't use $x$ at all.  For values between 0 and 1, the prediction is somewhere in between. For negative values, we simply predict in the opposite direction.
+
+To confirm that the above approximations hold in this case, let's compare the mean of each strata to the identity line and the regression line:
+
+```{r scatterplot2, fig.cap="Average son height of each strata plotted against father heights defining the strata"}
+x=( x-mean(x) )/sd(x)
+y=( y-mean(y) )/sd(y)
+means=tapply(y, round(x*4)/4, mean)
+fatherheights=as.numeric(names(means))
+mypar(1,1)
+plot(fatherheights, means, ylab="average of strata of son heights", ylim=range(fatherheights))
+abline(0, cor(x,y))
+```
+
+#### Variance explained
+
+The standard deviation of the _conditional_ distribution described above is:
+
+$$
+ \sqrt{1-\rho^2} \sigma_Y
+$$
+
+This is where statements like $X$ explains $\rho^2 \times 100$ % of the variation in $Y$: the variance of $Y$ is $\sigma^2$ and, once we condition, it goes down to $(1-\rho^2) \sigma^2_Y$ . It is important to remember that the "variance explained" statement only makes sense when the data is approximated by a bivariate normal distribution.
+
+
+
+
+```{r,include=FALSE}
+set.seed(1)
+library(rafalib)
+```
+
+## Plots to Avoid 
+
+This section is based on a talk by [Karl W. Broman](http://kbroman.org/) titled "How to Display Data Badly," in which he described how the default plots offered by Microsoft Excel "obscure your data and annoy your readers" ([here](http://kbroman.org/pages/talks.html) is a link to a collection of Karl Broman's talks). His lecture was inspired by the 1984 paper by H. Wainer: How to display data badly. American Statistician 38(2): 137--147. Dr. Wainer was the first to elucidate the principles of the bad display of data. However, according to Karl Broman, "The now widespread use of Microsoft Excel has resulted in remarkable advances in the field." Here we show examples of "bad plots" and how to improve them in R.
+
+#### General principles
+
+The aim of good data graphics is to display data accurately and clearly. According to Karl Broman, some rules for displaying data *badly* are:
+
+*  Display as little information as possible.
+*  Obscure what you do show (with chart junk).
+*  Use pseudo-3D and color gratuitously.
+*  Make a pie chart (preferably in color and 3D).
+*  Use a poorly chosen scale.
+*  Ignore significant figures.
+
+
+#### Pie charts
+
+```{r,include=FALSE}
+browsers <- c(Opera=1,Safari=9,Firefox=20,IE=26,Chrome=44)
+```
+
+Let's say we want to report the results from a poll asking about browser preference (taken in August 2013). The standard way of displaying these is with a pie chart:
+
+```{r piechart, fig.cap="Pie chart of browser usage."}
+pie(browsers,main="Browser Usage (August 2013)")
+```
+
+Nonetheless, as stated by the help file for the `pie` function:
+
+> "Pie charts are a very bad way of displaying information. The eye is good at judging linear measures and bad at judging relative areas. A bar chart or dot chart is a preferable way of displaying this type of data."
+
+To see this, look at the figure above and try to determine the
+percentages just from looking at the plot. Unless the percentages are
+close to 25%, 50% or 75%, this is not so easy.
+Simply showing the numbers is not only clear, but also saves on
+printing costs.
+
+```{r}
+browsers
+```
+
+If you do want to plot them, then a barplot is appropriate. Here we
+add horizontal lines at every multiple of 10 and then redraw the bars:
+
+```{r barplot, fig.cap="Barplot of browser usage."}
+barplot(browsers, main="Browser Usage (August 2013)", ylim=c(0,55))
+abline(h=1:5 * 10)
+barplot(browsers, add=TRUE)
+```
+
+Notice that we can now pretty easily determine the percentages by
+following a horizontal line to the x-axis. Do avoid a 3D version since
+it obfuscates the plot, making it more difficult to find the
+percentages by eye.
+
+![3D version.](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig2b.png)
+
+Even worse than pie charts are donut plots.
+
+![Donut plot.](http://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Donut-Chart.svg/360px-Donut-Chart.svg.png)
+
+The reason is that by removing the center, we remove one of the visual cues for determining the different areas: the angles. There is no reason to ever use a donut plot to display data.
+
+####  Barplots as data summaries
+
+While barplots are useful for showing percentages, they are
+incorrectly used to display data from two groups being
+compared. Specifically, barplots are created with height equal to the
+group means; an antenna is added at the top to represent standard
+errors. This plot is simply showing two numbers per group and the
+plot adds nothing: 
+
+![Bad bar plots.](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig1c.png)
+
+Much more informative is to summarize with a boxplot. If the number of
+points is small enough, we might as well add them to the plot. When
+the number of points is too large for us to see them, just showing a
+boxplot is preferable. We can even set `range=0` in `boxplot` to avoid
+drawing many outliers when the data is in the range of millions.
+
+Let's recreate these barplots as boxplots. First let's download the data:
+
+```{r}
+library(downloader)
+filename <- "fig1.RData"
+url <- "https://github.com/kbroman/Talk_Graphs/raw/master/R/fig1.RData"
+if (!file.exists(filename)) download(url,filename)
+load(filename)
+```
+
+Now we can simply show the points and make simple boxplots:
+
+```{r, fig.cap="Treatment data and control data shown with a boxplot."}
+library(rafalib)
+mypar()
+dat <- list(Treatment=x,Control=y)
+boxplot(dat,xlab="Group",ylab="Response",cex=0)
+stripchart(dat,vertical=TRUE,method="jitter",pch=16,add=TRUE,col=1)
+```
+
+Notice how much more we see here: the center, spread, range, and the points themselves. In the barplot, we only see the mean and the SE, and the SE has more to do with sample size than with the spread of the data.
+
+This problem is magnified when our data has outliers or very large tails. In the plot below, there appears to be very large and consistent differences between the two groups:
+
+![Bar plots with outliers.](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig3c.png)
+
+However, a quick look at the data demonstrates that this difference is mostly driven by just two points. A version showing the data in the log-scale is much more informative. 
+
+Start by downloading data:
+
+```{r}
+library(downloader)
+url <- "https://github.com/kbroman/Talk_Graphs/raw/master/R/fig3.RData"
+filename <- "fig3.RData"
+if (!file.exists(filename)) download(url, filename)
+load(filename)
+```
+
+Now we can show data and boxplots in original scale and log-scale.
+
+```{r importance_of_log, fig.cap="Data and boxplots for original data (left) and in log scale (right).", fig.width=10.5, fig.height=5.25}
+library(rafalib)
+mypar(1,2)
+dat <- list(Treatment=x,Control=y)
+
+boxplot(dat,xlab="Group",ylab="Response",cex=0)
+stripchart(dat,vertical=TRUE,method="jitter",pch=16,add=TRUE,col=1)
+
+boxplot(dat,xlab="Group",ylab="Response",log="y",cex=0)
+stripchart(dat,vertical=TRUE,method="jitter",pch=16,add=TRUE,col=1)
+```
+
+#### Show the scatter plot
+
+The purpose of many statistical analyses is to determine relationships between two variables. Sample correlations are typically reported and sometimes plots are displayed to show this. However, showing just the regression line is one way to display your data badly since it hides the scatter. Surprisingly, plots such as the following are commonly seen.
+
+Again start by loading data:
+
+```{r}
+url <- "https://github.com/kbroman/Talk_Graphs/raw/master/R/fig4.RData"
+filename <- "fig4.RData"
+if (!file.exists(filename)) download(url, filename)
+load(filename)
+```
+
+```{r show-data, fig.cap="The plot on the left shows a regression line that was fitted to the data shown on the right. It is much more informative to show all the data.", fig.width=10.5, fig.height=5.25}
+mypar(1,2)
+plot(x,y,lwd=2,type="n")
+fit <- lm(y~x)
+abline(fit$coef,lwd=2)
+b <- round(fit$coef,4)
+text(78, 200, paste("y =", b[1], "+", b[2], "x"), adj=c(0,0.5))
+rho <- round(cor(x,y),4) 
+text(78, 187,expression(paste(rho," = 0.8567")),adj=c(0,0.5))
+
+plot(x,y,lwd=2)
+fit <- lm(y~x)
+abline(fit$coef,lwd=2)
+```
+
+When there are large amounts of points, the scatter can be shown by binning
+in two dimensions and coloring the bins by the number of points in the
+bin. An example of this is the `hexbin` function in the
+[hexbin package](https://cran.r-project.org/package=hexbin).
+
+#### High correlation does not imply replication
+
+When new technologies or laboratory techniques are introduced, we are often shown scatter plots and correlations from replicated samples. High correlations are used to demonstrate that the new technique is reproducible. Correlation, however, can be very misleading. Below is a scatter plot showing data from replicated samples run on a high throughput technology. This technology outputs 12,626 simultaneous measurements.
+
+In the plot on the left, we see the original data which shows very high correlation. Yet the data follows a distribution with very fat tails. Furthermore, 95% of the data is below the green line. The plot on the right is in the log scale:
+
+```{r correlation-not-replication, fig.cap="Gene expression data from two replicated samples. Left is in original scale and right is in log scale.", fig.width=10.5, fig.height=5.25, message=FALSE, echo=FALSE}
+##Both these libraries are available from Bioconductor
+library(Biobase) ##install with install_bioc
+library(SpikeInSubset) 
+data(mas95)
+mypar(1,2)
+r <- exprs(mas95)[,1] ##original measures were not logged
+g <- exprs(mas95)[,2]
+plot(r,g,lwd=2,cex=0.2,pch=16,
+     xlab=expression(paste(E[1])),
+     ylab=expression(paste(E[2])), 
+     main=paste0("corr=",signif(cor(r,g),3)))
+abline(0,1,col=2,lwd=2)
+f <- function(a,x,y,p=0.95) mean(x<=a & y<=a)-p
+a95 <- uniroot(f,lower=2000,upper=20000,x=r,y=g)$root
+abline(a95,-1,lwd=2,col=1)
+text(8500,0,"95% of data below this line",col=1,cex=1.2,adj=c(0,0))
+r <- log2(r)
+g <- log2(g)
+plot(r,g,lwd=2,cex=0.2,pch=16,
+     xlab=expression(paste(log[2], " ", E[1])),
+     ylab=expression(paste(log[2], " ", E[2])),
+     main=paste0("corr=",signif(cor(r,g),3)))
+abline(0,1,col=2,lwd=2)
+```
+
+Note that we do not show the code here as it is rather complex but we explain how to make MA plots in a later chapter. 
+
+Although the correlation is reduced in the log-scale, it is very close to 1 in both cases. Does this mean these data are reproduced? To examine how well the second vector reproduces the first, we need to study the differences. We therefore should plot that instead. In this plot, we plot the difference (in the log scale) versus the average:
+
+```{r MAplot, fig.cap="MA plot of the same data shown above shows that data is not replicated very well despite a high correlation.",echo=FALSE}
+mypar(1,1)
+plot((r+g)/2,(r-g),lwd=2,cex=0.2,pch=16,
+     xlab=expression(paste("Ave{ ",log[2], " ", E[1],", ",log[2], " ", E[2]," }")),
+     ylab=expression(paste(log[2]," { ",E[1]," / ",E[2]," }")),
+     main=paste0("SD=",signif(sqrt(mean((r-g)^2)),3)))
+abline(h=0,col=2,lwd=2)
+```
+
+These are referred to as Bland-Altman plots, or _MA plots_ in the
+genomics literature, and we will talk more about them later. "MA"
+stands for "minus" and "average" because in this plot, the y-axis is
+the difference between two samples on the log scale (the log ratio is
+the difference of the logs), and the x-axis is
+the average of the samples on the log scale.
+In this plot, we see that the typical difference in the log (base 2)
+scale between two replicated measures is about 1. This means that when
+measurements should be the same, we will, on average, observe 2 fold
+difference. We can now compare this variability to the differences we
+want to detect and decide if this technology is precise enough for our
+purposes. 
+
+#### Barplots for paired data
+
+A common task in data analysis is the comparison of two groups. When the dataset is small and data are paired, such as the outcomes before and after a treatment, two-color barplots are unfortunately often used to display the results.
+
+![Barplot for two variables.](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig6r_e.png)
+
+There are better ways of showing these data to illustrate that there is an increase after treatment. One is to simply make a scatter plot, which shows that most points are above the identity line. Another alternative is to plot the differences against the before values.
+
+```{r scatter-plot-for-two-vars,fig.cap="For two variables a scatter plot or a 'rotated' plot similar to an MA plot is much more informative." , fig.width=10.5,fig.height=5.25}
+set.seed(12201970)
+before <- runif(6, 5, 8)
+after <- rnorm(6, before*1.05, 2)
+li <- range(c(before, after))
+ymx <- max(abs(after-before))
+
+mypar(1,2)
+plot(before, after, xlab="Before", ylab="After",
+     ylim=li, xlim=li)
+abline(0,1, lty=2, col=1)
+
+plot(before, after-before, xlab="Before", ylim=c(-ymx, ymx),
+     ylab="Change (After - Before)", lwd=2)
+abline(h=0, lty=2, col=1)
+```
+
+
+Line plots are not a bad choice, although I find them harder to follow than the previous two. Boxplots show you the increase, but lose the paired information.
+
+```{r lines-plot-box-plot, fig.cap="Another alternative is a line plot. If we don't care about pairings, then the boxplot is appropriate.",fig.width=10.5,fig.height=5.25}
+z <- rep(c(0,1), rep(6,2))
+mypar(1,2)
+plot(z, c(before, after),
+     xaxt="n", ylab="Response",
+     xlab="", xlim=c(-0.5, 1.5))
+axis(side=1, at=c(0,1), c("Before","After"))
+segments(rep(0,6), before, rep(1,6), after, col=1)     
+
+boxplot(before,after,names=c("Before","After"),ylab="Response")
+```
+
+####  Gratuitous 3D
+
+The figure below shows three curves. Pseudo 3D is used, but it is not clear why. Maybe to separate the three curves? Notice how difficult it is to determine the values of the curves at any given point:
+
+![Gratuitous 3-D.](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig8b.png)
+
+This plot can be made better by simply using color to distinguish the three lines:
+
+```{r colors-for-different-lines, fig.cap="This plot demonstrates that using color is more than enough to distinguish the three lines."}
+##First read data
+url <- "https://github.com/kbroman/Talk_Graphs/raw/master/R/fig8dat.csv"
+x <- read.csv(url)
+
+##Now make alternative plot
+plot(x[,1],x[,2],xlab="log Dose",ylab="Proportion survived",ylim=c(0,1),
+     type="l",lwd=2,col=1)
+lines(x[,1],x[,3],lwd=2,col=2)
+lines(x[,1],x[,4],lwd=2,col=3)
+legend(1,0.4,c("Drug A","Drug B","Drug C"),lwd=2, col=1:3)
+```
+
+#### Ignoring important factors
+
+```{r,echo=FALSE}
+##Simulate data
+set.seed(12201970)
+
+x <- 1:8
+ilogit <- function(x) exp(x)/(1+exp(x))
+y1 <- 0.9 - x/80 + rnorm(length(x), 0, 0.02)
+y2 <- 0.9 - x/40 + rnorm(length(x), 0, 0.02)
+y3 <- 0.85 - x/30 + rnorm(length(x), 0, 0.02)
+y <- cbind(y1, y2, y3)
+
+z1 <- 0.95 - x/40 + rnorm(length(x), 0, 0.02)
+z2 <- ilogit(-0.4*(x-4.5) + rnorm(length(x), 0, 0.04))
+z3 <- ilogit(-0.5*(x-4.5) + rnorm(length(x), 0, 0.04))
+z1[6:8] <- z1[6:8] - 0.18*3
+z <- cbind(z1, z2, z3)
+ym <- apply(y, 1, mean)
+zm <- apply(z, 1, mean)
+```
+
+In this example, we generate data with a simulation. We are studying a dose-response relationship between two groups: treatment and control. We have three groups of measurements for both control and treatment. Comparing treatment and control using the common barplot.
+
+![Ignoring important factors.](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig9d.png)
+
+Instead, we should show each curve. We can use color to distinguish treatment and control, and dashed and solid lines to distinguish the original data from the mean of the three groups.
+
+```{r show-important-factors, fig.cap="Because dose is an important factor, we show it in this plot."}
+plot(x, y1, ylim=c(0,1), type="n", xlab="Dose", ylab="Response") 
+for(i in 1:3) lines(x, y[,i], col=1, lwd=1, lty=2)
+for(i in 1:3) lines(x, z[,i], col=2, lwd=1, lty=2)
+lines(x, ym, col=1, lwd=2)
+lines(x, zm, col=2, lwd=2)
+legend("bottomleft", lwd=2, col=c(1, 2), c("Control", "Treated"))
+```
+
+
+#### Too many significant digits
+
+By default, statistical software like R returns many significant digits. This does not mean we should report them. Cutting and pasting directly from R is a bad idea since you might end up showing a table, such as the one below, comparing the heights of basketball players:
+
+```{r}
+heights <- cbind(rnorm(8,73,3),rnorm(8,73,3),rnorm(8,80,3),
+                 rnorm(8,78,3),rnorm(8,78,3))
+colnames(heights)<-c("SG","PG","C","PF","SF")
+rownames(heights)<- paste("team",1:8)
+heights
+```
+
+We are reporting precision up to 0.00001 inches. Do you know of a tape measure with that much 
+precision? This can be easily remedied:
+
+```{r}
+round(heights,1)
+```
+
+#### Displaying data well
+
+In general, you should follow these principles:
+
+* Be accurate and clear.
+* Let the data speak.
+* Show as much information as possible, taking care not to obscure the message.
+* Science not sales: avoid unnecessary frills (especially gratuitous 3D).
+* In tables, every digit should be meaningful. Don't drop ending 0's.
+
+Some further reading:
+
+* ER Tufte (1983) The visual display of quantitative information.
+Graphics Press.
+* ER Tufte (1990) Envisioning information. Graphics Press.
+*  ER Tufte (1997) Visual explanations. Graphics Press.
+* WS Cleveland (1993) Visualizing data. Hobart Press.
+* WS Cleveland (1994) The elements of graphing data. CRC Press.
+* A Gelman, C Pasarica, R Dodhia (2002) Let's practice what we preach:
+Turning tables into graphs. The American Statistician 56:121-130.
+* NB Robbins (2004) Creating more effective graphs. Wiley.
+* [Nature Methods columns](http://bang.clearscience.info/?p=546) 
+
+
+## Misunderstanding Correlation (Advanced)
+
+The use of correlation to summarize reproducibility has become widespread in, for example, genomics. Despite its English language definition, mathematically, correlation is not necessarily informative with regards to reproducibility.  Here we briefly describe three major problems.
+
+The most egregious related mistake is to compute correlations of data that are not approximated by bivariate normal data. As described above, averages, standard deviations and correlations are popular summary statistics for two-dimensional data because, for the bivariate normal distribution, these five parameters fully describe the distribution. However, there are many examples of data that are not well approximated by bivariate normal data. Raw gene expression data, for example, tends to have a distribution with a very fat right tail.
+
+The standard way to quantify reproducibility between two sets of replicated measurements, say $x_1,\dots,x_n$ and $y_1,\dots,y_n$, is simply to compute the distance between them:
+
+$$
+\sqrt{
+\sum_{i=1}^n d_i^2} \mbox{ with } d_i=x_i - y_i
+$$
+
+This metric decreases as reproducibility improves and it is 0 when the reproducibility is perfect. Another advantage of this metric is that if we divide the sum by N, we can interpret the resulting quantity as the standard deviation of the $d_1,\dots,d_N$ if we assume the $d$ average out to 0. If the $d$ can be considered residuals, then this quantity is equivalent to the root mean squared error (RMSE), a summary statistic that has been around for over a century. Furthermore, this quantity will have the same units as our measurements resulting in a more interpretable metric. 
+
+Another limitation of the correlation is that it does not detect cases that are not reproducible due to average changes. The distance metric does detect these differences. We can rewrite:
+
+$$\frac{1}{n} \sum_{i=1}^n (x_i - y_i)^2 = \frac{1}{n} \sum_{i=1}^n [(x_i - \mu_x) - (y_i - \mu_y) + (\mu_x - \mu_y)]^2$$
+
+with $\mu_x$ and $\mu_y$ the average of each list. Then we have: 
+
+$$\frac{1}{n} \sum_{i=1}^n (x_i - y_i)^2 = \frac{1}{n} \sum_{i=1}^n (x_i-\mu_x)^2 +  \frac{1}{n} \sum_{i=1}^n (y_i - \mu_y)^2 + (\mu_x-\mu_y)^2 + \frac{1}{n}\sum_{i=1}^n (x_i-\mu_x)(y_i - \mu_y)
+$$
+
+For simplicity, if we assume that the variance of both lists is 1, then this reduces to: 
+
+$$\frac{1}{n} \sum_{i=1}^n (x_i - y_i)^2 = 2 + (\mu_x-\mu_y)^2 - 2\rho$$
+
+with $\rho$ the correlation. So we see the direct relationship between distance and correlation. However, an important difference is that the distance contains the term $$(\mu_x-\mu_y)^2$$ and, therefore, it can detect cases that are not reproducible due to large average changes. 
+
+Yet another reason correlation is not an optimal metric for reproducibility is the lack of units. To see this, we use a formula that relates the correlation of a variable with that variable, plus what is interpreted here as deviation: $x$ and $y=x+d$. The larger the variance of $d$, the less $x+d$ reproduces $x$. Here the distance metric would depend only on the variance of $d$ and would summarize reproducibility. However, correlation depends on the variance of $x$ as well. If $d$ is independent of $x$, then
+
+$$
+\mbox{cor}(x,y) = \frac{1}{\sqrt{1+\mbox{var}(d)/\mbox{var}(x)}}
+$$
+
+This suggests that correlations near 1 do not necessarily imply reproducibility. Specifically, irrespective of the variance of $d$, we can make the correlation arbitrarily close to 1 by increasing the variance of $x$.
+
+
+## Robust Summaries
+
+The normal approximation is often useful when analyzing life sciences data. However, due to the complexity of the measurement devices, it is also common to mistakenly observe data points generated by an undesired process. For example, a defect on a scanner can produce a handful of very high intensities or a PCR bias can lead to a fragment appearing much more often than others. We therefore may have situations that are approximated by, for example, 99 data points from a standard normal distribution and one large number.
+
+```{r boxplot_showing_outlier, fig.cap="Normally distributed data with one point that is very large due to a mistake."}
+set.seed(1)
+x=c(rnorm(100,0,1)) ##real distribution
+x[23] <- 100 ##mistake made in 23th measurement
+boxplot(x)
+```
+
+In statistics we refer to these type of points as _outliers_. A small number of outliers can throw off an entire analysis. For example, notice how the following one point results in the sample mean and sample variance being very far from the 0 and 1 respectively.
+
+```{r}
+cat("The average is",mean(x),"and the SD is",sd(x))
+```
+
+#### The median
+
+The median, defined as the point having half the data larger and half the data smaller, is a summary statistic that is _robust_ to outliers. Note how much closer the median is to 0, the center of our actual distribution:
+```{r}
+median(x)
+```
+
+#### The median absolute deviation
+
+The median absolute deviation (MAD) is a robust summary for the standard deviation. It is defined by computing the differences between each point and the median, and then taking the median of their absolute values:
+
+$$
+ 1.4826 \mbox{median} \lvert X_i - \mbox{median}(X_i) \rvert
+$$
+
+The number $1.4826$ is a scaling factor such that the MAD is an unbiased 
+estimate of the standard deviation. Notice how much closer we are to 1 with the MAD:
+
+```{r}
+mad(x)
+```
+
+#### Spearman correlation
+
+Earlier we saw that the correlation is also sensitive to outliers. Here we construct an independent list of numbers, but for which a similar mistake was made for the same entry:
+
+```{r, scatter_plot_showing_outlier,fig.cap="Scatterplot showing bivariate normal data with one signal outlier resulting in large values in both dimensions."}
+set.seed(1)
+x=rnorm(100,0,1) ##real distribution
+x[23] <- 100 ##mistake made in 23th measurement
+y=rnorm(100,0,1) ##real distribution
+y[23] <- 84 ##similar mistake made in 23th measurement
+library(rafalib)
+mypar()
+plot(x,y,main=paste0("correlation=",round(cor(x,y),3)),
+     pch=21,bg=1,xlim=c(-3,100),ylim=c(-3,100))
+abline(0,1)
+```
+
+The Spearman correlation follows the general idea of median and MAD, that of using quantiles.  The idea is simple: we convert each dataset to ranks and then compute correlation:
+
+```{r spearman_corr_illustration, fig.cap="Scatterplot of original data (left) and ranks (right). Spearman correlation reduces the influence of outliers by considering the ranks instead of original data.",fig.width=10.5,fig.height=5.25}
+mypar(1,2)
+plot(x,y,main=paste0("correlation=",round(cor(x,y),3)),pch=21,bg=1,xlim=c(-3,100),ylim=c(-3,100))
+plot(rank(x),rank(y), main=paste0("correlation=",round(cor(x,y,method="spearman"),3)),
+     pch=21,bg=1,xlim=c(-3,100),ylim=c(-3,100))
+abline(0,1)
+```
+
+
+So if these statistics are robust to outliers, why would we ever use
+the non-robust version? In general, if we know there are outliers,
+then median and MAD are recommended over the mean and standard
+deviation counterparts. However, there are examples in which robust
+statistics are less powerful than the non-robust versions.
+
+We also note that there is a large statistical literature on
+robust statistics that go far beyond the median and the MAD.
+
+#### Symmetry of log ratios
+
+Ratios are not symmetric. To see this, we will start by simulating the
+ratio of two positive random numbers, which will represent the
+expression of genes in two samples:
+
+```{r}
+x <- 2^(rnorm(100))
+y <- 2^(rnorm(100)) 
+ratios <- x / y 
+```
+
+Reporting ratios or fold changes are common in the life
+sciences. Suppose you are studying ratio data showing, say, gene
+expression before and after treatment. You are given ratio data so
+values larger than 1 imply gene expression was higher after the
+treatment. If the treatment has no effect, we should see as many
+values below 1 as above 1. A histogram seems to suggest that the
+treatment does in fact have an effect: 
+
+```{r why-log-ratios, fig.cap="Histogram of original (left) and log (right) ratios.", fig.width=10.5, fig.height=5.25}
+mypar(1,2)
+hist(ratios)
+
+logratios <- log2(ratios)
+hist(logratios)
+```
+
+The problem here is that ratios are not symmetrical around 1. For example, 1/32 is much closer to 1 than 32/1. Using the log takes care of this problem. The log of ratios are of course symmetric around 0 because:
+
+$$\log(x/y) = \log(x)-\log(y) = -(\log(y)-\log(x)) = \log(y/x)$$
+
+As demonstrated by these simple plots:
+
+```{r why-log-ratios2, fig.cap="Histogram of original (left) and log (right) powers of 2 seen as ratios.", fig.width=10.5,fig.height=5.25,echo=FALSE}
+##y is 1/32,1/16,1/8,...,1,2,...,32
+x=2^seq(1,5)
+y=c(rev(1/x),1,x)
+Names=c(paste0("1/",rev(x)),1,x)
+mypar(1,2)
+plot(seq(along=y),y,xlab="",ylab="",type="n",xaxt="n")
+text(seq(along=y),y,Names,cex=1.2)
+abline(h=1)
+plot(seq(along=y),y,xlab="",ylab="",type="n",log="y",xaxt="n")
+text(seq(along=y),y,Names,cex=1.2)
+abline(h=1)
+```
+
+
+In the life sciences, the log transformation is also commonly used
+because (multiplicative) fold changes are the most widely used quantification of
+interest. Note that a fold change of 100 can be a ratio of 100/1 or
+1/100. However, 1/100 is much closer to 1 (no fold change) than 100:
+ratios are not symmetric about 1. 
+
+<!-- 
+#### Footnotes <a name="foot"></a>
+
+#### Robust Statistics
+
+Robust Statistics, Peter. J. Huber and Elvezio M. Ronchetti, Wiley, 2009.
+Introduction to Robust Estimation and Hypothesis Testing, Rand R. Wilcox, 2012.
+Robust Statistics: The Approach Based on Influence Functions, Frank R. Hampel, Elvezio M. Ronchetti, Peter J. Rousseeuw, Werner A. Stahel
+-->
+
+
+## Wilcoxon Rank Sum Test
+
+We learned how the sample mean and SD are susceptible to outliers. The
+t-test is based on these measures and is susceptible as well. The
+Wilcoxon rank test (equivalent to the Mann-Whitney test) provides an
+alternative. In the code below, we perform a t-test on data for which
+the null is true. However, we change one sum observation by mistake
+in each sample and the values incorrectly entered are different. Here
+we see that the t-test results in a small p-value, while the Wilcoxon
+test does not: 
+
+```{r}
+set.seed(779) ##779 picked for illustration purposes
+N=25
+x<- rnorm(N,0,1)
+y<- rnorm(N,0,1)
+```
+
+Create outliers:
+
+```{r}
+x[1] <- 5
+x[2] <- 7
+cat("t-test pval:",t.test(x,y)$p.value)
+cat("Wilcox test pval:",wilcox.test(x,y)$p.value)
+```
+
+The basic idea is to 1) combine all the data, 2) turn the values into ranks, 3) separate them back into their groups, and 4) compute the sum or average rank and perform a test.
+
+```{r rank-test-illustration, fig.cap="Data from two populations with two outliers. The left plot shows the original data and the right plot shows their ranks. The numbers are the w values ",fig.width=10.5,fig.height=5.25}
+library(rafalib)
+mypar(1,2)
+
+stripchart(list(x,y),vertical=TRUE,ylim=c(-7,7),ylab="Observations",pch=21,bg=1)
+abline(h=0)
+
+xrank<-rank(c(x,y))[seq(along=x)]
+yrank<-rank(c(x,y))[-seq(along=x)]
+
+stripchart(list(xrank,yrank),vertical=TRUE,ylab="Ranks",pch=21,bg=1,cex=1.25)
+
+ws <- sapply(x,function(z) rank(c(z,y))[1]-1)
+text( rep(1.05,length(ws)), xrank, ws, cex=0.8)
+W <-sum(ws) 
+```
+
+`W` is the sum of the ranks for the first group relative to the second
+group. We can compute an exact p-value for $W$ based on
+combinatorics. We can also use the CLT since
+statistical theory tells us that this `W` is approximated by the
+normal distribution. We can construct a z-score as follows: 
+
+```{r}
+n1<-length(x);n2<-length(y)
+Z <- (mean(ws)-n2/2)/ sqrt(n2*(n1+n2+1)/12/n1)
+print(Z)
+```
+
+Here the `Z` is not large enough to give us a p-value less
+than 0.05. These are part of the calculations performed by the R function
+`wilcox.test`. 
+
+
+
+

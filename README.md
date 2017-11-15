@@ -13,7 +13,10 @@ cd /mnt/volume-nyc1-02/
 mkdir USRNAME ## if it's your first time using this.
 cd USRNAME
 git clone https://github.com/USRNAME/DataAnalysisForLifeScience_cn.git
+```
 
+
+```
 ## Configure Git to sync your fork with the original 
 git remote add upstream https://github.com/xie186/DataAnalysisForLifeScience_cn.git
 
@@ -25,4 +28,17 @@ git checkout master  ## Check out your fork's local master branch.
 git merge upstream/master 
 ```
 
-3) 
+```
+git add .
+git commit -m "message"
+git push origin master
+```
+
+
+3) Pull request 
+
+
+
+Currently if you're not a collaborator and want to contribute. Please send me an email at xie186 at purdue.edu. 
+
+

@@ -19,7 +19,7 @@ Attribution-NoDerivs 2.0 Generic (CC BY-ND 2.0)
 
 {mainmatter}
 
-##  Introduction
+##  Introduction  {-}
 
 The unprecedented advance in digital technology during the second half
 of the 20th century has produced a measurement revolution that is
@@ -40,7 +40,7 @@ greatly elevated the importance of statistics and data analysis in
 the life sciences.
 
 
-## Who Will Find This Book Useful?
+## Who Will Find This Book Useful?  {-}
 
 This book was written with the many life science researchers who are becoming data analysts due to the increased reliance on data described above. If you are performing your own analysis you have probably computed p-values, applied Bonferroni corrections, performed principal component  analysis, made a heatmap, or used one or more of the techniques listed in the next section. If you don't quite understand what these techniques are actually doing or if you are not sure if you are using them appropriately, this book is for you. 
 
@@ -50,7 +50,7 @@ Although the typical reader of this book will have a masters or PhD, we try to k
 
 
 
-## What Does This Book Cover?
+## What Does This Book Cover?  {-}
 
 This book will cover several of the statistical concepts and data
 analytic skills needed to succeed in data-driven life science
@@ -109,9 +109,9 @@ analysis are used to deal with this challenge. In particular, we will
 examine confounding, show examples of batch effects, make the
 connection to factor analysis, and describe surrogate variable
 analysis.
-
-## How Is This Book Different?
-
+ 
+## How Is This Book Different?  {-}
+ 
 While statistics textbooks focus on mathematics, this book focuses on
 using a computer to perform data analysis. This book follows the approach of [Stat Labs](https://www.stat.berkeley.edu/~statlabs/), by Deborah Nolan and Terry Speed.
 Instead of explaining the

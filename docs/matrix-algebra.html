@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>生物信息R数据分析</title>
+  <meta name="description" content="生物信息R数据分析">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="生物信息R数据分析" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="生物信息R数据分析" />
+  <meta name="github-repo" content="xie186/HarvardDataScienceForLifeScience_cn" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="生物信息R数据分析" />
+  
+  <meta name="twitter:description" content="生物信息R数据分析" />
+  
+
+<meta name="author" content="原作者：张三 翻译：张三 李四 麻子">
+
+
+<meta name="date" content="2017-11-16">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="exploratory-data-analysis.html">
+<link rel="next" href="linear-models-1.html">
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">中文书示例</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a><ul>
+<li class="chapter" data-level="0.1" data-path="acknowledgments.html"><a href="acknowledgments.html#introduction"><i class="fa fa-check"></i><b>0.1</b> Introduction</a></li>
+<li class="chapter" data-level="0.2" data-path="acknowledgments.html"><a href="acknowledgments.html#who-will-find-this-book-useful"><i class="fa fa-check"></i><b>0.2</b> Who Will Find This Book Useful?</a></li>
+<li class="chapter" data-level="0.3" data-path="acknowledgments.html"><a href="acknowledgments.html#what-does-this-book-cover"><i class="fa fa-check"></i><b>0.3</b> What Does This Book Cover?</a></li>
+<li class="chapter" data-level="0.4" data-path="acknowledgments.html"><a href="acknowledgments.html#how-is-this-book-different"><i class="fa fa-check"></i><b>0.4</b> How Is This Book Different?</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
+<li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#installing-r"><i class="fa fa-check"></i><b>1.1</b> Installing R</a></li>
+<li class="chapter" data-level="1.2" data-path="getting-started.html"><a href="getting-started.html#installing-rstudio"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#learn-r-basics"><i class="fa fa-check"></i><b>1.3</b> Learn R Basics</a></li>
+<li class="chapter" data-level="1.4" data-path="getting-started.html"><a href="getting-started.html#installing-packages"><i class="fa fa-check"></i><b>1.4</b> Installing Packages</a></li>
+<li class="chapter" data-level="1.5" data-path="getting-started.html"><a href="getting-started.html#importing-data-into-r"><i class="fa fa-check"></i><b>1.5</b> Importing Data into R</a></li>
+<li class="chapter" data-level="1.6" data-path="getting-started.html"><a href="getting-started.html#brief-introduction-to-dplyr"><i class="fa fa-check"></i><b>1.6</b> Brief Introduction to <code>dplyr</code></a></li>
+<li class="chapter" data-level="1.7" data-path="getting-started.html"><a href="getting-started.html#mathematical-notation"><i class="fa fa-check"></i><b>1.7</b> Mathematical Notation</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="inference.html"><a href="inference.html"><i class="fa fa-check"></i><b>2</b> Inference</a><ul>
+<li class="chapter" data-level="2.1" data-path="inference.html"><a href="inference.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="inference.html"><a href="inference.html#random-variables"><i class="fa fa-check"></i><b>2.2</b> Random Variables</a></li>
+<li class="chapter" data-level="2.3" data-path="inference.html"><a href="inference.html#the-null-hypothesis"><i class="fa fa-check"></i><b>2.3</b> The Null Hypothesis</a></li>
+<li class="chapter" data-level="2.4" data-path="inference.html"><a href="inference.html#distributions"><i class="fa fa-check"></i><b>2.4</b> Distributions</a></li>
+<li class="chapter" data-level="2.5" data-path="inference.html"><a href="inference.html#probability-distribution"><i class="fa fa-check"></i><b>2.5</b> Probability Distribution</a></li>
+<li class="chapter" data-level="2.6" data-path="inference.html"><a href="inference.html#normal-distribution"><i class="fa fa-check"></i><b>2.6</b> Normal Distribution</a></li>
+<li class="chapter" data-level="2.7" data-path="inference.html"><a href="inference.html#populations-samples-and-estimates"><i class="fa fa-check"></i><b>2.7</b> Populations, Samples and Estimates</a></li>
+<li class="chapter" data-level="2.8" data-path="inference.html"><a href="inference.html#central-limit-theorem-and-t-distribution"><i class="fa fa-check"></i><b>2.8</b> Central Limit Theorem and t-distribution</a></li>
+<li class="chapter" data-level="2.9" data-path="inference.html"><a href="inference.html#central-limit-theorem-in-practice"><i class="fa fa-check"></i><b>2.9</b> Central Limit Theorem in Practice</a></li>
+<li class="chapter" data-level="2.10" data-path="inference.html"><a href="inference.html#t-tests-in-practice"><i class="fa fa-check"></i><b>2.10</b> t-tests in Practice</a></li>
+<li class="chapter" data-level="2.11" data-path="inference.html"><a href="inference.html#the-t-distribution-in-practice"><i class="fa fa-check"></i><b>2.11</b> The t-distribution in Practice</a></li>
+<li class="chapter" data-level="2.12" data-path="inference.html"><a href="inference.html#confidence-intervals"><i class="fa fa-check"></i><b>2.12</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="2.13" data-path="inference.html"><a href="inference.html#power-calculations"><i class="fa fa-check"></i><b>2.13</b> Power Calculations</a></li>
+<li class="chapter" data-level="2.14" data-path="inference.html"><a href="inference.html#monte-carlo-simulation"><i class="fa fa-check"></i><b>2.14</b> Monte Carlo Simulation</a></li>
+<li class="chapter" data-level="2.15" data-path="inference.html"><a href="inference.html#parametric-simulations-for-the-observations"><i class="fa fa-check"></i><b>2.15</b> Parametric Simulations for the Observations</a></li>
+<li class="chapter" data-level="2.16" data-path="inference.html"><a href="inference.html#permutation-tests"><i class="fa fa-check"></i><b>2.16</b> Permutation Tests</a></li>
+<li class="chapter" data-level="2.17" data-path="inference.html"><a href="inference.html#association-tests"><i class="fa fa-check"></i><b>2.17</b> Association Tests</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>3</b> Exploratory Data Analysis</a><ul>
+<li class="chapter" data-level="3.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#quantile-quantile-plots"><i class="fa fa-check"></i><b>3.1</b> Quantile Quantile Plots</a></li>
+<li class="chapter" data-level="3.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#boxplots"><i class="fa fa-check"></i><b>3.2</b> Boxplots</a></li>
+<li class="chapter" data-level="3.3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#scatterplots-and-correlation"><i class="fa fa-check"></i><b>3.3</b> Scatterplots and Correlation</a></li>
+<li class="chapter" data-level="3.4" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#stratification"><i class="fa fa-check"></i><b>3.4</b> Stratification</a></li>
+<li class="chapter" data-level="3.5" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#bivariate-normal-distribution"><i class="fa fa-check"></i><b>3.5</b> Bivariate Normal Distribution</a></li>
+<li class="chapter" data-level="3.6" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#plots-to-avoid"><i class="fa fa-check"></i><b>3.6</b> Plots to Avoid</a></li>
+<li class="chapter" data-level="3.7" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#misunderstanding-correlation-advanced"><i class="fa fa-check"></i><b>3.7</b> Misunderstanding Correlation (Advanced)</a></li>
+<li class="chapter" data-level="3.8" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#robust-summaries"><i class="fa fa-check"></i><b>3.8</b> Robust Summaries</a></li>
+<li class="chapter" data-level="3.9" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#wilcoxon-rank-sum-test"><i class="fa fa-check"></i><b>3.9</b> Wilcoxon Rank Sum Test</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="matrix-algebra.html"><a href="matrix-algebra.html"><i class="fa fa-check"></i><b>4</b> Matrix Algebra</a><ul>
+<li class="chapter" data-level="4.1" data-path="matrix-algebra.html"><a href="matrix-algebra.html#motivating-examples"><i class="fa fa-check"></i><b>4.1</b> Motivating Examples</a></li>
+<li class="chapter" data-level="4.2" data-path="matrix-algebra.html"><a href="matrix-algebra.html#matrix-notation"><i class="fa fa-check"></i><b>4.2</b> Matrix Notation</a></li>
+<li class="chapter" data-level="4.3" data-path="matrix-algebra.html"><a href="matrix-algebra.html#solving-systems-of-equations"><i class="fa fa-check"></i><b>4.3</b> Solving Systems of Equations</a></li>
+<li class="chapter" data-level="4.4" data-path="matrix-algebra.html"><a href="matrix-algebra.html#vectors-matrices-and-scalars"><i class="fa fa-check"></i><b>4.4</b> Vectors, Matrices, and Scalars</a></li>
+<li class="chapter" data-level="4.5" data-path="matrix-algebra.html"><a href="matrix-algebra.html#matrix-operations"><i class="fa fa-check"></i><b>4.5</b> Matrix Operations</a></li>
+<li class="chapter" data-level="4.6" data-path="matrix-algebra.html"><a href="matrix-algebra.html#examples"><i class="fa fa-check"></i><b>4.6</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="linear-models-1.html"><a href="linear-models-1.html"><i class="fa fa-check"></i><b>5</b> Linear Models</a><ul>
+<li class="chapter" data-level="5.1" data-path="linear-models-1.html"><a href="linear-models-1.html#the-design-matrix"><i class="fa fa-check"></i><b>5.1</b> The Design Matrix</a></li>
+<li class="chapter" data-level="5.2" data-path="linear-models-1.html"><a href="linear-models-1.html#the-mathematics-behind-lm"><i class="fa fa-check"></i><b>5.2</b> The Mathematics Behind lm()</a></li>
+<li class="chapter" data-level="5.3" data-path="linear-models-1.html"><a href="linear-models-1.html#standard-errors"><i class="fa fa-check"></i><b>5.3</b> Standard Errors</a></li>
+<li class="chapter" data-level="5.4" data-path="linear-models-1.html"><a href="linear-models-1.html#interactions-and-contrasts"><i class="fa fa-check"></i><b>5.4</b> Interactions and Contrasts</a></li>
+<li class="chapter" data-level="5.5" data-path="linear-models-1.html"><a href="linear-models-1.html#linear-model-with-interactions"><i class="fa fa-check"></i><b>5.5</b> Linear Model with Interactions</a></li>
+<li class="chapter" data-level="5.6" data-path="linear-models-1.html"><a href="linear-models-1.html#analysis-of-variance"><i class="fa fa-check"></i><b>5.6</b> Analysis of Variance</a></li>
+<li class="chapter" data-level="5.7" data-path="linear-models-1.html"><a href="linear-models-1.html#collinearity"><i class="fa fa-check"></i><b>5.7</b> Collinearity</a></li>
+<li class="chapter" data-level="5.8" data-path="linear-models-1.html"><a href="linear-models-1.html#rank"><i class="fa fa-check"></i><b>5.8</b> Rank</a></li>
+<li class="chapter" data-level="5.9" data-path="linear-models-1.html"><a href="linear-models-1.html#removing-confounding"><i class="fa fa-check"></i><b>5.9</b> Removing Confounding</a></li>
+<li class="chapter" data-level="5.10" data-path="linear-models-1.html"><a href="linear-models-1.html#the-qr-factorization-advanced"><i class="fa fa-check"></i><b>5.10</b> The QR Factorization (Advanced)</a></li>
+</ul></li>
+<li class="appendix"><span><b>附录</b></span></li>
+<li class="chapter" data-level="A" data-path="sound.html"><a href="sound.html"><i class="fa fa-check"></i><b>A</b> 余音绕梁</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">生物信息R数据分析</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="matrix-algebra" class="section level1">
+<h1><span class="header-section-number">第 4 章</span> Matrix Algebra</h1>
+<p>In this book we try to minimize mathematical notation as much as possible. Furthermore, we avoid using calculus to motivate statistical concepts. However, Matrix Algebra (also referred to as Linear Algebra) and its mathematical notation greatly facilitates the exposition of the advanced data analysis techniques covered in the remainder of this book. We therefore dedicate a chapter of this book to introducing Matrix Algebra. We do this in the context of data analysis and using one of the main applications: Linear Models.</p>
+<p>We will describe three examples from the life sciences: one from physics, one related to genetics, and one from a mouse experiment. They are very different, yet we end up using the same statistical technique: fitting linear models. Linear models are typically taught and described in the language of matrix algebra.</p>
+<div id="motivating-examples" class="section level2">
+<h2><span class="header-section-number">4.1</span> Motivating Examples</h2>
+<div id="falling-objects" class="section level4">
+<h4><span class="header-section-number">4.1.0.1</span> Falling objects</h4>
+<p>Imagine you are Galileo in the 16th century trying to describe the velocity of a falling object. An assistant climbs the Tower of Pisa and drops a ball, while several other assistants record the position at different times. Let’s simulate some data using the equations we know today and adding some measurement error:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
+g &lt;-<span class="st"> </span><span class="fl">9.8</span> ##meters per second
+n &lt;-<span class="st"> </span><span class="dv">25</span>
+tt &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="fl">3.4</span>,<span class="dt">len=</span>n) ##time in secs, note: we use tt because t is a base function
+d &lt;-<span class="st"> </span><span class="fl">56.67</span>  <span class="op">-</span><span class="st"> </span><span class="fl">0.5</span><span class="op">*</span>g<span class="op">*</span>tt<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(n,<span class="dt">sd=</span><span class="dv">1</span>) ##meters</code></pre></div>
+<p>The assistants hand the data to Galileo and this is what he sees:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mypar</span>()
+<span class="kw">plot</span>(tt,d,<span class="dt">ylab=</span><span class="st">&quot;Distance in meters&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Time in seconds&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:gravity"></span>
+<img src="bookdown_files/figure-html/gravity-1.png" alt="Simulated data for distance travelled versus time of falling object measured with error." width="672" />
+<p class="caption">
+图 4.1: Simulated data for distance travelled versus time of falling object measured with error.
+</p>
+</div>
+<p>He does not know the exact equation, but by looking at the plot above he deduces that the position should follow a parabola. So he models the data with:</p>
+<p><span class="math display">\[ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \varepsilon_i, i=1,\dots,n \]</span></p>
+<p>With <span class="math inline">\(Y_i\)</span> representing location, <span class="math inline">\(x_i\)</span> representing the time, and <span class="math inline">\(\varepsilon_i\)</span> accounting for measurement error. This is a linear model because it is a linear combination of known quantities (the <span class="math inline">\(x\)</span>’s) referred to as predictors or covariates and unknown parameters (the <span class="math inline">\(\beta\)</span>’s).</p>
+</div>
+<div id="father-son-heights" class="section level4">
+<h4><span class="header-section-number">4.1.0.2</span> Father &amp; son heights</h4>
+<p>Now imagine you are Francis Galton in the 19th century and you collect paired height data from fathers and sons. You suspect that height is inherited. Your data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(father.son,<span class="dt">package=</span><span class="st">&quot;UsingR&quot;</span>)
+x=father.son<span class="op">$</span>fheight
+y=father.son<span class="op">$</span>sheight</code></pre></div>
+<p>looks like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x,y,<span class="dt">xlab=</span><span class="st">&quot;Father&#39;s height&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Son&#39;s height&quot;</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/galton_data-1.png" alt="Galton's data. Son heights versus father heights." width="672" />
+<p class="caption">
+(#fig:galton_data)Galton’s data. Son heights versus father heights.
+</p>
+</div>
+<p>The sons’ heights do seem to increase linearly with the fathers’ heights. In this case, a model that describes the data is as follows:</p>
+<p><span class="math display">\[ Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i, i=1,\dots,N \]</span></p>
+<p>This is also a linear model with <span class="math inline">\(x_i\)</span> and <span class="math inline">\(Y_i\)</span>, the father and son heights respectively, for the <span class="math inline">\(i\)</span>-th pair and <span class="math inline">\(\varepsilon_i\)</span> a term to account for the extra variability. Here we think of the fathers’ heights as the predictor and being fixed (not random) so we use lower case. Measurement error alone can’t explain all the variability seen in <span class="math inline">\(\varepsilon_i\)</span>. This makes sense as there are other variables not in the model, for example, mothers’ heights, genetic randomness, and environmental factors.</p>
+</div>
+<div id="random-samples-from-multiple-populations" class="section level4">
+<h4><span class="header-section-number">4.1.0.3</span> Random samples from multiple populations</h4>
+<p>Here we read-in mouse body weight data from mice that were fed two different diets: high fat and control (chow). We have a random sample of 12 mice for each. We are interested in determining if the diet has an effect on weight. Here is the data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;femaleMiceWeights.csv&quot;</span>)
+<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">1</span>)
+<span class="kw">stripchart</span>(Bodyweight<span class="op">~</span>Diet,<span class="dt">data=</span>dat,<span class="dt">vertical=</span><span class="ot">TRUE</span>,<span class="dt">method=</span><span class="st">&quot;jitter&quot;</span>,<span class="dt">pch=</span><span class="dv">1</span>,<span class="dt">main=</span><span class="st">&quot;Mice weights&quot;</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/mice_weights-1.png" alt="Mouse weights under two diets." width="672" />
+<p class="caption">
+(#fig:mice_weights)Mouse weights under two diets.
+</p>
+</div>
+<p>We want to estimate the difference in average weight between populations. We demonstrated how to do this using t-tests and confidence intervals, based on the difference in sample averages. We can obtain the same exact results using a linear model:</p>
+<p><span class="math display">\[ Y_i = \beta_0 + \beta_1 x_{i} + \varepsilon_i\]</span></p>
+<p>with <span class="math inline">\(\beta_0\)</span> the chow diet average weight, <span class="math inline">\(\beta_1\)</span> the difference between averages, <span class="math inline">\(x_i = 1\)</span> when mouse <span class="math inline">\(i\)</span> gets the high fat (hf) diet, <span class="math inline">\(x_i = 0\)</span> when it gets the chow diet, and <span class="math inline">\(\varepsilon_i\)</span> explains the differences between mice of the same population.</p>
+</div>
+<div id="linear-models-in-general" class="section level4">
+<h4><span class="header-section-number">4.1.0.4</span> Linear models in general</h4>
+<p>We have seen three very different examples in which linear models can be used. A general model that encompasses all of the above examples is the following:</p>
+<p><span class="math display">\[ Y_i = \beta_0 + \beta_1 x_{i,1} + \beta_2 x_{i,2} + \dots +  \beta_2 x_{i,p} + \varepsilon_i, i=1,\dots,n \]</span></p>
+<p><span class="math display">\[ Y_i = \beta_0 + \sum_{j=1}^p \beta_j x_{i,j} + \varepsilon_i, i=1,\dots,n \]</span></p>
+<p>Note that we have a general number of predictors <span class="math inline">\(p\)</span>. Matrix algebra provides a compact language and mathematical framework to compute and make derivations with any linear model that fits into the above framework.</p>
+<p><a name="estimates"></a></p>
+</div>
+<div id="estimating-parameters" class="section level4">
+<h4><span class="header-section-number">4.1.0.5</span> Estimating parameters</h4>
+<p>For the models above to be useful we have to estimate the unknown <span class="math inline">\(\beta\)</span> s. In the first example, we want to describe a physical process for which we can’t have unknown parameters. In the second example, we better understand inheritance by estimating how much, on average, the father’s height affects the son’s height. In the final example, we want to determine if there is in fact a difference: if <span class="math inline">\(\beta_1 \neq 0\)</span>.</p>
+<p>The standard approach in science is to find the values that minimize the distance of the fitted model to the data. The following is called the least squares (LS) equation and we will see it often in this chapter:</p>
+<p><span class="math display">\[ \sum_{i=1}^n \left\{  Y_i - \left(\beta_0 + \sum_{j=1}^p \beta_j x_{i,j}\right)\right\}^2 \]</span></p>
+<p>Once we find the minimum, we will call the values the least squares estimates (LSE) and denote them with <span class="math inline">\(\hat{\beta}\)</span>. The quantity obtained when evaluating the least squares equation at the estimates is called the residual sum of squares (RSS). Since all these quantities depend on <span class="math inline">\(Y\)</span>, <em>they are random variables</em>. The <span class="math inline">\(\hat{\beta}\)</span> s are random variables and we will eventually perform inference on them.</p>
+</div>
+<div id="falling-object-example-revisited" class="section level4">
+<h4><span class="header-section-number">4.1.0.6</span> Falling object example revisited</h4>
+<p>Thanks to my high school physics teacher, I know that the equation for the trajectory of a falling object is:</p>
+<p><span class="math display">\[d = h_0 + v_0 t -  0.5 \times 9.8 t^2\]</span></p>
+<p>with <span class="math inline">\(h_0\)</span> and <span class="math inline">\(v_0\)</span> the starting height and velocity respectively. The data we simulated above followed this equation and added measurement error to simulate <code>n</code> observations for dropping the ball <span class="math inline">\((v_0=0)\)</span> from the tower of Pisa <span class="math inline">\((h_0=56.67)\)</span>. This is why we used this code to simulate data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">g &lt;-<span class="st"> </span><span class="fl">9.8</span> ##meters per second
+n &lt;-<span class="st"> </span><span class="dv">25</span>
+tt &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="fl">3.4</span>,<span class="dt">len=</span>n) ##time in secs, t is a base function
+f &lt;-<span class="st"> </span><span class="fl">56.67</span>  <span class="op">-</span><span class="st"> </span><span class="fl">0.5</span><span class="op">*</span>g<span class="op">*</span>tt<span class="op">^</span><span class="dv">2</span>
+y &lt;-<span class="st">  </span>f <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(n,<span class="dt">sd=</span><span class="dv">1</span>)</code></pre></div>
+<p>Here is what the data looks like with the solid line representing the true trajectory:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(tt,y,<span class="dt">ylab=</span><span class="st">&quot;Distance in meters&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Time in seconds&quot;</span>)
+<span class="kw">lines</span>(tt,f,<span class="dt">col=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/simulate_drop_data_with_fit-1.png" alt="Fitted model for simulated data for distance travelled versus time of falling object measured with error." width="672" />
+<p class="caption">
+(#fig:simulate_drop_data_with_fit)Fitted model for simulated data for distance travelled versus time of falling object measured with error.
+</p>
+</div>
+<p>But we were pretending to be Galileo and so we don’t know the parameters in the model. The data does suggest it is a parabola, so we model it as such:</p>
+<p><span class="math display">\[ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \varepsilon_i, i=1,\dots,n \]</span></p>
+<p>How do we find the LSE?</p>
+</div>
+<div id="the-lm-function" class="section level4">
+<h4><span class="header-section-number">4.1.0.7</span> The <code>lm</code> function</h4>
+<p>In R we can fit this model by simply using the <code>lm</code> function. We will describe this function in detail later, but here is a preview:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tt2 &lt;-tt<span class="op">^</span><span class="dv">2</span>
+fit &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>tt<span class="op">+</span>tt2)
+<span class="kw">summary</span>(fit)<span class="op">$</span>coef</code></pre></div>
+<pre><code>##             Estimate Std. Error  t value  Pr(&gt;|t|)
+## (Intercept)   57.105     0.4997 114.2817 5.120e-32
+## tt            -0.446     0.6807  -0.6553 5.191e-01
+## tt2           -4.747     0.1934 -24.5497 1.767e-17</code></pre>
+<p>It gives us the LSE, as well as standard errors and p-values.</p>
+<p>Part of what we do in this section is to explain the mathematics behind this function.</p>
+</div>
+<div id="the-least-squares-estimate-lse" class="section level4">
+<h4><span class="header-section-number">4.1.0.8</span> The least squares estimate (LSE)</h4>
+<p>Let’s write a function that computes the RSS for any vector <span class="math inline">\(\beta\)</span>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rss &lt;-<span class="st"> </span><span class="cf">function</span>(Beta0,Beta1,Beta2){
+  r &lt;-<span class="st"> </span>y <span class="op">-</span><span class="st"> </span>(Beta0<span class="op">+</span>Beta1<span class="op">*</span>tt<span class="op">+</span>Beta2<span class="op">*</span>tt<span class="op">^</span><span class="dv">2</span>)
+  <span class="kw">return</span>(<span class="kw">sum</span>(r<span class="op">^</span><span class="dv">2</span>))
+}</code></pre></div>
+<p>So for any three dimensional vector we get an RSS. Here is a plot of the RSS as a function of <span class="math inline">\(\beta_2\)</span> when we keep the other two fixed:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Beta2s&lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">0</span>,<span class="dt">len=</span><span class="dv">100</span>)
+<span class="kw">plot</span>(Beta2s,<span class="kw">sapply</span>(Beta2s,rss,<span class="dt">Beta0=</span><span class="dv">55</span>,<span class="dt">Beta1=</span><span class="dv">0</span>),
+     <span class="dt">ylab=</span><span class="st">&quot;RSS&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Beta2&quot;</span>,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>)
+##Let&#39;s add another curve fixing another pair:
+Beta2s&lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">0</span>,<span class="dt">len=</span><span class="dv">100</span>)
+<span class="kw">lines</span>(Beta2s,<span class="kw">sapply</span>(Beta2s,rss,<span class="dt">Beta0=</span><span class="dv">65</span>,<span class="dt">Beta1=</span><span class="dv">0</span>),<span class="dt">col=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/rss_versus_estimate-1.png" alt="Residual sum of squares obtained for several values of the parameters." width="672" />
+<p class="caption">
+(#fig:rss_versus_estimate)Residual sum of squares obtained for several values of the parameters.
+</p>
+</div>
+<p>Trial and error here is not going to work. Instead, we can use calculus: take the partial derivatives, set them to 0 and solve. Of course, if we have many parameters, these equations can get rather complex. Linear algebra provides a compact and general way of solving this problem.</p>
+</div>
+<div id="more-on-galton-advanced" class="section level4">
+<h4><span class="header-section-number">4.1.0.9</span> More on Galton (Advanced)</h4>
+<p>When studying the father-son data, Galton made a fascinating discovery using exploratory analysis.</p>
+<div class="figure">
+<img src="http://upload.wikimedia.org/wikipedia/commons/b/b2/Galton&#39;s_correlation_diagram_1875.jpg" alt="Galton’s plot." />
+<p class="caption">Galton’s plot.</p>
+</div>
+<p>He noted that if he tabulated the number of father-son height pairs and followed all the x,y values having the same totals in the table, they formed an ellipse. In the plot above, made by Galton, you see the ellipse formed by the pairs having 3 cases. This then led to modeling this data as correlated bivariate normal which we described earlier:</p>
+<p><span class="math display">\[ 
+Pr(X&lt;a,Y&lt;b) =
+\]</span></p>
+<p><span class="math display">\[
+\int_{-\infty}^{a} \int_{-\infty}^{b} \frac{1}{2\pi\sigma_x\sigma_y\sqrt{1-\rho^2}}
+\exp{ \left\{
+\frac{1}{2(1-\rho^2)}
+\left[\left(\frac{x-\mu_x}{\sigma_x}\right)^2 -  
+2\rho\left(\frac{x-\mu_x}{\sigma_x}\right)\left(\frac{y-\mu_y}{\sigma_y}\right)+
+\left(\frac{y-\mu_y}{\sigma_y}\right)^2
+\right]
+\right\}
+}
+\]</span></p>
+<p>We described how we can use math to show that if you keep <span class="math inline">\(X\)</span> fixed (condition to be <span class="math inline">\(x\)</span>) the distribution of <span class="math inline">\(Y\)</span> is normally distributed with mean: <span class="math inline">\(\mu_x +\sigma_y \rho \left(\frac{x-\mu_x}{\sigma_x}\right)\)</span> and standard deviation <span class="math inline">\(\sigma_y \sqrt{1-\rho^2}\)</span>. Note that <span class="math inline">\(\rho\)</span> is the correlation between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span>, which implies that if we fix <span class="math inline">\(X=x\)</span>, <span class="math inline">\(Y\)</span> does in fact follow a linear model. The <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> parameters in our simple linear model can be expressed in terms of <span class="math inline">\(\mu_x,\mu_y,\sigma_x,\sigma_y\)</span>, and <span class="math inline">\(\rho\)</span>.</p>
+</div>
+</div>
+<div id="matrix-notation" class="section level2">
+<h2><span class="header-section-number">4.2</span> Matrix Notation</h2>
+<p>Here we introduce the basics of matrix notation. Initially this may seem over-complicated, but once we discuss examples, you will appreciate the power of using this notation to both explain and derive solutions, as well as implement them as R code.</p>
+<div id="the-language-of-linear-models" class="section level4">
+<h4><span class="header-section-number">4.2.0.1</span> The language of linear models</h4>
+<p>Linear algebra notation actually simplifies the mathematical descriptions and manipulations of linear models, as well as coding in R. We will discuss the basics of this notation and then show some examples in R.</p>
+<p>The main point of this entire exercise is to show how we can write the models above using matrix notation, and then explain how this is useful for solving the least squares equation. We start by simply defining notation and matrix multiplication, but bear with us since we eventually get back to the practical application.</p>
+</div>
+</div>
+<div id="solving-systems-of-equations" class="section level2">
+<h2><span class="header-section-number">4.3</span> Solving Systems of Equations</h2>
+<p>Linear algebra was created by mathematicians to solve systems of linear equations such as this:</p>
+<p><span class="math display">\[
+\begin{align*}
+a + b + c &amp;= 6\\
+3a - 2b + c &amp;= 2\\
+2a + b  - c &amp;= 1
+\end{align*}
+\]</span></p>
+<p>It provides very useful machinery to solve these problems generally. We will learn how we can write and solve this system using matrix algebra notation:</p>
+<p><span class="math display">\[ 
+\,
+\begin{pmatrix}
+1&amp;1&amp;1\\
+3&amp;-2&amp;1\\
+2&amp;1&amp;-1
+\end{pmatrix}
+\begin{pmatrix}
+a\\
+b\\
+c
+\end{pmatrix} =
+\begin{pmatrix}
+6\\
+2\\
+1
+\end{pmatrix}
+\implies
+\begin{pmatrix}
+a\\
+b\\
+c
+\end{pmatrix} =
+\begin{pmatrix}
+1&amp;1&amp;1\\
+3&amp;-2&amp;1\\
+2&amp;1&amp;-1
+\end{pmatrix}^{-1}
+\begin{pmatrix}
+6\\
+2\\
+1
+\end{pmatrix}
+\]</span></p>
+<p>This section explains the notation used above. It turns out that we can borrow this notation for linear models in statistics as well.</p>
+</div>
+<div id="vectors-matrices-and-scalars" class="section level2">
+<h2><span class="header-section-number">4.4</span> Vectors, Matrices, and Scalars</h2>
+<p>In the falling object, father-son heights, and mouse weight examples, the random variables associated with the data were represented by <span class="math inline">\(Y_1,\dots,Y_n\)</span>. We can think of this as a vector. In fact, in R we are already doing this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(father.son,<span class="dt">package=</span><span class="st">&quot;UsingR&quot;</span>)
+y=father.son<span class="op">$</span>fheight
+<span class="kw">head</span>(y)</code></pre></div>
+<pre><code>## [1] 65.05 63.25 64.96 65.75 61.14 63.02</code></pre>
+<p>In math we can also use just one symbol. We usually use bold to distinguish it from the individual entries:</p>
+<p><span class="math display">\[ \mathbf{Y} = \begin{pmatrix}
+Y_1\\\
+Y_2\\\
+\vdots\\\
+Y_N
+\end{pmatrix}
+\]</span></p>
+<p>For reasons that will soon become clear, default representation of data vectors have dimension <span class="math inline">\(N\times 1\)</span> as opposed to <span class="math inline">\(1 \times N\)</span> .</p>
+<p>Here we don’t always use bold because normally one can tell what is a matrix from the context.</p>
+<p>Similarly, we can use math notation to represent the covariates or predictors. In a case with two predictors we can represent them like this:</p>
+<p><span class="math display">\[ 
+\mathbf{X}_1 = \begin{pmatrix}
+x_{1,1}\\
+\vdots\\
+x_{N,1}
+\end{pmatrix} \mbox{ and }
+\mathbf{X}_2 = \begin{pmatrix}
+x_{1,2}\\
+\vdots\\
+x_{N,2}
+\end{pmatrix}
+\]</span></p>
+<p>Note that for the falling object example <span class="math inline">\(x_{1,1}= t_i\)</span> and <span class="math inline">\(x_{i,1}=t_i^2\)</span> with <span class="math inline">\(t_i\)</span> the time of the i-th observation. Also, keep in mind that vectors can be thought of as <span class="math inline">\(N\times 1\)</span> matrices.</p>
+<p>For reasons that will soon become apparent, it is convenient to represent these in matrices:</p>
+<p><span class="math display">\[ 
+\mathbf{X} = [ \mathbf{X}_1 \mathbf{X}_2 ] = \begin{pmatrix}
+x_{1,1}&amp;x_{1,2}\\
+\vdots\\
+x_{N,1}&amp;x_{N,2}
+\end{pmatrix}
+\]</span></p>
+<p>This matrix has dimension <span class="math inline">\(N \times 2\)</span>. We can create this matrix in R this way:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">25</span>
+tt &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="fl">3.4</span>,<span class="dt">len=</span>n) ##time in secs, t is a base function
+X &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">X1=</span>tt,<span class="dt">X2=</span>tt<span class="op">^</span><span class="dv">2</span>)
+<span class="kw">head</span>(X)</code></pre></div>
+<pre><code>##          X1      X2
+## [1,] 0.0000 0.00000
+## [2,] 0.1417 0.02007
+## [3,] 0.2833 0.08028
+## [4,] 0.4250 0.18062
+## [5,] 0.5667 0.32111
+## [6,] 0.7083 0.50174</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(X)</code></pre></div>
+<pre><code>## [1] 25  2</code></pre>
+<p>We can also use this notation to denote an arbitrary number of covariates with the following <span class="math inline">\(N\times p\)</span> matrix:</p>
+<p><span class="math display">\[
+\mathbf{X} = \begin{pmatrix}
+  x_{1,1}&amp;\dots &amp; x_{1,p} \\
+  x_{2,1}&amp;\dots &amp; x_{2,p} \\
+   &amp; \vdots &amp; \\
+  x_{N,1}&amp;\dots &amp; x_{N,p} 
+  \end{pmatrix}
+\]</span></p>
+<p>Just as an example, we show you how to make one in R now using <code>matrix</code> instead of <code>cbind</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N &lt;-<span class="st"> </span><span class="dv">100</span>; p &lt;-<span class="st"> </span><span class="dv">5</span>
+X &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span>(N<span class="op">*</span>p),N,p)
+<span class="kw">head</span>(X)</code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1  101  201  301  401
+## [2,]    2  102  202  302  402
+## [3,]    3  103  203  303  403
+## [4,]    4  104  204  304  404
+## [5,]    5  105  205  305  405
+## [6,]    6  106  206  306  406</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(X)</code></pre></div>
+<pre><code>## [1] 100   5</code></pre>
+<p>By default, the matrices are filled column by column. The <code>byrow=TRUE</code> argument lets us change that to row by row:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N &lt;-<span class="st"> </span><span class="dv">100</span>; p &lt;-<span class="st"> </span><span class="dv">5</span>
+X &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span>(N<span class="op">*</span>p),N,p,<span class="dt">byrow=</span><span class="ot">TRUE</span>)
+<span class="kw">head</span>(X)</code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    2    3    4    5
+## [2,]    6    7    8    9   10
+## [3,]   11   12   13   14   15
+## [4,]   16   17   18   19   20
+## [5,]   21   22   23   24   25
+## [6,]   26   27   28   29   30</code></pre>
+<p>Finally, we define a scalar. A scalar is just a number, which we call a scalar because we want to distinguish it from vectors and matrices. We usually use lower case and don’t bold. In the next section, we will understand why we make this distinction.</p>
+</div>
+<div id="matrix-operations" class="section level2">
+<h2><span class="header-section-number">4.5</span> Matrix Operations</h2>
+<p>In a previous section, we motivated the use of matrix algebra with this system of equations:</p>
+<p><span class="math display">\[
+\begin{align*}
+a + b + c &amp;= 6\\
+3a - 2b + c &amp;= 2\\
+2a + b  - c &amp;= 1
+\end{align*}
+\]</span></p>
+<p>We described how this system can be rewritten and solved using matrix algebra:</p>
+<p><span class="math display">\[
+\,
+\begin{pmatrix}
+1&amp;1&amp;1\\
+3&amp;-2&amp;1\\
+2&amp;1&amp;-1
+\end{pmatrix}
+\begin{pmatrix}
+a\\
+b\\
+c
+\end{pmatrix} =
+\begin{pmatrix}
+6\\
+2\\
+1
+\end{pmatrix}
+\implies
+\begin{pmatrix}
+a\\
+b\\
+c
+\end{pmatrix}=
+\begin{pmatrix}
+1&amp;1&amp;1\\
+3&amp;-2&amp;1\\
+2&amp;1&amp;-1
+\end{pmatrix}^{-1}
+\begin{pmatrix}
+6\\
+2\\
+1
+\end{pmatrix}
+\]</span></p>
+<p>Having described matrix notation, we will explain the operation we perform with them. For example, above we have matrix multiplication and we also have a symbol representing the inverse of a matrix. The importance of these operations and others will become clear once we present specific examples related to data analysis.</p>
+<div id="multiplying-by-a-scalar" class="section level4">
+<h4><span class="header-section-number">4.5.0.1</span> Multiplying by a scalar</h4>
+<p>We start with one of the simplest operations: scalar multiplication. If <span class="math inline">\(a\)</span> is scalar and <span class="math inline">\(\mathbf{X}\)</span> is a matrix, then:</p>
+<p><span class="math display">\[
+\mathbf{X} = \begin{pmatrix}
+  x_{1,1}&amp;\dots &amp; x_{1,p} \\
+  x_{2,1}&amp;\dots &amp; x_{2,p} \\
+   &amp; \vdots &amp; \\
+  x_{N,1}&amp;\dots &amp; x_{N,p} 
+  \end{pmatrix} \implies
+a \mathbf{X} = 
+\begin{pmatrix}
+  a x_{1,1} &amp; \dots &amp; a x_{1,p}\\
+  a x_{2,1}&amp;\dots &amp; a x_{2,p} \\
+  &amp; \vdots &amp; \\
+  a x_{N,1} &amp; \dots &amp; a  x_{N,p}
+\end{pmatrix}
+\]</span></p>
+<p>R automatically follows this rule when we multiply a number by a matrix using <code>*</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">X &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>,<span class="dv">4</span>,<span class="dv">3</span>)
+<span class="kw">print</span>(X)</code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    5    9
+## [2,]    2    6   10
+## [3,]    3    7   11
+## [4,]    4    8   12</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="dv">2</span>
+<span class="kw">print</span>(a<span class="op">*</span>X)</code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    2   10   18
+## [2,]    4   12   20
+## [3,]    6   14   22
+## [4,]    8   16   24</code></pre>
+</div>
+<div id="the-transpose" class="section level4">
+<h4><span class="header-section-number">4.5.0.2</span> The transpose</h4>
+<p>The transpose is an operation that simply changes columns to rows. We use a <span class="math inline">\(\top\)</span> to denote a transpose. The technical definition is as follows: if X is as we defined it above, here is the transpose which will be <span class="math inline">\(p\times N\)</span>:</p>
+<p><span class="math display">\[
+\mathbf{X} = \begin{pmatrix}
+  x_{1,1}&amp;\dots &amp; x_{1,p} \\
+  x_{2,1}&amp;\dots &amp; x_{2,p} \\
+   &amp; \vdots &amp; \\
+  x_{N,1}&amp;\dots &amp; x_{N,p} 
+  \end{pmatrix} \implies
+\mathbf{X}^\top = \begin{pmatrix}
+  x_{1,1}&amp;\dots &amp; x_{p,1} \\
+  x_{1,2}&amp;\dots &amp; x_{p,2} \\
+   &amp; \vdots &amp; \\
+  x_{1,N}&amp;\dots &amp; x_{p,N} 
+  \end{pmatrix}
+\]</span></p>
+<p>In R we simply use <code>t</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">X &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>,<span class="dv">4</span>,<span class="dv">3</span>)
+X</code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    5    9
+## [2,]    2    6   10
+## [3,]    3    7   11
+## [4,]    4    8   12</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t</span>(X)</code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    2    3    4
+## [2,]    5    6    7    8
+## [3,]    9   10   11   12</code></pre>
+</div>
+<div id="matrix-multiplication" class="section level4">
+<h4><span class="header-section-number">4.5.0.3</span> Matrix multiplication</h4>
+<p>We start by describing the matrix multiplication shown in the original system of equations example:</p>
+<p><span class="math display">\[
+\begin{align*}
+a + b + c &amp;=6\\
+3a - 2b + c &amp;= 2\\
+2a + b  - c &amp;= 1
+\end{align*}
+\]</span></p>
+<p>What we are doing is multiplying the rows of the first matrix by the columns of the second. Since the second matrix only has one column, we perform this multiplication by doing the following:</p>
+<p><span class="math display">\[
+\,
+\begin{pmatrix}
+1&amp;1&amp;1\\
+3&amp;-2&amp;1\\
+2&amp;1&amp;-1
+\end{pmatrix}
+\begin{pmatrix}
+a\\
+b\\
+c
+\end{pmatrix}=
+\begin{pmatrix}
+a + b + c \\
+3a - 2b + c \\
+2a + b  - c 
+\end{pmatrix}
+\]</span></p>
+<p>Here is a simple example. We can check to see if <code>abc=c(3,2,1)</code> is a solution:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">X  &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>),<span class="dv">3</span>,<span class="dv">3</span>)
+abc &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>) <span class="co">#use as an example</span>
+<span class="kw">rbind</span>( <span class="kw">sum</span>(X[<span class="dv">1</span>,]<span class="op">*</span>abc), <span class="kw">sum</span>(X[<span class="dv">2</span>,]<span class="op">*</span>abc), <span class="kw">sum</span>(X[<span class="dv">3</span>,]<span class="op">*</span>abc))</code></pre></div>
+<pre><code>##      [,1]
+## [1,]    6
+## [2,]    6
+## [3,]    7</code></pre>
+<p>We can use the <code>%*%</code> to perform the matrix multiplication and make this much more compact:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">X<span class="op">%*%</span>abc</code></pre></div>
+<pre><code>##      [,1]
+## [1,]    6
+## [2,]    6
+## [3,]    7</code></pre>
+<p>We can see that <code>c(3,2,1)</code> is not a solution as the answer here is not the required <code>c(6,2,1)</code>.</p>
+<p>To get the solution, we will need to invert the matrix on the left, a concept we learn about below.</p>
+<p>Here is the general definition of matrix multiplication of matrices <span class="math inline">\(A\)</span> and <span class="math inline">\(X\)</span>:</p>
+<p><span class="math display">\[
+\mathbf{AX} = \begin{pmatrix}
+  a_{1,1} &amp; a_{1,2} &amp; \dots &amp; a_{1,N}\\
+  a_{2,1} &amp; a_{2,2} &amp; \dots &amp; a_{2,N}\\
+  &amp; &amp; \vdots &amp; \\
+  a_{M,1} &amp; a_{M,2} &amp; \dots &amp; a_{M,N}
+\end{pmatrix}
+\begin{pmatrix}
+  x_{1,1}&amp;\dots &amp; x_{1,p} \\
+  x_{2,1}&amp;\dots &amp; x_{2,p} \\
+   &amp; \vdots &amp; \\
+  x_{N,1}&amp;\dots &amp; x_{N,p} 
+  \end{pmatrix}
+\]</span></p>
+<p><span class="math display">\[  = \begin{pmatrix}
+  \sum_{i=1}^N a_{1,i} x_{i,1} &amp; \dots &amp; \sum_{i=1}^N a_{1,i} x_{i,p}\\
+  &amp; \vdots &amp; \\
+  \sum_{i=1}^N a_{M,i} x_{i,1} &amp; \dots &amp; \sum_{i=1}^N a_{M,i} x_{i,p}
+\end{pmatrix}
+\]</span></p>
+<p>You can only take the product if the number of columns of the first matrix <span class="math inline">\(A\)</span> equals the number of rows of the second one <span class="math inline">\(X\)</span>. Also, the final matrix has the same row numbers as the first <span class="math inline">\(A\)</span> and the same column numbers as the second <span class="math inline">\(X\)</span>. After you study the example below, you may want to come back and re-read the sections above.</p>
+</div>
+<div id="the-identity-matrix" class="section level4">
+<h4><span class="header-section-number">4.5.0.4</span> The identity matrix</h4>
+<p>The identity matrix is analogous to the number 1: if you multiply the identity matrix by another matrix, you get the same matrix. For this to happen, we need it to be like this:</p>
+<p><span class="math display">\[
+\mathbf{I} = \begin{pmatrix}
+1&amp;0&amp;0&amp;\dots&amp;0&amp;0\\
+0&amp;1&amp;0&amp;\dots&amp;0&amp;0\\
+0&amp;0&amp;1&amp;\dots&amp;0&amp;0\\
+\vdots &amp;\vdots &amp; \vdots&amp;\ddots&amp;\vdots&amp;\vdots\\
+0&amp;0&amp;0&amp;\dots&amp;1&amp;0\\
+0&amp;0&amp;0&amp;\dots&amp;0&amp;1
+\end{pmatrix}
+\]</span></p>
+<p>By this definition, the identity always has to have the same number of rows as columns or be what we call a square matrix.</p>
+<p>If you follow the matrix multiplication rule above, you notice this works out:</p>
+<p><span class="math display">\[
+\mathbf{XI} = 
+\begin{pmatrix}
+   x_{1,1} &amp; \dots &amp;  x_{1,p}\\
+  &amp; \vdots &amp; \\
+   x_{N,1} &amp; \dots &amp;   x_{N,p}
+\end{pmatrix}
+\begin{pmatrix}
+1&amp;0&amp;0&amp;\dots&amp;0&amp;0\\
+0&amp;1&amp;0&amp;\dots&amp;0&amp;0\\
+0&amp;0&amp;1&amp;\dots&amp;0&amp;0\\
+ &amp; &amp; &amp;\vdots&amp; &amp;\\
+0&amp;0&amp;0&amp;\dots&amp;1&amp;0\\
+0&amp;0&amp;0&amp;\dots&amp;0&amp;1
+\end{pmatrix} = 
+\begin{pmatrix}
+   x_{1,1} &amp; \dots &amp;  x_{1,p}\\
+  &amp; \vdots &amp; \\
+   x_{N,1} &amp; \dots &amp; x_{N,p}
+\end{pmatrix}
+\]</span></p>
+<p>In R you can form an identity matrix this way:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">5</span> <span class="co">#pick dimensions</span>
+<span class="kw">diag</span>(n)</code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    0    0    0    0
+## [2,]    0    1    0    0    0
+## [3,]    0    0    1    0    0
+## [4,]    0    0    0    1    0
+## [5,]    0    0    0    0    1</code></pre>
+</div>
+<div id="the-inverse" class="section level4">
+<h4><span class="header-section-number">4.5.0.5</span> The inverse</h4>
+<p>The inverse of matrix <span class="math inline">\(X\)</span>, denoted with <span class="math inline">\(X^{-1}\)</span>, has the property that, when multiplied, gives you the identity <span class="math inline">\(X^{-1}X=I\)</span>. Of course, not all matrices have inverses. For example, a <span class="math inline">\(2\times 2\)</span> matrix with 1s in all its entries does not have an inverse.</p>
+<p>As we will see when we get to the section on applications to linear models, being able to compute the inverse of a matrix is quite useful. A very convenient aspect of R is that it includes a predefined function <code>solve</code> to do this. Here is how we would use it to solve the linear of equations:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">X &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>),<span class="dv">3</span>,<span class="dv">3</span>)
+y &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">1</span>),<span class="dv">3</span>,<span class="dv">1</span>)
+<span class="kw">solve</span>(X)<span class="op">%*%</span>y <span class="co">#equivalent to solve(X,y)</span></code></pre></div>
+<pre><code>##      [,1]
+## [1,]    1
+## [2,]    2
+## [3,]    3</code></pre>
+<p>Please note that <code>solve</code> is a function that should be used with caution as it is not generally numerically stable. We explain this in much more detail in the QR factorization section.</p>
+</div>
+</div>
+<div id="examples" class="section level2">
+<h2><span class="header-section-number">4.6</span> Examples</h2>
+<p>Now we are ready to see how matrix algebra can be useful when analyzing data. We start with some simple examples and eventually arrive at the main one: how to write linear models with matrix algebra notation and solve the least squares problem.</p>
+<div id="the-average" class="section level4">
+<h4><span class="header-section-number">4.6.0.1</span> The average</h4>
+<p>To compute the sample average and variance of our data, we use these formulas <span class="math inline">\(\bar{Y}=\frac{1}{N} Y_i\)</span> and <span class="math inline">\(\mbox{var}(Y)=\frac{1}{N} \sum_{i=1}^N (Y_i - \bar{Y})^2\)</span>. We can represent these with matrix multiplication. First, define this <span class="math inline">\(N \times 1\)</span> matrix made just of 1s:</p>
+<p><span class="math display">\[
+A=\begin{pmatrix}
+1\\
+1\\
+\vdots\\
+1
+\end{pmatrix}
+\]</span></p>
+<p>This implies that:</p>
+<p><span class="math display">\[
+\frac{1}{N}
+\mathbf{A}^\top Y = \frac{1}{N}
+\begin{pmatrix}1&amp;1&amp;\dots&amp;1\end{pmatrix}
+\begin{pmatrix}
+Y_1\\
+Y_2\\
+\vdots\\
+Y_N
+\end{pmatrix}=
+\frac{1}{N} \sum_{i=1}^N Y_i
+= \bar{Y}
+\]</span></p>
+<p>Note that we are multiplying by the scalar <span class="math inline">\(1/N\)</span>. In R, we multiply matrix using <code>%*%</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(father.son,<span class="dt">package=</span><span class="st">&quot;UsingR&quot;</span>)
+y &lt;-<span class="st"> </span>father.son<span class="op">$</span>sheight
+<span class="kw">print</span>(<span class="kw">mean</span>(y))</code></pre></div>
+<pre><code>## [1] 68.68</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N &lt;-<span class="st"> </span><span class="kw">length</span>(y)
+Y&lt;-<span class="st"> </span><span class="kw">matrix</span>(y,N,<span class="dv">1</span>)
+A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span>,N,<span class="dv">1</span>)
+barY=<span class="kw">t</span>(A)<span class="op">%*%</span>Y <span class="op">/</span><span class="st"> </span>N
+
+<span class="kw">print</span>(barY)</code></pre></div>
+<pre><code>##       [,1]
+## [1,] 68.68</code></pre>
+</div>
+<div id="the-variance" class="section level4">
+<h4><span class="header-section-number">4.6.0.2</span> The variance</h4>
+<p>As we will see later, multiplying the transpose of a matrix with another is very common in statistics. In fact, it is so common that there is a function in R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">barY=<span class="kw">crossprod</span>(A,Y) <span class="op">/</span><span class="st"> </span>N
+<span class="kw">print</span>(barY)</code></pre></div>
+<pre><code>##       [,1]
+## [1,] 68.68</code></pre>
+<p>For the variance, we note that if:</p>
+<p><span class="math display">\[
+\mathbf{r}\equiv \begin{pmatrix}
+Y_1 - \bar{Y}\\
+\vdots\\
+Y_N - \bar{Y}
+\end{pmatrix}, \,\,
+\frac{1}{N} \mathbf{r}^\top\mathbf{r} = 
+\frac{1}{N}\sum_{i=1}^N (Y_i - \bar{Y})^2
+\]</span></p>
+<p>In R, if you only send one matrix into <code>crossprod</code>, it computes: <span class="math inline">\(r^\top r\)</span> so we can simply type:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">r &lt;-<span class="st"> </span>y <span class="op">-</span><span class="st"> </span>barY</code></pre></div>
+<pre><code>## Warning in y - barY: Recycling array of length 1 in vector-array arithmetic is deprecated.
+##   Use c() or as.vector() instead.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">crossprod</span>(r)<span class="op">/</span>N</code></pre></div>
+<pre><code>##       [,1]
+## [1,] 7.915</code></pre>
+<p>Which is almost equivalent to:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rafalib)
+<span class="kw">popvar</span>(y) </code></pre></div>
+<pre><code>## [1] 7.915</code></pre>
+</div>
+<div id="linear-models" class="section level4">
+<h4><span class="header-section-number">4.6.0.3</span> Linear models</h4>
+<p>Now we are ready to put all this to use. Let’s start with Galton’s example. If we define these matrices:</p>
+<p><span class="math display">\[
+\mathbf{Y} = \begin{pmatrix}
+Y_1\\
+Y_2\\
+\vdots\\
+Y_N
+\end{pmatrix}
+,
+\mathbf{X} = \begin{pmatrix}
+1&amp;x_1\\
+1&amp;x_2\\
+\vdots\\
+1&amp;x_N
+\end{pmatrix}
+,
+\mathbf{\beta} = \begin{pmatrix}
+\beta_0\\
+\beta_1
+\end{pmatrix} \mbox{ and }
+\mathbf{\varepsilon} = \begin{pmatrix}
+\varepsilon_1\\
+\varepsilon_2\\
+\vdots\\
+\varepsilon_N
+\end{pmatrix}
+\]</span></p>
+<p>Then we can write the model:</p>
+<p><span class="math display">\[ 
+Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i, i=1,\dots,N 
+\]</span></p>
+<p>as:</p>
+<p><span class="math display">\[
+\,
+\begin{pmatrix}
+Y_1\\
+Y_2\\
+\vdots\\
+Y_N
+\end{pmatrix} = 
+\begin{pmatrix}
+1&amp;x_1\\
+1&amp;x_2\\
+\vdots\\
+1&amp;x_N
+\end{pmatrix}
+\begin{pmatrix}
+\beta_0\\
+\beta_1
+\end{pmatrix} +
+\begin{pmatrix}
+\varepsilon_1\\
+\varepsilon_2\\
+\vdots\\
+\varepsilon_N
+\end{pmatrix}
+\]</span></p>
+<p>or simply:</p>
+<p><span class="math display">\[
+\mathbf{Y}=\mathbf{X}\boldsymbol{\beta}+\boldsymbol{\varepsilon}
+\]</span></p>
+<p>which is a much simpler way to write it.</p>
+<p>The least squares equation becomes simpler as well since it is the following cross-product:</p>
+<p><span class="math display">\[
+(\mathbf{Y}-\mathbf{X}\boldsymbol{\beta})^\top
+(\mathbf{Y}-\mathbf{X}\boldsymbol{\beta})
+\]</span></p>
+<p>So now we are ready to determine which values of <span class="math inline">\(\beta\)</span> minimize the above, which we can do using calculus to find the minimum.</p>
+</div>
+<div id="advanced-finding-the-minimum-using-calculus" class="section level4">
+<h4><span class="header-section-number">4.6.0.4</span> Advanced: Finding the minimum using calculus</h4>
+<p>There are a series of rules that permit us to compute partial derivative equations in matrix notation. By equating the derivative to 0 and solving for the <span class="math inline">\(\beta\)</span>, we will have our solution. The only one we need here tells us that the derivative of the above equation is:</p>
+<p><span class="math display">\[
+2 \mathbf{X}^\top (\mathbf{Y} - \mathbf{X} \boldsymbol{\hat{\beta}})=0
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{X}^\top \mathbf{X} \boldsymbol{\hat{\beta}} = \mathbf{X}^\top \mathbf{Y}   
+\]</span></p>
+<p><span class="math display">\[
+\boldsymbol{\hat{\beta}} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{Y}   
+\]</span></p>
+<p>and we have our solution. We usually put a hat on the <span class="math inline">\(\beta\)</span> that solves this, <span class="math inline">\(\hat{\beta}\)</span> , as it is an estimate of the “real” <span class="math inline">\(\beta\)</span> that generated the data.</p>
+<p>Remember that the least squares are like a square (multiply something by itself) and that this formula is similar to the derivative of <span class="math inline">\(f(x)^2\)</span> being <span class="math inline">\(2f(x)f\prime (x)\)</span>.</p>
+</div>
+<div id="finding-lse-in-r" class="section level4">
+<h4><span class="header-section-number">4.6.0.5</span> Finding LSE in R</h4>
+<p>Let’s see how it works in R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(father.son,<span class="dt">package=</span><span class="st">&quot;UsingR&quot;</span>)
+x=father.son<span class="op">$</span>fheight
+y=father.son<span class="op">$</span>sheight
+X &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dv">1</span>,x)
+betahat &lt;-<span class="st"> </span><span class="kw">solve</span>( <span class="kw">t</span>(X) <span class="op">%*%</span><span class="st"> </span>X ) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(X) <span class="op">%*%</span><span class="st"> </span>y
+###or
+betahat &lt;-<span class="st"> </span><span class="kw">solve</span>( <span class="kw">crossprod</span>(X) ) <span class="op">%*%</span><span class="st"> </span><span class="kw">crossprod</span>( X, y )</code></pre></div>
+<p>Now we can see the results of this by computing the estimated <span class="math inline">\(\hat{\beta}_0+\hat{\beta}_1 x\)</span> for any value of <span class="math inline">\(x\)</span>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">newx &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(x),<span class="kw">max</span>(x),<span class="dt">len=</span><span class="dv">100</span>)
+X &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dv">1</span>,newx)
+fitted &lt;-<span class="st"> </span>X<span class="op">%*%</span>betahat
+<span class="kw">plot</span>(x,y,<span class="dt">xlab=</span><span class="st">&quot;Father&#39;s height&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Son&#39;s height&quot;</span>)
+<span class="kw">lines</span>(newx,fitted,<span class="dt">col=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/galton_regression_line-1.png" alt="Galton's data with fitted regression line." width="672" />
+<p class="caption">
+(#fig:galton_regression_line)Galton’s data with fitted regression line.
+</p>
+</div>
+<p>This <span class="math inline">\(\hat{\boldsymbol{\beta}}=(\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{Y}\)</span> is one of the most widely used results in data analysis. One of the advantages of this approach is that we can use it in many different situations. For example, in our falling object problem:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
+g &lt;-<span class="st"> </span><span class="fl">9.8</span> <span class="co">#meters per second</span>
+n &lt;-<span class="st"> </span><span class="dv">25</span>
+tt &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="fl">3.4</span>,<span class="dt">len=</span>n) <span class="co">#time in secs, t is a base function</span>
+d &lt;-<span class="st"> </span><span class="fl">56.67</span>  <span class="op">-</span><span class="st"> </span><span class="fl">0.5</span><span class="op">*</span>g<span class="op">*</span>tt<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(n,<span class="dt">sd=</span><span class="dv">1</span>)</code></pre></div>
+<p>Notice that we are using almost the same exact code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">X &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dv">1</span>,tt,tt<span class="op">^</span><span class="dv">2</span>)
+y &lt;-<span class="st"> </span>d
+betahat &lt;-<span class="st"> </span><span class="kw">solve</span>(<span class="kw">crossprod</span>(X))<span class="op">%*%</span><span class="kw">crossprod</span>(X,y)
+newtt &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(tt),<span class="kw">max</span>(tt),<span class="dt">len=</span><span class="dv">100</span>)
+X &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dv">1</span>,newtt,newtt<span class="op">^</span><span class="dv">2</span>)
+fitted &lt;-<span class="st"> </span>X<span class="op">%*%</span>betahat
+<span class="kw">plot</span>(tt,y,<span class="dt">xlab=</span><span class="st">&quot;Time&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Height&quot;</span>)
+<span class="kw">lines</span>(newtt,fitted,<span class="dt">col=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/gravity_with_fitted_parabola-1.png" alt="Fitted parabola to simulated data for distance travelled versus time of falling object measured with error." width="672" />
+<p class="caption">
+(#fig:gravity_with_fitted_parabola)Fitted parabola to simulated data for distance travelled versus time of falling object measured with error.
+</p>
+</div>
+<p>And the resulting estimates are what we expect:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">betahat</code></pre></div>
+<pre><code>##       [,1]
+##    56.5317
+## tt  0.5014
+##    -5.0386</code></pre>
+<p>The Tower of Pisa is about 56 meters high. Since we are just dropping the object there is no initial velocity, and half the constant of gravity is 9.8/2=4.9 meters per second squared.</p>
+</div>
+<div id="the-lm-function-1" class="section level4">
+<h4><span class="header-section-number">4.6.0.6</span> The <code>lm</code> Function</h4>
+<p>R has a very convenient function that fits these models. We will learn more about this function later, but here is a preview:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">X &lt;-<span class="st"> </span><span class="kw">cbind</span>(tt,tt<span class="op">^</span><span class="dv">2</span>)
+fit=<span class="kw">lm</span>(y<span class="op">~</span>X)
+<span class="kw">summary</span>(fit)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ X)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -2.530 -0.488  0.254  0.656  1.546 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   56.532      0.545  103.70   &lt;2e-16 ***
+## Xtt            0.501      0.743    0.68     0.51    
+## X             -5.039      0.211  -23.88   &lt;2e-16 ***
+## ---
+## Signif. codes:  
+## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.982 on 22 degrees of freedom
+## Multiple R-squared:  0.997,  Adjusted R-squared:  0.997 
+## F-statistic: 4.02e+03 on 2 and 22 DF,  p-value: &lt;2e-16</code></pre>
+<p>Note that we obtain the same values as above.</p>
+</div>
+<div id="summary-1" class="section level4">
+<h4><span class="header-section-number">4.6.0.7</span> Summary</h4>
+<p>We have shown how to write linear models using linear algebra. We are going to do this for several examples, many of which are related to designed experiments. We also demonstrated how to obtain least squares estimates. Nevertheless, it is important to remember that because <span class="math inline">\(y\)</span> is a random variable, these estimates are random as well. In a later section, we will learn how to compute standard error for these estimates and use this to perform inference.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="exploratory-data-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="linear-models-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/yihui/bookdown-chinese/edit/master/04_matrixalg.Rmd",
+"text": "编辑"
+},
+"download": ["bookdown.pdf", "bookdown.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

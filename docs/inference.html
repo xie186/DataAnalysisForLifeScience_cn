@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>生物信息R数据分析</title>
+  <meta name="description" content="生物信息R数据分析">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="生物信息R数据分析" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="生物信息R数据分析" />
+  <meta name="github-repo" content="xie186/HarvardDataScienceForLifeScience_cn" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="生物信息R数据分析" />
+  
+  <meta name="twitter:description" content="生物信息R数据分析" />
+  
+
+<meta name="author" content="原作者：张三 翻译：张三 李四 麻子">
+
+
+<meta name="date" content="2017-11-16">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="getting-started.html">
+<link rel="next" href="exploratory-data-analysis.html">
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">中文书示例</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a><ul>
+<li class="chapter" data-level="0.1" data-path="acknowledgments.html"><a href="acknowledgments.html#introduction"><i class="fa fa-check"></i><b>0.1</b> Introduction</a></li>
+<li class="chapter" data-level="0.2" data-path="acknowledgments.html"><a href="acknowledgments.html#who-will-find-this-book-useful"><i class="fa fa-check"></i><b>0.2</b> Who Will Find This Book Useful?</a></li>
+<li class="chapter" data-level="0.3" data-path="acknowledgments.html"><a href="acknowledgments.html#what-does-this-book-cover"><i class="fa fa-check"></i><b>0.3</b> What Does This Book Cover?</a></li>
+<li class="chapter" data-level="0.4" data-path="acknowledgments.html"><a href="acknowledgments.html#how-is-this-book-different"><i class="fa fa-check"></i><b>0.4</b> How Is This Book Different?</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
+<li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#installing-r"><i class="fa fa-check"></i><b>1.1</b> Installing R</a></li>
+<li class="chapter" data-level="1.2" data-path="getting-started.html"><a href="getting-started.html#installing-rstudio"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#learn-r-basics"><i class="fa fa-check"></i><b>1.3</b> Learn R Basics</a></li>
+<li class="chapter" data-level="1.4" data-path="getting-started.html"><a href="getting-started.html#installing-packages"><i class="fa fa-check"></i><b>1.4</b> Installing Packages</a></li>
+<li class="chapter" data-level="1.5" data-path="getting-started.html"><a href="getting-started.html#importing-data-into-r"><i class="fa fa-check"></i><b>1.5</b> Importing Data into R</a></li>
+<li class="chapter" data-level="1.6" data-path="getting-started.html"><a href="getting-started.html#brief-introduction-to-dplyr"><i class="fa fa-check"></i><b>1.6</b> Brief Introduction to <code>dplyr</code></a></li>
+<li class="chapter" data-level="1.7" data-path="getting-started.html"><a href="getting-started.html#mathematical-notation"><i class="fa fa-check"></i><b>1.7</b> Mathematical Notation</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="inference.html"><a href="inference.html"><i class="fa fa-check"></i><b>2</b> Inference</a><ul>
+<li class="chapter" data-level="2.1" data-path="inference.html"><a href="inference.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="inference.html"><a href="inference.html#random-variables"><i class="fa fa-check"></i><b>2.2</b> Random Variables</a></li>
+<li class="chapter" data-level="2.3" data-path="inference.html"><a href="inference.html#the-null-hypothesis"><i class="fa fa-check"></i><b>2.3</b> The Null Hypothesis</a></li>
+<li class="chapter" data-level="2.4" data-path="inference.html"><a href="inference.html#distributions"><i class="fa fa-check"></i><b>2.4</b> Distributions</a></li>
+<li class="chapter" data-level="2.5" data-path="inference.html"><a href="inference.html#probability-distribution"><i class="fa fa-check"></i><b>2.5</b> Probability Distribution</a></li>
+<li class="chapter" data-level="2.6" data-path="inference.html"><a href="inference.html#normal-distribution"><i class="fa fa-check"></i><b>2.6</b> Normal Distribution</a></li>
+<li class="chapter" data-level="2.7" data-path="inference.html"><a href="inference.html#populations-samples-and-estimates"><i class="fa fa-check"></i><b>2.7</b> Populations, Samples and Estimates</a></li>
+<li class="chapter" data-level="2.8" data-path="inference.html"><a href="inference.html#central-limit-theorem-and-t-distribution"><i class="fa fa-check"></i><b>2.8</b> Central Limit Theorem and t-distribution</a></li>
+<li class="chapter" data-level="2.9" data-path="inference.html"><a href="inference.html#central-limit-theorem-in-practice"><i class="fa fa-check"></i><b>2.9</b> Central Limit Theorem in Practice</a></li>
+<li class="chapter" data-level="2.10" data-path="inference.html"><a href="inference.html#t-tests-in-practice"><i class="fa fa-check"></i><b>2.10</b> t-tests in Practice</a></li>
+<li class="chapter" data-level="2.11" data-path="inference.html"><a href="inference.html#the-t-distribution-in-practice"><i class="fa fa-check"></i><b>2.11</b> The t-distribution in Practice</a></li>
+<li class="chapter" data-level="2.12" data-path="inference.html"><a href="inference.html#confidence-intervals"><i class="fa fa-check"></i><b>2.12</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="2.13" data-path="inference.html"><a href="inference.html#power-calculations"><i class="fa fa-check"></i><b>2.13</b> Power Calculations</a></li>
+<li class="chapter" data-level="2.14" data-path="inference.html"><a href="inference.html#monte-carlo-simulation"><i class="fa fa-check"></i><b>2.14</b> Monte Carlo Simulation</a></li>
+<li class="chapter" data-level="2.15" data-path="inference.html"><a href="inference.html#parametric-simulations-for-the-observations"><i class="fa fa-check"></i><b>2.15</b> Parametric Simulations for the Observations</a></li>
+<li class="chapter" data-level="2.16" data-path="inference.html"><a href="inference.html#permutation-tests"><i class="fa fa-check"></i><b>2.16</b> Permutation Tests</a></li>
+<li class="chapter" data-level="2.17" data-path="inference.html"><a href="inference.html#association-tests"><i class="fa fa-check"></i><b>2.17</b> Association Tests</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>3</b> Exploratory Data Analysis</a><ul>
+<li class="chapter" data-level="3.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#quantile-quantile-plots"><i class="fa fa-check"></i><b>3.1</b> Quantile Quantile Plots</a></li>
+<li class="chapter" data-level="3.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#boxplots"><i class="fa fa-check"></i><b>3.2</b> Boxplots</a></li>
+<li class="chapter" data-level="3.3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#scatterplots-and-correlation"><i class="fa fa-check"></i><b>3.3</b> Scatterplots and Correlation</a></li>
+<li class="chapter" data-level="3.4" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#stratification"><i class="fa fa-check"></i><b>3.4</b> Stratification</a></li>
+<li class="chapter" data-level="3.5" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#bivariate-normal-distribution"><i class="fa fa-check"></i><b>3.5</b> Bivariate Normal Distribution</a></li>
+<li class="chapter" data-level="3.6" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#plots-to-avoid"><i class="fa fa-check"></i><b>3.6</b> Plots to Avoid</a></li>
+<li class="chapter" data-level="3.7" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#misunderstanding-correlation-advanced"><i class="fa fa-check"></i><b>3.7</b> Misunderstanding Correlation (Advanced)</a></li>
+<li class="chapter" data-level="3.8" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#robust-summaries"><i class="fa fa-check"></i><b>3.8</b> Robust Summaries</a></li>
+<li class="chapter" data-level="3.9" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#wilcoxon-rank-sum-test"><i class="fa fa-check"></i><b>3.9</b> Wilcoxon Rank Sum Test</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="matrix-algebra.html"><a href="matrix-algebra.html"><i class="fa fa-check"></i><b>4</b> Matrix Algebra</a><ul>
+<li class="chapter" data-level="4.1" data-path="matrix-algebra.html"><a href="matrix-algebra.html#motivating-examples"><i class="fa fa-check"></i><b>4.1</b> Motivating Examples</a></li>
+<li class="chapter" data-level="4.2" data-path="matrix-algebra.html"><a href="matrix-algebra.html#matrix-notation"><i class="fa fa-check"></i><b>4.2</b> Matrix Notation</a></li>
+<li class="chapter" data-level="4.3" data-path="matrix-algebra.html"><a href="matrix-algebra.html#solving-systems-of-equations"><i class="fa fa-check"></i><b>4.3</b> Solving Systems of Equations</a></li>
+<li class="chapter" data-level="4.4" data-path="matrix-algebra.html"><a href="matrix-algebra.html#vectors-matrices-and-scalars"><i class="fa fa-check"></i><b>4.4</b> Vectors, Matrices, and Scalars</a></li>
+<li class="chapter" data-level="4.5" data-path="matrix-algebra.html"><a href="matrix-algebra.html#matrix-operations"><i class="fa fa-check"></i><b>4.5</b> Matrix Operations</a></li>
+<li class="chapter" data-level="4.6" data-path="matrix-algebra.html"><a href="matrix-algebra.html#examples"><i class="fa fa-check"></i><b>4.6</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="linear-models-1.html"><a href="linear-models-1.html"><i class="fa fa-check"></i><b>5</b> Linear Models</a><ul>
+<li class="chapter" data-level="5.1" data-path="linear-models-1.html"><a href="linear-models-1.html#the-design-matrix"><i class="fa fa-check"></i><b>5.1</b> The Design Matrix</a></li>
+<li class="chapter" data-level="5.2" data-path="linear-models-1.html"><a href="linear-models-1.html#the-mathematics-behind-lm"><i class="fa fa-check"></i><b>5.2</b> The Mathematics Behind lm()</a></li>
+<li class="chapter" data-level="5.3" data-path="linear-models-1.html"><a href="linear-models-1.html#standard-errors"><i class="fa fa-check"></i><b>5.3</b> Standard Errors</a></li>
+<li class="chapter" data-level="5.4" data-path="linear-models-1.html"><a href="linear-models-1.html#interactions-and-contrasts"><i class="fa fa-check"></i><b>5.4</b> Interactions and Contrasts</a></li>
+<li class="chapter" data-level="5.5" data-path="linear-models-1.html"><a href="linear-models-1.html#linear-model-with-interactions"><i class="fa fa-check"></i><b>5.5</b> Linear Model with Interactions</a></li>
+<li class="chapter" data-level="5.6" data-path="linear-models-1.html"><a href="linear-models-1.html#analysis-of-variance"><i class="fa fa-check"></i><b>5.6</b> Analysis of Variance</a></li>
+<li class="chapter" data-level="5.7" data-path="linear-models-1.html"><a href="linear-models-1.html#collinearity"><i class="fa fa-check"></i><b>5.7</b> Collinearity</a></li>
+<li class="chapter" data-level="5.8" data-path="linear-models-1.html"><a href="linear-models-1.html#rank"><i class="fa fa-check"></i><b>5.8</b> Rank</a></li>
+<li class="chapter" data-level="5.9" data-path="linear-models-1.html"><a href="linear-models-1.html#removing-confounding"><i class="fa fa-check"></i><b>5.9</b> Removing Confounding</a></li>
+<li class="chapter" data-level="5.10" data-path="linear-models-1.html"><a href="linear-models-1.html#the-qr-factorization-advanced"><i class="fa fa-check"></i><b>5.10</b> The QR Factorization (Advanced)</a></li>
+</ul></li>
+<li class="appendix"><span><b>附录</b></span></li>
+<li class="chapter" data-level="A" data-path="sound.html"><a href="sound.html"><i class="fa fa-check"></i><b>A</b> 余音绕梁</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">生物信息R数据分析</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="inference" class="section level1">
+<h1><span class="header-section-number">第 2 章</span> Inference</h1>
+<p><a name="introduction"></a></p>
+<div id="introduction-1" class="section level2">
+<h2><span class="header-section-number">2.1</span> Introduction</h2>
+<p>This chapter introduces the statistical concepts necessary to understand p-values and confidence intervals. These terms are ubiquitous in the life science literature. Let’s use <a href="http://diabetes.diabetesjournals.org/content/53/suppl_3/S215.full">this paper</a> as an example.</p>
+<p>Note that the abstract has this statement:</p>
+<blockquote>
+<p>“Body weight was higher in mice fed the high-fat diet already after the first week, due to higher dietary intake in combination with lower metabolic efficiency.”</p>
+</blockquote>
+<p>To support this claim they provide the following in the results section:</p>
+<blockquote>
+<p>“Already during the first week after introduction of high-fat diet, body weight increased significantly more in the high-fat diet-fed mice (<span class="math inline">\(+\)</span> 1.6 <span class="math inline">\(\pm\)</span> 0.1 g) than in the normal diet-fed mice (<span class="math inline">\(+\)</span> 0.2 <span class="math inline">\(\pm\)</span> 0.1 g; P &lt; 0.001).”</p>
+</blockquote>
+<p>What does P &lt; 0.001 mean? What are the <span class="math inline">\(\pm\)</span> included? We will learn what this means and learn to compute these values in R. The first step is to understand random variables. To do this, we will use data from a mouse database (provided by Karen Svenson via Gary Churchill and Dan Gatti and partially funded by P50 GM070683). We will import the data into R and explain random variables and null distributions using R programming.</p>
+<p>If you already downloaded the <code>femaleMiceWeights</code> file into your working directory, you can read it into R with just one line:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;femaleMiceWeights.csv&quot;</span>)</code></pre></div>
+<p>Remember that a quick way to read the data, without downloading it is by using the url:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dir &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/&quot;</span>
+filename &lt;-<span class="st"> &quot;femaleMiceWeights.csv&quot;</span>
+url &lt;-<span class="st"> </span><span class="kw">paste0</span>(dir, filename)
+dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(url)</code></pre></div>
+<div id="our-first-look-at-data" class="section level4">
+<h4><span class="header-section-number">2.1.0.1</span> Our first look at data</h4>
+<p>We are interested in determining if following a given diet makes mice heavier after several weeks. This data was produced by ordering 24 mice from The Jackson Lab and randomly assigning either chow or high fat (hf) diet. After several weeks, the scientists weighed each mouse and obtained this data (<code>head</code> just shows us the first 6 rows):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(dat) </code></pre></div>
+<pre><code>##   Diet Bodyweight
+## 1 chow      21.51
+## 2 chow      28.14
+## 3 chow      24.04
+## 4 chow      23.45
+## 5 chow      23.68
+## 6 chow      19.79</code></pre>
+<p>In RStudio, you can view the entire dataset with:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(dat)</code></pre></div>
+<p>So are the hf mice heavier? Mouse 24 at 20.73 grams is one of the lightest mice, while Mouse 21 at 34.02 grams is one of the heaviest. Both are on the hf diet. Just from looking at the data, we see there is <em>variability</em>. Claims such as the one above usually refer to the averages. So let’s look at the average of each group:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+control &lt;-<span class="st"> </span><span class="kw">filter</span>(dat,Diet<span class="op">==</span><span class="st">&quot;chow&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Bodyweight) <span class="op">%&gt;%</span><span class="st"> </span>unlist
+treatment &lt;-<span class="st"> </span><span class="kw">filter</span>(dat,Diet<span class="op">==</span><span class="st">&quot;hf&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Bodyweight) <span class="op">%&gt;%</span><span class="st"> </span>unlist
+<span class="kw">print</span>( <span class="kw">mean</span>(treatment) )</code></pre></div>
+<pre><code>## [1] 26.83</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>( <span class="kw">mean</span>(control) )</code></pre></div>
+<pre><code>## [1] 23.81</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">obsdiff &lt;-<span class="st"> </span><span class="kw">mean</span>(treatment) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(control)
+<span class="kw">print</span>(obsdiff)</code></pre></div>
+<pre><code>## [1] 3.021</code></pre>
+<p>So the hf diet mice are about 10% heavier. Are we done? Why do we need p-values and confidence intervals? The reason is that these averages are random variables. They can take many values.</p>
+<p>If we repeat the experiment, we obtain 24 new mice from The Jackson Laboratory and, after randomly assigning them to each diet, we get a different mean. Every time we repeat this experiment, we get a different value. We call this type of quantity a <em>random variable</em>.</p>
+<p><a name="random_variable"></a></p>
+</div>
+</div>
+<div id="random-variables" class="section level2">
+<h2><span class="header-section-number">2.2</span> Random Variables</h2>
+<p>Let’s explore random variables further. Imagine that we actually have the weight of all control female mice and can upload them to R. In Statistics, we refer to this as <em>the population</em>. These are all the control mice available from which we sampled 24. Note that in practice we do not have access to the population. We have a special dataset that we are using here to illustrate concepts.</p>
+<p>The first step is to download the data from <a href="https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleControlsPopulation.csv">here</a> into your working directory and then read it into R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">population &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;femaleControlsPopulation.csv&quot;</span>)
+##use unlist to turn it into a numeric vector
+population &lt;-<span class="st"> </span><span class="kw">unlist</span>(population) </code></pre></div>
+<p>Now let’s sample 12 mice three times and see how the average changes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">control &lt;-<span class="st"> </span><span class="kw">sample</span>(population,<span class="dv">12</span>)
+<span class="kw">mean</span>(control)</code></pre></div>
+<pre><code>## [1] 23.81</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">control &lt;-<span class="st"> </span><span class="kw">sample</span>(population,<span class="dv">12</span>)
+<span class="kw">mean</span>(control)</code></pre></div>
+<pre><code>## [1] 23.77</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">control &lt;-<span class="st"> </span><span class="kw">sample</span>(population,<span class="dv">12</span>)
+<span class="kw">mean</span>(control)</code></pre></div>
+<pre><code>## [1] 24.19</code></pre>
+<p>Note how the average varies. We can continue to do this repeatedly and start learning something about the distribution of this random variable.</p>
+<p><a name="null_distribution"></a></p>
+</div>
+<div id="the-null-hypothesis" class="section level2">
+<h2><span class="header-section-number">2.3</span> The Null Hypothesis</h2>
+<p>Now let’s go back to our average difference of <code>obsdiff</code>. As scientists we need to be skeptics. How do we know that this <code>obsdiff</code> is due to the diet? What happens if we give all 24 mice the same diet? Will we see a difference this big? Statisticians refer to this scenario as the <em>null hypothesis</em>. The name “null” is used to remind us that we are acting as skeptics: we give credence to the possibility that there is no difference.</p>
+<p>Because we have access to the population, we can actually observe as many values as we want of the difference of the averages when the diet has no effect. We can do this by randomly sampling 24 control mice, giving them the same diet, and then recording the difference in mean between two randomly split groups of 12 and 12. Here is this process written in R code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##12 control mice
+control &lt;-<span class="st"> </span><span class="kw">sample</span>(population,<span class="dv">12</span>)
+##another 12 control mice that we act as if they were not
+treatment &lt;-<span class="st"> </span><span class="kw">sample</span>(population,<span class="dv">12</span>)
+<span class="kw">print</span>(<span class="kw">mean</span>(treatment) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(control))</code></pre></div>
+<pre><code>## [1] 0.6375</code></pre>
+<p>Now let’s do it 10,000 times. We will use a “for-loop”, an operation that lets us automate this (a simpler approach that, we will learn later, is to use <code>replicate</code>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">10000</span>
+null &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;numeric&quot;</span>,n)
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {
+  control &lt;-<span class="st"> </span><span class="kw">sample</span>(population,<span class="dv">12</span>)
+  treatment &lt;-<span class="st"> </span><span class="kw">sample</span>(population,<span class="dv">12</span>)
+  null[i] &lt;-<span class="st"> </span><span class="kw">mean</span>(treatment) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(control)
+}</code></pre></div>
+<p>The values in <code>null</code> form what we call the <em>null distribution</em>. We will define this more formally below.</p>
+<p>So what percent of the 10,000 are bigger than <code>obsdiff</code>?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(null <span class="op">&gt;=</span><span class="st"> </span>obsdiff)</code></pre></div>
+<pre><code>## [1] 0.0151</code></pre>
+<p>Only a small percent of the 10,000 simulations. As skeptics what do we conclude? When there is no diet effect, we see a difference as big as the one we observed only 1.5% of the time. This is what is known as a p-value, which we will define more formally later in the book.</p>
+<p><a name="distributions"></a></p>
+</div>
+<div id="distributions" class="section level2">
+<h2><span class="header-section-number">2.4</span> Distributions</h2>
+<p>We have explained what we mean by <em>null</em> in the context of null hypothesis, but what exactly is a distribution? The simplest way to think of a <em>distribution</em> is as a compact description of many numbers. For example, suppose you have measured the heights of all men in a population. Imagine you need to describe these numbers to someone that has no idea what these heights are, such as an alien that has never visited Earth. Suppose all these heights are contained in the following dataset:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(father.son,<span class="dt">package=</span><span class="st">&quot;UsingR&quot;</span>)
+x &lt;-<span class="st"> </span>father.son<span class="op">$</span>fheight</code></pre></div>
+<p>One approach to summarizing these numbers is to simply list them all out for the alien to see. Here are 10 randomly selected heights of 1,078:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="kw">sample</span>(x,<span class="dv">10</span>),<span class="dv">1</span>)</code></pre></div>
+<pre><code>##  [1] 66.4 67.4 64.9 62.9 69.2 71.4 69.2 65.9 65.3 70.2</code></pre>
+<div id="cumulative-distribution-function" class="section level4">
+<h4><span class="header-section-number">2.4.0.1</span> Cumulative Distribution Function</h4>
+<p>Scanning through these numbers, we start to get a rough idea of what the entire list looks like, but it is certainly inefficient. We can quickly improve on this approach by defining and visualizing a <em>distribution</em>. To define a distribution we compute, for all possible values of <span class="math inline">\(a\)</span>, the proportion of numbers in our list that are below <span class="math inline">\(a\)</span>. We use the following notation:</p>
+<p><span class="math display">\[ F(a) \equiv \mbox{Pr}(x \leq a) \]</span></p>
+<p>This is called the cumulative distribution function (CDF). When the CDF is derived from data, as opposed to theoretically, we also call it the empirical CDF (ECDF). The ECDF for the height data looks like this:</p>
+<div class="figure"><span id="fig:ecdf"></span>
+<img src="bookdown_files/figure-html/ecdf-1.png" alt="Empirical cummulative distribution function for height." width="672" />
+<p class="caption">
+图 2.1: Empirical cummulative distribution function for height.
+</p>
+</div>
+</div>
+<div id="histograms" class="section level4">
+<h4><span class="header-section-number">2.4.0.2</span> Histograms</h4>
+<p>Although the empirical CDF concept is widely discussed in statistics textbooks, the plot is actually not very popular in practice. The reason is that histograms give us the same information and are easier to interpret. Histograms show us the proportion of values in intervals:</p>
+<p><span class="math display">\[ \mbox{Pr}(a \leq x \leq b) = F(b) - F(a) \]</span></p>
+<p>Plotting these heights as bars is what we call a <em>histogram</em>. It is a more useful plot because we are usually more interested in intervals, such and such percent are between 70 inches and 71 inches, etc., rather than the percent less than a particular height. It is also easier to distinguish different types (families) of distributions by looking at histograms. Here is a histogram of heights:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(x)</code></pre></div>
+<p>We can specify the bins and add better labels in the following way:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bins &lt;-<span class="st"> </span><span class="kw">seq</span>(smallest, largest)
+<span class="kw">hist</span>(x,<span class="dt">breaks=</span>bins,<span class="dt">xlab=</span><span class="st">&quot;Height (in inches)&quot;</span>,<span class="dt">main=</span><span class="st">&quot;Adult men heights&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:histogram"></span>
+<img src="bookdown_files/figure-html/histogram-1.png" alt="Histogram for heights." width="672" />
+<p class="caption">
+图 2.2: Histogram for heights.
+</p>
+</div>
+<p>Showing this plot to the alien is much more informative than showing numbers. With this simple plot, we can approximate the number of individuals in any given interval. For example, there are about 70 individuals over six feet (72 inches) tall.</p>
+</div>
+</div>
+<div id="probability-distribution" class="section level2">
+<h2><span class="header-section-number">2.5</span> Probability Distribution</h2>
+<p>Summarizing lists of numbers is one powerful use of distribution. An even more important use is describing the possible outcomes of a random variable. Unlike a fixed list of numbers, we don’t actually observe all possible outcomes of random variables, so instead of describing proportions, we describe probabilities. For instance, if we pick a random height from our list, then the probability of it falling between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> is denoted with:</p>
+<p><span class="math display">\[ \mbox{Pr}(a \leq X \leq b) = F(b) - F(a) \]</span></p>
+<p>Note that the <span class="math inline">\(X\)</span> is now capitalized to distinguish it as a random variable and that the equation above defines the probability distribution of the random variable. Knowing this distribution is incredibly useful in science. For example, in the case above, if we know the distribution of the difference in mean of mouse weights when the null hypothesis is true, referred to as the <em>null distribution</em>, we can compute the probability of observing a value as large as we did, referred to as a <em>p-value</em>. In a previous section we ran what is called a <em>Monte Carlo</em> simulation (we will provide more details on Monte Carlo simulation in a later section) and we obtained 10,000 outcomes of the random variable under the null hypothesis. Let’s repeat the loop above, but this time let’s add a point to the figure every time we re-run the experiment. If you run this code, you can see the null distribution forming as the observed values stack on top of each other.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">100</span>
+<span class="kw">library</span>(rafalib)
+<span class="kw">nullplot</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">30</span>, <span class="dt">xlab=</span><span class="st">&quot;Observed differences (grams)&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Frequency&quot;</span>)
+totals &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;numeric&quot;</span>,<span class="dv">11</span>)
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {
+  control &lt;-<span class="st"> </span><span class="kw">sample</span>(population,<span class="dv">12</span>)
+  treatment &lt;-<span class="st"> </span><span class="kw">sample</span>(population,<span class="dv">12</span>)
+  nulldiff &lt;-<span class="st"> </span><span class="kw">mean</span>(treatment) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(control)
+  j &lt;-<span class="st"> </span><span class="kw">pmax</span>(<span class="kw">pmin</span>(<span class="kw">round</span>(nulldiff)<span class="op">+</span><span class="dv">6</span>,<span class="dv">11</span>),<span class="dv">1</span>)
+  totals[j] &lt;-<span class="st"> </span>totals[j]<span class="op">+</span><span class="dv">1</span>
+  <span class="kw">text</span>(j<span class="op">-</span><span class="dv">6</span>,totals[j],<span class="dt">pch=</span><span class="dv">15</span>,<span class="kw">round</span>(nulldiff,<span class="dv">1</span>))
+  ##if(i &lt; 15) Sys.sleep(1) ##You can add this line to see values appear slowly
+  }</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/null_distribution_illustration-1.png" alt="Illustration of the null distribution." width="672" />
+<p class="caption">
+(#fig:null_distribution_illustration)Illustration of the null distribution.
+</p>
+</div>
+<p>The figure above amounts to a histogram. From a histogram of the <code>null</code> vector we calculated earlier, we can see that values as large as <code>obsdiff</code> are relatively rare:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(null, <span class="dt">freq=</span><span class="ot">TRUE</span>)
+<span class="kw">abline</span>(<span class="dt">v=</span>obsdiff, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/null_and_obs-1.png" alt="Null distribution with observed difference marked with vertical red line." width="672" />
+<p class="caption">
+(#fig:null_and_obs)Null distribution with observed difference marked with vertical red line.
+</p>
+</div>
+<p>An important point to keep in mind here is that while we defined <span class="math inline">\(\mbox{Pr}(a)\)</span> by counting cases, we will learn that, in some circumstances, mathematics gives us formulas for <span class="math inline">\(\mbox{Pr}(a)\)</span> that save us the trouble of computing them as we did here. One example of this powerful approach uses the normal distribution approximation.</p>
+<p><a name="normal_distribution"></a></p>
+</div>
+<div id="normal-distribution" class="section level2">
+<h2><span class="header-section-number">2.6</span> Normal Distribution</h2>
+<p>The probability distribution we see above approximates one that is very common in nature: the bell curve, also known as the normal distribution or Gaussian distribution. When the histogram of a list of numbers approximates the normal distribution, we can use a convenient mathematical formula to approximate the proportion of values or outcomes in any given interval:</p>
+<p><span class="math display">\[
+\mbox{Pr}(a &lt; x &lt; b) = \int_a^b \frac{1}{\sqrt{2\pi\sigma^2}} \exp{\left( \frac{-(x-\mu)^2}{2 \sigma^2} \right)} \, dx
+\]</span></p>
+<p>While the formula may look intimidating, don’t worry, you will never actually have to type it out, as it is stored in a more convenient form (as <code>pnorm</code> in R which sets <em>a</em> to <span class="math inline">\(-\infty\)</span>, and takes <em>b</em> as an argument).</p>
+<p>Here <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> are referred to as the mean and the standard deviation of the population (we explain these in more detail in another section). If this <em>normal approximation</em> holds for our list, then the population mean and variance of our list can be used in the formula above. An example of this would be when we noted above that only 1.5% of values on the null distribution were above <code>obsdiff</code>. We can compute the proportion of values below a value <code>x</code> with <code>pnorm(x,mu,sigma)</code> without knowing all the values. The normal approximation works very well here:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(obsdiff,<span class="kw">mean</span>(null),<span class="kw">sd</span>(null)) </code></pre></div>
+<pre><code>## [1] 0.01468</code></pre>
+<p>Later, we will learn that there is a mathematical explanation for this. A very useful characteristic of this approximation is that one only needs to know <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> to describe the entire distribution. From this, we can compute the proportion of values in any interval.</p>
+<div id="summary" class="section level4">
+<h4><span class="header-section-number">2.6.0.1</span> Summary</h4>
+<p>So computing a p-value for the difference in diet for the mice was pretty easy, right? But why are we not done? To make the calculation, we did the equivalent of buying all the mice available from The Jackson Laboratory and performing our experiment repeatedly to define the null distribution. Yet this is not something we can do in practice. Statistical Inference is the mathematical theory that permits you to approximate this with only the data from your sample, i.e. the original 24 mice. We will focus on this in the following sections.</p>
+</div>
+<div id="setting-the-random-seed" class="section level4">
+<h4><span class="header-section-number">2.6.0.2</span> Setting the random seed</h4>
+<p>Before we continue, we briefly explain the following important line of code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>) </code></pre></div>
+<p>Throughout this book, we use random number generators. This implies that many of the results presented can actually change by chance, including the correct answer to problems. One way to ensure that results do not change is by setting R’s random number generation seed. For more on the topic please read the help file:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?set.seed</code></pre></div>
+</div>
+</div>
+<div id="populations-samples-and-estimates" class="section level2">
+<h2><span class="header-section-number">2.7</span> Populations, Samples and Estimates</h2>
+<p>Now that we have introduced the idea of a random variable, a null distribution, and a p-value, we are ready to describe the mathematical theory that permits us to compute p-values in practice. We will also learn about confidence intervals and power calculations.</p>
+<div id="population-parameters" class="section level4">
+<h4><span class="header-section-number">2.7.0.1</span> Population parameters</h4>
+<p>A first step in statistical inference is to understand what population you are interested in. In the mouse weight example, we have two populations: female mice on control diets and female mice on high fat diets, with weight being the outcome of interest. We consider this population to be fixed, and the randomness comes from the sampling. One reason we have been using this dataset as an example is because we happen to have the weights of all the mice of this type. We download <a href="https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/mice_pheno.csv">this</a> file to our working directory and read in to R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;mice_pheno.csv&quot;</span>)</code></pre></div>
+<p>We can then access the population values and determine, for example, how many we have. Here we compute the size of the control population:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+controlPopulation &lt;-<span class="st"> </span><span class="kw">filter</span>(dat,Sex <span class="op">==</span><span class="st"> &quot;F&quot;</span> <span class="op">&amp;</span><span class="st"> </span>Diet <span class="op">==</span><span class="st"> &quot;chow&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(Bodyweight) <span class="op">%&gt;%</span><span class="st"> </span>unlist
+<span class="kw">length</span>(controlPopulation)</code></pre></div>
+<pre><code>## [1] 225</code></pre>
+<p>We usually denote these values as <span class="math inline">\(x_1,\dots,x_m\)</span>. In this case, <span class="math inline">\(m\)</span> is the number computed above. We can do the same for the high fat diet population:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hfPopulation &lt;-<span class="st"> </span><span class="kw">filter</span>(dat,Sex <span class="op">==</span><span class="st"> &quot;F&quot;</span> <span class="op">&amp;</span><span class="st"> </span>Diet <span class="op">==</span><span class="st"> &quot;hf&quot;</span>) <span class="op">%&gt;%</span><span class="st">  </span>
+<span class="st">  </span><span class="kw">select</span>(Bodyweight) <span class="op">%&gt;%</span><span class="st"> </span>unlist
+<span class="kw">length</span>(hfPopulation)</code></pre></div>
+<pre><code>## [1] 200</code></pre>
+<p>and denote with <span class="math inline">\(y_1,\dots,y_n\)</span>.</p>
+<p>We can then define summaries of interest for these populations, such as the mean and variance.</p>
+<p>The mean:</p>
+<p><span class="math display">\[\mu_X = \frac{1}{m}\sum_{i=1}^m x_i \mbox{ and } \mu_Y = \frac{1}{n} \sum_{i=1}^n y_i\]</span></p>
+<p>The variance:</p>
+<p><span class="math display">\[\sigma_X^2 = \frac{1}{m}\sum_{i=1}^m (x_i-\mu_X)^2 \mbox{ and } \sigma_Y^2 = \frac{1}{n} \sum_{i=1}^n (y_i-\mu_Y)^2\]</span></p>
+<p>with the standard deviation being the square root of the variance. We refer to such quantities that can be obtained from the population as <em>population parameters</em>. The question we started out asking can now be written mathematically: is <span class="math inline">\(\mu_Y - \mu_X = 0\)</span> ?</p>
+<p>Although in our illustration we have all the values and can check if this is true, in practice we do not. For example, in practice it would be prohibitively expensive to buy all the mice in a population. Here we learn how taking a <em>sample</em> permits us to answer our questions. This is the essence of statistical inference.</p>
+</div>
+<div id="sample-estimates" class="section level4">
+<h4><span class="header-section-number">2.7.0.2</span> Sample estimates</h4>
+<p>In the previous chapter, we obtained samples of 12 mice from each population. We represent data from samples with capital letters to indicate that they are random. This is common practice in statistics, although it is not always followed. So the samples are <span class="math inline">\(X_1,\dots,X_M\)</span> and <span class="math inline">\(Y_1,\dots,Y_N\)</span> and, in this case, <span class="math inline">\(N=M=12\)</span>. In contrast and as we saw above, when we list out the values of the population, which are set and not random, we use lower-case letters.</p>
+<p>Since we want to know if <span class="math inline">\(\mu_Y - \mu_X\)</span> is 0, we consider the sample version: <span class="math inline">\(\bar{Y}-\bar{X}\)</span> with:</p>
+<p><span class="math display">\[
+\bar{X}=\frac{1}{M} \sum_{i=1}^M X_i 
+\mbox{ and }\bar{Y}=\frac{1}{N} \sum_{i=1}^N Y_i.
+\]</span></p>
+<p>Note that this difference of averages is also a random variable. Previously, we learned about the behavior of random variables with an exercise that involved repeatedly sampling from the original distribution. Of course, this is not an exercise that we can execute in practice. In this particular case it would involve buying 24 mice over and over again. Here we described the mathematical theory that mathematically relates <span class="math inline">\(\bar{X}\)</span> to <span class="math inline">\(\mu_X\)</span> and <span class="math inline">\(\bar{Y}\)</span> to <span class="math inline">\(\mu_Y\)</span>, that will in turn help us understand the relationship between <span class="math inline">\(\bar{Y}-\bar{X}\)</span> and <span class="math inline">\(\mu_Y - \mu_X\)</span>. Specifically, we will describe how the Central Limit Theorem permits us to use an approximation to answer this question, as well as motivate the widely used t-distribution.</p>
+</div>
+</div>
+<div id="central-limit-theorem-and-t-distribution" class="section level2">
+<h2><span class="header-section-number">2.8</span> Central Limit Theorem and t-distribution</h2>
+<p>Below we will discuss the Central Limit Theorem (CLT) and the t-distribution, both of which help us make important calculations related to probabilities. Both are frequently used in science to test statistical hypotheses. To use these, we have to make different assumptions from those for the CLT and the t-distribution. However, if the assumptions are true, then we are able to calculate the exact probabilities of events through the use of mathematical formula.</p>
+<div id="central-limit-theorem" class="section level4">
+<h4><span class="header-section-number">2.8.0.1</span> Central Limit Theorem</h4>
+<p>The CLT is one of the most frequently used mathematical results in science. It tells us that when the sample size is large, the average <span class="math inline">\(\bar{Y}\)</span> of a random sample follows a normal distribution centered at the population average <span class="math inline">\(\mu_Y\)</span> and with standard deviation equal to the population standard deviation <span class="math inline">\(\sigma_Y\)</span>, divided by the square root of the sample size <span class="math inline">\(N\)</span>. We refer to the standard deviation of the distribution of a random variable as the random variable’s <em>standard error</em>.</p>
+<p>Please note that if we subtract a constant from a random variable, the mean of the new random variable shifts by that constant. Mathematically, if <span class="math inline">\(X\)</span> is a random variable with mean <span class="math inline">\(\mu\)</span> and <span class="math inline">\(a\)</span> is a constant, the mean of <span class="math inline">\(X - a\)</span> is <span class="math inline">\(\mu-a\)</span>. A similarly intuitive result holds for multiplication and the standard deviation (SD). If <span class="math inline">\(X\)</span> is a random variable with mean <span class="math inline">\(\mu\)</span> and SD <span class="math inline">\(\sigma\)</span>, and <span class="math inline">\(a\)</span> is a constant, then the mean and SD of <span class="math inline">\(aX\)</span> are <span class="math inline">\(a \mu\)</span> and <span class="math inline">\(\mid a \mid \sigma\)</span> respectively. To see how intuitive this is, imagine that we subtract 10 grams from each of the mice weights. The average weight should also drop by that much. Similarly, if we change the units from grams to milligrams by multiplying by 1000, then the spread of the numbers becomes larger.</p>
+<p>This implies that if we take many samples of size <span class="math inline">\(N\)</span>, then the quantity:</p>
+<p><span class="math display">\[
+\frac{\bar{Y} - \mu}{\sigma_Y/\sqrt{N}}
+\]</span></p>
+<p>is approximated with a normal distribution centered at 0 and with standard deviation 1.</p>
+<p>Now we are interested in the difference between two sample averages. Here again a mathematical result helps. If we have two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> with means <span class="math inline">\(\mu_X\)</span> and <span class="math inline">\(\mu_Y\)</span> and variance <span class="math inline">\(\sigma_X\)</span> and <span class="math inline">\(\sigma_Y\)</span> respectively, then we have the following result: the mean of the sum <span class="math inline">\(Y + X\)</span> is the sum of the means <span class="math inline">\(\mu_Y + \mu_X\)</span>. Using one of the facts we mentioned earlier, this implies that the mean of <span class="math inline">\(Y - X = Y + aX\)</span> with <span class="math inline">\(a = -1\)</span> , which implies that the mean of <span class="math inline">\(Y - X\)</span> is <span class="math inline">\(\mu_Y - \mu_X\)</span>. This is intuitive. However, the next result is perhaps not as intuitive. If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent of each other, as they are in our mouse example, then the variance (SD squared) of <span class="math inline">\(Y + X\)</span> is the sum of the variances <span class="math inline">\(\sigma_Y^2 + \sigma_X^2\)</span>. This implies that variance of the difference <span class="math inline">\(Y - X\)</span> is the variance of <span class="math inline">\(Y + aX\)</span> with <span class="math inline">\(a = -1\)</span> which is <span class="math inline">\(\sigma^2_Y + a^2 \sigma_X^2 = \sigma^2_Y + \sigma_X^2\)</span>. So the variance of the difference is also the sum of the variances. If this seems like a counterintuitive result, remember that if <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent of each other, the sign does not really matter. It can be considered random: if <span class="math inline">\(X\)</span> is normal with certain variance, for example, so is <span class="math inline">\(-X\)</span>. Finally, another useful result is that the sum of normal variables is again normal.</p>
+<p>All this math is very helpful for the purposes of our study because we have two sample averages and are interested in the difference. Because both are normal, the difference is normal as well, and the variance (the standard deviation squared) is the sum of the two variances. Under the null hypothesis that there is no difference between the population averages, the difference between the sample averages <span class="math inline">\(\bar{Y}-\bar{X}\)</span>, with <span class="math inline">\(\bar{X}\)</span> and <span class="math inline">\(\bar{Y}\)</span> the sample average for the two diets respectively, is approximated by a normal distribution centered at 0 (there is no difference) and with standard deviation <span class="math inline">\(\sqrt{\sigma_X^2 +\sigma_Y^2}/\sqrt{N}\)</span>.</p>
+<p>This suggests that this ratio:</p>
+<p><span class="math display">\[
+\frac{\bar{Y}-\bar{X}}{\sqrt{\frac{\sigma_X^2}{M} + \frac{\sigma_Y^2}{N}}}
+\]</span></p>
+<p>is approximated by a normal distribution centered at 0 and standard deviation 1. Using this approximation makes computing p-values simple because we know the proportion of the distribution under any value. For example, only 5% of these values are larger than 2 (in absolute value):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="dv">2</span>))</code></pre></div>
+<pre><code>## [1] 0.0455</code></pre>
+<p>We don’t need to buy more mice, 12 and 12 suffice.</p>
+<p>However, we can’t claim victory just yet because we don’t know the population standard deviations: <span class="math inline">\(\sigma_X\)</span> and <span class="math inline">\(\sigma_Y\)</span>. These are unknown population parameters, but we can get around this by using the sample standard deviations, call them <span class="math inline">\(s_X\)</span> and <span class="math inline">\(s_Y\)</span>. These are defined as:</p>
+<p><span class="math display">\[ s_X^2 = \frac{1}{M-1} \sum_{i=1}^M (X_i - \bar{X})^2  \mbox{ and }  s_Y^2 = \frac{1}{N-1} \sum_{i=1}^N (Y_i - \bar{Y})^2 \]</span></p>
+<p>Note that we are dividing by <span class="math inline">\(M-1\)</span> and <span class="math inline">\(N-1\)</span>, instead of by <span class="math inline">\(M\)</span> and <span class="math inline">\(N\)</span>. There is a theoretical reason for doing this which we do not explain here. But to get an intuition, think of the case when you just have 2 numbers. The average distance to the mean is basically 1/2 the difference between the two numbers. So you really just have information from one number. This is somewhat of a minor point. The main point is that <span class="math inline">\(s_X\)</span> and <span class="math inline">\(s_Y\)</span> serve as estimates of <span class="math inline">\(\sigma_X\)</span> and <span class="math inline">\(\sigma_Y\)</span></p>
+<p>So we can redefine our ratio as</p>
+<p><span class="math display">\[
+\sqrt{N} \frac{\bar{Y}-\bar{X}}{\sqrt{s_X^2 +s_Y^2}}
+\]</span></p>
+<p>if <span class="math inline">\(M=N\)</span> or in general,</p>
+<p><span class="math display">\[
+\frac{\bar{Y}-\bar{X}}{\sqrt{\frac{s_X^2}{M} + \frac{s_Y^2}{N}}}
+\]</span></p>
+<p>The CLT tells us that when <span class="math inline">\(M\)</span> and <span class="math inline">\(N\)</span> are large, this random variable is normally distributed with mean 0 and SD 1. Thus we can compute p-values using the function <code>pnorm</code>.</p>
+</div>
+<div id="the-t-distribution" class="section level4">
+<h4><span class="header-section-number">2.8.0.2</span> The t-distribution</h4>
+<p>The CLT relies on large samples, what we refer to as <em>asymptotic results</em>. When the CLT does not apply, there is another option that does not rely on asymptotic results. When the original population from which a random variable, say <span class="math inline">\(Y\)</span>, is sampled is normally distributed with mean 0, then we can calculate the distribution of:</p>
+<p><span class="math display">\[
+\sqrt{N} \frac{\bar{Y}}{s_Y}
+\]</span></p>
+<p>This is the ratio of two random variables so it is not necessarily normal. The fact that the denominator can be small by chance increases the probability of observing large values. <a href="http://en.wikipedia.org/wiki/William_Sealy_Gosset">William Sealy Gosset</a>, an employee of the Guinness brewing company, deciphered the distribution of this random variable and published a paper under the pseudonym “Student”. The distribution is therefore called Student’s t-distribution. Later we will learn more about how this result is used.</p>
+<p>Here we will use the mice phenotype data as an example. We start by creating two vectors, one for the control population and one for the high-fat diet population:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;mice_pheno.csv&quot;</span>) <span class="co">#We downloaded this file in a previous section</span>
+controlPopulation &lt;-<span class="st"> </span><span class="kw">filter</span>(dat,Sex <span class="op">==</span><span class="st"> &quot;F&quot;</span> <span class="op">&amp;</span><span class="st"> </span>Diet <span class="op">==</span><span class="st"> &quot;chow&quot;</span>) <span class="op">%&gt;%</span><span class="st">  </span>
+<span class="st">  </span><span class="kw">select</span>(Bodyweight) <span class="op">%&gt;%</span><span class="st"> </span>unlist
+hfPopulation &lt;-<span class="st"> </span><span class="kw">filter</span>(dat,Sex <span class="op">==</span><span class="st"> &quot;F&quot;</span> <span class="op">&amp;</span><span class="st"> </span>Diet <span class="op">==</span><span class="st"> &quot;hf&quot;</span>) <span class="op">%&gt;%</span><span class="st">  </span>
+<span class="st">  </span><span class="kw">select</span>(Bodyweight) <span class="op">%&gt;%</span><span class="st"> </span>unlist</code></pre></div>
+<p>It is important to keep in mind that what we are assuming to be normal here is the distribution of <span class="math inline">\(y_1,y_2,\dots,y_n\)</span>, not the random variable <span class="math inline">\(\bar{Y}\)</span>. Although we can’t do this in practice, in this illustrative example, we get to see this distribution for both controls and high fat diet mice:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rafalib)
+<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+<span class="kw">hist</span>(hfPopulation)
+<span class="kw">hist</span>(controlPopulation)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/population_histograms-1.png" alt="Histograms of all weights for both populations." width="1008" />
+<p class="caption">
+(#fig:population_histograms)Histograms of all weights for both populations.
+</p>
+</div>
+<p>We can use <em>qq-plots</em> to confirm that the distributions are relatively close to being normally distributed. We will explore these plots in more depth in a later section, but the important thing to know is that it compares data (on the y-axis) against a theoretical distribution (on the x-axis). If the points fall on the identity line, then the data is close to the theoretical distribution.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+<span class="kw">qqnorm</span>(hfPopulation)
+<span class="kw">qqline</span>(hfPopulation)
+<span class="kw">qqnorm</span>(controlPopulation)
+<span class="kw">qqline</span>(controlPopulation)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/population_qqplots-1.png" alt="Quantile-quantile plots of all weights for both populations." width="1008" />
+<p class="caption">
+(#fig:population_qqplots)Quantile-quantile plots of all weights for both populations.
+</p>
+</div>
+<p>The larger the sample, the more forgiving the result is to the weakness of this approximation. In the next section, we will see that for this particular dataset the t-distribution works well even for sample sizes as small as 3.</p>
+</div>
+</div>
+<div id="central-limit-theorem-in-practice" class="section level2">
+<h2><span class="header-section-number">2.9</span> Central Limit Theorem in Practice</h2>
+<p>Let’s use our data to see how well the central limit theorem approximates sample averages from our data. We will leverage our entire population dataset to compare the results we obtain by actually sampling from the distribution to what the CLT predicts.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;mice_pheno.csv&quot;</span>) <span class="co">#file was previously downloaded</span>
+<span class="kw">head</span>(dat)</code></pre></div>
+<pre><code>##   Sex Diet Bodyweight
+## 1   F   hf      31.94
+## 2   F   hf      32.48
+## 3   F   hf      22.82
+## 4   F   hf      19.92
+## 5   F   hf      32.22
+## 6   F   hf      27.50</code></pre>
+<p>Start by selecting only female mice since males and females have different weights. We will select three mice from each population.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+controlPopulation &lt;-<span class="st"> </span><span class="kw">filter</span>(dat,Sex <span class="op">==</span><span class="st"> &quot;F&quot;</span> <span class="op">&amp;</span><span class="st"> </span>Diet <span class="op">==</span><span class="st"> &quot;chow&quot;</span>) <span class="op">%&gt;%</span><span class="st">  </span>
+<span class="st">  </span><span class="kw">select</span>(Bodyweight) <span class="op">%&gt;%</span><span class="st"> </span>unlist
+hfPopulation &lt;-<span class="st"> </span><span class="kw">filter</span>(dat,Sex <span class="op">==</span><span class="st"> &quot;F&quot;</span> <span class="op">&amp;</span><span class="st"> </span>Diet <span class="op">==</span><span class="st"> &quot;hf&quot;</span>) <span class="op">%&gt;%</span><span class="st">  </span>
+<span class="st">  </span><span class="kw">select</span>(Bodyweight) <span class="op">%&gt;%</span><span class="st"> </span>unlist</code></pre></div>
+<p>We can compute the population parameters of interest using the mean function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mu_hf &lt;-<span class="st"> </span><span class="kw">mean</span>(hfPopulation)
+mu_control &lt;-<span class="st"> </span><span class="kw">mean</span>(controlPopulation)
+<span class="kw">print</span>(mu_hf <span class="op">-</span><span class="st"> </span>mu_control)</code></pre></div>
+<pre><code>## [1] 2.376</code></pre>
+<p>We can compute the population standard deviations of, say, a vector <span class="math inline">\(x\)</span> as well. However, we do not use the R function <code>sd</code> because this function actually does not compute the population standard deviation <span class="math inline">\(\sigma_x\)</span>. Instead, <code>sd</code> assumes the main argument is a random sample, say <span class="math inline">\(X\)</span>, and provides an estimate of <span class="math inline">\(\sigma_x\)</span>, defined by <span class="math inline">\(s_X\)</span> above. As shown in the equations above the actual final answer differs because one divides by the sample size and the other by the sample size minus one. We can see that with R code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span>controlPopulation
+N &lt;-<span class="st"> </span><span class="kw">length</span>(x)
+populationvar &lt;-<span class="st"> </span><span class="kw">mean</span>((x<span class="op">-</span><span class="kw">mean</span>(x))<span class="op">^</span><span class="dv">2</span>)
+<span class="kw">identical</span>(<span class="kw">var</span>(x), populationvar)</code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">identical</span>(<span class="kw">var</span>(x)<span class="op">*</span>(N<span class="op">-</span><span class="dv">1</span>)<span class="op">/</span>N, populationvar)</code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>So to be mathematically correct, we do not use <code>sd</code> or <code>var</code>. Instead, we use the <code>popvar</code> and <code>popsd</code> function in <code>rafalib</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rafalib)
+sd_hf &lt;-<span class="st"> </span><span class="kw">popsd</span>(hfPopulation)
+sd_control &lt;-<span class="st"> </span><span class="kw">popsd</span>(controlPopulation)</code></pre></div>
+<p>Remember that in practice we do not get to compute these population parameters. These are values we never see. In general, we want to estimate them from samples.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N &lt;-<span class="st"> </span><span class="dv">12</span>
+hf &lt;-<span class="st"> </span><span class="kw">sample</span>(hfPopulation, <span class="dv">12</span>)
+control &lt;-<span class="st"> </span><span class="kw">sample</span>(controlPopulation, <span class="dv">12</span>)</code></pre></div>
+<p>As we described, the CLT tells us that for large <span class="math inline">\(N\)</span>, each of these is approximately normal with average population mean and standard error population variance divided by <span class="math inline">\(N\)</span>. We mentioned that a rule of thumb is that <span class="math inline">\(N\)</span> should be 30 or more. However, that is just a rule of thumb since the preciseness of the approximation depends on the population distribution. Here we can actually check the approximation and we do that for various values of <span class="math inline">\(N\)</span>.</p>
+<p>Now we use <code>sapply</code> and <code>replicate</code> instead of <code>for</code> loops, which makes for cleaner code (we do not have to pre-allocate a vector, R takes care of this for us):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Ns &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">12</span>,<span class="dv">25</span>,<span class="dv">50</span>)
+B &lt;-<span class="st"> </span><span class="dv">10000</span> <span class="co">#number of simulations</span>
+res &lt;-<span class="st">  </span><span class="kw">sapply</span>(Ns,<span class="cf">function</span>(n) {
+  <span class="kw">replicate</span>(B,<span class="kw">mean</span>(<span class="kw">sample</span>(hfPopulation,n))<span class="op">-</span><span class="kw">mean</span>(<span class="kw">sample</span>(controlPopulation,n)))
+})</code></pre></div>
+<p>Now we can use qq-plots to see how well CLT approximations works for these. If in fact the normal distribution is a good approximation, the points should fall on a straight line when compared to normal quantiles. The more it deviates, the worse the approximation. In the title, we also show the average and SD of the observed distribution, which demonstrates how the SD decreases with <span class="math inline">\(\sqrt{N}\)</span> as predicted.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mypar</span>(<span class="dv">2</span>,<span class="dv">2</span>)
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq</span>(<span class="dt">along=</span>Ns)) {
+  titleavg &lt;-<span class="st"> </span><span class="kw">signif</span>(<span class="kw">mean</span>(res[,i]),<span class="dv">3</span>)
+  titlesd &lt;-<span class="st"> </span><span class="kw">signif</span>(<span class="kw">popsd</span>(res[,i]),<span class="dv">3</span>)
+  title &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;N=&quot;</span>,Ns[i],<span class="st">&quot; Avg=&quot;</span>,titleavg,<span class="st">&quot; SD=&quot;</span>,titlesd)
+  <span class="kw">qqnorm</span>(res[,i],<span class="dt">main=</span>title)
+  <span class="kw">qqline</span>(res[,i],<span class="dt">col=</span><span class="dv">2</span>)
+}</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/effect_size_qqplot-1.png" alt="Quantile versus quantile plot of simulated differences versus theoretical normal distribution for four different sample sizes." width="720" />
+<p class="caption">
+(#fig:effect_size_qqplot)Quantile versus quantile plot of simulated differences versus theoretical normal distribution for four different sample sizes.
+</p>
+</div>
+<p>Here we see a pretty good fit even for 3. Why is this? Because the population itself is relatively close to normally distributed, the averages are close to normal as well (the sum of normals is also a normal). In practice, we actually calculate a ratio: we divide by the estimated standard deviation. Here is where the sample size starts to matter more.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Ns &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">12</span>,<span class="dv">25</span>,<span class="dv">50</span>)
+B &lt;-<span class="st"> </span><span class="dv">10000</span> <span class="co">#number of simulations</span>
+##function to compute a t-stat
+computetstat &lt;-<span class="st"> </span><span class="cf">function</span>(n) {
+  y &lt;-<span class="st"> </span><span class="kw">sample</span>(hfPopulation,n)
+  x &lt;-<span class="st"> </span><span class="kw">sample</span>(controlPopulation,n)
+  (<span class="kw">mean</span>(y)<span class="op">-</span><span class="kw">mean</span>(x))<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">var</span>(y)<span class="op">/</span>n<span class="op">+</span><span class="kw">var</span>(x)<span class="op">/</span>n)
+}
+res &lt;-<span class="st">  </span><span class="kw">sapply</span>(Ns,<span class="cf">function</span>(n) {
+  <span class="kw">replicate</span>(B,<span class="kw">computetstat</span>(n))
+})
+<span class="kw">mypar</span>(<span class="dv">2</span>,<span class="dv">2</span>)
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq</span>(<span class="dt">along=</span>Ns)) {
+  <span class="kw">qqnorm</span>(res[,i],<span class="dt">main=</span>Ns[i])
+  <span class="kw">qqline</span>(res[,i],<span class="dt">col=</span><span class="dv">2</span>)
+}</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/t_test_qqplot-1.png" alt="Quantile versus quantile plot of simulated ratios versus theoretical normal distribution for four different sample sizes." width="720" />
+<p class="caption">
+(#fig:t_test_qqplot)Quantile versus quantile plot of simulated ratios versus theoretical normal distribution for four different sample sizes.
+</p>
+</div>
+<p>So we see that for <span class="math inline">\(N=3\)</span>, the CLT does not provide a usable approximation. For <span class="math inline">\(N=12\)</span>, there is a slight deviation at the higher values, although the approximation appears useful. For 25 and 50, the approximation is spot on.</p>
+<p>This simulation only proves that <span class="math inline">\(N=12\)</span> is large enough in this case, not in general. As mentioned above, we will not be able to perform this simulation in most situations. We only use the simulation to illustrate the concepts behind the CLT and its limitations. In future sections, we will describe the approaches we actually use in practice.</p>
+</div>
+<div id="t-tests-in-practice" class="section level2">
+<h2><span class="header-section-number">2.10</span> t-tests in Practice</h2>
+<div id="introduction-2" class="section level4">
+<h4><span class="header-section-number">2.10.0.1</span> Introduction</h4>
+<p>We will now demonstrate how to obtain a p-value in practice. We begin by loading experimental data and walking you through the steps used to form a t-statistic and compute a p-value. We can perform this task with just a few lines of code (go to the end of this section to see them). However, to understand the concepts, we will construct a t-statistic from “scratch”.</p>
+</div>
+<div id="read-in-and-prepare-data" class="section level4">
+<h4><span class="header-section-number">2.10.0.2</span> Read in and prepare data</h4>
+<p>We start by reading in the data. A first important step is to identify which rows are associated with treatment and control, and to compute the difference in mean.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;femaleMiceWeights.csv&quot;</span>) <span class="co">#previously downloaded</span>
+
+control &lt;-<span class="st"> </span><span class="kw">filter</span>(dat,Diet<span class="op">==</span><span class="st">&quot;chow&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Bodyweight) <span class="op">%&gt;%</span><span class="st"> </span>unlist
+treatment &lt;-<span class="st"> </span><span class="kw">filter</span>(dat,Diet<span class="op">==</span><span class="st">&quot;hf&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Bodyweight) <span class="op">%&gt;%</span><span class="st"> </span>unlist
+
+diff &lt;-<span class="st"> </span><span class="kw">mean</span>(treatment) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(control)
+<span class="kw">print</span>(diff)</code></pre></div>
+<pre><code>## [1] 3.021</code></pre>
+<p>We are asked to report a p-value. What do we do? We learned that <code>diff</code>, referred to as the <em>observed effect size</em>, is a random variable. We also learned that under the null hypothesis, the mean of the distribution of <code>diff</code> is 0. What about the standard error? We also learned that the standard error of this random variable is the population standard deviation divided by the square root of the sample size:</p>
+<p><span class="math display">\[ SE(\bar{X}) = \sigma / \sqrt{N}\]</span></p>
+<p>We use the sample standard deviation as an estimate of the population standard deviation. In R, we simply use the <code>sd</code> function and the SE is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(control)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(control))</code></pre></div>
+<pre><code>## [1] 0.8725</code></pre>
+<p>This is the SE of the sample average, but we actually want the SE of <code>diff</code>. We saw how statistical theory tells us that the variance of the difference of two random variables is the sum of its variances, so we compute the variance and take the square root:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">se &lt;-<span class="st"> </span><span class="kw">sqrt</span>( 
+  <span class="kw">var</span>(treatment)<span class="op">/</span><span class="kw">length</span>(treatment) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">var</span>(control)<span class="op">/</span><span class="kw">length</span>(control) 
+  )</code></pre></div>
+<p>Statistical theory tells us that if we divide a random variable by its SE, we get a new random variable with an SE of 1.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tstat &lt;-<span class="st"> </span>diff<span class="op">/</span>se </code></pre></div>
+<p>This ratio is what we call the t-statistic. It’s the ratio of two random variables and thus a random variable. Once we know the distribution of this random variable, we can then easily compute a p-value.</p>
+<p>As explained in the previous section, the CLT tells us that for large sample sizes, both sample averages <code>mean(treatment)</code> and <code>mean(control)</code> are normal. Statistical theory tells us that the difference of two normally distributed random variables is again normal, so CLT tells us that <code>tstat</code> is approximately normal with mean 0 (the null hypothesis) and SD 1 (we divided by its SE).</p>
+<p>So now to calculate a p-value all we need to do is ask: how often does a normally distributed random variable exceed <code>diff</code>? R has a built-in function, <code>pnorm</code>, to answer this specific question. <code>pnorm(a)</code> returns the probability that a random variable following the standard normal distribution falls below <code>a</code>. To obtain the probability that it is larger than <code>a</code>, we simply use <code>1-pnorm(a)</code>. We want to know the probability of seeing something as extreme as <code>diff</code>: either smaller (more negative) than <code>-abs(diff)</code> or larger than <code>abs(diff)</code>. We call these two regions “tails” and calculate their size:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">righttail &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="kw">abs</span>(tstat)) 
+lefttail &lt;-<span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="kw">abs</span>(tstat))
+pval &lt;-<span class="st"> </span>lefttail <span class="op">+</span><span class="st"> </span>righttail
+<span class="kw">print</span>(pval)</code></pre></div>
+<pre><code>## [1] 0.03986</code></pre>
+<p>In this case, the p-value is smaller than 0.05 and using the conventional cutoff of 0.05, we would call the difference <em>statistically significant</em>.</p>
+<p>Now there is a problem. CLT works for large samples, but is 12 large enough? A rule of thumb for CLT is that 30 is a large enough sample size (but this is just a rule of thumb). The p-value we computed is only a valid approximation if the assumptions hold, which do not seem to be the case here. However, there is another option other than using CLT.</p>
+<p><a name="smallsample"></a></p>
+</div>
+</div>
+<div id="the-t-distribution-in-practice" class="section level2">
+<h2><span class="header-section-number">2.11</span> The t-distribution in Practice</h2>
+<p>As described earlier, statistical theory offers another useful result. If the distribution of the population is normal, then we can work out the exact distribution of the t-statistic without the need for the CLT. This is a big “if” given that, with small samples, it is hard to check if the population is normal. But for something like weight, we suspect that the population distribution is likely well approximated by normal and that we can use this approximation. Furthermore, we can look at a qq-plot for the samples. This shows that the approximation is at least close:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rafalib)
+<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+
+<span class="kw">qqnorm</span>(treatment)
+<span class="kw">qqline</span>(treatment,<span class="dt">col=</span><span class="dv">2</span>)
+
+<span class="kw">qqnorm</span>(control)
+<span class="kw">qqline</span>(control,<span class="dt">col=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/data_qqplot-1.png" alt="Quantile-quantile plots for sample against theoretical normal distribution." width="1008" />
+<p class="caption">
+(#fig:data_qqplot)Quantile-quantile plots for sample against theoretical normal distribution.
+</p>
+</div>
+<p>If we use this approximation, then statistical theory tells us that the distribution of the random variable <code>tstat</code> follows a t-distribution. This is a much more complicated distribution than the normal. The t-distribution has a location parameter like the normal and another parameter called <em>degrees of freedom</em>. R has a nice function that actually computes everything for us.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(treatment, control)</code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  treatment and control
+## t = 2.1, df = 20, p-value = 0.05
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.04297  6.08463
+## sample estimates:
+## mean of x mean of y 
+##     26.83     23.81</code></pre>
+<p>To see just the p-value, we can use the <code>$</code> extractor:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result &lt;-<span class="st"> </span><span class="kw">t.test</span>(treatment,control)
+result<span class="op">$</span>p.value</code></pre></div>
+<pre><code>## [1] 0.053</code></pre>
+<p>The p-value is slightly bigger now. This is to be expected because our CLT approximation considered the denominator of <code>tstat</code> practically fixed (with large samples it practically is), while the t-distribution approximation takes into account that the denominator (the standard error of the difference) is a random variable. The smaller the sample size, the more the denominator varies.</p>
+<p>It may be confusing that one approximation gave us one p-value and another gave us another, because we expect there to be just one answer. However, this is not uncommon in data analysis. We used different assumptions, different approximations, and therefore we obtained different results.</p>
+<p>Later, in the power calculation section, we will describe type I and type II errors. As a preview, we will point out that the test based on the CLT approximation is more likely to incorrectly reject the null hypothesis (a false positive), while the t-distribution is more likely to incorrectly accept the null hypothesis (false negative).</p>
+<div id="running-the-t-test-in-practice" class="section level4">
+<h4><span class="header-section-number">2.11.0.1</span> Running the t-test in practice</h4>
+<p>Now that we have gone over the concepts, we can show the relatively simple code that one would use to actually compute a t-test:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;mice_pheno.csv&quot;</span>)
+control &lt;-<span class="st"> </span><span class="kw">filter</span>(dat,Diet<span class="op">==</span><span class="st">&quot;chow&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Bodyweight) 
+treatment &lt;-<span class="st"> </span><span class="kw">filter</span>(dat,Diet<span class="op">==</span><span class="st">&quot;hf&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Bodyweight) 
+<span class="kw">t.test</span>(treatment,control)</code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  treatment and control
+## t = 7.2, df = 740, p-value = 2e-12
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  2.232 3.907
+## sample estimates:
+## mean of x mean of y 
+##     30.48     27.41</code></pre>
+<p>The arguments to <code>t.test</code> can be of type <em>data.frame</em> and thus we do not need to unlist them into numeric objects.</p>
+</div>
+</div>
+<div id="confidence-intervals" class="section level2">
+<h2><span class="header-section-number">2.12</span> Confidence Intervals</h2>
+<p>We have described how to compute p-values which are ubiquitous in the life sciences. However, we do not recommend reporting p-values as the only statistical summary of your results. The reason is simple: statistical significance does not guarantee scientific significance. With large enough sample sizes, one might detect a statistically significance difference in weight of, say, 1 microgram. But is this an important finding? Would we say a diet results in higher weight if the increase is less than a fraction of a percent? The problem with reporting only p-values is that you will not provide a very important piece of information: the effect size. Recall that the effect size is the observed difference. Sometimes the effect size is divided by the mean of the control group and so expressed as a percent increase.</p>
+<p>A much more attractive alternative is to report confidence intervals. A confidence interval includes information about your estimated effect size and the uncertainty associated with this estimate. Here we use the mice data to illustrate the concept behind confidence intervals.</p>
+<div id="confidence-interval-for-population-mean" class="section level4">
+<h4><span class="header-section-number">2.12.0.1</span> Confidence Interval for Population Mean</h4>
+<p>Before we show how to construct a confidence interval for the difference between the two groups, we will show how to construct a confidence interval for the population mean of control female mice. Then we will return to the group difference after we’ve learned how to build confidence intervals in the simple case. We start by reading in the data and selecting the appropriate rows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;mice_pheno.csv&quot;</span>)
+chowPopulation &lt;-<span class="st"> </span>dat[dat<span class="op">$</span>Sex<span class="op">==</span><span class="st">&quot;F&quot;</span> <span class="op">&amp;</span><span class="st"> </span>dat<span class="op">$</span>Diet<span class="op">==</span><span class="st">&quot;chow&quot;</span>,<span class="dv">3</span>]</code></pre></div>
+<p>The population average <span class="math inline">\(\mu_X\)</span> is our parameter of interest here:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mu_chow &lt;-<span class="st"> </span><span class="kw">mean</span>(chowPopulation)
+<span class="kw">print</span>(mu_chow)</code></pre></div>
+<pre><code>## [1] 23.89</code></pre>
+<p>We are interested in estimating this parameter. In practice, we do not get to see the entire population so, as we did for p-values, we demonstrate how we can use samples to do this. Let’s start with a sample of size 30:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N &lt;-<span class="st"> </span><span class="dv">30</span>
+chow &lt;-<span class="st"> </span><span class="kw">sample</span>(chowPopulation,N)
+<span class="kw">print</span>(<span class="kw">mean</span>(chow))</code></pre></div>
+<pre><code>## [1] 23.35</code></pre>
+<p>We know this is a random variable, so the sample average will not be a perfect estimate. In fact, because in this illustrative example we know the value of the parameter, we can see that they are not exactly the same. A confidence interval is a statistical way of reporting our finding, the sample average, in a way that explicitly summarizes the variability of our random variable.</p>
+<p>With a sample size of 30, we will use the CLT. The CLT tells us that <span class="math inline">\(\bar{X}\)</span> or <code>mean(chow)</code> follows a normal distribution with mean <span class="math inline">\(\mu_X\)</span> or <code>mean(chowPopulation)</code> and standard error approximately <span class="math inline">\(s_X/\sqrt{N}\)</span> or:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">se &lt;-<span class="st"> </span><span class="kw">sd</span>(chow)<span class="op">/</span><span class="kw">sqrt</span>(N)
+<span class="kw">print</span>(se)</code></pre></div>
+<pre><code>## [1] 0.4782</code></pre>
+<p><a name="interval"></a></p>
+</div>
+<div id="defining-the-interval" class="section level4">
+<h4><span class="header-section-number">2.12.0.2</span> Defining the Interval</h4>
+<p>A 95% confidence interval (we can use percentages other than 95%) is a random interval with a 95% probability of falling on the parameter we are estimating. Keep in mind that saying 95% of random intervals will fall on the true value (our definition above) is <em>not the same</em> as saying there is a 95% chance that the true value falls in our interval. To construct it, we note that the CLT tells us that <span class="math inline">\(\sqrt{N} (\bar{X}-\mu_X) / s_X\)</span> follows a normal distribution with mean 0 and SD 1. This implies that the probability of this event:</p>
+<p><span class="math display">\[
+-2 \leq \sqrt{N} (\bar{X}-\mu_X)/s_X \leq 2
+\]</span></p>
+<p>which written in R code is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pnorm</span>(<span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">2</span>)</code></pre></div>
+<pre><code>## [1] 0.9545</code></pre>
+<p>…is about 95% (to get closer use <code>qnorm(1-0.05/2)</code> instead of 2). Now do some basic algebra to clear out everything and leave <span class="math inline">\(\mu_X\)</span> alone in the middle and you get that the following event:</p>
+<p><span class="math display">\[
+\bar{X}-2 s_X/\sqrt{N} \leq \mu_X \leq \bar{X}+2s_X/\sqrt{N}
+\]</span></p>
+<p>has a probability of 95%.</p>
+<p>Be aware that it is the edges of the interval <span class="math inline">\(\bar{X} \pm 2 s_X / \sqrt{N}\)</span>, not <span class="math inline">\(\mu_X\)</span>, that are random. Again, the definition of the confidence interval is that 95% of <em>random intervals</em> will contain the true, fixed value <span class="math inline">\(\mu_X\)</span>. For a specific interval that has been calculated, the probability is either 0 or 1 that it contains the fixed population mean <span class="math inline">\(\mu_X\)</span>.</p>
+<p>Let’s demonstrate this logic through simulation. We can construct this interval with R relatively easily:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Q &lt;-<span class="st"> </span><span class="kw">qnorm</span>(<span class="dv">1</span><span class="op">-</span><span class="st"> </span><span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>)
+interval &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">mean</span>(chow)<span class="op">-</span>Q<span class="op">*</span>se, <span class="kw">mean</span>(chow)<span class="op">+</span>Q<span class="op">*</span>se )
+interval</code></pre></div>
+<pre><code>## [1] 22.41 24.29</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">interval[<span class="dv">1</span>] <span class="op">&lt;</span><span class="st"> </span>mu_chow <span class="op">&amp;</span><span class="st"> </span>interval[<span class="dv">2</span>] <span class="op">&gt;</span><span class="st"> </span>mu_chow</code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>which happens to cover <span class="math inline">\(\mu_X\)</span> or <code>mean(chowPopulation)</code>. However, we can take another sample and we might not be as lucky. In fact, the theory tells us that we will cover <span class="math inline">\(\mu_X\)</span> 95% of the time. Because we have access to the population data, we can confirm this by taking several new samples:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rafalib)
+B &lt;-<span class="st"> </span><span class="dv">250</span>
+<span class="kw">mypar</span>()
+<span class="kw">plot</span>(<span class="kw">mean</span>(chowPopulation)<span class="op">+</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),<span class="dt">type=</span><span class="st">&quot;n&quot;</span>,
+     <span class="dt">xlab=</span><span class="st">&quot;weight&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;interval&quot;</span>,<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">1</span>,B))
+<span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">mean</span>(chowPopulation))
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>B) {
+  chow &lt;-<span class="st"> </span><span class="kw">sample</span>(chowPopulation,N)
+  se &lt;-<span class="st"> </span><span class="kw">sd</span>(chow)<span class="op">/</span><span class="kw">sqrt</span>(N)
+  interval &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">mean</span>(chow)<span class="op">-</span>Q<span class="op">*</span>se, <span class="kw">mean</span>(chow)<span class="op">+</span>Q<span class="op">*</span>se)
+  covered &lt;-<span class="st"> </span>
+<span class="st">    </span><span class="kw">mean</span>(chowPopulation) <span class="op">&lt;=</span><span class="st"> </span>interval[<span class="dv">2</span>] <span class="op">&amp;</span><span class="st"> </span><span class="kw">mean</span>(chowPopulation) <span class="op">&gt;=</span><span class="st"> </span>interval[<span class="dv">1</span>]
+  color &lt;-<span class="st"> </span><span class="kw">ifelse</span>(covered,<span class="dv">1</span>,<span class="dv">2</span>)
+  <span class="kw">lines</span>(interval, <span class="kw">c</span>(i,i),<span class="dt">col=</span>color)
+}</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/confidence_interval_n30-1.png" alt="We show 250 random realizations of 95% confidence intervals. The color denotes if the interval fell on the parameter or not." width="672" />
+<p class="caption">
+(#fig:confidence_interval_n30)We show 250 random realizations of 95% confidence intervals. The color denotes if the interval fell on the parameter or not.
+</p>
+</div>
+<p>You can run this repeatedly to see what happens. You will see that in about 5% of the cases, we fail to cover <span class="math inline">\(\mu_X\)</span>.</p>
+<p><a name="smallsample"></a></p>
+</div>
+<div id="small-sample-size-and-the-clt" class="section level4">
+<h4><span class="header-section-number">2.12.0.3</span> Small Sample Size and the CLT</h4>
+<p>For <span class="math inline">\(N=30\)</span>, the CLT works very well. However, if <span class="math inline">\(N=5\)</span>, do these confidence intervals work as well? We used the CLT to create our intervals, and with <span class="math inline">\(N=5\)</span> it may not be as useful an approximation. We can confirm this with a simulation:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mypar</span>()
+<span class="kw">plot</span>(<span class="kw">mean</span>(chowPopulation)<span class="op">+</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),<span class="dt">type=</span><span class="st">&quot;n&quot;</span>,
+     <span class="dt">xlab=</span><span class="st">&quot;weight&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;interval&quot;</span>,<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">1</span>,B))
+<span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">mean</span>(chowPopulation))
+Q &lt;-<span class="st"> </span><span class="kw">qnorm</span>(<span class="dv">1</span><span class="op">-</span><span class="st"> </span><span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>)
+N &lt;-<span class="st"> </span><span class="dv">5</span>
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>B) {
+  chow &lt;-<span class="st"> </span><span class="kw">sample</span>(chowPopulation,N)
+  se &lt;-<span class="st"> </span><span class="kw">sd</span>(chow)<span class="op">/</span><span class="kw">sqrt</span>(N)
+  interval &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">mean</span>(chow)<span class="op">-</span>Q<span class="op">*</span>se, <span class="kw">mean</span>(chow)<span class="op">+</span>Q<span class="op">*</span>se)
+  covered &lt;-<span class="st"> </span><span class="kw">mean</span>(chowPopulation) <span class="op">&lt;=</span><span class="st"> </span>interval[<span class="dv">2</span>] <span class="op">&amp;</span><span class="st"> </span><span class="kw">mean</span>(chowPopulation) <span class="op">&gt;=</span><span class="st"> </span>interval[<span class="dv">1</span>]
+  color &lt;-<span class="st"> </span><span class="kw">ifelse</span>(covered,<span class="dv">1</span>,<span class="dv">2</span>)
+  <span class="kw">lines</span>(interval, <span class="kw">c</span>(i,i),<span class="dt">col=</span>color)
+}</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/confidence_interval_n5-1.png" alt="We show 250 random realizations of 95% confidence intervals, but now for a smaller sample size. The confidence interval is based on the CLT approximation. The color denotes if the interval fell on the parameter or not." width="672" />
+<p class="caption">
+(#fig:confidence_interval_n5)We show 250 random realizations of 95% confidence intervals, but now for a smaller sample size. The confidence interval is based on the CLT approximation. The color denotes if the interval fell on the parameter or not.
+</p>
+</div>
+<p>Despite the intervals being larger (we are dividing by <span class="math inline">\(\sqrt{5}\)</span> instead of <span class="math inline">\(\sqrt{30}\)</span> ), we see many more intervals not covering <span class="math inline">\(\mu_X\)</span>. This is because the CLT is incorrectly telling us that the distribution of the <code>mean(chow)</code> is approximately normal with standard deviation 1 when, in fact, it has a larger standard deviation and a fatter tail (the parts of the distribution going to <span class="math inline">\(\pm \infty\)</span>). This mistake affects us in the calculation of <code>Q</code>, which assumes a normal distribution and uses <code>qnorm</code>. The t-distribution might be more appropriate. All we have to do is re-run the above, but change how we calculate <code>Q</code> to use <code>qt</code> instead of <code>qnorm</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mypar</span>()
+<span class="kw">plot</span>(<span class="kw">mean</span>(chowPopulation) <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>), <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">type=</span><span class="st">&quot;n&quot;</span>,
+     <span class="dt">xlab=</span><span class="st">&quot;weight&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;interval&quot;</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">1</span>,B))
+<span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">mean</span>(chowPopulation))
+##Q &lt;- qnorm(1- 0.05/2) ##no longer normal so use:
+Q &lt;-<span class="st"> </span><span class="kw">qt</span>(<span class="dv">1</span><span class="op">-</span><span class="st"> </span><span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>, <span class="dt">df=</span><span class="dv">4</span>)
+N &lt;-<span class="st"> </span><span class="dv">5</span>
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>B) {
+  chow &lt;-<span class="st"> </span><span class="kw">sample</span>(chowPopulation, N)
+  se &lt;-<span class="st"> </span><span class="kw">sd</span>(chow)<span class="op">/</span><span class="kw">sqrt</span>(N)
+  interval &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">mean</span>(chow)<span class="op">-</span>Q<span class="op">*</span>se, <span class="kw">mean</span>(chow)<span class="op">+</span>Q<span class="op">*</span>se )
+  covered &lt;-<span class="st"> </span><span class="kw">mean</span>(chowPopulation) <span class="op">&lt;=</span><span class="st"> </span>interval[<span class="dv">2</span>] <span class="op">&amp;</span><span class="st"> </span><span class="kw">mean</span>(chowPopulation) <span class="op">&gt;=</span><span class="st"> </span>interval[<span class="dv">1</span>]
+  color &lt;-<span class="st"> </span><span class="kw">ifelse</span>(covered,<span class="dv">1</span>,<span class="dv">2</span>)
+  <span class="kw">lines</span>(interval, <span class="kw">c</span>(i,i),<span class="dt">col=</span>color)
+}</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/confidence_interval_tdist_n5-1.png" alt="We show 250 random realizations of 95% confidence intervals, but now for a smaller sample size. The confidence is now based on the t-distribution approximation. The color denotes if the interval fell on the parameter or not." width="672" />
+<p class="caption">
+(#fig:confidence_interval_tdist_n5)We show 250 random realizations of 95% confidence intervals, but now for a smaller sample size. The confidence is now based on the t-distribution approximation. The color denotes if the interval fell on the parameter or not.
+</p>
+</div>
+<p>Now the intervals are made bigger. This is because the t-distribution has fatter tails and therefore:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qt</span>(<span class="dv">1</span><span class="op">-</span><span class="st"> </span><span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>, <span class="dt">df=</span><span class="dv">4</span>)</code></pre></div>
+<pre><code>## [1] 2.776</code></pre>
+<p>is bigger than…</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qnorm</span>(<span class="dv">1</span><span class="op">-</span><span class="st"> </span><span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>)</code></pre></div>
+<pre><code>## [1] 1.96</code></pre>
+<p>…which makes the intervals larger and hence cover <span class="math inline">\(\mu_X\)</span> more frequently; in fact, about 95% of the time.</p>
+</div>
+<div id="connection-between-confidence-intervals-and-p-values" class="section level4">
+<h4><span class="header-section-number">2.12.0.4</span> Connection Between Confidence Intervals and p-values</h4>
+<p>We recommend that in practice confidence intervals be reported instead of p-values. If for some reason you are required to provide p-values, or required that your results are significant at the 0.05 of 0.01 levels, confidence intervals do provide this information.</p>
+<p>If we are talking about a t-test p-value, we are asking if differences as extreme as the one we observe, <span class="math inline">\(\bar{Y} - \bar{X}\)</span>, are likely when the difference between the population averages is actually equal to zero. So we can form a confidence interval with the observed difference. Instead of writing <span class="math inline">\(\bar{Y} - \bar{X}\)</span> repeatedly, let’s define this difference as a new variable <span class="math inline">\(d \equiv \bar{Y} - \bar{X}\)</span> .</p>
+<p>Suppose you use CLT and report <span class="math inline">\(d \pm 2 s_d/\sqrt{N}\)</span>, with <span class="math inline">\(s_d = \sqrt{s_X^2+s_Y^2}\)</span>, as a 95% confidence interval for the difference and this interval does not include 0 (a false positive). Because the interval does not include 0, this implies that either <span class="math inline">\(D - 2 s_d/\sqrt{N} &gt; 0\)</span> or <span class="math inline">\(d + 2 s_d/\sqrt{N} &lt; 0\)</span>. This suggests that either <span class="math inline">\(\sqrt{N}d/s_d &gt; 2\)</span> or <span class="math inline">\(\sqrt{N}d/s_d &lt; 2\)</span>. This then implies that the t-statistic is more extreme than 2, which in turn suggests that the p-value must be smaller than 0.05 (approximately, for a more exact calculation use <code>qnorm(.05/2)</code> instead of 2). The same calculation can be made if we use the t-distribution instead of CLT (with <code>qt(.05/2, df=2*N-2)</code>). In summary, if a 95% or 99% confidence interval does not include 0, then the p-value must be smaller than 0.05 or 0.01 respectively.</p>
+<p>Note that the confidence interval for the difference <span class="math inline">\(d\)</span> is provided by the <code>t.test</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(treatment,control)<span class="op">$</span>conf.int</code></pre></div>
+<pre><code>## [1] -0.04297  6.08463
+## attr(,&quot;conf.level&quot;)
+## [1] 0.95</code></pre>
+<p>In this case, the 95% confidence interval does include 0 and we observe that the p-value is larger than 0.05 as predicted. If we change this to a 90% confidence interval, then:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(treatment,control,<span class="dt">conf.level=</span><span class="fl">0.9</span>)<span class="op">$</span>conf.int</code></pre></div>
+<pre><code>## [1] 0.4872 5.5545
+## attr(,&quot;conf.level&quot;)
+## [1] 0.9</code></pre>
+<p>0 is no longer in the confidence interval (which is expected because the p-value is smaller than 0.10).</p>
+</div>
+</div>
+<div id="power-calculations" class="section level2">
+<h2><span class="header-section-number">2.13</span> Power Calculations</h2>
+<div id="introduction-3" class="section level4">
+<h4><span class="header-section-number">2.13.0.1</span> Introduction</h4>
+<p>We have used the example of the effects of two different diets on the weight of mice. Since in this illustrative example we have access to the population, we know that in fact there is a substantial (about 10%) difference between the average weights of the two populations:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;mice_pheno.csv&quot;</span>) <span class="co">#Previously downloaded </span>
+
+controlPopulation &lt;-<span class="st"> </span><span class="kw">filter</span>(dat,Sex <span class="op">==</span><span class="st"> &quot;F&quot;</span> <span class="op">&amp;</span><span class="st"> </span>Diet <span class="op">==</span><span class="st"> &quot;chow&quot;</span>) <span class="op">%&gt;%</span><span class="st">  </span>
+<span class="st">  </span><span class="kw">select</span>(Bodyweight) <span class="op">%&gt;%</span><span class="st"> </span>unlist
+
+hfPopulation &lt;-<span class="st"> </span><span class="kw">filter</span>(dat,Sex <span class="op">==</span><span class="st"> &quot;F&quot;</span> <span class="op">&amp;</span><span class="st"> </span>Diet <span class="op">==</span><span class="st"> &quot;hf&quot;</span>) <span class="op">%&gt;%</span><span class="st">  </span>
+<span class="st">  </span><span class="kw">select</span>(Bodyweight) <span class="op">%&gt;%</span><span class="st"> </span>unlist
+
+mu_hf &lt;-<span class="st"> </span><span class="kw">mean</span>(hfPopulation)
+mu_control &lt;-<span class="st"> </span><span class="kw">mean</span>(controlPopulation)
+<span class="kw">print</span>(mu_hf <span class="op">-</span><span class="st"> </span>mu_control)</code></pre></div>
+<pre><code>## [1] 2.376</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>((mu_hf <span class="op">-</span><span class="st"> </span>mu_control)<span class="op">/</span>mu_control <span class="op">*</span><span class="st"> </span><span class="dv">100</span>) <span class="co">#percent increase</span></code></pre></div>
+<pre><code>## [1] 9.942</code></pre>
+<p>We have also seen that, in some cases, when we take a sample and perform a t-test, we don’t always get a p-value smaller than 0.05. For example, here is a case where we take a sample of 5 mice and don’t achieve statistical significance at the 0.05 level:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
+N &lt;-<span class="st"> </span><span class="dv">5</span>
+hf &lt;-<span class="st"> </span><span class="kw">sample</span>(hfPopulation,N)
+control &lt;-<span class="st"> </span><span class="kw">sample</span>(controlPopulation,N)
+<span class="kw">t.test</span>(hf,control)<span class="op">$</span>p.value</code></pre></div>
+<pre><code>## [1] 0.141</code></pre>
+<p>Did we make a mistake? By not rejecting the null hypothesis, are we saying the diet has no effect? The answer to this question is no. All we can say is that we did not reject the null hypothesis. But this does not necessarily imply that the null is true. The problem is that, in this particular instance, we don’t have enough <em>power</em>, a term we are now going to define. If you are doing scientific research, it is very likely that you will have to do a power calculation at some point. In many cases, it is an ethical obligation as it can help you avoid sacrificing mice unnecessarily or limiting the number of human subjects exposed to potential risk in a study. Here we explain what statistical power means.</p>
+</div>
+<div id="types-of-error" class="section level4">
+<h4><span class="header-section-number">2.13.0.2</span> Types of Error</h4>
+<p>Whenever we perform a statistical test, we are aware that we may make a mistake. This is why our p-values are not 0. Under the null, there is always a positive, perhaps very small, but still positive chance that we will reject the null when it is true. If the p-value is 0.05, it will happen 1 out of 20 times. This <em>error</em> is called <em>type I error</em> by statisticians.</p>
+<p>A type I error is defined as rejecting the null when we should not. This is also referred to as a false positive. So why do we then use 0.05? Shouldn’t we use 0.000001 to be really sure? The reason we don’t use infinitesimal cut-offs to avoid type I errors at all cost is that there is another error we can commit: to not reject the null when we should. This is called a <em>type II error</em> or a false negative. The R code analysis above shows an example of a false negative: we did not reject the null hypothesis (at the 0.05 level) and, because we happen to know and peeked at the true population means, we know there is in fact a difference. Had we used a p-value cutoff of 0.25, we would not have made this mistake. However, in general, are we comfortable with a type I error rate of 1 in 4? Usually we are not.</p>
+</div>
+<div id="the-0.05-and-0.01-cut-offs-are-arbitrary" class="section level4">
+<h4><span class="header-section-number">2.13.0.3</span> The 0.05 and 0.01 Cut-offs Are Arbitrary</h4>
+<p>Most journals and regulatory agencies frequently insist that results be significant at the 0.01 or 0.05 levels. Of course there is nothing special about these numbers other than the fact that some of the first papers on p-values used these values as examples. Part of the goal of this book is to give readers a good understanding of what p-values and confidence intervals are so that these choices can be judged in an informed way. Unfortunately, in science, these cut-offs are applied somewhat mindlessly, but that topic is part of a complicated debate.</p>
+</div>
+<div id="power-calculation" class="section level4">
+<h4><span class="header-section-number">2.13.0.4</span> Power Calculation</h4>
+<p>Power is the probability of rejecting the null when the null is false. Of course “when the null is false” is a complicated statement because it can be false in many ways. <span class="math inline">\(\Delta \equiv \mu_Y - \mu_X\)</span> could be anything and the power actually depends on this parameter. It also depends on the standard error of your estimates which in turn depends on the sample size and the population standard deviations. In practice, we don’t know these so we usually report power for several plausible values of <span class="math inline">\(\Delta\)</span>, <span class="math inline">\(\sigma_X\)</span>, <span class="math inline">\(\sigma_Y\)</span> and various sample sizes. Statistical theory gives us formulas to calculate power. The <code>pwr</code> package performs these calculations for you. Here we will illustrate the concepts behind power by coding up simulations in R.</p>
+<p>Suppose our sample size is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N &lt;-<span class="st"> </span><span class="dv">12</span></code></pre></div>
+<p>and we will reject the null hypothesis at:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">alpha &lt;-<span class="st"> </span><span class="fl">0.05</span></code></pre></div>
+<p>What is our power with this particular data? We will compute this probability by re-running the exercise many times and calculating the proportion of times the null hypothesis is rejected. Specifically, we will run:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">B &lt;-<span class="st"> </span><span class="dv">2000</span></code></pre></div>
+<p>simulations. The simulation is as follows: we take a sample of size <span class="math inline">\(N\)</span> from both control and treatment groups, we perform a t-test comparing these two, and report if the p-value is less than <code>alpha</code> or not. We write a function that does this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reject &lt;-<span class="st"> </span><span class="cf">function</span>(N, <span class="dt">alpha=</span><span class="fl">0.05</span>){
+   hf &lt;-<span class="st"> </span><span class="kw">sample</span>(hfPopulation,N) 
+   control &lt;-<span class="st"> </span><span class="kw">sample</span>(controlPopulation,N)
+   pval &lt;-<span class="st"> </span><span class="kw">t.test</span>(hf,control)<span class="op">$</span>p.value
+   pval <span class="op">&lt;</span><span class="st"> </span>alpha
+}</code></pre></div>
+<p>Here is an example of one simulation for a sample size of 12. The call to <code>reject</code> answers the question “Did we reject?”</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">reject</span>(<span class="dv">12</span>)</code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p>Now we can use the <code>replicate</code> function to do this <code>B</code> times.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rejections &lt;-<span class="st"> </span><span class="kw">replicate</span>(B,<span class="kw">reject</span>(N))</code></pre></div>
+<p>Our power is just the proportion of times we correctly reject. So with <span class="math inline">\(N=12\)</span> our power is only:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(rejections)</code></pre></div>
+<pre><code>## [1] 0.2145</code></pre>
+<p>This explains why the t-test was not rejecting when we knew the null was false. With a sample size of just 12, our power is about 23%. To guard against false positives at the 0.05 level, we had set the threshold at a high enough level that resulted in many type II errors.</p>
+<p>Let’s see how power improves with N. We will use the function <code>sapply</code>, which applies a function to each of the elements of a vector. We want to repeat the above for the following sample size:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Ns &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">5</span>, <span class="dv">50</span>, <span class="dv">5</span>)</code></pre></div>
+<p>So we use <code>apply</code> like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">power &lt;-<span class="st"> </span><span class="kw">sapply</span>(Ns,<span class="cf">function</span>(N){
+  rejections &lt;-<span class="st"> </span><span class="kw">replicate</span>(B, <span class="kw">reject</span>(N))
+  <span class="kw">mean</span>(rejections)
+  })</code></pre></div>
+<p>For each of the three simulations, the above code returns the proportion of times we reject. Not surprisingly power increases with N:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(Ns, power, <span class="dt">type=</span><span class="st">&quot;b&quot;</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/power_versus_sample_size-1.png" alt="Power plotted against sample size." width="672" />
+<p class="caption">
+(#fig:power_versus_sample_size)Power plotted against sample size.
+</p>
+</div>
+<p>Similarly, if we change the level <code>alpha</code> at which we reject, power changes. The smaller I want the chance of type I error to be, the less power I will have. Another way of saying this is that we trade off between the two types of error. We can see this by writing similar code, but keeping <span class="math inline">\(N\)</span> fixed and considering several values of <code>alpha</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N &lt;-<span class="st"> </span><span class="dv">30</span>
+alphas &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.1</span>,<span class="fl">0.05</span>,<span class="fl">0.01</span>,<span class="fl">0.001</span>,<span class="fl">0.0001</span>)
+power &lt;-<span class="st"> </span><span class="kw">sapply</span>(alphas,<span class="cf">function</span>(alpha){
+  rejections &lt;-<span class="st"> </span><span class="kw">replicate</span>(B,<span class="kw">reject</span>(N,<span class="dt">alpha=</span>alpha))
+  <span class="kw">mean</span>(rejections)
+})
+<span class="kw">plot</span>(alphas, power, <span class="dt">xlab=</span><span class="st">&quot;alpha&quot;</span>, <span class="dt">type=</span><span class="st">&quot;b&quot;</span>, <span class="dt">log=</span><span class="st">&quot;x&quot;</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/power_versus_alpha-1.png" alt="Power plotted against cut-off." width="672" />
+<p class="caption">
+(#fig:power_versus_alpha)Power plotted against cut-off.
+</p>
+</div>
+<p>Note that the x-axis in this last plot is in the log scale.</p>
+<p>There is no “right” power or “right” alpha level, but it is important that you understand what each means.</p>
+<p>To see this clearly, you could create a plot with curves of power versus N. Show several curves in the same plot with color representing alpha level.</p>
+</div>
+<div id="p-values-are-arbitrary-under-the-alternative-hypothesis" class="section level4">
+<h4><span class="header-section-number">2.13.0.5</span> p-values Are Arbitrary under the Alternative Hypothesis</h4>
+<p>Another consequence of what we have learned about power is that p-values are somewhat arbitrary when the null hypothesis is not true and therefore the <em>alternative</em> hypothesis is true (the difference between the population means is not zero). When the alternative hypothesis is true, we can make a p-value as small as we want simply by increasing the sample size (supposing that we have an infinite population to sample from). We can show this property of p-values by drawing larger and larger samples from our population and calculating p-values. This works because, in our case, we know that the alternative hypothesis is true, since we have access to the populations and can calculate the difference in their means.</p>
+<p>First write a function that returns a p-value for a given sample size <span class="math inline">\(N\)</span>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">calculatePvalue &lt;-<span class="st"> </span><span class="cf">function</span>(N) {
+   hf &lt;-<span class="st"> </span><span class="kw">sample</span>(hfPopulation,N) 
+   control &lt;-<span class="st"> </span><span class="kw">sample</span>(controlPopulation,N)
+   <span class="kw">t.test</span>(hf,control)<span class="op">$</span>p.value
+}</code></pre></div>
+<p>We have a limit here of 200 for the high-fat diet population, but we can see the effect well before we get to 200. For each sample size, we will calculate a few p-values. We can do this by repeating each value of <span class="math inline">\(N\)</span> a few times.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Ns &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">10</span>,<span class="dv">200</span>,<span class="dt">by=</span><span class="dv">10</span>)
+Ns_rep &lt;-<span class="st"> </span><span class="kw">rep</span>(Ns, <span class="dt">each=</span><span class="dv">10</span>)</code></pre></div>
+<p>Again we use <code>sapply</code> to run our simulations:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pvalues &lt;-<span class="st"> </span><span class="kw">sapply</span>(Ns_rep, calculatePvalue)</code></pre></div>
+<p>Now we can plot the 10 p-values we generated for each sample size:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(Ns_rep, pvalues, <span class="dt">log=</span><span class="st">&quot;y&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;sample size&quot;</span>,
+     <span class="dt">ylab=</span><span class="st">&quot;p-values&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">c</span>(.<span class="dv">01</span>, .<span class="dv">05</span>), <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/pvals_decrease-1.png" alt="p-values from random samples at varying sample size. The actual value of the p-values decreases as we increase sample size whenever the alternative hypothesis is true." width="672" />
+<p class="caption">
+(#fig:pvals_decrease)p-values from random samples at varying sample size. The actual value of the p-values decreases as we increase sample size whenever the alternative hypothesis is true.
+</p>
+</div>
+<p>Note that the y-axis is log scale and that the p-values show a decreasing trend all the way to <span class="math inline">\(10^{-8}\)</span> as the sample size gets larger. The standard cutoffs of 0.01 and 0.05 are indicated with horizontal red lines.</p>
+<p>It is important to remember that p-values are not more interesting as they become very very small. Once we have convinced ourselves to reject the null hypothesis at a threshold we find reasonable, having an even smaller p-value just means that we sampled more mice than was necessary. Having a larger sample size does help to increase the precision of our estimate of the difference <span class="math inline">\(\Delta\)</span>, but the fact that the p-value becomes very very small is just a natural consequence of the mathematics of the test. The p-values get smaller and smaller with increasing sample size because the numerator of the t-statistic has <span class="math inline">\(\sqrt{N}\)</span> (for equal sized groups, and a similar effect occurs when <span class="math inline">\(M \neq N\)</span>). Therefore, if <span class="math inline">\(\Delta\)</span> is non-zero, the t-statistic will increase with <span class="math inline">\(N\)</span>.</p>
+<p>Therefore, a better statistic to report is the effect size with a confidence interval or some statistic which gives the reader a sense of the change in a meaningful scale. We can report the effect size as a percent by dividing the difference and the confidence interval by the control population mean:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N &lt;-<span class="st"> </span><span class="dv">12</span>
+hf &lt;-<span class="st"> </span><span class="kw">sample</span>(hfPopulation, N)
+control &lt;-<span class="st"> </span><span class="kw">sample</span>(controlPopulation, N)
+diff &lt;-<span class="st"> </span><span class="kw">mean</span>(hf) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(control)
+diff <span class="op">/</span><span class="st"> </span><span class="kw">mean</span>(control) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></code></pre></div>
+<pre><code>## [1] 1.869</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(hf, control)<span class="op">$</span>conf.int <span class="op">/</span><span class="st"> </span><span class="kw">mean</span>(control) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></code></pre></div>
+<pre><code>## [1] -20.95  24.68
+## attr(,&quot;conf.level&quot;)
+## [1] 0.95</code></pre>
+<p>In addition, we can report a statistic called <a href="https://en.wikipedia.org/wiki/Effect_size#Cohen.27s_d">Cohen’s d</a>, which is the difference between the groups divided by the pooled standard deviation of the two groups.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sd_pool &lt;-<span class="st"> </span><span class="kw">sqrt</span>(((N<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span><span class="kw">var</span>(hf) <span class="op">+</span><span class="st"> </span>(N<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span><span class="kw">var</span>(control))<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>N <span class="op">-</span><span class="st"> </span><span class="dv">2</span>))
+diff <span class="op">/</span><span class="st"> </span>sd_pool</code></pre></div>
+<pre><code>## [1] 0.0714</code></pre>
+<p>This tells us how many standard deviations of the data the mean of the high-fat diet group is from the control group. Under the alternative hypothesis, unlike the t-statistic which is guaranteed to increase, the effect size and Cohen’s d will become more precise.</p>
+</div>
+</div>
+<div id="monte-carlo-simulation" class="section level2">
+<h2><span class="header-section-number">2.14</span> Monte Carlo Simulation</h2>
+<p>Computers can be used to generate pseudo-random numbers. For practical purposes these pseudo-random numbers can be used to imitate random variables from the real world. This permits us to examine properties of random variables using a computer instead of theoretical or analytical derivations. One very useful aspect of this concept is that we can create <em>simulated</em> data to test out ideas or competing methods, without actually having to perform laboratory experiments.</p>
+<p>Simulations can also be used to check theoretical or analytical results. Also, many of the theoretical results we use in statistics are based on asymptotics: they hold when the sample size goes to infinity. In practice, we never have an infinite number of samples so we may want to know how well the theory works with our actual sample size. Sometimes we can answer this question analytically, but not always. Simulations are extremely useful in these cases.</p>
+<p>As an example, let’s use a Monte Carlo simulation to compare the CLT to the t-distribution approximation for different sample sizes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;mice_pheno.csv&quot;</span>)
+controlPopulation &lt;-<span class="st"> </span><span class="kw">filter</span>(dat,Sex <span class="op">==</span><span class="st"> &quot;F&quot;</span> <span class="op">&amp;</span><span class="st"> </span>Diet <span class="op">==</span><span class="st"> &quot;chow&quot;</span>) <span class="op">%&gt;%</span><span class="st">  </span>
+<span class="st">  </span><span class="kw">select</span>(Bodyweight) <span class="op">%&gt;%</span><span class="st"> </span>unlist</code></pre></div>
+<p>We will build a function that automatically generates a t-statistic under the null hypothesis for a sample size of <code>n</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ttestgenerator &lt;-<span class="st"> </span><span class="cf">function</span>(n) {
+  <span class="co">#note that here we have a false &quot;high fat&quot; group where we actually</span>
+  <span class="co">#sample from the chow or control population. </span>
+  <span class="co">#This is because we are modeling the null.</span>
+  cases &lt;-<span class="st"> </span><span class="kw">sample</span>(controlPopulation,n)
+  controls &lt;-<span class="st"> </span><span class="kw">sample</span>(controlPopulation,n)
+  tstat &lt;-<span class="st"> </span>(<span class="kw">mean</span>(cases)<span class="op">-</span><span class="kw">mean</span>(controls)) <span class="op">/</span><span class="st"> </span>
+<span class="st">      </span><span class="kw">sqrt</span>( <span class="kw">var</span>(cases)<span class="op">/</span>n <span class="op">+</span><span class="st"> </span><span class="kw">var</span>(controls)<span class="op">/</span>n ) 
+  <span class="kw">return</span>(tstat)
+  }
+ttests &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">1000</span>, <span class="kw">ttestgenerator</span>(<span class="dv">10</span>))</code></pre></div>
+<p>With 1,000 Monte Carlo simulated occurrences of this random variable, we can now get a glimpse of its distribution:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(ttests)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/ttest_hist-1.png" alt="Histogram of 1000 Monte Carlo simulated t-statistics." width="672" />
+<p class="caption">
+(#fig:ttest_hist)Histogram of 1000 Monte Carlo simulated t-statistics.
+</p>
+</div>
+<p>So is the distribution of this t-statistic well approximated by the normal distribution? In the next chapter, we will formally introduce quantile-quantile plots, which provide a useful visual inspection of how well one distribution approximates another. As we will explain later, if points fall on the identity line, it means the approximation is a good one.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qqnorm</span>(ttests)
+<span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/ttest_qqplot-1.png" alt="Quantile-quantile plot comparing 1000 Monte Carlo simulated t-statistics to theoretical normal distribution." width="672" />
+<p class="caption">
+(#fig:ttest_qqplot)Quantile-quantile plot comparing 1000 Monte Carlo simulated t-statistics to theoretical normal distribution.
+</p>
+</div>
+<p>This looks like a very good approximation. For this particular population, a sample size of 10 was large enough to use the CLT approximation. How about 3?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ttests &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">1000</span>, <span class="kw">ttestgenerator</span>(<span class="dv">3</span>))
+<span class="kw">qqnorm</span>(ttests)
+<span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/ttest_df3_qqplot-1.png" alt="Quantile-quantile plot comparing 1000 Monte Carlo simulated t-statistics with three degrees of freedom to theoretical normal distribution." width="672" />
+<p class="caption">
+(#fig:ttest_df3_qqplot)Quantile-quantile plot comparing 1000 Monte Carlo simulated t-statistics with three degrees of freedom to theoretical normal distribution.
+</p>
+</div>
+<p>Now we see that the large quantiles, referred to by statisticians as the <em>tails</em>, are larger than expected (below the line on the left side of the plot and above the line on the right side of the plot). In the previous module, we explained that when the sample size is not large enough and the <em>population values</em> follow a normal distribution, then the t-distribution is a better approximation. Our simulation results seem to confirm this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ps &lt;-<span class="st"> </span>(<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">999</span>)<span class="op">+</span><span class="fl">0.5</span>)<span class="op">/</span><span class="dv">1000</span>
+<span class="kw">qqplot</span>(<span class="kw">qt</span>(ps,<span class="dt">df=</span><span class="dv">2</span><span class="op">*</span><span class="dv">3</span><span class="op">-</span><span class="dv">2</span>),ttests,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">6</span>,<span class="dv">6</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">6</span>,<span class="dv">6</span>))
+<span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/ttest_v_tdist_qqplot-1.png" alt="Quantile-quantile plot comparing 1000 Monte Carlo simulated t-statistics with three degrees of freedom to theoretical t-distribution." width="672" />
+<p class="caption">
+(#fig:ttest_v_tdist_qqplot)Quantile-quantile plot comparing 1000 Monte Carlo simulated t-statistics with three degrees of freedom to theoretical t-distribution.
+</p>
+</div>
+<p>The t-distribution is a much better approximation in this case, but it is still not perfect. This is due to the fact that the original data is not that well approximated by the normal distribution.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qqnorm</span>(controlPopulation)
+<span class="kw">qqline</span>(controlPopulation)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/dat_qqplot-1.png" alt="Quantile-quantile of original data compared to theoretical quantile distribution." width="672" />
+<p class="caption">
+(#fig:dat_qqplot)Quantile-quantile of original data compared to theoretical quantile distribution.
+</p>
+</div>
+</div>
+<div id="parametric-simulations-for-the-observations" class="section level2">
+<h2><span class="header-section-number">2.15</span> Parametric Simulations for the Observations</h2>
+<p>The technique we used to motivate random variables and the null distribution was a type of Monte Carlo simulation. We had access to population data and generated samples at random. In practice, we do not have access to the entire population. The reason for using the approach here was for educational purposes. However, when we want to use Monte Carlo simulations in practice, it is much more typical to assume a parametric distribution and generate a population from this, which is called a <em>parametric simulation</em>. This means that we take parameters estimated from the real data (here the mean and the standard deviation), and plug these into a model (here the normal distribution). This is actually the most common form of Monte Carlo simulation.</p>
+<p>For the case of weights, we could use our knowledge that mice typically weigh 24 grams with a SD of about 3.5 grams, and that the distribution is approximately normal, to generate population data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">controls&lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">5000</span>, <span class="dt">mean=</span><span class="dv">24</span>, <span class="dt">sd=</span><span class="fl">3.5</span>) </code></pre></div>
+<p>After we generate the data, we can then repeat the exercise above. We no longer have to use the <code>sample</code> function since we can re-generate random normal numbers. The <code>ttestgenerator</code> function therefore can be written as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ttestgenerator &lt;-<span class="st"> </span><span class="cf">function</span>(n, <span class="dt">mean=</span><span class="dv">24</span>, <span class="dt">sd=</span><span class="fl">3.5</span>) {
+  cases &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n,mean,sd)
+  controls &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n,mean,sd)
+  tstat &lt;-<span class="st"> </span>(<span class="kw">mean</span>(cases)<span class="op">-</span><span class="kw">mean</span>(controls)) <span class="op">/</span><span class="st"> </span>
+<span class="st">      </span><span class="kw">sqrt</span>( <span class="kw">var</span>(cases)<span class="op">/</span>n <span class="op">+</span><span class="st"> </span><span class="kw">var</span>(controls)<span class="op">/</span>n ) 
+  <span class="kw">return</span>(tstat)
+  }</code></pre></div>
+</div>
+<div id="permutation-tests" class="section level2">
+<h2><span class="header-section-number">2.16</span> Permutation Tests</h2>
+<p>Suppose we have a situation in which none of the standard mathematical statistical approximations apply. We have computed a summary statistic, such as the difference in mean, but do not have a useful approximation, such as that provided by the CLT. In practice, we do not have access to all values in the population so we can’t perform a simulation as done above. Permutation tests can be useful in these scenarios.</p>
+<p>We are back to the scenario where we only have 10 measurements for each group.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat=<span class="kw">read.csv</span>(<span class="st">&quot;femaleMiceWeights.csv&quot;</span>)
+
+<span class="kw">library</span>(dplyr)
+
+control &lt;-<span class="st"> </span><span class="kw">filter</span>(dat,Diet<span class="op">==</span><span class="st">&quot;chow&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Bodyweight) <span class="op">%&gt;%</span><span class="st"> </span>unlist
+treatment &lt;-<span class="st"> </span><span class="kw">filter</span>(dat,Diet<span class="op">==</span><span class="st">&quot;hf&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Bodyweight) <span class="op">%&gt;%</span><span class="st"> </span>unlist
+obsdiff &lt;-<span class="st"> </span><span class="kw">mean</span>(treatment)<span class="op">-</span><span class="kw">mean</span>(control)</code></pre></div>
+<p>In previous sections, we showed parametric approaches that helped determine if the observed difference was significant. Permutation tests take advantage of the fact that if we randomly shuffle the cases and control labels, then the null is true. So we shuffle the cases and control labels and assume that the ensuing distribution approximates the null distribution. Here is how we generate a null distribution by shuffling the data 1,000 times:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N &lt;-<span class="st"> </span><span class="dv">12</span>
+avgdiff &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">1000</span>, {
+    all &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(control,treatment))
+    newcontrols &lt;-<span class="st"> </span>all[<span class="dv">1</span><span class="op">:</span>N]
+    newtreatments &lt;-<span class="st"> </span>all[(N<span class="op">+</span><span class="dv">1</span>)<span class="op">:</span>(<span class="dv">2</span><span class="op">*</span>N)]
+  <span class="kw">return</span>(<span class="kw">mean</span>(newtreatments) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(newcontrols))
+})
+<span class="kw">hist</span>(avgdiff)
+<span class="kw">abline</span>(<span class="dt">v=</span>obsdiff, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/diff_hist-1.png" alt="Histogram of difference between averages from permutations. Vertical line shows the observed difference." width="672" />
+<p class="caption">
+(#fig:diff_hist)Histogram of difference between averages from permutations. Vertical line shows the observed difference.
+</p>
+</div>
+<p>How many of the null means are bigger than the observed value? That proportion would be the p-value for the null. We add a 1 to the numerator and denominator to account for misestimation of the p-value (for more details see <a href="http://www.ncbi.nlm.nih.gov/pubmed/21044043">Phipson and Smyth, Permutation P-values should never be zero</a>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#the proportion of permutations with larger difference</span>
+(<span class="kw">sum</span>(<span class="kw">abs</span>(avgdiff) <span class="op">&gt;</span><span class="st"> </span><span class="kw">abs</span>(obsdiff)) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span>(<span class="kw">length</span>(avgdiff) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] 0.06294</code></pre>
+<p>Now let’s repeat this experiment for a smaller dataset. We create a smaller dataset by sampling:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N &lt;-<span class="st"> </span><span class="dv">5</span>
+control &lt;-<span class="st"> </span><span class="kw">sample</span>(control,N)
+treatment &lt;-<span class="st"> </span><span class="kw">sample</span>(treatment,N)
+obsdiff &lt;-<span class="st"> </span><span class="kw">mean</span>(treatment)<span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(control)</code></pre></div>
+<p>and repeat the exercise:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">avgdiff &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">1000</span>, {
+    all &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(control,treatment))
+    newcontrols &lt;-<span class="st"> </span>all[<span class="dv">1</span><span class="op">:</span>N]
+    newtreatments &lt;-<span class="st"> </span>all[(N<span class="op">+</span><span class="dv">1</span>)<span class="op">:</span>(<span class="dv">2</span><span class="op">*</span>N)]
+  <span class="kw">return</span>(<span class="kw">mean</span>(newtreatments) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(newcontrols))
+})
+<span class="kw">hist</span>(avgdiff)
+<span class="kw">abline</span>(<span class="dt">v=</span>obsdiff, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/diff_hist_N50-1.png" alt="Histogram of difference between averages from permutations for smaller sample size. Vertical line shows the observed difference." width="672" />
+<p class="caption">
+(#fig:diff_hist_N50)Histogram of difference between averages from permutations for smaller sample size. Vertical line shows the observed difference.
+</p>
+</div>
+<p>Now the observed difference is not significant using this approach. Keep in mind that there is no theoretical guarantee that the null distribution estimated from permutations approximates the actual null distribution. For example, if there is a real difference between the populations, some of the permutations will be unbalanced and will contain some samples that explain this difference. This implies that the null distribution created with permutations will have larger tails than the actual null distribution. This is why permutations result in conservative p-values. For this reason, when we have few samples, we can’t do permutations.</p>
+<p>Note also that permutation tests still have assumptions: samples are assumed to be independent and “exchangeable”. If there is hidden structure in your data, then permutation tests can result in estimated null distributions that underestimate the size of tails because the permutations may destroy the existing structure in the original data.</p>
+</div>
+<div id="association-tests" class="section level2">
+<h2><span class="header-section-number">2.17</span> Association Tests</h2>
+<p>The statistical tests we have covered up to now leave out a substantial portion of life science projects. Specifically, we are referring to data that is binary, categorical and ordinal. To give a very specific example, consider genetic data where you have two groups of genotypes (AA/Aa or aa) for cases and controls for a given disease. The statistical question is if genotype and disease are associated. As in the examples we have been studying previously, we have two populations (AA/Aa and aa) and then numeric data for each, where disease status can be coded as 0 or 1. So why can’t we perform a t-test? Note that the data is either 0 (control) or 1 (cases). It is pretty clear that this data is not normally distributed so the t-distribution approximation is certainly out of the question. We could use CLT if the sample size is large enough; otherwise, we can use <em>association tests</em>.</p>
+<div id="lady-tasting-tea" class="section level4">
+<h4><span class="header-section-number">2.17.0.1</span> Lady Tasting Tea</h4>
+<p>One of the most famous examples of hypothesis testing was performed by <a href="https://en.wikipedia.org/wiki/Ronald_Fisher">R.A. Fisher</a>. An acquaintance of Fisher’s claimed that she could tell if milk was added before or after tea was poured. Fisher gave her four pairs of cups of tea: one with milk poured first, the other after. The order was randomized. Say she picked 3 out of 4 correctly, do we believe she has a special ability? Hypothesis testing helps answer this question by quantifying what happens by chance. This example is called the “Lady Tasting Tea” experiment (and, as it turns out, Fisher’s friend was a scientist herself, <a href="https://en.wikipedia.org/wiki/Muriel_Bristol">Muriel Bristol</a>).</p>
+<p>The basic question we ask is: if the tester is actually guessing, what are the chances that she gets 3 or more correct? Just as we have done before, we can compute a probability under the null hypothesis that she is guessing 4 of each. If we assume this null hypothesis, we can think of this particular example as picking 4 balls out of an urn with 4 green (correct answer) and 4 red (incorrect answer) balls.</p>
+<p>Under the null hypothesis that she is simply guessing, each ball has the same chance of being picked. We can then use combinatorics to figure out each probability. The probability of picking 3 is <span class="math inline">\({4 \choose 3} {4 \choose 1} / {8 \choose 4} = 16/70\)</span>. The probability of picking all 4 correct is <span class="math inline">\({4 \choose 4} {4 \choose 0}/{8 \choose 4}= 1/70\)</span>. Thus, the chance of observing a 3 or something more extreme, under the null hypothesis, is <span class="math inline">\(\approx 0.24\)</span>. This is the p-value. The procedure that produced this p-value is called <em>Fisher’s exact test</em> and it uses the <em>hypergeometric distribution</em>.</p>
+</div>
+<div id="two-by-two-tables" class="section level4">
+<h4><span class="header-section-number">2.17.0.2</span> Two By Two Tables</h4>
+<p>The data from the experiment above can be summarized by a two by two table:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tab &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>),<span class="dv">2</span>,<span class="dv">2</span>)
+<span class="kw">rownames</span>(tab)&lt;-<span class="kw">c</span>(<span class="st">&quot;Poured Before&quot;</span>,<span class="st">&quot;Poured After&quot;</span>)
+<span class="kw">colnames</span>(tab)&lt;-<span class="kw">c</span>(<span class="st">&quot;Guessed before&quot;</span>,<span class="st">&quot;Guessed after&quot;</span>)
+tab</code></pre></div>
+<pre><code>##               Guessed before Guessed after
+## Poured Before              3             1
+## Poured After               1             3</code></pre>
+<p>The function <code>fisher.test</code> performs the calculations above and can be obtained like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fisher.test</span>(tab,<span class="dt">alternative=</span><span class="st">&quot;greater&quot;</span>)</code></pre></div>
+<pre><code>## 
+##  Fisher&#39;s Exact Test for Count Data
+## 
+## data:  tab
+## p-value = 0.2
+## alternative hypothesis: true odds ratio is greater than 1
+## 95 percent confidence interval:
+##  0.3136    Inf
+## sample estimates:
+## odds ratio 
+##      6.408</code></pre>
+</div>
+<div id="chi-square-test" class="section level4">
+<h4><span class="header-section-number">2.17.0.3</span> Chi-square Test</h4>
+<p>Genome-wide association studies (GWAS) have become ubiquitous in biology. One of the main statistical summaries used in these studies are Manhattan plots. The y-axis of a Manhattan plot typically represents the negative of log (base 10) of the p-values obtained for association tests applied at millions of single nucleotide polymorphisms (SNP). The x-axis is typically organized by chromosome (chromosome 1 to 22, X, Y, etc.). These p-values are obtained in a similar way to the test performed on the tea taster. However, in that example the number of green and red balls is experimentally fixed and the number of answers given for each category is also fixed. Another way to say this is that the sum of the rows and the sum of the columns are fixed. This defines constraints on the possible ways we can fill the two by two table and also permits us to use the hypergeometric distribution. In general, this is not the case. Nonetheless, there is another approach, the Chi-squared test, which is described below.</p>
+<p>Imagine we have 250 individuals, where some of them have a given disease and the rest do not. We observe that 20% of the individuals that are homozygous for the minor allele (aa) have the disease compared to 10% of the rest. Would we see this again if we picked another 250 individuals?</p>
+<p>Let’s create a dataset with these percentages:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">disease=<span class="kw">factor</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">180</span>),<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">20</span>),<span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">40</span>),<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">10</span>)),
+               <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;control&quot;</span>,<span class="st">&quot;cases&quot;</span>))
+genotype=<span class="kw">factor</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;AA/Aa&quot;</span>,<span class="dv">200</span>),<span class="kw">rep</span>(<span class="st">&quot;aa&quot;</span>,<span class="dv">50</span>)),
+                <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;AA/Aa&quot;</span>,<span class="st">&quot;aa&quot;</span>))
+dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(disease, genotype)
+dat &lt;-<span class="st"> </span>dat[<span class="kw">sample</span>(<span class="kw">nrow</span>(dat)),] <span class="co">#shuffle them up</span>
+<span class="kw">head</span>(dat)</code></pre></div>
+<pre><code>##     disease genotype
+## 67  control    AA/Aa
+## 93  control    AA/Aa
+## 143 control    AA/Aa
+## 225 control       aa
+## 50  control    AA/Aa
+## 221 control       aa</code></pre>
+<p>To create the appropriate two by two table, we will use the function <code>table</code>. This function tabulates the frequency of each level in a factor. For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(genotype)</code></pre></div>
+<pre><code>## genotype
+## AA/Aa    aa 
+##   200    50</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(disease)</code></pre></div>
+<pre><code>## disease
+## control   cases 
+##     220      30</code></pre>
+<p>If you provide the function with two factors, it will tabulate all possible pairs and thus create the two by two table:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tab &lt;-<span class="st"> </span><span class="kw">table</span>(genotype,disease)
+tab</code></pre></div>
+<pre><code>##         disease
+## genotype control cases
+##    AA/Aa     180    20
+##    aa         40    10</code></pre>
+<p>Note that you can feed <code>table</code> <span class="math inline">\(n\)</span> factors and it will tabulate all <span class="math inline">\(n\)</span>-tables.</p>
+<p>The typical statistics we use to summarize these results is the odds ratio (OR). We compute the odds of having the disease if you are an “aa”: 10/40, the odds of having the disease if you are an “AA/Aa”: 20/180, and take the ratio: <span class="math inline">\((10/40) / (20/180)\)</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(tab[<span class="dv">2</span>,<span class="dv">2</span>]<span class="op">/</span>tab[<span class="dv">2</span>,<span class="dv">1</span>]) <span class="op">/</span><span class="st"> </span>(tab[<span class="dv">1</span>,<span class="dv">2</span>]<span class="op">/</span>tab[<span class="dv">1</span>,<span class="dv">1</span>])</code></pre></div>
+<pre><code>## [1] 2.25</code></pre>
+<p>To compute a p-value, we don’t use the OR directly. We instead assume that there is no association between genotype and disease, and then compute what we expect to see in each <em>cell</em> of the table (note: this use of the word “cell” refers to elements in a matrix or table and has nothing to do with biological cells). Under the null hypothesis, the group with 200 individuals and the group with 50 individuals were each randomly assigned the disease with the same probability. If this is the case, then the probability of disease is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p=<span class="kw">mean</span>(disease<span class="op">==</span><span class="st">&quot;cases&quot;</span>)
+p</code></pre></div>
+<pre><code>## [1] 0.12</code></pre>
+<p>The expected table is therefore:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">expected &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">-</span>p,p)<span class="op">*</span><span class="kw">sum</span>(genotype<span class="op">==</span><span class="st">&quot;AA/Aa&quot;</span>),
+                  <span class="kw">c</span>(<span class="dv">1</span><span class="op">-</span>p,p)<span class="op">*</span><span class="kw">sum</span>(genotype<span class="op">==</span><span class="st">&quot;aa&quot;</span>))
+<span class="kw">dimnames</span>(expected)&lt;-<span class="kw">dimnames</span>(tab)
+expected</code></pre></div>
+<pre><code>##         disease
+## genotype control cases
+##    AA/Aa     176    24
+##    aa         44     6</code></pre>
+<p>The Chi-square test uses an asymptotic result (similar to the CLT) related to the sums of independent binary outcomes. Using this approximation, we can compute the probability of seeing a deviation from the expected table as big as the one we saw. The p-value for this table is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(tab)<span class="op">$</span>p.value</code></pre></div>
+<pre><code>## [1] 0.08857</code></pre>
+</div>
+<div id="large-samples-small-p-values" class="section level4">
+<h4><span class="header-section-number">2.17.0.4</span> Large Samples, Small p-values</h4>
+<p>As mentioned earlier, reporting only p-values is not an appropriate way to report the results of your experiment. Many genetic association studies seem to overemphasize p-values. They have large sample sizes and report impressively small p-values. Yet when one looks closely at the results, we realize odds ratios are quite modest: barely bigger than 1. In this case the difference of having genotype AA/Aa or aa might not change an individual’s risk for a disease in an amount which is <em>practically significant</em>, in that one might not change one’s behavior based on the small increase in risk.</p>
+<p>There is not a one-to-one relationship between the odds ratio and the p-value. To demonstrate, we recalculate the p-value keeping all the proportions identical, but increasing the sample size by 10, which reduces the p-value substantially (as we saw with the t-test under the alternative hypothesis):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tab&lt;-tab<span class="op">*</span><span class="dv">10</span>
+<span class="kw">chisq.test</span>(tab)<span class="op">$</span>p.value</code></pre></div>
+<pre><code>## [1] 1.22e-09</code></pre>
+</div>
+<div id="confidence-intervals-for-the-odds-ratio" class="section level4">
+<h4><span class="header-section-number">2.17.0.5</span> Confidence Intervals for the Odds Ratio</h4>
+<p>Computing confidence intervals for the OR is not mathematically straightforward. Unlike other statistics, for which we can derive useful approximations of their distributions, the OR is not only a ratio, but a ratio of ratios. Therefore, there is no simple way of using, for example, the CLT.</p>
+<p>One approach is to use the theory of <em>generalized linear models</em> which provides estimates of the log odds ratio, rather than the OR itself, that can be shown to be asymptotically normal. Here we provide R code without presenting the theoretical details (for further details please see a reference on generalized linear models such as <a href="https://en.wikipedia.org/wiki/Generalized_linear_model">Wikipedia</a> or <a href="https://books.google.com/books?hl=en&amp;lr=&amp;id=h9kFH2_FfBkC">McCullagh and Nelder, 1989</a>):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit &lt;-<span class="st"> </span><span class="kw">glm</span>(disease<span class="op">~</span>genotype,<span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>,<span class="dt">data=</span>dat)
+coeftab&lt;-<span class="st"> </span><span class="kw">summary</span>(fit)<span class="op">$</span>coef
+coeftab</code></pre></div>
+<pre><code>##             Estimate Std. Error z value  Pr(&gt;|z|)
+## (Intercept)  -2.1972     0.2357  -9.323 1.133e-20
+## genotypeaa    0.8109     0.4249   1.908 5.633e-02</code></pre>
+<p>The second row of the table shown above gives you the estimate and SE of the log odds ratio. Mathematical theory tells us that this estimate is approximately normally distributed. We can therefore form a confidence interval and then exponentiate to provide a confidence interval for the OR.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ci &lt;-<span class="st"> </span>coeftab[<span class="dv">2</span>,<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">2</span>)<span class="op">*</span>coeftab[<span class="dv">2</span>,<span class="dv">2</span>]
+<span class="kw">exp</span>(ci)</code></pre></div>
+<pre><code>## [1] 0.9619 5.2632</code></pre>
+<p>The confidence includes 1, which is consistent with the p-value being bigger than 0.05. Note that the p-value shown here is based on a different approximation to the one used by the Chi-square test, which is why they differ.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="getting-started.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exploratory-data-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/yihui/bookdown-chinese/edit/master/02_inference.Rmd",
+"text": "编辑"
+},
+"download": ["bookdown.pdf", "bookdown.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

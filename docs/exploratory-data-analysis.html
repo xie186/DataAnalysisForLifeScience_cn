@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>生物信息R数据分析</title>
+  <meta name="description" content="生物信息R数据分析">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="生物信息R数据分析" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="生物信息R数据分析" />
+  <meta name="github-repo" content="xie186/HarvardDataScienceForLifeScience_cn" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="生物信息R数据分析" />
+  
+  <meta name="twitter:description" content="生物信息R数据分析" />
+  
+
+<meta name="author" content="原作者：张三 翻译：张三 李四 麻子">
+
+
+<meta name="date" content="2017-11-16">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="inference.html">
+<link rel="next" href="matrix-algebra.html">
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">中文书示例</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a><ul>
+<li class="chapter" data-level="0.1" data-path="acknowledgments.html"><a href="acknowledgments.html#introduction"><i class="fa fa-check"></i><b>0.1</b> Introduction</a></li>
+<li class="chapter" data-level="0.2" data-path="acknowledgments.html"><a href="acknowledgments.html#who-will-find-this-book-useful"><i class="fa fa-check"></i><b>0.2</b> Who Will Find This Book Useful?</a></li>
+<li class="chapter" data-level="0.3" data-path="acknowledgments.html"><a href="acknowledgments.html#what-does-this-book-cover"><i class="fa fa-check"></i><b>0.3</b> What Does This Book Cover?</a></li>
+<li class="chapter" data-level="0.4" data-path="acknowledgments.html"><a href="acknowledgments.html#how-is-this-book-different"><i class="fa fa-check"></i><b>0.4</b> How Is This Book Different?</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
+<li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#installing-r"><i class="fa fa-check"></i><b>1.1</b> Installing R</a></li>
+<li class="chapter" data-level="1.2" data-path="getting-started.html"><a href="getting-started.html#installing-rstudio"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#learn-r-basics"><i class="fa fa-check"></i><b>1.3</b> Learn R Basics</a></li>
+<li class="chapter" data-level="1.4" data-path="getting-started.html"><a href="getting-started.html#installing-packages"><i class="fa fa-check"></i><b>1.4</b> Installing Packages</a></li>
+<li class="chapter" data-level="1.5" data-path="getting-started.html"><a href="getting-started.html#importing-data-into-r"><i class="fa fa-check"></i><b>1.5</b> Importing Data into R</a></li>
+<li class="chapter" data-level="1.6" data-path="getting-started.html"><a href="getting-started.html#brief-introduction-to-dplyr"><i class="fa fa-check"></i><b>1.6</b> Brief Introduction to <code>dplyr</code></a></li>
+<li class="chapter" data-level="1.7" data-path="getting-started.html"><a href="getting-started.html#mathematical-notation"><i class="fa fa-check"></i><b>1.7</b> Mathematical Notation</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="inference.html"><a href="inference.html"><i class="fa fa-check"></i><b>2</b> Inference</a><ul>
+<li class="chapter" data-level="2.1" data-path="inference.html"><a href="inference.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="inference.html"><a href="inference.html#random-variables"><i class="fa fa-check"></i><b>2.2</b> Random Variables</a></li>
+<li class="chapter" data-level="2.3" data-path="inference.html"><a href="inference.html#the-null-hypothesis"><i class="fa fa-check"></i><b>2.3</b> The Null Hypothesis</a></li>
+<li class="chapter" data-level="2.4" data-path="inference.html"><a href="inference.html#distributions"><i class="fa fa-check"></i><b>2.4</b> Distributions</a></li>
+<li class="chapter" data-level="2.5" data-path="inference.html"><a href="inference.html#probability-distribution"><i class="fa fa-check"></i><b>2.5</b> Probability Distribution</a></li>
+<li class="chapter" data-level="2.6" data-path="inference.html"><a href="inference.html#normal-distribution"><i class="fa fa-check"></i><b>2.6</b> Normal Distribution</a></li>
+<li class="chapter" data-level="2.7" data-path="inference.html"><a href="inference.html#populations-samples-and-estimates"><i class="fa fa-check"></i><b>2.7</b> Populations, Samples and Estimates</a></li>
+<li class="chapter" data-level="2.8" data-path="inference.html"><a href="inference.html#central-limit-theorem-and-t-distribution"><i class="fa fa-check"></i><b>2.8</b> Central Limit Theorem and t-distribution</a></li>
+<li class="chapter" data-level="2.9" data-path="inference.html"><a href="inference.html#central-limit-theorem-in-practice"><i class="fa fa-check"></i><b>2.9</b> Central Limit Theorem in Practice</a></li>
+<li class="chapter" data-level="2.10" data-path="inference.html"><a href="inference.html#t-tests-in-practice"><i class="fa fa-check"></i><b>2.10</b> t-tests in Practice</a></li>
+<li class="chapter" data-level="2.11" data-path="inference.html"><a href="inference.html#the-t-distribution-in-practice"><i class="fa fa-check"></i><b>2.11</b> The t-distribution in Practice</a></li>
+<li class="chapter" data-level="2.12" data-path="inference.html"><a href="inference.html#confidence-intervals"><i class="fa fa-check"></i><b>2.12</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="2.13" data-path="inference.html"><a href="inference.html#power-calculations"><i class="fa fa-check"></i><b>2.13</b> Power Calculations</a></li>
+<li class="chapter" data-level="2.14" data-path="inference.html"><a href="inference.html#monte-carlo-simulation"><i class="fa fa-check"></i><b>2.14</b> Monte Carlo Simulation</a></li>
+<li class="chapter" data-level="2.15" data-path="inference.html"><a href="inference.html#parametric-simulations-for-the-observations"><i class="fa fa-check"></i><b>2.15</b> Parametric Simulations for the Observations</a></li>
+<li class="chapter" data-level="2.16" data-path="inference.html"><a href="inference.html#permutation-tests"><i class="fa fa-check"></i><b>2.16</b> Permutation Tests</a></li>
+<li class="chapter" data-level="2.17" data-path="inference.html"><a href="inference.html#association-tests"><i class="fa fa-check"></i><b>2.17</b> Association Tests</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>3</b> Exploratory Data Analysis</a><ul>
+<li class="chapter" data-level="3.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#quantile-quantile-plots"><i class="fa fa-check"></i><b>3.1</b> Quantile Quantile Plots</a></li>
+<li class="chapter" data-level="3.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#boxplots"><i class="fa fa-check"></i><b>3.2</b> Boxplots</a></li>
+<li class="chapter" data-level="3.3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#scatterplots-and-correlation"><i class="fa fa-check"></i><b>3.3</b> Scatterplots and Correlation</a></li>
+<li class="chapter" data-level="3.4" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#stratification"><i class="fa fa-check"></i><b>3.4</b> Stratification</a></li>
+<li class="chapter" data-level="3.5" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#bivariate-normal-distribution"><i class="fa fa-check"></i><b>3.5</b> Bivariate Normal Distribution</a></li>
+<li class="chapter" data-level="3.6" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#plots-to-avoid"><i class="fa fa-check"></i><b>3.6</b> Plots to Avoid</a></li>
+<li class="chapter" data-level="3.7" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#misunderstanding-correlation-advanced"><i class="fa fa-check"></i><b>3.7</b> Misunderstanding Correlation (Advanced)</a></li>
+<li class="chapter" data-level="3.8" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#robust-summaries"><i class="fa fa-check"></i><b>3.8</b> Robust Summaries</a></li>
+<li class="chapter" data-level="3.9" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#wilcoxon-rank-sum-test"><i class="fa fa-check"></i><b>3.9</b> Wilcoxon Rank Sum Test</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="matrix-algebra.html"><a href="matrix-algebra.html"><i class="fa fa-check"></i><b>4</b> Matrix Algebra</a><ul>
+<li class="chapter" data-level="4.1" data-path="matrix-algebra.html"><a href="matrix-algebra.html#motivating-examples"><i class="fa fa-check"></i><b>4.1</b> Motivating Examples</a></li>
+<li class="chapter" data-level="4.2" data-path="matrix-algebra.html"><a href="matrix-algebra.html#matrix-notation"><i class="fa fa-check"></i><b>4.2</b> Matrix Notation</a></li>
+<li class="chapter" data-level="4.3" data-path="matrix-algebra.html"><a href="matrix-algebra.html#solving-systems-of-equations"><i class="fa fa-check"></i><b>4.3</b> Solving Systems of Equations</a></li>
+<li class="chapter" data-level="4.4" data-path="matrix-algebra.html"><a href="matrix-algebra.html#vectors-matrices-and-scalars"><i class="fa fa-check"></i><b>4.4</b> Vectors, Matrices, and Scalars</a></li>
+<li class="chapter" data-level="4.5" data-path="matrix-algebra.html"><a href="matrix-algebra.html#matrix-operations"><i class="fa fa-check"></i><b>4.5</b> Matrix Operations</a></li>
+<li class="chapter" data-level="4.6" data-path="matrix-algebra.html"><a href="matrix-algebra.html#examples"><i class="fa fa-check"></i><b>4.6</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="linear-models-1.html"><a href="linear-models-1.html"><i class="fa fa-check"></i><b>5</b> Linear Models</a><ul>
+<li class="chapter" data-level="5.1" data-path="linear-models-1.html"><a href="linear-models-1.html#the-design-matrix"><i class="fa fa-check"></i><b>5.1</b> The Design Matrix</a></li>
+<li class="chapter" data-level="5.2" data-path="linear-models-1.html"><a href="linear-models-1.html#the-mathematics-behind-lm"><i class="fa fa-check"></i><b>5.2</b> The Mathematics Behind lm()</a></li>
+<li class="chapter" data-level="5.3" data-path="linear-models-1.html"><a href="linear-models-1.html#standard-errors"><i class="fa fa-check"></i><b>5.3</b> Standard Errors</a></li>
+<li class="chapter" data-level="5.4" data-path="linear-models-1.html"><a href="linear-models-1.html#interactions-and-contrasts"><i class="fa fa-check"></i><b>5.4</b> Interactions and Contrasts</a></li>
+<li class="chapter" data-level="5.5" data-path="linear-models-1.html"><a href="linear-models-1.html#linear-model-with-interactions"><i class="fa fa-check"></i><b>5.5</b> Linear Model with Interactions</a></li>
+<li class="chapter" data-level="5.6" data-path="linear-models-1.html"><a href="linear-models-1.html#analysis-of-variance"><i class="fa fa-check"></i><b>5.6</b> Analysis of Variance</a></li>
+<li class="chapter" data-level="5.7" data-path="linear-models-1.html"><a href="linear-models-1.html#collinearity"><i class="fa fa-check"></i><b>5.7</b> Collinearity</a></li>
+<li class="chapter" data-level="5.8" data-path="linear-models-1.html"><a href="linear-models-1.html#rank"><i class="fa fa-check"></i><b>5.8</b> Rank</a></li>
+<li class="chapter" data-level="5.9" data-path="linear-models-1.html"><a href="linear-models-1.html#removing-confounding"><i class="fa fa-check"></i><b>5.9</b> Removing Confounding</a></li>
+<li class="chapter" data-level="5.10" data-path="linear-models-1.html"><a href="linear-models-1.html#the-qr-factorization-advanced"><i class="fa fa-check"></i><b>5.10</b> The QR Factorization (Advanced)</a></li>
+</ul></li>
+<li class="appendix"><span><b>附录</b></span></li>
+<li class="chapter" data-level="A" data-path="sound.html"><a href="sound.html"><i class="fa fa-check"></i><b>A</b> 余音绕梁</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">生物信息R数据分析</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="exploratory-data-analysis" class="section level1">
+<h1><span class="header-section-number">第 3 章</span> Exploratory Data Analysis</h1>
+<p>“The greatest value of a picture is when it forces us to notice what we never expected to see.” -John W. Tukey</p>
+<p>Biases, systematic errors and unexpected variability are common in data from the life sciences. Failure to discover these problems often leads to flawed analyses and false discoveries. As an example, consider that experiments sometimes fail and not all data processing pipelines, such as the <code>t.test</code> function in R, are designed to detect these. Yet, these pipelines still give you an answer. Furthermore, it may be hard or impossible to notice an error was made just from the reported results.</p>
+<p>Graphing data is a powerful approach to detecting these problems. We refer to this as <em>exploratory data analysis</em> (EDA). Many important methodological contributions to existing techniques in data analysis were initiated by discoveries made via EDA. In addition, EDA can lead to interesting biological discoveries which would otherwise be missed through simply subjecting the data to a battery of hypothesis tests. Through this book, we make use of exploratory plots to motivate the analyses we choose. Here we present a general introduction to EDA using height data.</p>
+<p>We have already introduced some EDA approaches for <em>univariate</em> data, namely the histograms and qq-plot. Here we describe the qq-plot in more detail and some EDA and summary statistics for paired data. We also give a demonstration of commonly used figures that we recommend against.</p>
+<div id="quantile-quantile-plots" class="section level2">
+<h2><span class="header-section-number">3.1</span> Quantile Quantile Plots</h2>
+<p>To corroborate that a theoretical distribution, for example the normal distribution, is in fact a good approximation, we can use quantile-quantile plots (qq-plots). Quantiles are best understood by considering the special case of percentiles. The p-th percentile of a list of a distribution is defined as the number q that is bigger than p% of numbers (so the inverse of the cumulative distribution function we defined earlier). For example, the median 50-th percentile is the median. We can compute the percentiles for our list of heights:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### This comment line is added by xie186. definingHeights1 was &quot;definingHeights&quot;
+<span class="kw">library</span>(rafalib)
+<span class="kw">data</span>(father.son,<span class="dt">package=</span><span class="st">&quot;UsingR&quot;</span>) ##available from CRAN
+x &lt;-<span class="st"> </span>father.son<span class="op">$</span>fheight</code></pre></div>
+<p>and for the normal distribution:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ps &lt;-<span class="st"> </span>( <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">99</span>) <span class="op">+</span><span class="st"> </span><span class="fl">0.5</span> )<span class="op">/</span><span class="dv">100</span> 
+qs &lt;-<span class="st"> </span><span class="kw">quantile</span>(x, ps)
+normalqs &lt;-<span class="st"> </span><span class="kw">qnorm</span>(ps, <span class="kw">mean</span>(x), <span class="kw">popsd</span>(x))
+<span class="kw">plot</span>(normalqs,qs,<span class="dt">xlab=</span><span class="st">&quot;Normal percentiles&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Height percentiles&quot;</span>)
+<span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>) ##identity line</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/qqplot_example1-1.png" alt="First example of qqplot. Here we compute the theoretical quantiles ourselves." width="672" />
+<p class="caption">
+(#fig:qqplot_example1)First example of qqplot. Here we compute the theoretical quantiles ourselves.
+</p>
+</div>
+<p>Note how close these values are. Also, note that we can see these qq-plots with less code (this plot has more points than the one we constructed manually, and so tail-behavior can be seen more clearly).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qqnorm</span>(x)
+<span class="kw">qqline</span>(x) </code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/qqplot_example2-1.png" alt="Second example of qqplot. Here we use the function qqnorm which computes the theoretical normal quantiles automatically." width="672" />
+<p class="caption">
+(#fig:qqplot_example2)Second example of qqplot. Here we use the function qqnorm which computes the theoretical normal quantiles automatically.
+</p>
+</div>
+<p>However, the <code>qqnorm</code> function plots against a standard normal distribution. This is why the line has slope <code>popsd(x)</code> and intercept <code>mean(x)</code>.</p>
+<p>In the example above, the points match the line very well. In fact, we can run Monte Carlo simulations to see plots like this for data known to be normally distributed.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="dv">1000</span>
+x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n)
+<span class="kw">qqnorm</span>(x)
+<span class="kw">qqline</span>(x)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/qqnorm_example-1.png" alt="Example of the qqnorm function. Here we apply it to numbers generated to follow a normal distribution." width="672" />
+<p class="caption">
+(#fig:qqnorm_example)Example of the qqnorm function. Here we apply it to numbers generated to follow a normal distribution.
+</p>
+</div>
+<p>We can also get a sense for how non-normally distributed data will look in a qq-plot. Here we generate data from the t-distribution with different degrees of freedom. Notice that the smaller the degrees of freedom, the fatter the tails. We call these “fat tails” because if we plotted an empirical density or histogram, the density at the extremes would be higher than the theoretical curve. In the qq-plot, this can be seen in that the curve is lower than the identity line on the left side and higher on the right side. This means that there are more extreme values than predicted by the theoretical density plotted on the x-axis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dfs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">12</span>,<span class="dv">30</span>)
+<span class="kw">mypar</span>(<span class="dv">2</span>,<span class="dv">2</span>)
+<span class="cf">for</span>(df <span class="cf">in</span> dfs){
+  x &lt;-<span class="st"> </span><span class="kw">rt</span>(<span class="dv">1000</span>,df)
+  <span class="kw">qqnorm</span>(x,<span class="dt">xlab=</span><span class="st">&quot;t quantiles&quot;</span>,<span class="dt">main=</span><span class="kw">paste0</span>(<span class="st">&quot;d.f=&quot;</span>,df),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">6</span>,<span class="dv">6</span>))
+  <span class="kw">qqline</span>(x)
+}</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/qqnorm_of_t-1.png" alt="We generate t-distributed data for four degrees of freedom and make qqplots against normal theoretical quantiles." width="720" />
+<p class="caption">
+(#fig:qqnorm_of_t)We generate t-distributed data for four degrees of freedom and make qqplots against normal theoretical quantiles.
+</p>
+</div>
+<p><a name="boxplots"></a></p>
+</div>
+<div id="boxplots" class="section level2">
+<h2><span class="header-section-number">3.2</span> Boxplots</h2>
+<p>Data is not always normally distributed. Income is a widely cited example. In these cases, the average and standard deviation are not necessarily informative since one can’t infer the distribution from just these two numbers. The properties described above are specific to the normal. For example, the normal distribution does not seem to be a good approximation for the direct compensation for 199 United States CEOs in the year 2000.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(exec.pay,<span class="dt">package=</span><span class="st">&quot;UsingR&quot;</span>)
+<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+<span class="kw">hist</span>(exec.pay) 
+<span class="kw">qqnorm</span>(exec.pay)
+<span class="kw">qqline</span>(exec.pay)</code></pre></div>
+<div class="figure"><span id="fig:execpay"></span>
+<img src="bookdown_files/figure-html/execpay-1.png" alt="Histogram and QQ-plot of executive pay." width="1008" />
+<p class="caption">
+图 3.1: Histogram and QQ-plot of executive pay.
+</p>
+</div>
+<p>In addition to qq-plots, a practical summary of data is to compute 3 percentiles: 25th, 50th (the median) and the 75th. A boxplot shows these 3 values along with a range of the points within median <span class="math inline">\(\pm\)</span> 1.5 (75th percentile - 25th percentile). Values outside this range are shown as points and sometimes referred to as <em>outliers</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(exec.pay, <span class="dt">ylab=</span><span class="st">&quot;10,000s of dollars&quot;</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">400</span>))</code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-124"></span>
+<img src="bookdown_files/figure-html/unnamed-chunk-124-1.png" alt="Simple boxplot of executive pay." width="576" />
+<p class="caption">
+图 3.2: Simple boxplot of executive pay.
+</p>
+</div>
+<p>Here we show just one boxplot. However, one of the great benefits of boxplots is that we could easily show many distributions in one plot, by lining them up, side by side. We will see several examples of this throughout the book.</p>
+<p><a name="scatterplots"></a></p>
+</div>
+<div id="scatterplots-and-correlation" class="section level2">
+<h2><span class="header-section-number">3.3</span> Scatterplots and Correlation</h2>
+<p>The methods described above relate to <em>univariate</em> variables. In the biomedical sciences, it is common to be interested in the relationship between two or more variables. A classic example is the father/son height data used by <a href="https://en.wikipedia.org/wiki/Francis_Galton">Francis Galton</a> to understand heredity. If we were to summarize these data, we could use the two averages and two standard deviations since both distributions are well approximated by the normal distribution. This summary, however, fails to describe an important characteristic of the data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(father.son,<span class="dt">package=</span><span class="st">&quot;UsingR&quot;</span>)
+x=father.son<span class="op">$</span>fheight
+y=father.son<span class="op">$</span>sheight
+<span class="kw">plot</span>(x,y, <span class="dt">xlab=</span><span class="st">&quot;Father&#39;s height in inches&quot;</span>, 
+     <span class="dt">ylab=</span><span class="st">&quot;Son&#39;s height in inches&quot;</span>, 
+     <span class="dt">main=</span><span class="kw">paste</span>(<span class="st">&quot;correlation =&quot;</span>,<span class="kw">signif</span>(<span class="kw">cor</span>(x,y),<span class="dv">2</span>)))</code></pre></div>
+<div class="figure"><span id="fig:scatterplot"></span>
+<img src="bookdown_files/figure-html/scatterplot-1.png" alt="Heights of father and son pairs plotted against each other." width="672" />
+<p class="caption">
+图 3.3: Heights of father and son pairs plotted against each other.
+</p>
+</div>
+<p>The scatter plot shows a general trend: the taller the father, the taller the son. A summary of this trend is the correlation coefficient, which in this case is 0.5. We will motivate this statistic by trying to predict the son’s height using the father’s height.</p>
+</div>
+<div id="stratification" class="section level2">
+<h2><span class="header-section-number">3.4</span> Stratification</h2>
+<p>Suppose we are asked to guess the height of randomly selected sons. The average height, 68.7 inches, is the value with the highest proportion (see histogram) and would be our prediction. But what if we are told that the father is 72 inches tall, do we still guess 68.7?</p>
+<p>The father is taller than average. Specifically, he is 1.75 standard deviations taller than the average father. So should we predict that the son is also 1.75 standard deviations taller? It turns out that this would be an overestimate. To see this, we look at all the sons with fathers who are about 72 inches. We do this by <em>stratifying</em> the father heights.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">groups &lt;-<span class="st"> </span><span class="kw">split</span>(y,<span class="kw">round</span>(x)) 
+<span class="kw">boxplot</span>(groups)</code></pre></div>
+<div class="figure"><span id="fig:boxplot"></span>
+<img src="bookdown_files/figure-html/boxplot-1.png" alt="Boxplot of son heights stratified by father heights." width="1008" />
+<p class="caption">
+图 3.4: Boxplot of son heights stratified by father heights.
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">mean</span>(y[ <span class="kw">round</span>(x) <span class="op">==</span><span class="st"> </span><span class="dv">72</span>]))</code></pre></div>
+<pre><code>## [1] 70.68</code></pre>
+<p>Stratification followed by boxplots lets us see the distribution of each group. The average height of sons with fathers that are 72 inches tall is 70.7 inches. We also see that the <em>medians</em> of the strata appear to follow a straight line (remember the middle line in the boxplot shows the median, not the mean). This line is similar to the <em>regression line</em>, with a slope that is related to the correlation, as we will learn below.</p>
+</div>
+<div id="bivariate-normal-distribution" class="section level2">
+<h2><span class="header-section-number">3.5</span> Bivariate Normal Distribution</h2>
+<p>Correlation is a widely used summary statistic in the life sciences. However, it is often misused or misinterpreted. To properly interpret correlation we actually have to understand the bivariate normal distribution.</p>
+<p>A pair of random variables <span class="math inline">\((X,Y)\)</span> is considered to be approximated by bivariate normal when the proportion of values below, for example <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, is approximated by this expression:</p>
+<p><span class="math display">\[ 
+\mbox{Pr}(X&lt;a,Y&lt;b) = 
+\]</span></p>
+<p><span class="math display">\[
+\int_{-\infty}^{a} \int_{-\infty}^{b} \frac{1}{2\pi\sigma_x\sigma_y\sqrt{1-\rho^2}}
+\exp{ \left(
+\frac{1}{2(1-\rho^2)}
+\left[\left(\frac{x-\mu_x}{\sigma_x}\right)^2 -  
+2\rho\left(\frac{x-\mu_x}{\sigma_x}\right)\left(\frac{y-\mu_y}{\sigma_y}\right)+
+\left(\frac{y-\mu_y}{\sigma_y}\right)^2
+\right]
+\right)
+}
+\]</span></p>
+<p>This may seem like a rather complicated equation, but the concept behind it is rather intuitive. An alternative definition is the following: fix a value <span class="math inline">\(x\)</span> and look at all the pairs <span class="math inline">\((X,Y)\)</span> for which <span class="math inline">\(X=x\)</span>. Generally, in statistics we call this exercise <em>conditioning</em>. We are conditioning <span class="math inline">\(Y\)</span> on <span class="math inline">\(X\)</span>. If a pair of random variables is approximated by a bivariate normal distribution, then the distribution of <span class="math inline">\(Y\)</span> conditioned on <span class="math inline">\(X=x\)</span> is approximated with a normal distribution, no matter what <span class="math inline">\(x\)</span> we choose. Let’s see if this holds with our height data. We show 4 different strata:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">groups &lt;-<span class="st"> </span><span class="kw">split</span>(y,<span class="kw">round</span>(x)) 
+<span class="kw">mypar</span>(<span class="dv">2</span>,<span class="dv">2</span>)
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">11</span>,<span class="dv">14</span>)){
+  <span class="kw">qqnorm</span>(groups[[i]],<span class="dt">main=</span><span class="kw">paste0</span>(<span class="st">&quot;X=&quot;</span>,<span class="kw">names</span>(groups)[i],<span class="st">&quot; strata&quot;</span>),
+         <span class="dt">ylim=</span><span class="kw">range</span>(y),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">2.5</span>,<span class="fl">2.5</span>))
+  <span class="kw">qqline</span>(groups[[i]])
+}</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/qqnorm_of_strata-1.png" alt="qqplots of son heights for four strata defined by father heights." width="720" />
+<p class="caption">
+(#fig:qqnorm_of_strata)qqplots of son heights for four strata defined by father heights.
+</p>
+</div>
+<p>Now we come back to defining correlation. Mathematical statistics tells us that when two variables follow a bivariate normal distribution, then for any given value of <span class="math inline">\(x\)</span>, the average of the <span class="math inline">\(Y\)</span> in pairs for which <span class="math inline">\(X=x\)</span> is:</p>
+<p><span class="math display">\[ 
+\mu_Y +  \rho \frac{X-\mu_X}{\sigma_X}\sigma_Y
+\]</span></p>
+<p>Note that this is a line with slope <span class="math inline">\(\rho \frac{\sigma_Y}{\sigma_X}\)</span>. This is referred to as the <em>regression line</em>. If the SDs are the same, then the slope of the regression line is the correlation <span class="math inline">\(\rho\)</span>. Therefore, if we standardize <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, the correlation is the slope of the regression line.</p>
+<p>Another way to see this is to form a prediction <span class="math inline">\(\hat{Y}\)</span>: for every SD away from the mean in <span class="math inline">\(x\)</span>, we predict <span class="math inline">\(\rho\)</span> SDs away for <span class="math inline">\(Y\)</span>:</p>
+<p><span class="math display">\[
+\frac{\hat{Y} - \mu_Y}{\sigma_Y} = \rho \frac{x-\mu_X}{\sigma_X}
+\]</span></p>
+<p>If there is perfect correlation, we predict the same number of SDs. If there is 0 correlation, then we don’t use <span class="math inline">\(x\)</span> at all. For values between 0 and 1, the prediction is somewhere in between. For negative values, we simply predict in the opposite direction.</p>
+<p>To confirm that the above approximations hold in this case, let’s compare the mean of each strata to the identity line and the regression line:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x=( x<span class="op">-</span><span class="kw">mean</span>(x) )<span class="op">/</span><span class="kw">sd</span>(x)
+y=( y<span class="op">-</span><span class="kw">mean</span>(y) )<span class="op">/</span><span class="kw">sd</span>(y)
+means=<span class="kw">tapply</span>(y, <span class="kw">round</span>(x<span class="op">*</span><span class="dv">4</span>)<span class="op">/</span><span class="dv">4</span>, mean)
+fatherheights=<span class="kw">as.numeric</span>(<span class="kw">names</span>(means))
+<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">1</span>)
+<span class="kw">plot</span>(fatherheights, means, <span class="dt">ylab=</span><span class="st">&quot;average of strata of son heights&quot;</span>, <span class="dt">ylim=</span><span class="kw">range</span>(fatherheights))
+<span class="kw">abline</span>(<span class="dv">0</span>, <span class="kw">cor</span>(x,y))</code></pre></div>
+<div class="figure"><span id="fig:scatterplot2"></span>
+<img src="bookdown_files/figure-html/scatterplot2-1.png" alt="Average son height of each strata plotted against father heights defining the strata" width="672" />
+<p class="caption">
+图 3.5: Average son height of each strata plotted against father heights defining the strata
+</p>
+</div>
+<div id="variance-explained" class="section level4">
+<h4><span class="header-section-number">3.5.0.1</span> Variance explained</h4>
+<p>The standard deviation of the <em>conditional</em> distribution described above is:</p>
+<p><span class="math display">\[
+ \sqrt{1-\rho^2} \sigma_Y
+\]</span></p>
+<p>This is where statements like <span class="math inline">\(X\)</span> explains <span class="math inline">\(\rho^2 \times 100\)</span> % of the variation in <span class="math inline">\(Y\)</span>: the variance of <span class="math inline">\(Y\)</span> is <span class="math inline">\(\sigma^2\)</span> and, once we condition, it goes down to <span class="math inline">\((1-\rho^2) \sigma^2_Y\)</span> . It is important to remember that the “variance explained” statement only makes sense when the data is approximated by a bivariate normal distribution.</p>
+</div>
+</div>
+<div id="plots-to-avoid" class="section level2">
+<h2><span class="header-section-number">3.6</span> Plots to Avoid</h2>
+<p>This section is based on a talk by <a href="http://kbroman.org/">Karl W. Broman</a> titled “How to Display Data Badly,” in which he described how the default plots offered by Microsoft Excel “obscure your data and annoy your readers” (<a href="http://kbroman.org/pages/talks.html">here</a> is a link to a collection of Karl Broman’s talks). His lecture was inspired by the 1984 paper by H. Wainer: How to display data badly. American Statistician 38(2): 137–147. Dr. Wainer was the first to elucidate the principles of the bad display of data. However, according to Karl Broman, “The now widespread use of Microsoft Excel has resulted in remarkable advances in the field.” Here we show examples of “bad plots” and how to improve them in R.</p>
+<div id="general-principles" class="section level4">
+<h4><span class="header-section-number">3.6.0.1</span> General principles</h4>
+<p>The aim of good data graphics is to display data accurately and clearly. According to Karl Broman, some rules for displaying data <em>badly</em> are:</p>
+<ul>
+<li>Display as little information as possible.</li>
+<li>Obscure what you do show (with chart junk).</li>
+<li>Use pseudo-3D and color gratuitously.</li>
+<li>Make a pie chart (preferably in color and 3D).</li>
+<li>Use a poorly chosen scale.</li>
+<li>Ignore significant figures.</li>
+</ul>
+</div>
+<div id="pie-charts" class="section level4">
+<h4><span class="header-section-number">3.6.0.2</span> Pie charts</h4>
+<p>Let’s say we want to report the results from a poll asking about browser preference (taken in August 2013). The standard way of displaying these is with a pie chart:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pie</span>(browsers,<span class="dt">main=</span><span class="st">&quot;Browser Usage (August 2013)&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:piechart"></span>
+<img src="bookdown_files/figure-html/piechart-1.png" alt="Pie chart of browser usage." width="672" />
+<p class="caption">
+图 3.6: Pie chart of browser usage.
+</p>
+</div>
+<p>Nonetheless, as stated by the help file for the <code>pie</code> function:</p>
+<blockquote>
+<p>“Pie charts are a very bad way of displaying information. The eye is good at judging linear measures and bad at judging relative areas. A bar chart or dot chart is a preferable way of displaying this type of data.”</p>
+</blockquote>
+<p>To see this, look at the figure above and try to determine the percentages just from looking at the plot. Unless the percentages are close to 25%, 50% or 75%, this is not so easy. Simply showing the numbers is not only clear, but also saves on printing costs.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">browsers</code></pre></div>
+<pre><code>##   Opera  Safari Firefox      IE  Chrome 
+##       1       9      20      26      44</code></pre>
+<p>If you do want to plot them, then a barplot is appropriate. Here we add horizontal lines at every multiple of 10 and then redraw the bars:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">barplot</span>(browsers, <span class="dt">main=</span><span class="st">&quot;Browser Usage (August 2013)&quot;</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">55</span>))
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span> <span class="op">*</span><span class="st"> </span><span class="dv">10</span>)
+<span class="kw">barplot</span>(browsers, <span class="dt">add=</span><span class="ot">TRUE</span>)</code></pre></div>
+<div class="figure"><span id="fig:barplot"></span>
+<img src="bookdown_files/figure-html/barplot-1.png" alt="Barplot of browser usage." width="672" />
+<p class="caption">
+图 3.7: Barplot of browser usage.
+</p>
+</div>
+<p>Notice that we can now pretty easily determine the percentages by following a horizontal line to the x-axis. Do avoid a 3D version since it obfuscates the plot, making it more difficult to find the percentages by eye.</p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig2b.png" alt="3D version." />
+<p class="caption">3D version.</p>
+</div>
+<p>Even worse than pie charts are donut plots.</p>
+<div class="figure">
+<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Donut-Chart.svg/360px-Donut-Chart.svg.png" alt="Donut plot." />
+<p class="caption">Donut plot.</p>
+</div>
+<p>The reason is that by removing the center, we remove one of the visual cues for determining the different areas: the angles. There is no reason to ever use a donut plot to display data.</p>
+</div>
+<div id="barplots-as-data-summaries" class="section level4">
+<h4><span class="header-section-number">3.6.0.3</span> Barplots as data summaries</h4>
+<p>While barplots are useful for showing percentages, they are incorrectly used to display data from two groups being compared. Specifically, barplots are created with height equal to the group means; an antenna is added at the top to represent standard errors. This plot is simply showing two numbers per group and the plot adds nothing:</p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig1c.png" alt="Bad bar plots." />
+<p class="caption">Bad bar plots.</p>
+</div>
+<p>Much more informative is to summarize with a boxplot. If the number of points is small enough, we might as well add them to the plot. When the number of points is too large for us to see them, just showing a boxplot is preferable. We can even set <code>range=0</code> in <code>boxplot</code> to avoid drawing many outliers when the data is in the range of millions.</p>
+<p>Let’s recreate these barplots as boxplots. First let’s download the data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(downloader)
+filename &lt;-<span class="st"> &quot;fig1.RData&quot;</span>
+url &lt;-<span class="st"> &quot;https://github.com/kbroman/Talk_Graphs/raw/master/R/fig1.RData&quot;</span>
+<span class="cf">if</span> (<span class="op">!</span><span class="kw">file.exists</span>(filename)) <span class="kw">download</span>(url,filename)
+<span class="kw">load</span>(filename)</code></pre></div>
+<p>Now we can simply show the points and make simple boxplots:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rafalib)
+<span class="kw">mypar</span>()
+dat &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">Treatment=</span>x,<span class="dt">Control=</span>y)
+<span class="kw">boxplot</span>(dat,<span class="dt">xlab=</span><span class="st">&quot;Group&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Response&quot;</span>,<span class="dt">cex=</span><span class="dv">0</span>)
+<span class="kw">stripchart</span>(dat,<span class="dt">vertical=</span><span class="ot">TRUE</span>,<span class="dt">method=</span><span class="st">&quot;jitter&quot;</span>,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">col=</span><span class="dv">1</span>)</code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-129"></span>
+<img src="bookdown_files/figure-html/unnamed-chunk-129-1.png" alt="Treatment data and control data shown with a boxplot." width="672" />
+<p class="caption">
+图 3.8: Treatment data and control data shown with a boxplot.
+</p>
+</div>
+<p>Notice how much more we see here: the center, spread, range, and the points themselves. In the barplot, we only see the mean and the SE, and the SE has more to do with sample size than with the spread of the data.</p>
+<p>This problem is magnified when our data has outliers or very large tails. In the plot below, there appears to be very large and consistent differences between the two groups:</p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig3c.png" alt="Bar plots with outliers." />
+<p class="caption">Bar plots with outliers.</p>
+</div>
+<p>However, a quick look at the data demonstrates that this difference is mostly driven by just two points. A version showing the data in the log-scale is much more informative.</p>
+<p>Start by downloading data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(downloader)
+url &lt;-<span class="st"> &quot;https://github.com/kbroman/Talk_Graphs/raw/master/R/fig3.RData&quot;</span>
+filename &lt;-<span class="st"> &quot;fig3.RData&quot;</span>
+<span class="cf">if</span> (<span class="op">!</span><span class="kw">file.exists</span>(filename)) <span class="kw">download</span>(url, filename)
+<span class="kw">load</span>(filename)</code></pre></div>
+<p>Now we can show data and boxplots in original scale and log-scale.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rafalib)
+<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+dat &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">Treatment=</span>x,<span class="dt">Control=</span>y)
+
+<span class="kw">boxplot</span>(dat,<span class="dt">xlab=</span><span class="st">&quot;Group&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Response&quot;</span>,<span class="dt">cex=</span><span class="dv">0</span>)
+<span class="kw">stripchart</span>(dat,<span class="dt">vertical=</span><span class="ot">TRUE</span>,<span class="dt">method=</span><span class="st">&quot;jitter&quot;</span>,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">col=</span><span class="dv">1</span>)
+
+<span class="kw">boxplot</span>(dat,<span class="dt">xlab=</span><span class="st">&quot;Group&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Response&quot;</span>,<span class="dt">log=</span><span class="st">&quot;y&quot;</span>,<span class="dt">cex=</span><span class="dv">0</span>)
+<span class="kw">stripchart</span>(dat,<span class="dt">vertical=</span><span class="ot">TRUE</span>,<span class="dt">method=</span><span class="st">&quot;jitter&quot;</span>,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">col=</span><span class="dv">1</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/importance_of_log-1.png" alt="Data and boxplots for original data (left) and in log scale (right)." width="1008" />
+<p class="caption">
+(#fig:importance_of_log)Data and boxplots for original data (left) and in log scale (right).
+</p>
+</div>
+</div>
+<div id="show-the-scatter-plot" class="section level4">
+<h4><span class="header-section-number">3.6.0.4</span> Show the scatter plot</h4>
+<p>The purpose of many statistical analyses is to determine relationships between two variables. Sample correlations are typically reported and sometimes plots are displayed to show this. However, showing just the regression line is one way to display your data badly since it hides the scatter. Surprisingly, plots such as the following are commonly seen.</p>
+<p>Again start by loading data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">url &lt;-<span class="st"> &quot;https://github.com/kbroman/Talk_Graphs/raw/master/R/fig4.RData&quot;</span>
+filename &lt;-<span class="st"> &quot;fig4.RData&quot;</span>
+<span class="cf">if</span> (<span class="op">!</span><span class="kw">file.exists</span>(filename)) <span class="kw">download</span>(url, filename)
+<span class="kw">load</span>(filename)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+<span class="kw">plot</span>(x,y,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">type=</span><span class="st">&quot;n&quot;</span>)
+fit &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>x)
+<span class="kw">abline</span>(fit<span class="op">$</span>coef,<span class="dt">lwd=</span><span class="dv">2</span>)
+b &lt;-<span class="st"> </span><span class="kw">round</span>(fit<span class="op">$</span>coef,<span class="dv">4</span>)
+<span class="kw">text</span>(<span class="dv">78</span>, <span class="dv">200</span>, <span class="kw">paste</span>(<span class="st">&quot;y =&quot;</span>, b[<span class="dv">1</span>], <span class="st">&quot;+&quot;</span>, b[<span class="dv">2</span>], <span class="st">&quot;x&quot;</span>), <span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>))
+rho &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cor</span>(x,y),<span class="dv">4</span>) 
+<span class="kw">text</span>(<span class="dv">78</span>, <span class="dv">187</span>,<span class="kw">expression</span>(<span class="kw">paste</span>(rho,<span class="st">&quot; = 0.8567&quot;</span>)),<span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>))
+
+<span class="kw">plot</span>(x,y,<span class="dt">lwd=</span><span class="dv">2</span>)
+fit &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>x)
+<span class="kw">abline</span>(fit<span class="op">$</span>coef,<span class="dt">lwd=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure"><span id="fig:show-data"></span>
+<img src="bookdown_files/figure-html/show-data-1.png" alt="The plot on the left shows a regression line that was fitted to the data shown on the right. It is much more informative to show all the data." width="1008" />
+<p class="caption">
+图 3.9: The plot on the left shows a regression line that was fitted to the data shown on the right. It is much more informative to show all the data.
+</p>
+</div>
+<p>When there are large amounts of points, the scatter can be shown by binning in two dimensions and coloring the bins by the number of points in the bin. An example of this is the <code>hexbin</code> function in the <a href="https://cran.r-project.org/package=hexbin">hexbin package</a>.</p>
+</div>
+<div id="high-correlation-does-not-imply-replication" class="section level4">
+<h4><span class="header-section-number">3.6.0.5</span> High correlation does not imply replication</h4>
+<p>When new technologies or laboratory techniques are introduced, we are often shown scatter plots and correlations from replicated samples. High correlations are used to demonstrate that the new technique is reproducible. Correlation, however, can be very misleading. Below is a scatter plot showing data from replicated samples run on a high throughput technology. This technology outputs 12,626 simultaneous measurements.</p>
+<p>In the plot on the left, we see the original data which shows very high correlation. Yet the data follows a distribution with very fat tails. Furthermore, 95% of the data is below the green line. The plot on the right is in the log scale:</p>
+<div class="figure"><span id="fig:correlation-not-replication"></span>
+<img src="bookdown_files/figure-html/correlation-not-replication-1.png" alt="Gene expression data from two replicated samples. Left is in original scale and right is in log scale." width="1008" />
+<p class="caption">
+图 3.10: Gene expression data from two replicated samples. Left is in original scale and right is in log scale.
+</p>
+</div>
+<p>Note that we do not show the code here as it is rather complex but we explain how to make MA plots in a later chapter.</p>
+<p>Although the correlation is reduced in the log-scale, it is very close to 1 in both cases. Does this mean these data are reproduced? To examine how well the second vector reproduces the first, we need to study the differences. We therefore should plot that instead. In this plot, we plot the difference (in the log scale) versus the average:</p>
+<div class="figure"><span id="fig:MAplot"></span>
+<img src="bookdown_files/figure-html/MAplot-1.png" alt="MA plot of the same data shown above shows that data is not replicated very well despite a high correlation." width="672" />
+<p class="caption">
+图 3.11: MA plot of the same data shown above shows that data is not replicated very well despite a high correlation.
+</p>
+</div>
+<p>These are referred to as Bland-Altman plots, or <em>MA plots</em> in the genomics literature, and we will talk more about them later. “MA” stands for “minus” and “average” because in this plot, the y-axis is the difference between two samples on the log scale (the log ratio is the difference of the logs), and the x-axis is the average of the samples on the log scale. In this plot, we see that the typical difference in the log (base 2) scale between two replicated measures is about 1. This means that when measurements should be the same, we will, on average, observe 2 fold difference. We can now compare this variability to the differences we want to detect and decide if this technology is precise enough for our purposes.</p>
+</div>
+<div id="barplots-for-paired-data" class="section level4">
+<h4><span class="header-section-number">3.6.0.6</span> Barplots for paired data</h4>
+<p>A common task in data analysis is the comparison of two groups. When the dataset is small and data are paired, such as the outcomes before and after a treatment, two-color barplots are unfortunately often used to display the results.</p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig6r_e.png" alt="Barplot for two variables." />
+<p class="caption">Barplot for two variables.</p>
+</div>
+<p>There are better ways of showing these data to illustrate that there is an increase after treatment. One is to simply make a scatter plot, which shows that most points are above the identity line. Another alternative is to plot the differences against the before values.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">12201970</span>)
+before &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">8</span>)
+after &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">6</span>, before<span class="op">*</span><span class="fl">1.05</span>, <span class="dv">2</span>)
+li &lt;-<span class="st"> </span><span class="kw">range</span>(<span class="kw">c</span>(before, after))
+ymx &lt;-<span class="st"> </span><span class="kw">max</span>(<span class="kw">abs</span>(after<span class="op">-</span>before))
+
+<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+<span class="kw">plot</span>(before, after, <span class="dt">xlab=</span><span class="st">&quot;Before&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;After&quot;</span>,
+     <span class="dt">ylim=</span>li, <span class="dt">xlim=</span>li)
+<span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="dv">1</span>)
+
+<span class="kw">plot</span>(before, after<span class="op">-</span>before, <span class="dt">xlab=</span><span class="st">&quot;Before&quot;</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span>ymx, ymx),
+     <span class="dt">ylab=</span><span class="st">&quot;Change (After - Before)&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">0</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="dv">1</span>)</code></pre></div>
+<div class="figure"><span id="fig:scatter-plot-for-two-vars"></span>
+<img src="bookdown_files/figure-html/scatter-plot-for-two-vars-1.png" alt="For two variables a scatter plot or a 'rotated' plot similar to an MA plot is much more informative." width="1008" />
+<p class="caption">
+图 3.12: For two variables a scatter plot or a ‘rotated’ plot similar to an MA plot is much more informative.
+</p>
+</div>
+<p>Line plots are not a bad choice, although I find them harder to follow than the previous two. Boxplots show you the increase, but lose the paired information.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="kw">rep</span>(<span class="dv">6</span>,<span class="dv">2</span>))
+<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+<span class="kw">plot</span>(z, <span class="kw">c</span>(before, after),
+     <span class="dt">xaxt=</span><span class="st">&quot;n&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Response&quot;</span>,
+     <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">1.5</span>))
+<span class="kw">axis</span>(<span class="dt">side=</span><span class="dv">1</span>, <span class="dt">at=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="kw">c</span>(<span class="st">&quot;Before&quot;</span>,<span class="st">&quot;After&quot;</span>))
+<span class="kw">segments</span>(<span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">6</span>), before, <span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">6</span>), after, <span class="dt">col=</span><span class="dv">1</span>)     
+
+<span class="kw">boxplot</span>(before,after,<span class="dt">names=</span><span class="kw">c</span>(<span class="st">&quot;Before&quot;</span>,<span class="st">&quot;After&quot;</span>),<span class="dt">ylab=</span><span class="st">&quot;Response&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:lines-plot-box-plot"></span>
+<img src="bookdown_files/figure-html/lines-plot-box-plot-1.png" alt="Another alternative is a line plot. If we don't care about pairings, then the boxplot is appropriate." width="1008" />
+<p class="caption">
+图 3.13: Another alternative is a line plot. If we don’t care about pairings, then the boxplot is appropriate.
+</p>
+</div>
+</div>
+<div id="gratuitous-3d" class="section level4">
+<h4><span class="header-section-number">3.6.0.7</span> Gratuitous 3D</h4>
+<p>The figure below shows three curves. Pseudo 3D is used, but it is not clear why. Maybe to separate the three curves? Notice how difficult it is to determine the values of the curves at any given point:</p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig8b.png" alt="Gratuitous 3-D." />
+<p class="caption">Gratuitous 3-D.</p>
+</div>
+<p>This plot can be made better by simply using color to distinguish the three lines:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##First read data
+url &lt;-<span class="st"> &quot;https://github.com/kbroman/Talk_Graphs/raw/master/R/fig8dat.csv&quot;</span>
+x &lt;-<span class="st"> </span><span class="kw">read.csv</span>(url)
+
+##Now make alternative plot
+<span class="kw">plot</span>(x[,<span class="dv">1</span>],x[,<span class="dv">2</span>],<span class="dt">xlab=</span><span class="st">&quot;log Dose&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Proportion survived&quot;</span>,<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),
+     <span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">col=</span><span class="dv">1</span>)
+<span class="kw">lines</span>(x[,<span class="dv">1</span>],x[,<span class="dv">3</span>],<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">col=</span><span class="dv">2</span>)
+<span class="kw">lines</span>(x[,<span class="dv">1</span>],x[,<span class="dv">4</span>],<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">col=</span><span class="dv">3</span>)
+<span class="kw">legend</span>(<span class="dv">1</span>,<span class="fl">0.4</span>,<span class="kw">c</span>(<span class="st">&quot;Drug A&quot;</span>,<span class="st">&quot;Drug B&quot;</span>,<span class="st">&quot;Drug C&quot;</span>),<span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</code></pre></div>
+<div class="figure"><span id="fig:colors-for-different-lines"></span>
+<img src="bookdown_files/figure-html/colors-for-different-lines-1.png" alt="This plot demonstrates that using color is more than enough to distinguish the three lines." width="672" />
+<p class="caption">
+图 3.14: This plot demonstrates that using color is more than enough to distinguish the three lines.
+</p>
+</div>
+</div>
+<div id="ignoring-important-factors" class="section level4">
+<h4><span class="header-section-number">3.6.0.8</span> Ignoring important factors</h4>
+<p>In this example, we generate data with a simulation. We are studying a dose-response relationship between two groups: treatment and control. We have three groups of measurements for both control and treatment. Comparing treatment and control using the common barplot.</p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig9d.png" alt="Ignoring important factors." />
+<p class="caption">Ignoring important factors.</p>
+</div>
+<p>Instead, we should show each curve. We can use color to distinguish treatment and control, and dashed and solid lines to distinguish the original data from the mean of the three groups.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x, y1, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">type=</span><span class="st">&quot;n&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Dose&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Response&quot;</span>) 
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) <span class="kw">lines</span>(x, y[,i], <span class="dt">col=</span><span class="dv">1</span>, <span class="dt">lwd=</span><span class="dv">1</span>, <span class="dt">lty=</span><span class="dv">2</span>)
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) <span class="kw">lines</span>(x, z[,i], <span class="dt">col=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">1</span>, <span class="dt">lty=</span><span class="dv">2</span>)
+<span class="kw">lines</span>(x, ym, <span class="dt">col=</span><span class="dv">1</span>, <span class="dt">lwd=</span><span class="dv">2</span>)
+<span class="kw">lines</span>(x, zm, <span class="dt">col=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">2</span>)
+<span class="kw">legend</span>(<span class="st">&quot;bottomleft&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Treated&quot;</span>))</code></pre></div>
+<div class="figure"><span id="fig:show-important-factors"></span>
+<img src="bookdown_files/figure-html/show-important-factors-1.png" alt="Because dose is an important factor, we show it in this plot." width="672" />
+<p class="caption">
+图 3.15: Because dose is an important factor, we show it in this plot.
+</p>
+</div>
+</div>
+<div id="too-many-significant-digits" class="section level4">
+<h4><span class="header-section-number">3.6.0.9</span> Too many significant digits</h4>
+<p>By default, statistical software like R returns many significant digits. This does not mean we should report them. Cutting and pasting directly from R is a bad idea since you might end up showing a table, such as the one below, comparing the heights of basketball players:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">heights &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">rnorm</span>(<span class="dv">8</span>,<span class="dv">73</span>,<span class="dv">3</span>),<span class="kw">rnorm</span>(<span class="dv">8</span>,<span class="dv">73</span>,<span class="dv">3</span>),<span class="kw">rnorm</span>(<span class="dv">8</span>,<span class="dv">80</span>,<span class="dv">3</span>),
+                 <span class="kw">rnorm</span>(<span class="dv">8</span>,<span class="dv">78</span>,<span class="dv">3</span>),<span class="kw">rnorm</span>(<span class="dv">8</span>,<span class="dv">78</span>,<span class="dv">3</span>))
+<span class="kw">colnames</span>(heights)&lt;-<span class="kw">c</span>(<span class="st">&quot;SG&quot;</span>,<span class="st">&quot;PG&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;PF&quot;</span>,<span class="st">&quot;SF&quot;</span>)
+<span class="kw">rownames</span>(heights)&lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;team&quot;</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>)
+heights</code></pre></div>
+<pre><code>##           SG    PG     C    PF    SF
+## team 1 76.40 76.21 81.68 75.33 77.19
+## team 2 74.14 71.10 80.30 81.58 73.01
+## team 3 71.51 69.02 85.80 80.09 72.80
+## team 4 78.72 72.81 81.34 76.30 82.93
+## team 5 73.42 73.28 79.20 79.71 80.30
+## team 6 72.94 71.81 77.36 81.69 80.40
+## team 7 68.38 73.01 79.11 71.25 77.20
+## team 8 73.78 75.59 82.99 75.58 87.68</code></pre>
+<p>We are reporting precision up to 0.00001 inches. Do you know of a tape measure with that much precision? This can be easily remedied:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(heights,<span class="dv">1</span>)</code></pre></div>
+<pre><code>##          SG   PG    C   PF   SF
+## team 1 76.4 76.2 81.7 75.3 77.2
+## team 2 74.1 71.1 80.3 81.6 73.0
+## team 3 71.5 69.0 85.8 80.1 72.8
+## team 4 78.7 72.8 81.3 76.3 82.9
+## team 5 73.4 73.3 79.2 79.7 80.3
+## team 6 72.9 71.8 77.4 81.7 80.4
+## team 7 68.4 73.0 79.1 71.2 77.2
+## team 8 73.8 75.6 83.0 75.6 87.7</code></pre>
+</div>
+<div id="displaying-data-well" class="section level4">
+<h4><span class="header-section-number">3.6.0.10</span> Displaying data well</h4>
+<p>In general, you should follow these principles:</p>
+<ul>
+<li>Be accurate and clear.</li>
+<li>Let the data speak.</li>
+<li>Show as much information as possible, taking care not to obscure the message.</li>
+<li>Science not sales: avoid unnecessary frills (especially gratuitous 3D).</li>
+<li>In tables, every digit should be meaningful. Don’t drop ending 0’s.</li>
+</ul>
+<p>Some further reading:</p>
+<ul>
+<li>ER Tufte (1983) The visual display of quantitative information. Graphics Press.</li>
+<li>ER Tufte (1990) Envisioning information. Graphics Press.</li>
+<li>ER Tufte (1997) Visual explanations. Graphics Press.</li>
+<li>WS Cleveland (1993) Visualizing data. Hobart Press.</li>
+<li>WS Cleveland (1994) The elements of graphing data. CRC Press.</li>
+<li>A Gelman, C Pasarica, R Dodhia (2002) Let’s practice what we preach: Turning tables into graphs. The American Statistician 56:121-130.</li>
+<li>NB Robbins (2004) Creating more effective graphs. Wiley.</li>
+<li><a href="http://bang.clearscience.info/?p=546">Nature Methods columns</a></li>
+</ul>
+</div>
+</div>
+<div id="misunderstanding-correlation-advanced" class="section level2">
+<h2><span class="header-section-number">3.7</span> Misunderstanding Correlation (Advanced)</h2>
+<p>The use of correlation to summarize reproducibility has become widespread in, for example, genomics. Despite its English language definition, mathematically, correlation is not necessarily informative with regards to reproducibility. Here we briefly describe three major problems.</p>
+<p>The most egregious related mistake is to compute correlations of data that are not approximated by bivariate normal data. As described above, averages, standard deviations and correlations are popular summary statistics for two-dimensional data because, for the bivariate normal distribution, these five parameters fully describe the distribution. However, there are many examples of data that are not well approximated by bivariate normal data. Raw gene expression data, for example, tends to have a distribution with a very fat right tail.</p>
+<p>The standard way to quantify reproducibility between two sets of replicated measurements, say <span class="math inline">\(x_1,\dots,x_n\)</span> and <span class="math inline">\(y_1,\dots,y_n\)</span>, is simply to compute the distance between them:</p>
+<p><span class="math display">\[
+\sqrt{
+\sum_{i=1}^n d_i^2} \mbox{ with } d_i=x_i - y_i
+\]</span></p>
+<p>This metric decreases as reproducibility improves and it is 0 when the reproducibility is perfect. Another advantage of this metric is that if we divide the sum by N, we can interpret the resulting quantity as the standard deviation of the <span class="math inline">\(d_1,\dots,d_N\)</span> if we assume the <span class="math inline">\(d\)</span> average out to 0. If the <span class="math inline">\(d\)</span> can be considered residuals, then this quantity is equivalent to the root mean squared error (RMSE), a summary statistic that has been around for over a century. Furthermore, this quantity will have the same units as our measurements resulting in a more interpretable metric.</p>
+<p>Another limitation of the correlation is that it does not detect cases that are not reproducible due to average changes. The distance metric does detect these differences. We can rewrite:</p>
+<p><span class="math display">\[\frac{1}{n} \sum_{i=1}^n (x_i - y_i)^2 = \frac{1}{n} \sum_{i=1}^n [(x_i - \mu_x) - (y_i - \mu_y) + (\mu_x - \mu_y)]^2\]</span></p>
+<p>with <span class="math inline">\(\mu_x\)</span> and <span class="math inline">\(\mu_y\)</span> the average of each list. Then we have:</p>
+<p><span class="math display">\[\frac{1}{n} \sum_{i=1}^n (x_i - y_i)^2 = \frac{1}{n} \sum_{i=1}^n (x_i-\mu_x)^2 +  \frac{1}{n} \sum_{i=1}^n (y_i - \mu_y)^2 + (\mu_x-\mu_y)^2 + \frac{1}{n}\sum_{i=1}^n (x_i-\mu_x)(y_i - \mu_y)
+\]</span></p>
+<p>For simplicity, if we assume that the variance of both lists is 1, then this reduces to:</p>
+<p><span class="math display">\[\frac{1}{n} \sum_{i=1}^n (x_i - y_i)^2 = 2 + (\mu_x-\mu_y)^2 - 2\rho\]</span></p>
+<p>with <span class="math inline">\(\rho\)</span> the correlation. So we see the direct relationship between distance and correlation. However, an important difference is that the distance contains the term <span class="math display">\[(\mu_x-\mu_y)^2\]</span> and, therefore, it can detect cases that are not reproducible due to large average changes.</p>
+<p>Yet another reason correlation is not an optimal metric for reproducibility is the lack of units. To see this, we use a formula that relates the correlation of a variable with that variable, plus what is interpreted here as deviation: <span class="math inline">\(x\)</span> and <span class="math inline">\(y=x+d\)</span>. The larger the variance of <span class="math inline">\(d\)</span>, the less <span class="math inline">\(x+d\)</span> reproduces <span class="math inline">\(x\)</span>. Here the distance metric would depend only on the variance of <span class="math inline">\(d\)</span> and would summarize reproducibility. However, correlation depends on the variance of <span class="math inline">\(x\)</span> as well. If <span class="math inline">\(d\)</span> is independent of <span class="math inline">\(x\)</span>, then</p>
+<p><span class="math display">\[
+\mbox{cor}(x,y) = \frac{1}{\sqrt{1+\mbox{var}(d)/\mbox{var}(x)}}
+\]</span></p>
+<p>This suggests that correlations near 1 do not necessarily imply reproducibility. Specifically, irrespective of the variance of <span class="math inline">\(d\)</span>, we can make the correlation arbitrarily close to 1 by increasing the variance of <span class="math inline">\(x\)</span>.</p>
+</div>
+<div id="robust-summaries" class="section level2">
+<h2><span class="header-section-number">3.8</span> Robust Summaries</h2>
+<p>The normal approximation is often useful when analyzing life sciences data. However, due to the complexity of the measurement devices, it is also common to mistakenly observe data points generated by an undesired process. For example, a defect on a scanner can produce a handful of very high intensities or a PCR bias can lead to a fragment appearing much more often than others. We therefore may have situations that are approximated by, for example, 99 data points from a standard normal distribution and one large number.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
+x=<span class="kw">c</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dv">0</span>,<span class="dv">1</span>)) ##real distribution
+x[<span class="dv">23</span>] &lt;-<span class="st"> </span><span class="dv">100</span> ##mistake made in 23th measurement
+<span class="kw">boxplot</span>(x)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/boxplot_showing_outlier-1.png" alt="Normally distributed data with one point that is very large due to a mistake." width="672" />
+<p class="caption">
+(#fig:boxplot_showing_outlier)Normally distributed data with one point that is very large due to a mistake.
+</p>
+</div>
+<p>In statistics we refer to these type of points as <em>outliers</em>. A small number of outliers can throw off an entire analysis. For example, notice how the following one point results in the sample mean and sample variance being very far from the 0 and 1 respectively.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="st">&quot;The average is&quot;</span>,<span class="kw">mean</span>(x),<span class="st">&quot;and the SD is&quot;</span>,<span class="kw">sd</span>(x))</code></pre></div>
+<pre><code>## The average is 1.108 and the SD is 10.03</code></pre>
+<div id="the-median" class="section level4">
+<h4><span class="header-section-number">3.8.0.1</span> The median</h4>
+<p>The median, defined as the point having half the data larger and half the data smaller, is a summary statistic that is <em>robust</em> to outliers. Note how much closer the median is to 0, the center of our actual distribution:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">median</span>(x)</code></pre></div>
+<pre><code>## [1] 0.1684</code></pre>
+</div>
+<div id="the-median-absolute-deviation" class="section level4">
+<h4><span class="header-section-number">3.8.0.2</span> The median absolute deviation</h4>
+<p>The median absolute deviation (MAD) is a robust summary for the standard deviation. It is defined by computing the differences between each point and the median, and then taking the median of their absolute values:</p>
+<p><span class="math display">\[
+ 1.4826 \mbox{median} \lvert X_i - \mbox{median}(X_i) \rvert
+\]</span></p>
+<p>The number <span class="math inline">\(1.4826\)</span> is a scaling factor such that the MAD is an unbiased estimate of the standard deviation. Notice how much closer we are to 1 with the MAD:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mad</span>(x)</code></pre></div>
+<pre><code>## [1] 0.8857</code></pre>
+</div>
+<div id="spearman-correlation" class="section level4">
+<h4><span class="header-section-number">3.8.0.3</span> Spearman correlation</h4>
+<p>Earlier we saw that the correlation is also sensitive to outliers. Here we construct an independent list of numbers, but for which a similar mistake was made for the same entry:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
+x=<span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dv">0</span>,<span class="dv">1</span>) ##real distribution
+x[<span class="dv">23</span>] &lt;-<span class="st"> </span><span class="dv">100</span> ##mistake made in 23th measurement
+y=<span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dv">0</span>,<span class="dv">1</span>) ##real distribution
+y[<span class="dv">23</span>] &lt;-<span class="st"> </span><span class="dv">84</span> ##similar mistake made in 23th measurement
+<span class="kw">library</span>(rafalib)
+<span class="kw">mypar</span>()
+<span class="kw">plot</span>(x,y,<span class="dt">main=</span><span class="kw">paste0</span>(<span class="st">&quot;correlation=&quot;</span>,<span class="kw">round</span>(<span class="kw">cor</span>(x,y),<span class="dv">3</span>)),
+     <span class="dt">pch=</span><span class="dv">21</span>,<span class="dt">bg=</span><span class="dv">1</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>,<span class="dv">100</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>,<span class="dv">100</span>))
+<span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/scatter_plot_showing_outlier-1.png" alt="Scatterplot showing bivariate normal data with one signal outlier resulting in large values in both dimensions." width="672" />
+<p class="caption">
+(#fig:scatter_plot_showing_outlier)Scatterplot showing bivariate normal data with one signal outlier resulting in large values in both dimensions.
+</p>
+</div>
+<p>The Spearman correlation follows the general idea of median and MAD, that of using quantiles. The idea is simple: we convert each dataset to ranks and then compute correlation:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+<span class="kw">plot</span>(x,y,<span class="dt">main=</span><span class="kw">paste0</span>(<span class="st">&quot;correlation=&quot;</span>,<span class="kw">round</span>(<span class="kw">cor</span>(x,y),<span class="dv">3</span>)),<span class="dt">pch=</span><span class="dv">21</span>,<span class="dt">bg=</span><span class="dv">1</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>,<span class="dv">100</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>,<span class="dv">100</span>))
+<span class="kw">plot</span>(<span class="kw">rank</span>(x),<span class="kw">rank</span>(y), <span class="dt">main=</span><span class="kw">paste0</span>(<span class="st">&quot;correlation=&quot;</span>,<span class="kw">round</span>(<span class="kw">cor</span>(x,y,<span class="dt">method=</span><span class="st">&quot;spearman&quot;</span>),<span class="dv">3</span>)),
+     <span class="dt">pch=</span><span class="dv">21</span>,<span class="dt">bg=</span><span class="dv">1</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>,<span class="dv">100</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>,<span class="dv">100</span>))
+<span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/spearman_corr_illustration-1.png" alt="Scatterplot of original data (left) and ranks (right). Spearman correlation reduces the influence of outliers by considering the ranks instead of original data." width="1008" />
+<p class="caption">
+(#fig:spearman_corr_illustration)Scatterplot of original data (left) and ranks (right). Spearman correlation reduces the influence of outliers by considering the ranks instead of original data.
+</p>
+</div>
+<p>So if these statistics are robust to outliers, why would we ever use the non-robust version? In general, if we know there are outliers, then median and MAD are recommended over the mean and standard deviation counterparts. However, there are examples in which robust statistics are less powerful than the non-robust versions.</p>
+<p>We also note that there is a large statistical literature on robust statistics that go far beyond the median and the MAD.</p>
+</div>
+<div id="symmetry-of-log-ratios" class="section level4">
+<h4><span class="header-section-number">3.8.0.4</span> Symmetry of log ratios</h4>
+<p>Ratios are not symmetric. To see this, we will start by simulating the ratio of two positive random numbers, which will represent the expression of genes in two samples:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">^</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))
+y &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">^</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)) 
+ratios &lt;-<span class="st"> </span>x <span class="op">/</span><span class="st"> </span>y </code></pre></div>
+<p>Reporting ratios or fold changes are common in the life sciences. Suppose you are studying ratio data showing, say, gene expression before and after treatment. You are given ratio data so values larger than 1 imply gene expression was higher after the treatment. If the treatment has no effect, we should see as many values below 1 as above 1. A histogram seems to suggest that the treatment does in fact have an effect:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+<span class="kw">hist</span>(ratios)
+
+logratios &lt;-<span class="st"> </span><span class="kw">log2</span>(ratios)
+<span class="kw">hist</span>(logratios)</code></pre></div>
+<div class="figure"><span id="fig:why-log-ratios"></span>
+<img src="bookdown_files/figure-html/why-log-ratios-1.png" alt="Histogram of original (left) and log (right) ratios." width="1008" />
+<p class="caption">
+图 3.16: Histogram of original (left) and log (right) ratios.
+</p>
+</div>
+<p>The problem here is that ratios are not symmetrical around 1. For example, 1/32 is much closer to 1 than 32/1. Using the log takes care of this problem. The log of ratios are of course symmetric around 0 because:</p>
+<p><span class="math display">\[\log(x/y) = \log(x)-\log(y) = -(\log(y)-\log(x)) = \log(y/x)\]</span></p>
+<p>As demonstrated by these simple plots:</p>
+<div class="figure"><span id="fig:why-log-ratios2"></span>
+<img src="bookdown_files/figure-html/why-log-ratios2-1.png" alt="Histogram of original (left) and log (right) powers of 2 seen as ratios." width="1008" />
+<p class="caption">
+图 3.17: Histogram of original (left) and log (right) powers of 2 seen as ratios.
+</p>
+</div>
+<p>In the life sciences, the log transformation is also commonly used because (multiplicative) fold changes are the most widely used quantification of interest. Note that a fold change of 100 can be a ratio of 100/1 or 1/100. However, 1/100 is much closer to 1 (no fold change) than 100: ratios are not symmetric about 1.</p>
+<!-- 
+#### Footnotes <a name="foot"></a>
+
+#### Robust Statistics
+
+Robust Statistics, Peter. J. Huber and Elvezio M. Ronchetti, Wiley, 2009.
+Introduction to Robust Estimation and Hypothesis Testing, Rand R. Wilcox, 2012.
+Robust Statistics: The Approach Based on Influence Functions, Frank R. Hampel, Elvezio M. Ronchetti, Peter J. Rousseeuw, Werner A. Stahel
+-->
+</div>
+</div>
+<div id="wilcoxon-rank-sum-test" class="section level2">
+<h2><span class="header-section-number">3.9</span> Wilcoxon Rank Sum Test</h2>
+<p>We learned how the sample mean and SD are susceptible to outliers. The t-test is based on these measures and is susceptible as well. The Wilcoxon rank test (equivalent to the Mann-Whitney test) provides an alternative. In the code below, we perform a t-test on data for which the null is true. However, we change one sum observation by mistake in each sample and the values incorrectly entered are different. Here we see that the t-test results in a small p-value, while the Wilcoxon test does not:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">779</span>) ##779 picked for illustration purposes
+N=<span class="dv">25</span>
+x&lt;-<span class="st"> </span><span class="kw">rnorm</span>(N,<span class="dv">0</span>,<span class="dv">1</span>)
+y&lt;-<span class="st"> </span><span class="kw">rnorm</span>(N,<span class="dv">0</span>,<span class="dv">1</span>)</code></pre></div>
+<p>Create outliers:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">5</span>
+x[<span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">7</span>
+<span class="kw">cat</span>(<span class="st">&quot;t-test pval:&quot;</span>,<span class="kw">t.test</span>(x,y)<span class="op">$</span>p.value)</code></pre></div>
+<pre><code>## t-test pval: 0.0444</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="st">&quot;Wilcox test pval:&quot;</span>,<span class="kw">wilcox.test</span>(x,y)<span class="op">$</span>p.value)</code></pre></div>
+<pre><code>## Wilcox test pval: 0.131</code></pre>
+<p>The basic idea is to 1) combine all the data, 2) turn the values into ranks, 3) separate them back into their groups, and 4) compute the sum or average rank and perform a test.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rafalib)
+<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+
+<span class="kw">stripchart</span>(<span class="kw">list</span>(x,y),<span class="dt">vertical=</span><span class="ot">TRUE</span>,<span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>),<span class="dt">ylab=</span><span class="st">&quot;Observations&quot;</span>,<span class="dt">pch=</span><span class="dv">21</span>,<span class="dt">bg=</span><span class="dv">1</span>)
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">0</span>)
+
+xrank&lt;-<span class="kw">rank</span>(<span class="kw">c</span>(x,y))[<span class="kw">seq</span>(<span class="dt">along=</span>x)]
+yrank&lt;-<span class="kw">rank</span>(<span class="kw">c</span>(x,y))[<span class="op">-</span><span class="kw">seq</span>(<span class="dt">along=</span>x)]
+
+<span class="kw">stripchart</span>(<span class="kw">list</span>(xrank,yrank),<span class="dt">vertical=</span><span class="ot">TRUE</span>,<span class="dt">ylab=</span><span class="st">&quot;Ranks&quot;</span>,<span class="dt">pch=</span><span class="dv">21</span>,<span class="dt">bg=</span><span class="dv">1</span>,<span class="dt">cex=</span><span class="fl">1.25</span>)
+
+ws &lt;-<span class="st"> </span><span class="kw">sapply</span>(x,<span class="cf">function</span>(z) <span class="kw">rank</span>(<span class="kw">c</span>(z,y))[<span class="dv">1</span>]<span class="op">-</span><span class="dv">1</span>)
+<span class="kw">text</span>( <span class="kw">rep</span>(<span class="fl">1.05</span>,<span class="kw">length</span>(ws)), xrank, ws, <span class="dt">cex=</span><span class="fl">0.8</span>)</code></pre></div>
+<div class="figure"><span id="fig:rank-test-illustration"></span>
+<img src="bookdown_files/figure-html/rank-test-illustration-1.png" alt="Data from two populations with two outliers. The left plot shows the original data and the right plot shows their ranks. The numbers are the w values " width="1008" />
+<p class="caption">
+图 3.18: Data from two populations with two outliers. The left plot shows the original data and the right plot shows their ranks. The numbers are the w values
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">W &lt;-<span class="kw">sum</span>(ws) </code></pre></div>
+<p><code>W</code> is the sum of the ranks for the first group relative to the second group. We can compute an exact p-value for <span class="math inline">\(W\)</span> based on combinatorics. We can also use the CLT since statistical theory tells us that this <code>W</code> is approximated by the normal distribution. We can construct a z-score as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n1&lt;-<span class="kw">length</span>(x);n2&lt;-<span class="kw">length</span>(y)
+Z &lt;-<span class="st"> </span>(<span class="kw">mean</span>(ws)<span class="op">-</span>n2<span class="op">/</span><span class="dv">2</span>)<span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(n2<span class="op">*</span>(n1<span class="op">+</span>n2<span class="op">+</span><span class="dv">1</span>)<span class="op">/</span><span class="dv">12</span><span class="op">/</span>n1)
+<span class="kw">print</span>(Z)</code></pre></div>
+<pre><code>## [1] 1.523</code></pre>
+<p>Here the <code>Z</code> is not large enough to give us a p-value less than 0.05. These are part of the calculations performed by the R function <code>wilcox.test</code>.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="inference.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="matrix-algebra.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/yihui/bookdown-chinese/edit/master/03_eda.Rmd",
+"text": "编辑"
+},
+"download": ["bookdown.pdf", "bookdown.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

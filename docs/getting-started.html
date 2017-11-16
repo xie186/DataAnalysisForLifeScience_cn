@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>生物信息R数据分析</title>
+  <meta name="description" content="生物信息R数据分析">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="生物信息R数据分析" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="生物信息R数据分析" />
+  <meta name="github-repo" content="xie186/HarvardDataScienceForLifeScience_cn" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="生物信息R数据分析" />
+  
+  <meta name="twitter:description" content="生物信息R数据分析" />
+  
+
+<meta name="author" content="原作者：张三 翻译：张三 李四 麻子">
+
+
+<meta name="date" content="2017-11-16">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="acknowledgments.html">
+<link rel="next" href="inference.html">
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">中文书示例</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a><ul>
+<li class="chapter" data-level="0.1" data-path="acknowledgments.html"><a href="acknowledgments.html#introduction"><i class="fa fa-check"></i><b>0.1</b> Introduction</a></li>
+<li class="chapter" data-level="0.2" data-path="acknowledgments.html"><a href="acknowledgments.html#who-will-find-this-book-useful"><i class="fa fa-check"></i><b>0.2</b> Who Will Find This Book Useful?</a></li>
+<li class="chapter" data-level="0.3" data-path="acknowledgments.html"><a href="acknowledgments.html#what-does-this-book-cover"><i class="fa fa-check"></i><b>0.3</b> What Does This Book Cover?</a></li>
+<li class="chapter" data-level="0.4" data-path="acknowledgments.html"><a href="acknowledgments.html#how-is-this-book-different"><i class="fa fa-check"></i><b>0.4</b> How Is This Book Different?</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
+<li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#installing-r"><i class="fa fa-check"></i><b>1.1</b> Installing R</a></li>
+<li class="chapter" data-level="1.2" data-path="getting-started.html"><a href="getting-started.html#installing-rstudio"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#learn-r-basics"><i class="fa fa-check"></i><b>1.3</b> Learn R Basics</a></li>
+<li class="chapter" data-level="1.4" data-path="getting-started.html"><a href="getting-started.html#installing-packages"><i class="fa fa-check"></i><b>1.4</b> Installing Packages</a></li>
+<li class="chapter" data-level="1.5" data-path="getting-started.html"><a href="getting-started.html#importing-data-into-r"><i class="fa fa-check"></i><b>1.5</b> Importing Data into R</a></li>
+<li class="chapter" data-level="1.6" data-path="getting-started.html"><a href="getting-started.html#brief-introduction-to-dplyr"><i class="fa fa-check"></i><b>1.6</b> Brief Introduction to <code>dplyr</code></a></li>
+<li class="chapter" data-level="1.7" data-path="getting-started.html"><a href="getting-started.html#mathematical-notation"><i class="fa fa-check"></i><b>1.7</b> Mathematical Notation</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="inference.html"><a href="inference.html"><i class="fa fa-check"></i><b>2</b> Inference</a><ul>
+<li class="chapter" data-level="2.1" data-path="inference.html"><a href="inference.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="inference.html"><a href="inference.html#random-variables"><i class="fa fa-check"></i><b>2.2</b> Random Variables</a></li>
+<li class="chapter" data-level="2.3" data-path="inference.html"><a href="inference.html#the-null-hypothesis"><i class="fa fa-check"></i><b>2.3</b> The Null Hypothesis</a></li>
+<li class="chapter" data-level="2.4" data-path="inference.html"><a href="inference.html#distributions"><i class="fa fa-check"></i><b>2.4</b> Distributions</a></li>
+<li class="chapter" data-level="2.5" data-path="inference.html"><a href="inference.html#probability-distribution"><i class="fa fa-check"></i><b>2.5</b> Probability Distribution</a></li>
+<li class="chapter" data-level="2.6" data-path="inference.html"><a href="inference.html#normal-distribution"><i class="fa fa-check"></i><b>2.6</b> Normal Distribution</a></li>
+<li class="chapter" data-level="2.7" data-path="inference.html"><a href="inference.html#populations-samples-and-estimates"><i class="fa fa-check"></i><b>2.7</b> Populations, Samples and Estimates</a></li>
+<li class="chapter" data-level="2.8" data-path="inference.html"><a href="inference.html#central-limit-theorem-and-t-distribution"><i class="fa fa-check"></i><b>2.8</b> Central Limit Theorem and t-distribution</a></li>
+<li class="chapter" data-level="2.9" data-path="inference.html"><a href="inference.html#central-limit-theorem-in-practice"><i class="fa fa-check"></i><b>2.9</b> Central Limit Theorem in Practice</a></li>
+<li class="chapter" data-level="2.10" data-path="inference.html"><a href="inference.html#t-tests-in-practice"><i class="fa fa-check"></i><b>2.10</b> t-tests in Practice</a></li>
+<li class="chapter" data-level="2.11" data-path="inference.html"><a href="inference.html#the-t-distribution-in-practice"><i class="fa fa-check"></i><b>2.11</b> The t-distribution in Practice</a></li>
+<li class="chapter" data-level="2.12" data-path="inference.html"><a href="inference.html#confidence-intervals"><i class="fa fa-check"></i><b>2.12</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="2.13" data-path="inference.html"><a href="inference.html#power-calculations"><i class="fa fa-check"></i><b>2.13</b> Power Calculations</a></li>
+<li class="chapter" data-level="2.14" data-path="inference.html"><a href="inference.html#monte-carlo-simulation"><i class="fa fa-check"></i><b>2.14</b> Monte Carlo Simulation</a></li>
+<li class="chapter" data-level="2.15" data-path="inference.html"><a href="inference.html#parametric-simulations-for-the-observations"><i class="fa fa-check"></i><b>2.15</b> Parametric Simulations for the Observations</a></li>
+<li class="chapter" data-level="2.16" data-path="inference.html"><a href="inference.html#permutation-tests"><i class="fa fa-check"></i><b>2.16</b> Permutation Tests</a></li>
+<li class="chapter" data-level="2.17" data-path="inference.html"><a href="inference.html#association-tests"><i class="fa fa-check"></i><b>2.17</b> Association Tests</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>3</b> Exploratory Data Analysis</a><ul>
+<li class="chapter" data-level="3.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#quantile-quantile-plots"><i class="fa fa-check"></i><b>3.1</b> Quantile Quantile Plots</a></li>
+<li class="chapter" data-level="3.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#boxplots"><i class="fa fa-check"></i><b>3.2</b> Boxplots</a></li>
+<li class="chapter" data-level="3.3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#scatterplots-and-correlation"><i class="fa fa-check"></i><b>3.3</b> Scatterplots and Correlation</a></li>
+<li class="chapter" data-level="3.4" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#stratification"><i class="fa fa-check"></i><b>3.4</b> Stratification</a></li>
+<li class="chapter" data-level="3.5" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#bivariate-normal-distribution"><i class="fa fa-check"></i><b>3.5</b> Bivariate Normal Distribution</a></li>
+<li class="chapter" data-level="3.6" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#plots-to-avoid"><i class="fa fa-check"></i><b>3.6</b> Plots to Avoid</a></li>
+<li class="chapter" data-level="3.7" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#misunderstanding-correlation-advanced"><i class="fa fa-check"></i><b>3.7</b> Misunderstanding Correlation (Advanced)</a></li>
+<li class="chapter" data-level="3.8" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#robust-summaries"><i class="fa fa-check"></i><b>3.8</b> Robust Summaries</a></li>
+<li class="chapter" data-level="3.9" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#wilcoxon-rank-sum-test"><i class="fa fa-check"></i><b>3.9</b> Wilcoxon Rank Sum Test</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="matrix-algebra.html"><a href="matrix-algebra.html"><i class="fa fa-check"></i><b>4</b> Matrix Algebra</a><ul>
+<li class="chapter" data-level="4.1" data-path="matrix-algebra.html"><a href="matrix-algebra.html#motivating-examples"><i class="fa fa-check"></i><b>4.1</b> Motivating Examples</a></li>
+<li class="chapter" data-level="4.2" data-path="matrix-algebra.html"><a href="matrix-algebra.html#matrix-notation"><i class="fa fa-check"></i><b>4.2</b> Matrix Notation</a></li>
+<li class="chapter" data-level="4.3" data-path="matrix-algebra.html"><a href="matrix-algebra.html#solving-systems-of-equations"><i class="fa fa-check"></i><b>4.3</b> Solving Systems of Equations</a></li>
+<li class="chapter" data-level="4.4" data-path="matrix-algebra.html"><a href="matrix-algebra.html#vectors-matrices-and-scalars"><i class="fa fa-check"></i><b>4.4</b> Vectors, Matrices, and Scalars</a></li>
+<li class="chapter" data-level="4.5" data-path="matrix-algebra.html"><a href="matrix-algebra.html#matrix-operations"><i class="fa fa-check"></i><b>4.5</b> Matrix Operations</a></li>
+<li class="chapter" data-level="4.6" data-path="matrix-algebra.html"><a href="matrix-algebra.html#examples"><i class="fa fa-check"></i><b>4.6</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="linear-models-1.html"><a href="linear-models-1.html"><i class="fa fa-check"></i><b>5</b> Linear Models</a><ul>
+<li class="chapter" data-level="5.1" data-path="linear-models-1.html"><a href="linear-models-1.html#the-design-matrix"><i class="fa fa-check"></i><b>5.1</b> The Design Matrix</a></li>
+<li class="chapter" data-level="5.2" data-path="linear-models-1.html"><a href="linear-models-1.html#the-mathematics-behind-lm"><i class="fa fa-check"></i><b>5.2</b> The Mathematics Behind lm()</a></li>
+<li class="chapter" data-level="5.3" data-path="linear-models-1.html"><a href="linear-models-1.html#standard-errors"><i class="fa fa-check"></i><b>5.3</b> Standard Errors</a></li>
+<li class="chapter" data-level="5.4" data-path="linear-models-1.html"><a href="linear-models-1.html#interactions-and-contrasts"><i class="fa fa-check"></i><b>5.4</b> Interactions and Contrasts</a></li>
+<li class="chapter" data-level="5.5" data-path="linear-models-1.html"><a href="linear-models-1.html#linear-model-with-interactions"><i class="fa fa-check"></i><b>5.5</b> Linear Model with Interactions</a></li>
+<li class="chapter" data-level="5.6" data-path="linear-models-1.html"><a href="linear-models-1.html#analysis-of-variance"><i class="fa fa-check"></i><b>5.6</b> Analysis of Variance</a></li>
+<li class="chapter" data-level="5.7" data-path="linear-models-1.html"><a href="linear-models-1.html#collinearity"><i class="fa fa-check"></i><b>5.7</b> Collinearity</a></li>
+<li class="chapter" data-level="5.8" data-path="linear-models-1.html"><a href="linear-models-1.html#rank"><i class="fa fa-check"></i><b>5.8</b> Rank</a></li>
+<li class="chapter" data-level="5.9" data-path="linear-models-1.html"><a href="linear-models-1.html#removing-confounding"><i class="fa fa-check"></i><b>5.9</b> Removing Confounding</a></li>
+<li class="chapter" data-level="5.10" data-path="linear-models-1.html"><a href="linear-models-1.html#the-qr-factorization-advanced"><i class="fa fa-check"></i><b>5.10</b> The QR Factorization (Advanced)</a></li>
+</ul></li>
+<li class="appendix"><span><b>附录</b></span></li>
+<li class="chapter" data-level="A" data-path="sound.html"><a href="sound.html"><i class="fa fa-check"></i><b>A</b> 余音绕梁</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">生物信息R数据分析</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="getting-started" class="section level1">
+<h1><span class="header-section-number">第 1 章</span> Getting Started</h1>
+<p>In this book we will be using the <a href="https://cran.r-project.org/">R programming language</a> for all our analysis. You will learn R and statistics simultaneously. However, we assume you have some basic programming skills and knowledge of R syntax. If you don’t, your first homework, listed below, is to complete a tutorial. Here we give step-by-step instructions on how to get set up to follow along.</p>
+<div id="installing-r" class="section level2">
+<h2><span class="header-section-number">1.1</span> Installing R</h2>
+<p>The first step is to install R. You can download and install R from the <a href="https://cran.r-project.org/">Comprehensive R Archive Network</a> (CRAN). It is relatively straightforward, but if you need further help you can try the following resources:</p>
+<ul>
+<li><a href="https://github.com/genomicsclass/windows#installing-r">Installing R on Windows</a></li>
+<li><a href="http://youtu.be/Icawuhf0Yqo">Installing R on Mac</a></li>
+<li><a href="http://cran.r-project.org/bin/linux/ubuntu/README">Installing R on Ubuntu</a></li>
+</ul>
+</div>
+<div id="installing-rstudio" class="section level2">
+<h2><span class="header-section-number">1.2</span> Installing RStudio</h2>
+<p>The next step is to install RStudio, a program for viewing and running R scripts. Technically you can run all the code shown here without installing RStudio, but we highly recommend this integrated development environment (IDE). Instructions are <a href="http://www.rstudio.com/products/rstudio/download/">here</a> and for Windows we have special <a href="https://github.com/genomicsclass/windows">instructions</a>.</p>
+</div>
+<div id="learn-r-basics" class="section level2">
+<h2><span class="header-section-number">1.3</span> Learn R Basics</h2>
+<p>The first homework assignment is to complete an R tutorial to familiarize yourself with the basics of programming and R syntax. To follow this book you should be familiar with the difference between lists (including data frames) and numeric vectors, for-loops, how to create functions, and how to use the <code>sapply</code> and <code>replicate</code> functions.</p>
+<p>If you are already familiar with R, you can skip to the next section. Otherwise, you should go through the <a href="http://swirlstats.com/">swirl</a> tutorial, which teaches you R programming and data science interactively, at your own pace and in the R console. Once you have R installed, you can install <code>swirl</code> and run it the following way:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;swirl&quot;</span>)
+<span class="kw">library</span>(swirl)
+<span class="kw">swirl</span>()</code></pre></div>
+<p>Alternatively you can take the <a href="http://tryr.codeschool.com/">try R</a> interactive class from Code School.</p>
+<p>There are also many open and free resources and reference guides for R. Two examples are:</p>
+<ul>
+<li><a href="http://www.statmethods.net/">Quick-R</a>: a quick online reference for data input, basic statistics and plots</li>
+<li>R reference card (PDF)[<a href="https://cran.r-project.org/doc/contrib/Short-refcard.pdf" class="uri">https://cran.r-project.org/doc/contrib/Short-refcard.pdf</a>] by Tom Short</li>
+</ul>
+<p>Two key things you need to know about R is that you can get help for a function using <code>help</code> or <code>?</code>, like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?install.packages
+<span class="kw">help</span>(<span class="st">&quot;install.packages&quot;</span>)</code></pre></div>
+<p>and the hash character represents comments, so text following these characters is not interpreted:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##This is just a comment</code></pre></div>
+</div>
+<div id="installing-packages" class="section level2">
+<h2><span class="header-section-number">1.4</span> Installing Packages</h2>
+<p>The first R command we will run is <code>install.packages</code>. If you took the <code>swirl</code> tutorial you should have already done this. R only includes a basic set of functions. It can do much more than this, but not everybody needs everything so we instead make some functions available via packages. Many of these functions are stored in CRAN. Note that these packages are vetted: they are checked for common errors and they must have a dedicated maintainer. You can easily install packages from within R if you know the name of the packages. As an example, we are going to install the package <code>rafalib</code> which we use in our first data analysis examples:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;rafalib&quot;</span>)</code></pre></div>
+<p>We can then load the package into our R sessions using the <code>library</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rafalib)</code></pre></div>
+<p>From now on you will see that we sometimes load packages without installing them. This is because once you install the package, it remains in place and only needs to be loaded with <code>library</code>. If you try to load a package and get an error, it probably means you need to install it first.</p>
+</div>
+<div id="importing-data-into-r" class="section level2">
+<h2><span class="header-section-number">1.5</span> Importing Data into R</h2>
+<p>The first step when preparing to analyze data is to read in the data into R. There are several ways to do this and we will discuss three of them. But you only need to learn one to follow along.</p>
+<p>In the life sciences, small datasets such as the one used as an example in the next sections are typically stored as Excel files. Although there are R packages designed to read Excel (xls) format, you generally want to avoid this and save files as comma delimited (Comma-Separated Value/CSV) or tab delimited (Tab-Separated Value/TSV/TXT) files. These plain-text formats are often easier for sharing data with collaborators, as commercial software is not required for viewing or working with the data. We will start with a simple example dataset containing <a href="https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv">female mouse weights</a>.</p>
+<p>The first step is to find the file containing your data and know its <em>path</em>.</p>
+<div id="paths-and-the-working-directory" class="section level4">
+<h4><span class="header-section-number">1.5.0.1</span> Paths and the Working Directory</h4>
+<p>When you are working in R it is useful to know your <em>working directory</em>. This is the directory or folder in which R will save or look for files by default. You can see your working directory by typing:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()</code></pre></div>
+<p>You can also change your working directory using the function <code>setwd</code>. Or you can change it through RStudio by clicking on “Session”.</p>
+<p>The functions that read and write files (there are several in R) assume you mean to look for files or write files in the working directory. Our recommended approach for beginners will have you reading and writing to the working directory. However, you can also type the <a href="http://www.computerhope.com/jargon/a/absopath.htm">full path</a>, which will work independently of the working directory.</p>
+</div>
+<div id="projects-in-rstudio" class="section level4">
+<h4><span class="header-section-number">1.5.0.2</span> Projects in RStudio</h4>
+<p>We find that the simplest way to organize yourself is to start a Project in RStudio (Click on “File” and “New Project”). When creating the project, you will select a folder to be associated with it. You can then download all your data into this folder. Your working directory will be this folder.</p>
+</div>
+<div id="option-1-read-file-over-the-internet" class="section level4">
+<h4><span class="header-section-number">1.5.0.3</span> Option 1: Read file over the Internet</h4>
+<p>You can navigate to the <code>femaleMiceWeights.csv</code> file by visiting the data directory of dagdata on <a href="https://github.com/genomicsclass/dagdata/tree/master/inst/extdata">GitHub</a>. If you navigate to the file, you need to click on <em>Raw</em> on the upper right hand corner of the page.</p>
+<div class="figure">
+<img src="images/handmade/screenshot1.png" alt="GitHub page screenshot." />
+<p class="caption">GitHub page screenshot.</p>
+</div>
+<p>Now you can copy and paste the URL and use this as the argument to <code>read.csv</code>. Here we break the URL into a base directory and a filename and then combine with <code>paste0</code> because the URL would otherwise be too long for the page. We use <code>paste0</code> because we want to put the strings together as is, if you were specifying a file on your machine you should use the smarter function, <code>file.path</code>, which knows the difference between Windows and Mac file path connectors. You can specify the URL using a single string to avoid this extra step.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dir &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/&quot;</span>
+url &lt;-<span class="st"> </span><span class="kw">paste0</span>(dir, <span class="st">&quot;femaleMiceWeights.csv&quot;</span>)
+dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(url)</code></pre></div>
+</div>
+<div id="option-2-download-file-with-your-browser-to-your-working-directory" class="section level4">
+<h4><span class="header-section-number">1.5.0.4</span> Option 2: Download file with your browser to your working directory</h4>
+<p>There are reasons for wanting to keep a local copy of the file. For example, you may want to run the analysis while not connected to the Internet or you may want to ensure reproducibility regardless of the file being available on the original site. To download the file, as in option 1, you can navigate to the <code>femaleMiceWeights.csv</code>. In this option we use your browser’s “Save As” function to ensure that the downloaded file is in a CSV format. Some browsers add an extra suffix to your filename by default. You do not want this. You want your file to be named <code>femaleMiceWeights.csv</code>. Once you have this file in your working directory, then you can simply read it in like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;femaleMiceWeights.csv&quot;</span>)</code></pre></div>
+<p>If you did not receive any message, then you probably read in the file successfully.</p>
+</div>
+<div id="option-3-download-the-file-from-within-r" class="section level4">
+<h4><span class="header-section-number">1.5.0.5</span> Option 3: Download the file from within R</h4>
+<p>We store many of the datasets used here on <a href="https://github.com/genomicsclass/">GitHub</a>. You can save these files directly from the Internet to your computer using R. In this example, we are using the <code>download.file</code> function in the <code>downloader</code> package to download the file to a specific location and then read it in. We can assign it a random name and a random directory using the function <code>tempfile</code>, but you can also save it in directory with the name of your choosing.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(downloader) ##use install.packages to install
+dir &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/&quot;</span>
+filename &lt;-<span class="st"> &quot;femaleMiceWeights.csv&quot;</span> 
+url &lt;-<span class="st"> </span><span class="kw">paste0</span>(dir, filename)
+<span class="cf">if</span> (<span class="op">!</span><span class="kw">file.exists</span>(filename)) <span class="kw">download</span>(url, <span class="dt">destfile=</span>filename)</code></pre></div>
+<p>We can then proceed as in option 2:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(filename)</code></pre></div>
+</div>
+<div id="option-4-download-the-data-package-advanced" class="section level4">
+<h4><span class="header-section-number">1.5.0.6</span> Option 4: Download the data package (Advanced)</h4>
+<p>Many of the datasets we include in this book are available in custom-built packages from GitHub. The reason we use GitHub, rather than CRAN, is that on GitHub we do not have to vet packages, which gives us much more flexibility.</p>
+<p>To install packages from GitHub you will need to install the <code>devtools</code> package:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</code></pre></div>
+<p>Note to Windows users: to use devtools you will have to also install <code>Rtools</code>. In general you will need to install packages as administrator. One way to do this is to start R as administrator. If you do not have permission to do this, then it is a bit <a href="http://www.magesblog.com/2012/04/installing-r-packages-without-admin.html">more complicated</a>.</p>
+<p>Now you are ready to install a package from GitHub. For this we use a different function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(devtools)
+<span class="kw">install_github</span>(<span class="st">&quot;genomicsclass/dagdata&quot;</span>)</code></pre></div>
+<p>The file we are working with is actually included in this package. Once you install the package, the file is on your computer. However, finding it requires advanced knowledge. Here are the lines of code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="dt">package=</span><span class="st">&quot;dagdata&quot;</span>) <span class="co">#extracts the location of package</span>
+<span class="kw">list.files</span>(dir)</code></pre></div>
+<pre><code>## [1] &quot;data&quot;        &quot;DESCRIPTION&quot; &quot;extdata&quot;    
+## [4] &quot;help&quot;        &quot;html&quot;        &quot;Meta&quot;       
+## [7] &quot;NAMESPACE&quot;   &quot;script&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list.files</span>(<span class="kw">file.path</span>(dir,<span class="st">&quot;extdata&quot;</span>)) <span class="co">#external data is in this directory</span></code></pre></div>
+<pre><code>## [1] &quot;admissions.csv&quot;              
+## [2] &quot;astronomicalunit.csv&quot;        
+## [3] &quot;babies.txt&quot;                  
+## [4] &quot;femaleControlsPopulation.csv&quot;
+## [5] &quot;femaleMiceWeights.csv&quot;       
+## [6] &quot;mice_pheno.csv&quot;              
+## [7] &quot;msleep_ggplot2.csv&quot;          
+## [8] &quot;README&quot;                      
+## [9] &quot;spider_wolff_gorb_2013.csv&quot;</code></pre>
+<p>And now we are ready to read in the file:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">filename &lt;-<span class="st"> </span><span class="kw">file.path</span>(dir,<span class="st">&quot;extdata/femaleMiceWeights.csv&quot;</span>)
+dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(filename)</code></pre></div>
+</div>
+</div>
+<div id="brief-introduction-to-dplyr" class="section level2">
+<h2><span class="header-section-number">1.6</span> Brief Introduction to <code>dplyr</code></h2>
+<p>The learning curve for R syntax is slow. One of the more difficult aspects that requires some getting used to is subsetting data tables. The <code>dplyr</code> package brings these tasks closer to English and we are therefore going to introduce two simple functions: one is used to subset and the other to select columns.</p>
+<p>Take a look at the dataset we read in:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">filename &lt;-<span class="st"> &quot;femaleMiceWeights.csv&quot;</span>
+dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(filename)
+<span class="kw">head</span>(dat) <span class="co">#In R Studio use View(dat)</span></code></pre></div>
+<pre><code>##   Diet Bodyweight
+## 1 chow      21.51
+## 2 chow      28.14
+## 3 chow      24.04
+## 4 chow      23.45
+## 5 chow      23.68
+## 6 chow      19.79</code></pre>
+<p>There are two types of diets, which are denoted in the first column. If we want just the weights, we only need the second column. So if we want the weights for mice on the <code>chow</code> diet, we subset and filter like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr) 
+chow &lt;-<span class="st"> </span><span class="kw">filter</span>(dat, Diet<span class="op">==</span><span class="st">&quot;chow&quot;</span>) <span class="co">#keep only the ones with chow diet</span>
+<span class="kw">head</span>(chow)</code></pre></div>
+<pre><code>##   Diet Bodyweight
+## 1 chow      21.51
+## 2 chow      28.14
+## 3 chow      24.04
+## 4 chow      23.45
+## 5 chow      23.68
+## 6 chow      19.79</code></pre>
+<p>And now we can select only the column with the values:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">chowVals &lt;-<span class="st"> </span><span class="kw">select</span>(chow,Bodyweight)
+<span class="kw">head</span>(chowVals)</code></pre></div>
+<pre><code>##   Bodyweight
+## 1      21.51
+## 2      28.14
+## 3      24.04
+## 4      23.45
+## 5      23.68
+## 6      19.79</code></pre>
+<p>A nice feature of the <code>dplyr</code> package is that you can perform consecutive tasks by using what is called a “pipe”. In <code>dplyr</code> we use <code>%&gt;%</code> to denote a pipe. This symbol tells the program to first do one thing and then do something else to the result of the first. Hence, we can perform several data manipulations in one line. For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">chowVals &lt;-<span class="st"> </span><span class="kw">filter</span>(dat, Diet<span class="op">==</span><span class="st">&quot;chow&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Bodyweight)</code></pre></div>
+<p>In the second task, we no longer have to specify the object we are editing since it is whatever comes from the previous call.</p>
+<p>Also, note that if <code>dplyr</code> receives a <code>data.frame</code> it will return a <code>data.frame</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(dat)</code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(chowVals)</code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<p>For pedagogical reasons, we will often want the final result to be a simple <code>numeric</code> vector. To obtain such a vector with <code>dplyr</code>, we can apply the <code>unlist</code> function which turns <code>lists</code>, such as <code>data.frames</code>, into <code>numeric</code> vectors:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">chowVals &lt;-<span class="st"> </span><span class="kw">filter</span>(dat, Diet<span class="op">==</span><span class="st">&quot;chow&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Bodyweight) <span class="op">%&gt;%</span><span class="st"> </span>unlist
+<span class="kw">class</span>( chowVals )</code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<p>To do this in R without <code>dplyr</code> the code is the following:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">chowVals &lt;-<span class="st"> </span>dat[ dat<span class="op">$</span>Diet<span class="op">==</span><span class="st">&quot;chow&quot;</span>, <span class="kw">colnames</span>(dat)<span class="op">==</span><span class="st">&quot;Bodyweight&quot;</span>]</code></pre></div>
+</div>
+<div id="mathematical-notation" class="section level2">
+<h2><span class="header-section-number">1.7</span> Mathematical Notation</h2>
+<p>This book focuses on teaching statistical concepts and data analysis programming skills. We avoid mathematical notation as much as possible, but we do use it. We do not want readers to be intimidated by the notation though. Mathematics is actually the easier part of learning statistics. Unfortunately, many text books use mathematical notation in what we believe to be an over-complicated way. For this reason, we do try to keep the notation as simple as possible. However, we do not want to water down the material, and some mathematical notation facilitates a deeper understanding of the concepts. Here we describe a few specific symbols that we use often. If they appear intimidating to you, please take some time to read this section carefully as they are actually simpler than they seem. Because by now you should be somewhat familiar with R, we will make the connection between mathematical notation and R code.</p>
+<div id="indexing" class="section level4">
+<h4><span class="header-section-number">1.7.0.1</span> Indexing</h4>
+<p>Those of us dealing with data almost always have a series of numbers. To describe the concepts in an abstract way, we use indexing. For example 5 numbers:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></code></pre></div>
+<p>can be generally represented like this <span class="math inline">\(x_1, x_2, x_3, x_4, x_5\)</span>. We use dots to simplify this <span class="math inline">\(x_1,\dots,x_5\)</span> and indexing to simplify even more <span class="math inline">\(x_i, i=1,\dots,5\)</span>. If we want to describe a procedure for a list of any size <span class="math inline">\(n\)</span>, we write <span class="math inline">\(x_i, i=1,\dots,n\)</span>.</p>
+<p>We sometimes have two indexes. For example, we may have several measurements (blood pressure, weight, height, age, cholesterol level) for 100 individuals. We can then use double indexes: <span class="math inline">\(x_{i,j}, i=1,\dots,100, j=1,\dots,5\)</span>.</p>
+</div>
+<div id="summation" class="section level4">
+<h4><span class="header-section-number">1.7.0.2</span> Summation</h4>
+<p>A very common operation in data analysis is to sum several numbers. This comes up, for example, when we compute averages and standard deviations. If we have many numbers, there is a mathematical notation that makes it quite easy to express the following:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">1000</span>
+x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span>n
+S &lt;-<span class="st"> </span><span class="kw">sum</span>(x)</code></pre></div>
+<p>and it is the <span class="math inline">\(\sum\)</span> notation (capital S in Greek):</p>
+<p><span class="math display">\[
+S = \sum_{i=1}^n x_i
+\]</span></p>
+<p>Note that we make use of indexing as well. We will see that what is included inside the summation can become quite complicated. However, the summation part should not confuse you as it is a simple operation.</p>
+</div>
+<div id="greek-letters" class="section level4">
+<h4><span class="header-section-number">1.7.0.3</span> Greek letters</h4>
+<p>We would prefer to avoid Greek letters, but they are ubiquitous in the statistical literature so we want you to become used to them. They are mainly used to distinguish the unknown from the observed. Suppose we want to find out the average height of a population and we take a sample of 1,000 people to estimate this. The unknown average we want to estimate is often denoted with <span class="math inline">\(\mu\)</span>, the Greek letter for m (m is for mean). The standard deviation is often denoted with <span class="math inline">\(\sigma\)</span>, the Greek letter for s. Measurement error or other unexplained random variability is typically denoted with <span class="math inline">\(\varepsilon\)</span>, the Greek letter for e. Effect sizes, for example the effect of a diet on weight, are typically denoted with <span class="math inline">\(\beta\)</span>. We may use other Greek letters but those are the most commonly used.</p>
+<p>You should get used to these four Greek letters as you will be seeing them often: <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\varepsilon\)</span>.</p>
+<p>Note that indexing is sometimes used in conjunction with Greek letters to denote different groups. For example, if we have one set of numbers denoted with <span class="math inline">\(x\)</span> and another with <span class="math inline">\(y\)</span> we may use <span class="math inline">\(\mu_x\)</span> and <span class="math inline">\(\mu_y\)</span> to denote their averages.</p>
+</div>
+<div id="infinity" class="section level4">
+<h4><span class="header-section-number">1.7.0.4</span> Infinity</h4>
+<p>In the text we often talk about <em>asymptotic</em> results. Typically, this refers to an approximation that gets better and better as the number of data points we consider gets larger and larger, with perfect approximations occurring when the number of data points is <span class="math inline">\(\infty\)</span>. In practice, there is no such thing as <span class="math inline">\(\infty\)</span>, but it is a convenient concept to understand. One way to think about asymptotic results is as results that become better and better as some number increases and we can pick a number so that a computer can’t tell the difference between the approximation and the real number. Here is a very simple example that approximates 1/3 with decimals:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">onethird &lt;-<span class="st"> </span><span class="cf">function</span>(n) <span class="kw">sum</span>( <span class="dv">3</span><span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span>n))
+<span class="dv">1</span><span class="op">/</span><span class="dv">3</span> <span class="op">-</span><span class="st"> </span><span class="kw">onethird</span>(<span class="dv">4</span>)</code></pre></div>
+<pre><code>## [1] 3.333e-05</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span><span class="op">/</span><span class="dv">3</span> <span class="op">-</span><span class="st"> </span><span class="kw">onethird</span>(<span class="dv">10</span>)</code></pre></div>
+<pre><code>## [1] 3.333e-11</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span><span class="op">/</span><span class="dv">3</span> <span class="op">-</span><span class="st"> </span><span class="kw">onethird</span>(<span class="dv">16</span>)</code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<p>In the example above, 16 is practically <span class="math inline">\(\infty\)</span>.</p>
+</div>
+<div id="integrals" class="section level4">
+<h4><span class="header-section-number">1.7.0.5</span> Integrals</h4>
+<p>We only use these a couple of times so you can skip this section if you prefer. However, integrals are actually much simpler to understand than perhaps you realize.</p>
+<p>For certain statistical operations, we need to figure out areas under the curve. For example, for a function <span class="math inline">\(f(x)\)</span> …</p>
+<div class="figure"><span id="fig:intergrals"></span>
+<img src="bookdown_files/figure-html/intergrals-1.png" alt="Integral of a function." width="672" />
+<p class="caption">
+图 1.1: Integral of a function.
+</p>
+</div>
+<p>…we need to know what proportion of the total area under the curve is grey.</p>
+<p>The grey area can be thought of as many small grey bars stacked next to each other. The area is then just the sum of the areas of these little bars. The problem is that we can’t do this for every number between 2 and 4 because there are an infinite number. The integral is the mathematical solution to this problem. In this case, the total area is 1 so the answer to what proportion is grey is the following integral:</p>
+<p><span class="math display">\[
+\int_2^4 f(x) \, dx
+\]</span></p>
+<p>Because we constructed this example, we know that the grey area is 2.27% of the total. Note that this is very well approximated by an actual sum of little bars:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">width &lt;-<span class="st"> </span><span class="fl">0.01</span>
+x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">2</span>,<span class="dv">4</span>,width)
+areaofbars &lt;-<span class="st">  </span><span class="kw">f</span>(x)<span class="op">*</span>width
+<span class="kw">sum</span>( areaofbars )</code></pre></div>
+<pre><code>## [1] 0.02299</code></pre>
+<p>The smaller we make <code>width</code>, the closer the sum gets to the integral, which is equal to the area.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="acknowledgments.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="inference.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/yihui/bookdown-chinese/edit/master/01-introduction.Rmd",
+"text": "编辑"
+},
+"download": ["bookdown.pdf", "bookdown.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

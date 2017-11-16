@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="matrix-algebra.html">
-<link rel="next" href="sound.html">
+<link rel="next" href="inference-for-high-dimensional-data.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -170,8 +170,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.10" data-path="linear-models-1.html"><a href="linear-models-1.html#the-qr-factorization-advanced"><i class="fa fa-check"></i><b>5.10</b> The QR Factorization (Advanced)</a></li>
 <li class="chapter" data-level="5.11" data-path="linear-models-1.html"><a href="linear-models-1.html#going-further"><i class="fa fa-check"></i><b>5.11</b> Going Further</a></li>
 </ul></li>
-<li class="appendix"><span><b>附录</b></span></li>
-<li class="chapter" data-level="A" data-path="sound.html"><a href="sound.html"><i class="fa fa-check"></i><b>A</b> 余音绕梁</a></li>
+<li class="chapter" data-level="6" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html"><i class="fa fa-check"></i><b>6</b> Inference for High Dimensional Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#introduction-4"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#inference-in-practice"><i class="fa fa-check"></i><b>6.2</b> Inference in Practice</a></li>
+<li class="chapter" data-level="6.3" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#procedures"><i class="fa fa-check"></i><b>6.3</b> Procedures</a></li>
+<li class="chapter" data-level="6.4" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#error-rates"><i class="fa fa-check"></i><b>6.4</b> Error Rates</a></li>
+<li class="chapter" data-level="6.5" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#the-bonferroni-correction"><i class="fa fa-check"></i><b>6.5</b> The Bonferroni Correction</a></li>
+<li class="chapter" data-level="6.6" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#false-discovery-rate"><i class="fa fa-check"></i><b>6.6</b> False Discovery Rate</a></li>
+<li class="chapter" data-level="6.7" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#direct-approach-to-fdr-and-q-values-advanced"><i class="fa fa-check"></i><b>6.7</b> Direct Approach to FDR and q-values (Advanced)</a></li>
+<li class="chapter" data-level="6.8" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#basic-exploratory-data-analysis"><i class="fa fa-check"></i><b>6.8</b> Basic Exploratory Data Analysis</a></li>
+<li class="chapter" data-level="6.9" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#basic-exploratory-data-analysis-1"><i class="fa fa-check"></i><b>6.9</b> Basic Exploratory Data Analysis</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
@@ -1742,20 +1751,16 @@ SE &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">d
 <h4><span class="header-section-number">5.11.0.5</span> Penalized linear models</h4>
 <p>Note that if we include enough parameters in a model we can achieve a residual sum of squares of 0. Penalized linear models introduce a penalty term to the least square equation we minimize. These penalities are typically of the form, <span class="math inline">\(\lambda \sum_{j=1}^p \|\beta_j\|^k\)</span> and they penalize for large absolute values of <span class="math inline">\(\beta\)</span> as well as large numbers of parameters. The motivation for this extra term is to avoid over-fitting. To use these models, we need to pick <span class="math inline">\(\lambda\)</span> which determines how much we penalize. When <span class="math inline">\(k=2\)</span>, this is referred to as <em>ridge</em> regression, Tikhonov regularization, or L2 regularization. When <span class="math inline">\(k=1\)</span>, this is referred to as <em>LASSO</em> or L1 regularization. A good reference for these penalized linear models is the <a href="http://statweb.stanford.edu/~tibs/ElemStatLearn/">Elements of Statistical Learning</a> textbook, which is available as a free pdf. Some R packages which implement penalized linear models are the <a href="https://stat.ethz.ch/R-manual/R-devel/library/MASS/html/lm.ridge.html">lm.ridge</a> function in the MASS package, the <a href="http://cran.r-project.org/web/packages/lars/index.html">lars</a> package, and the <a href="http://cran.r-project.org/web/packages/glmnet/index.html">glmnet</a> package.</p>
 
-
 </div>
 </div>
 </div>
-
-
-
             </section>
 
           </div>
         </div>
       </div>
 <a href="matrix-algebra.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sound.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="inference-for-high-dimensional-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

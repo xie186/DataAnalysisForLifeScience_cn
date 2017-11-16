@@ -1,6 +1,6 @@
 --- 
 title: "生物信息R数据分析"
-author: "原作者：张三   翻译：张三 李四 麻子"
+author: "作者：Rafael A. Irizarry; Mike I. Love 翻译：张三 李四 麻子"
 date: "`r Sys.Date()`"
 documentclass: ctexbook
 bibliography: [book.bib, packages.bib]

@@ -27,6 +27,6 @@ lapply(c(), function(pkg) {
 })
 ```
 
-```{block2, type='FOO'}
+```{block2, type='FOO', echo = FALSE}
 # 前言 {-}
 ```

@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="linear-models-1.html">
-<link rel="next" href="references.html">
+<link rel="next" href="statistical-models.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -103,12 +103,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">生物信息R数据分析</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a></li>
 <li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a><ul>
-<li class="chapter" data-level="0.1" data-path="acknowledgments.html"><a href="acknowledgments.html#introduction"><i class="fa fa-check"></i><b>0.1</b> Introduction</a></li>
-<li class="chapter" data-level="0.2" data-path="acknowledgments.html"><a href="acknowledgments.html#who-will-find-this-book-useful"><i class="fa fa-check"></i><b>0.2</b> Who Will Find This Book Useful?</a></li>
-<li class="chapter" data-level="0.3" data-path="acknowledgments.html"><a href="acknowledgments.html#what-does-this-book-cover"><i class="fa fa-check"></i><b>0.3</b> What Does This Book Cover?</a></li>
-<li class="chapter" data-level="0.4" data-path="acknowledgments.html"><a href="acknowledgments.html#how-is-this-book-different"><i class="fa fa-check"></i><b>0.4</b> How Is This Book Different?</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#who-will-find-this-book-useful"><i class="fa fa-check"></i>Who Will Find This Book Useful?</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#what-does-this-book-cover"><i class="fa fa-check"></i>What Does This Book Cover?</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#how-is-this-book-different"><i class="fa fa-check"></i>How Is This Book Different?</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
 <li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#installing-r"><i class="fa fa-check"></i><b>1.1</b> Installing R</a></li>
@@ -179,7 +178,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.6" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#false-discovery-rate"><i class="fa fa-check"></i><b>6.6</b> False Discovery Rate</a></li>
 <li class="chapter" data-level="6.7" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#direct-approach-to-fdr-and-q-values-advanced"><i class="fa fa-check"></i><b>6.7</b> Direct Approach to FDR and q-values (Advanced)</a></li>
 <li class="chapter" data-level="6.8" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#basic-exploratory-data-analysis"><i class="fa fa-check"></i><b>6.8</b> Basic Exploratory Data Analysis</a></li>
-<li class="chapter" data-level="6.9" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#basic-exploratory-data-analysis-1"><i class="fa fa-check"></i><b>6.9</b> Basic Exploratory Data Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="statistical-models.html"><a href="statistical-models.html"><i class="fa fa-check"></i><b>7</b> Statistical Models</a><ul>
+<li class="chapter" data-level="7.1" data-path="statistical-models.html"><a href="statistical-models.html#the-binomial-distribution"><i class="fa fa-check"></i><b>7.1</b> The Binomial Distribution</a></li>
+<li class="chapter" data-level="7.2" data-path="statistical-models.html"><a href="statistical-models.html#the-poisson-distribution"><i class="fa fa-check"></i><b>7.2</b> The Poisson Distribution</a></li>
+<li class="chapter" data-level="7.3" data-path="statistical-models.html"><a href="statistical-models.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>7.3</b> Maximum Likelihood Estimation</a></li>
+<li class="chapter" data-level="7.4" data-path="statistical-models.html"><a href="statistical-models.html#distributions-for-positive-continuous-values"><i class="fa fa-check"></i><b>7.4</b> Distributions for Positive Continuous Values</a></li>
+<li class="chapter" data-level="7.5" data-path="statistical-models.html"><a href="statistical-models.html#bayesian-statistics"><i class="fa fa-check"></i><b>7.5</b> Bayesian Statistics</a></li>
+<li class="chapter" data-level="7.6" data-path="statistical-models.html"><a href="statistical-models.html#hierarchical-models"><i class="fa fa-check"></i><b>7.6</b> Hierarchical Models</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
@@ -854,115 +860,6 @@ y &lt;-<span class="st"> </span>ge[,<span class="dv">2</span>]
 
 </div>
 </div>
-<div id="basic-exploratory-data-analysis-1" class="section level2">
-<h2><span class="header-section-number">6.9</span> Basic Exploratory Data Analysis</h2>
-<p>An under-appreciated advantage of working with high-throughput data is that problems with the data are sometimes more easily exposed than with low-throughput data. The fact that we have thousands of measurements permits us to see problems that are not apparent when only a few measurements are available. A powerful way to detect these problems is with exploratory data analysis (EDA). Here we review some of the plots that allow us to detect quality problems.</p>
-<div id="volcano-plots-1" class="section level4">
-<h4><span class="header-section-number">6.9.0.1</span> Volcano plots</h4>
-<p>Here we will use the results obtained from applying t-test to data from a gene expression dataset:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(genefilter)
-<span class="kw">library</span>(GSE5859Subset)
-<span class="kw">data</span>(GSE5859Subset)
-g &lt;-<span class="st"> </span><span class="kw">factor</span>(sampleInfo<span class="op">$</span>group)
-results &lt;-<span class="st"> </span><span class="kw">rowttests</span>(geneExpression,g)
-pvals &lt;-<span class="st"> </span>results<span class="op">$</span>p.value</code></pre></div>
-<p>And we also generate p-values from a dataset for which we know the null is true:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">nrow</span>(geneExpression)
-n &lt;-<span class="st"> </span><span class="kw">ncol</span>(geneExpression)
-randomData &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(n<span class="op">*</span>m),m,n)
-nullpvals &lt;-<span class="st"> </span><span class="kw">rowttests</span>(randomData,g)<span class="op">$</span>p.value</code></pre></div>
-<p>As we described earlier, reporting only p-values is a mistake when we can also report effect sizes. With high-throughput data, we can visualize the results by making a <em>volcano plot</em>. The idea behind a volcano plot is to show these for all features. In the y-axis we plot -log (base 10) p-values and on the x-axis we plot the effect size. By using -log (base 10), the “highly significant” features appear at the top of the plot. Using log also permits us to better distinguish between small and very small p-values, for example 0.01 and <span class="math inline">\(10^6\)</span>. Here is the volcano plot for our results above:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(results<span class="op">$</span>dm,<span class="op">-</span><span class="kw">log10</span>(results<span class="op">$</span>p.value),
-     <span class="dt">xlab=</span><span class="st">&quot;Effect size&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;- log (base 10) p-values&quot;</span>)</code></pre></div>
-<p><img src="figure/bookdown-volcano_plot1-1.png" width="672" /></p>
-<p>Many features with very small p-values, but small effect sizes as we see here, are sometimes indicative of problematic data.</p>
-</div>
-<div id="p-value-histograms-1" class="section level4">
-<h4><span class="header-section-number">6.9.0.2</span> p-value Histograms</h4>
-<p>Another plot we can create to get an overall idea of the results is to make histograms of p-values. When we generate completely null data the histogram follows a uniform distribution. With our original dataset we see a higher frequency of smaller p-values.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rafalib)
-<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
-<span class="kw">hist</span>(nullpvals,<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1400</span>))
-<span class="kw">hist</span>(pvals,<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1400</span>))</code></pre></div>
-<div class="figure"><span id="fig:pval-hist3"></span>
-<img src="figure/bookdown-pval-hist3-1.png" alt="P-value histogram. We show a simulated case in which all null hypotheses are true (left) and p-values from the gene expression described above." width="1008" />
-<p class="caption">
-图 6.8: P-value histogram. We show a simulated case in which all null hypotheses are true (left) and p-values from the gene expression described above.
-</p>
-</div>
-<p>When we expect most hypotheses to be null and don’t see a uniform p-value distribution, it might be indicative of unexpected properties, such as correlated samples.</p>
-<p>If we permute the outcomes and calculate p-values then, if the samples are independent, we should see a uniform distribution. With these data we do not:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">permg &lt;-<span class="st"> </span><span class="kw">sample</span>(g)
-permresults &lt;-<span class="st"> </span><span class="kw">rowttests</span>(geneExpression,permg)
-<span class="kw">hist</span>(permresults<span class="op">$</span>p.value)</code></pre></div>
-<div class="figure"><span id="fig:pval-hist4"></span>
-<img src="figure/bookdown-pval-hist4-1.png" alt="Histogram obtained after permuting labels." width="672" />
-<p class="caption">
-图 6.9: Histogram obtained after permuting labels.
-</p>
-</div>
-<p>In a later chapter we will see that the columns in this dataset are not independent and thus the assumptions used to compute the p-values here are incorrect.</p>
-</div>
-<div id="data-boxplots-and-histograms-1" class="section level4">
-<h4><span class="header-section-number">6.9.0.3</span> Data boxplots and histograms</h4>
-<p>With high-throughput data, we have thousands of measurements for each experimental unit. As mentioned earlier, this can help us detect quality issues. For example, if one sample has a completely different distribution than the rest, we might suspect there are problems. Although a complete change in distribution could be due to real biological differences, more often than not it is due to a technical problem. Here we load a large gene expression experiment available from Bioconductor. We “accidentally” use log instead of log2 on one of the samples.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Biobase)
-<span class="kw">library</span>(GSE5859) 
-<span class="kw">data</span>(GSE5859) 
-ge &lt;-<span class="st"> </span><span class="kw">exprs</span>(e) ##ge for gene expression
-ge[,<span class="dv">49</span>] &lt;-<span class="st"> </span>ge[,<span class="dv">49</span>]<span class="op">/</span><span class="kw">log2</span>(<span class="kw">exp</span>(<span class="dv">1</span>)) ##imitate error</code></pre></div>
-<p>A quick look at a summary of the distribution using boxplots immediately highlights the mistake:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rafalib)
-<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">1</span>)
-<span class="kw">boxplot</span>(ge,<span class="dt">range=</span><span class="dv">0</span>,<span class="dt">names=</span><span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(e),<span class="dt">col=</span><span class="kw">ifelse</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(ge)<span class="op">==</span><span class="dv">49</span>,<span class="dv">1</span>,<span class="dv">2</span>))</code></pre></div>
-<div class="figure"><span id="fig:boxplots2"></span>
-<img src="figure/bookdown-boxplots2-1.png" alt="Boxplot for log-scale expression for all samples." width="1008" />
-<p class="caption">
-图 6.10: Boxplot for log-scale expression for all samples.
-</p>
-</div>
-<p>Note that the number of samples is a bit too large here, making it hard to see the boxes. One can instead simply show the boxplot summaries without the boxes:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qs &lt;-<span class="st"> </span><span class="kw">t</span>(<span class="kw">apply</span>(ge,<span class="dv">2</span>,quantile,<span class="dt">prob=</span><span class="kw">c</span>(<span class="fl">0.05</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="fl">0.75</span>,<span class="fl">0.95</span>)))
-<span class="kw">matplot</span>(qs,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">lty=</span><span class="dv">1</span>)</code></pre></div>
-<div class="figure"><span id="fig:kaboxplot1"></span>
-<img src="figure/bookdown-kaboxplot1-1.png" alt="The 0.05, 0.25, 0.5, 0.75, and 0.95 quantiles are plotted for each sample." width="1008" />
-<p class="caption">
-图 6.11: The 0.05, 0.25, 0.5, 0.75, and 0.95 quantiles are plotted for each sample.
-</p>
-</div>
-<p>We refer to this figure as a <em>kaboxplot</em> because Karl Broman was the first we saw use it as an alternative to boxplots.</p>
-<p>We can also plot all the histograms. Because we have so much data, we create histograms using small bins, then smooth the heights of the bars and then plot <em>smooth histograms</em>. We re-calibrate the height of these smooth curves so that if a bar is made with base of size “unit” and height given by the curve at <span class="math inline">\(x_0\)</span>, the area approximates the number of points in region of size “unit” centered at <span class="math inline">\(x_0\)</span>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">1</span>)
-<span class="kw">shist</span>(ge,<span class="dt">unit=</span><span class="fl">0.5</span>)</code></pre></div>
-<div class="figure"><span id="fig:shist1"></span>
-<img src="figure/bookdown-shist1-1.png" alt="Smooth histograms for each sample." width="672" />
-<p class="caption">
-图 6.12: Smooth histograms for each sample.
-</p>
-</div>
-</div>
-<div id="ma-plot-1" class="section level4">
-<h4><span class="header-section-number">6.9.0.4</span> MA plot</h4>
-<p>Scatterplots and correlation are not the best tools to detect replication problems. A better measure of replication can be obtained from examining the differences between the values that should be the same. Therefore, a better plot is a rotation of the scatterplot containing the differences on the y-axis and the averages on the x-axis. This plot was originally named a Bland-Altman plot, but in genomics it is commonly referred to as an MA-plot. The name MA comes from plots of red log intensity minus (M) green intensities versus average (A) log intensities used with microarrays (MA) data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span>ge[,<span class="dv">1</span>]
-y &lt;-<span class="st"> </span>ge[,<span class="dv">2</span>]
-<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
-<span class="kw">plot</span>(x,y)
-<span class="kw">plot</span>((x<span class="op">+</span>y)<span class="op">/</span><span class="dv">2</span>,x<span class="op">-</span>y)</code></pre></div>
-<div class="figure"><span id="fig:maplot1"></span>
-<img src="figure/bookdown-maplot1-1.png" alt="Scatter plot (left) and M versus A plot (right) for the same data." width="1008" />
-<p class="caption">
-图 6.13: Scatter plot (left) and M versus A plot (right) for the same data.
-</p>
-</div>
-<p>Note that once we rotate the plot, the fact that these data have differences of about:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(y<span class="op">-</span>x)</code></pre></div>
-<pre><code>## [1] 0.2025</code></pre>
-<p>becomes immediate. The scatterplot shows very strong correlation, which is not necessarily informative here.</p>
-<p>We will later introduce dendograms, heatmaps, and multi-dimensional scaling plots.</p>
-
-</div>
-</div>
 </div>
             </section>
 
@@ -970,7 +867,7 @@ y &lt;-<span class="st"> </span>ge[,<span class="dv">2</span>]
         </div>
       </div>
 <a href="linear-models-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="statistical-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

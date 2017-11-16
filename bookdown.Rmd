@@ -27,8 +27,9 @@ lapply(c(), function(pkg) {
 })
 ```
 
+```{block2, type='FOO'}
 # 前言 {-}
-
+```
 
 <!--chapter:end:index.Rmd-->
 

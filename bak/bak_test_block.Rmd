@@ -1,0 +1,55 @@
+# Test block for excersize {-}
+
+
+```{block type="FOO", echo =FALSE}
+
+sfddsaf
+sadfdsafdsa
+
+
+sadfdsafdsa
+
+```
+
+
+```{block2, type="EXERSIZE", name = "XXX"}
+
+<h1>Exercises</h1>
+
+sfddsaf
+sadfdsafdsa
+
+- a list item
+- another item
+- end the list with a blank line
+
+<div class="sourceCode r">
+cc<-1<br />
+r<-2
+</div>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cc&lt;-<span class="dv">1</span>
+<span class="kw">cat</span>(cc)</code></pre></div>
+
+```
+
+
+```{block, type="EXERSIZE", name = "XXX"}
+
+<h1>Exercises</h1>
+
+sfddsaf
+sadfdsafdsa
+
+- a list item
+- another item
+- end the list with a blank line
+
+
+```
+
+
+```{r}
+cc<-1
+cat(cc)
+```

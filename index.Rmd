@@ -27,6 +27,10 @@ lapply(c(), function(pkg) {
 })
 ```
 
+```{r fig.align='center', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html'), fig.link='https://www.flickr.com/photos/ronkroetz/14779273923/'}
+knitr::include_graphics('images/cover.jpg', dpi = NA)
+```
+
 ```{block, type='FOO'}
 # 前言 {-}
 

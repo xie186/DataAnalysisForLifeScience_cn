@@ -13,7 +13,7 @@ geometry: [b5paper, tmargin=2.5cm, bmargin=2.5cm, lmargin=3.5cm, rmargin=2.5cm]
 site: bookdown::bookdown_site
 description: "生物信息R数据分析"
 github-repo: xie186/HarvardDataScienceForLifeScience_cn 
-#cover-image: images/cover.jpg
+cover-image: images/cover.jpg
 ---
 
 ```{r setup, include=FALSE}
@@ -27,6 +27,11 @@ lapply(c(), function(pkg) {
 })
 ```
 
-```{block2, type='FOO', echo = FALSE}
+```{block, type='FOO'}
 # 前言 {-}
+
+```
+xxx
+sadfsd
+```
 ```

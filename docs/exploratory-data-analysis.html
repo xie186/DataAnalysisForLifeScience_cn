@@ -103,6 +103,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">生物信息R数据分析</a></li>
 
 <li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Cover picture</a></li>
 <li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a><ul>
 <li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#who-will-find-this-book-useful"><i class="fa fa-check"></i>Who Will Find This Book Useful?</a></li>
@@ -286,8 +287,8 @@ x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n)
 </div>
 <p>In addition to qq-plots, a practical summary of data is to compute 3 percentiles: 25th, 50th (the median) and the 75th. A boxplot shows these 3 values along with a range of the points within median <span class="math inline">\(\pm\)</span> 1.5 (75th percentile - 25th percentile). Values outside this range are shown as points and sometimes referred to as <em>outliers</em>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(exec.pay, <span class="dt">ylab=</span><span class="st">&quot;10,000s of dollars&quot;</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">400</span>))</code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-126"></span>
-<img src="bookdown_files/figure-html/unnamed-chunk-126-1.png" alt="Simple boxplot of executive pay." width="576" />
+<div class="figure"><span id="fig:unnamed-chunk-125"></span>
+<img src="bookdown_files/figure-html/unnamed-chunk-125-1.png" alt="Simple boxplot of executive pay." width="576" />
 <p class="caption">
 图 3.2: Simple boxplot of executive pay.
 </p>
@@ -468,8 +469,8 @@ url &lt;-<span class="st"> &quot;https://github.com/kbroman/Talk_Graphs/raw/mast
 dat &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">Treatment=</span>x,<span class="dt">Control=</span>y)
 <span class="kw">boxplot</span>(dat,<span class="dt">xlab=</span><span class="st">&quot;Group&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Response&quot;</span>,<span class="dt">cex=</span><span class="dv">0</span>)
 <span class="kw">stripchart</span>(dat,<span class="dt">vertical=</span><span class="ot">TRUE</span>,<span class="dt">method=</span><span class="st">&quot;jitter&quot;</span>,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">col=</span><span class="dv">1</span>)</code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-131"></span>
-<img src="bookdown_files/figure-html/unnamed-chunk-131-1.png" alt="Treatment data and control data shown with a boxplot." width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-130"></span>
+<img src="bookdown_files/figure-html/unnamed-chunk-130-1.png" alt="Treatment data and control data shown with a boxplot." width="672" />
 <p class="caption">
 图 3.8: Treatment data and control data shown with a boxplot.
 </p>

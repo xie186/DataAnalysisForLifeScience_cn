@@ -27,15 +27,11 @@ lapply(c(), function(pkg) {
 })
 ```
 
+
+# Cover picture {-}
+
 ```{r fig.align='center', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html'), fig.link='https://www.flickr.com/photos/ronkroetz/14779273923/'}
+## cover-image does not work for PDF output. It is for EPUB only. For LaTeX/PDF output, you have to insert your cover image by yourself. (BTW, I don't know how.)
 knitr::include_graphics('images/cover.jpg', dpi = NA)
 ```
 
-```{block, type='FOO'}
-# 前言 {-}
-
-```
-xxx
-sadfsd
-```
-```

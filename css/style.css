@@ -21,3 +21,7 @@ blockquote > p:last-child {
 blockquote > p:first-child {
   text-align: inherit;
 }
+
+div.FOO {
+  font-size:12;
+}

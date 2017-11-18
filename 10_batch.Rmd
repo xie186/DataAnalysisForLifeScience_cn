@@ -420,7 +420,7 @@ Here we are using the term _structure_ to refer to the deviation from what one w
 
 One simple exploratory plot we make to determine how many principal components we need to describe this _structure_ is the variance-explained plot. This is what the variance explained for the PCs would look like if data were independent :
 
-```{r null_variance_explained, fig.cap="Variance explained plot for simulated independent data."}
+```{r null_variance_explained1, fig.cap="Variance explained plot for simulated independent data."}
 y0 <- matrix( rnorm( nrow(y)*ncol(y) ) , nrow(y), ncol(y) )
 d0 <- svd(y0)$d
 plot(d0^2/sum(d0^2),ylim=c(0,.25))
@@ -428,7 +428,7 @@ plot(d0^2/sum(d0^2),ylim=c(0,.25))
 
 Instead we see this:
 
-```{r variance_explained, fig.cap="Variance explained plot for gene expression data."}
+```{r variance_explained2, fig.cap="Variance explained plot for gene expression data."}
 plot(s$d^2/sum(s$d^2))
 ```
 
@@ -924,7 +924,7 @@ legend("topleft",c("Month 1","Month 2"),col=1:2,pch=16,box.lwd=0)
 
 Day seems to be highly correlated with the first PC, which explains a high percentage of the variability:
 
-```{r variance_explained, fig.cap="Variance explained."}
+```{r variance_explained3, fig.cap="Variance explained."}
 mypar(1,1)
 plot(s$d^2/sum(s$d^2),ylab="% variance explained",xlab="Principal component")
 ```
@@ -972,7 +972,6 @@ cat("Total genes with q-value < 0.1: ",length(index),"\n",
 
 In this case we seem to have over corrected since we now recover many fewer chromosome Y genes and the p-value histogram shows a dearth of small p-values that makes the distribution non-uniform. Because sex is probably correlated with some of the first PCs, this may be a case of "throwing out the baby with the bath water".
 
-<a name="sva"></a>
 
 #### Surrogate Variable Analysis
 

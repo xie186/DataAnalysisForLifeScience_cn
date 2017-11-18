@@ -1,5 +1,8 @@
 # Chinese Version of the Book *Data Analysis for the Life Sciences*
 
+Link for original book:
+http://genomicsclass.github.io/book/
+
 ## How to contribute as a collaborator
 
 1) [Fork the repo](https://help.github.com/articles/fork-a-repo/). 

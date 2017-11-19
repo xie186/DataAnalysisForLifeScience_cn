@@ -35,3 +35,4 @@ lapply(c(), function(pkg) {
 knitr::include_graphics('images/cover.jpg', dpi = NA)
 ```
 
+test

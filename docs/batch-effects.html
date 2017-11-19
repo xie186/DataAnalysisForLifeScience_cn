@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>生物信息R数据分析</title>
+  <meta name="description" content="生物信息R数据分析">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="生物信息R数据分析" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="images/cover.jpg" />
+  <meta property="og:description" content="生物信息R数据分析" />
+  <meta name="github-repo" content="xie186/HarvardDataScienceForLifeScience_cn" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="生物信息R数据分析" />
+  
+  <meta name="twitter:description" content="生物信息R数据分析" />
+  <meta name="twitter:image" content="images/cover.jpg" />
+
+<meta name="author" content="作者：Rafael A. Irizarry; Mike I. Love 翻译：张三 李四 麻子">
+
+
+<meta name="date" content="2017-11-19">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="basic-machine-learning.html">
+<link rel="next" href="references.html">
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">生物信息R数据分析</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Cover picture</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a><ul>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#who-will-find-this-book-useful"><i class="fa fa-check"></i>Who Will Find This Book Useful?</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#what-does-this-book-cover"><i class="fa fa-check"></i>What Does This Book Cover?</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#how-is-this-book-different"><i class="fa fa-check"></i>How Is This Book Different?</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
+<li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#installing-r"><i class="fa fa-check"></i><b>1.1</b> Installing R</a></li>
+<li class="chapter" data-level="1.2" data-path="getting-started.html"><a href="getting-started.html#installing-rstudio"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#learn-r-basics"><i class="fa fa-check"></i><b>1.3</b> Learn R Basics</a></li>
+<li class="chapter" data-level="1.4" data-path="getting-started.html"><a href="getting-started.html#installing-packages"><i class="fa fa-check"></i><b>1.4</b> Installing Packages</a></li>
+<li class="chapter" data-level="1.5" data-path="getting-started.html"><a href="getting-started.html#importing-data-into-r"><i class="fa fa-check"></i><b>1.5</b> Importing Data into R</a></li>
+<li class="chapter" data-level="1.6" data-path="getting-started.html"><a href="getting-started.html#brief-introduction-to-dplyr"><i class="fa fa-check"></i><b>1.6</b> Brief Introduction to <code>dplyr</code></a></li>
+<li class="chapter" data-level="1.7" data-path="getting-started.html"><a href="getting-started.html#mathematical-notation"><i class="fa fa-check"></i><b>1.7</b> Mathematical Notation</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="inference.html"><a href="inference.html"><i class="fa fa-check"></i><b>2</b> Inference</a><ul>
+<li class="chapter" data-level="2.1" data-path="inference.html"><a href="inference.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="inference.html"><a href="inference.html#random-variables"><i class="fa fa-check"></i><b>2.2</b> Random Variables</a></li>
+<li class="chapter" data-level="2.3" data-path="inference.html"><a href="inference.html#the-null-hypothesis"><i class="fa fa-check"></i><b>2.3</b> The Null Hypothesis</a></li>
+<li class="chapter" data-level="2.4" data-path="inference.html"><a href="inference.html#distributions"><i class="fa fa-check"></i><b>2.4</b> Distributions</a></li>
+<li class="chapter" data-level="2.5" data-path="inference.html"><a href="inference.html#probability-distribution"><i class="fa fa-check"></i><b>2.5</b> Probability Distribution</a></li>
+<li class="chapter" data-level="2.6" data-path="inference.html"><a href="inference.html#normal-distribution"><i class="fa fa-check"></i><b>2.6</b> Normal Distribution</a></li>
+<li class="chapter" data-level="2.7" data-path="inference.html"><a href="inference.html#populations-samples-and-estimates"><i class="fa fa-check"></i><b>2.7</b> Populations, Samples and Estimates</a></li>
+<li class="chapter" data-level="2.8" data-path="inference.html"><a href="inference.html#central-limit-theorem-and-t-distribution"><i class="fa fa-check"></i><b>2.8</b> Central Limit Theorem and t-distribution</a></li>
+<li class="chapter" data-level="2.9" data-path="inference.html"><a href="inference.html#central-limit-theorem-in-practice"><i class="fa fa-check"></i><b>2.9</b> Central Limit Theorem in Practice</a></li>
+<li class="chapter" data-level="2.10" data-path="inference.html"><a href="inference.html#t-tests-in-practice"><i class="fa fa-check"></i><b>2.10</b> t-tests in Practice</a></li>
+<li class="chapter" data-level="2.11" data-path="inference.html"><a href="inference.html#the-t-distribution-in-practice"><i class="fa fa-check"></i><b>2.11</b> The t-distribution in Practice</a></li>
+<li class="chapter" data-level="2.12" data-path="inference.html"><a href="inference.html#confidence-intervals"><i class="fa fa-check"></i><b>2.12</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="2.13" data-path="inference.html"><a href="inference.html#power-calculations"><i class="fa fa-check"></i><b>2.13</b> Power Calculations</a></li>
+<li class="chapter" data-level="2.14" data-path="inference.html"><a href="inference.html#monte-carlo-simulation"><i class="fa fa-check"></i><b>2.14</b> Monte Carlo Simulation</a></li>
+<li class="chapter" data-level="2.15" data-path="inference.html"><a href="inference.html#parametric-simulations-for-the-observations"><i class="fa fa-check"></i><b>2.15</b> Parametric Simulations for the Observations</a></li>
+<li class="chapter" data-level="2.16" data-path="inference.html"><a href="inference.html#permutation-tests"><i class="fa fa-check"></i><b>2.16</b> Permutation Tests</a></li>
+<li class="chapter" data-level="2.17" data-path="inference.html"><a href="inference.html#association-tests"><i class="fa fa-check"></i><b>2.17</b> Association Tests</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>3</b> Exploratory Data Analysis</a><ul>
+<li class="chapter" data-level="3.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#quantile-quantile-plots"><i class="fa fa-check"></i><b>3.1</b> Quantile Quantile Plots</a></li>
+<li class="chapter" data-level="3.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#boxplots"><i class="fa fa-check"></i><b>3.2</b> Boxplots</a></li>
+<li class="chapter" data-level="3.3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#scatterplots-and-correlation"><i class="fa fa-check"></i><b>3.3</b> Scatterplots and Correlation</a></li>
+<li class="chapter" data-level="3.4" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#stratification"><i class="fa fa-check"></i><b>3.4</b> Stratification</a></li>
+<li class="chapter" data-level="3.5" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#bivariate-normal-distribution"><i class="fa fa-check"></i><b>3.5</b> Bivariate Normal Distribution</a></li>
+<li class="chapter" data-level="3.6" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#plots-to-avoid"><i class="fa fa-check"></i><b>3.6</b> Plots to Avoid</a></li>
+<li class="chapter" data-level="3.7" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#misunderstanding-correlation-advanced"><i class="fa fa-check"></i><b>3.7</b> Misunderstanding Correlation (Advanced)</a></li>
+<li class="chapter" data-level="3.8" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#robust-summaries"><i class="fa fa-check"></i><b>3.8</b> Robust Summaries</a></li>
+<li class="chapter" data-level="3.9" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#wilcoxon-rank-sum-test"><i class="fa fa-check"></i><b>3.9</b> Wilcoxon Rank Sum Test</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="matrix-algebra.html"><a href="matrix-algebra.html"><i class="fa fa-check"></i><b>4</b> Matrix Algebra</a><ul>
+<li class="chapter" data-level="4.1" data-path="matrix-algebra.html"><a href="matrix-algebra.html#motivating-examples"><i class="fa fa-check"></i><b>4.1</b> Motivating Examples</a></li>
+<li class="chapter" data-level="4.2" data-path="matrix-algebra.html"><a href="matrix-algebra.html#matrix-notation"><i class="fa fa-check"></i><b>4.2</b> Matrix Notation</a></li>
+<li class="chapter" data-level="4.3" data-path="matrix-algebra.html"><a href="matrix-algebra.html#solving-systems-of-equations"><i class="fa fa-check"></i><b>4.3</b> Solving Systems of Equations</a></li>
+<li class="chapter" data-level="4.4" data-path="matrix-algebra.html"><a href="matrix-algebra.html#vectors-matrices-and-scalars"><i class="fa fa-check"></i><b>4.4</b> Vectors, Matrices, and Scalars</a></li>
+<li class="chapter" data-level="4.5" data-path="matrix-algebra.html"><a href="matrix-algebra.html#matrix-operations"><i class="fa fa-check"></i><b>4.5</b> Matrix Operations</a></li>
+<li class="chapter" data-level="4.6" data-path="matrix-algebra.html"><a href="matrix-algebra.html#examples"><i class="fa fa-check"></i><b>4.6</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="linear-models-1.html"><a href="linear-models-1.html"><i class="fa fa-check"></i><b>5</b> Linear Models</a><ul>
+<li class="chapter" data-level="5.1" data-path="linear-models-1.html"><a href="linear-models-1.html#the-design-matrix"><i class="fa fa-check"></i><b>5.1</b> The Design Matrix</a></li>
+<li class="chapter" data-level="5.2" data-path="linear-models-1.html"><a href="linear-models-1.html#the-mathematics-behind-lm"><i class="fa fa-check"></i><b>5.2</b> The Mathematics Behind lm()</a></li>
+<li class="chapter" data-level="5.3" data-path="linear-models-1.html"><a href="linear-models-1.html#standard-errors"><i class="fa fa-check"></i><b>5.3</b> Standard Errors</a></li>
+<li class="chapter" data-level="5.4" data-path="linear-models-1.html"><a href="linear-models-1.html#interactions-and-contrasts"><i class="fa fa-check"></i><b>5.4</b> Interactions and Contrasts</a></li>
+<li class="chapter" data-level="5.5" data-path="linear-models-1.html"><a href="linear-models-1.html#linear-model-with-interactions"><i class="fa fa-check"></i><b>5.5</b> Linear Model with Interactions</a></li>
+<li class="chapter" data-level="5.6" data-path="linear-models-1.html"><a href="linear-models-1.html#analysis-of-variance"><i class="fa fa-check"></i><b>5.6</b> Analysis of Variance</a></li>
+<li class="chapter" data-level="5.7" data-path="linear-models-1.html"><a href="linear-models-1.html#collinearity"><i class="fa fa-check"></i><b>5.7</b> Collinearity</a></li>
+<li class="chapter" data-level="5.8" data-path="linear-models-1.html"><a href="linear-models-1.html#rank"><i class="fa fa-check"></i><b>5.8</b> Rank</a></li>
+<li class="chapter" data-level="5.9" data-path="linear-models-1.html"><a href="linear-models-1.html#removing-confounding"><i class="fa fa-check"></i><b>5.9</b> Removing Confounding</a></li>
+<li class="chapter" data-level="5.10" data-path="linear-models-1.html"><a href="linear-models-1.html#the-qr-factorization-advanced"><i class="fa fa-check"></i><b>5.10</b> The QR Factorization (Advanced)</a></li>
+<li class="chapter" data-level="5.11" data-path="linear-models-1.html"><a href="linear-models-1.html#going-further"><i class="fa fa-check"></i><b>5.11</b> Going Further</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html"><i class="fa fa-check"></i><b>6</b> Inference for High Dimensional Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#introduction-4"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#inference-in-practice"><i class="fa fa-check"></i><b>6.2</b> Inference in Practice</a></li>
+<li class="chapter" data-level="6.3" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#procedures"><i class="fa fa-check"></i><b>6.3</b> Procedures</a></li>
+<li class="chapter" data-level="6.4" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#error-rates"><i class="fa fa-check"></i><b>6.4</b> Error Rates</a></li>
+<li class="chapter" data-level="6.5" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#the-bonferroni-correction"><i class="fa fa-check"></i><b>6.5</b> The Bonferroni Correction</a></li>
+<li class="chapter" data-level="6.6" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#false-discovery-rate"><i class="fa fa-check"></i><b>6.6</b> False Discovery Rate</a></li>
+<li class="chapter" data-level="6.7" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#direct-approach-to-fdr-and-q-values-advanced"><i class="fa fa-check"></i><b>6.7</b> Direct Approach to FDR and q-values (Advanced)</a></li>
+<li class="chapter" data-level="6.8" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#basic-exploratory-data-analysis"><i class="fa fa-check"></i><b>6.8</b> Basic Exploratory Data Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="statistical-models.html"><a href="statistical-models.html"><i class="fa fa-check"></i><b>7</b> Statistical Models</a><ul>
+<li class="chapter" data-level="7.1" data-path="statistical-models.html"><a href="statistical-models.html#the-binomial-distribution"><i class="fa fa-check"></i><b>7.1</b> The Binomial Distribution</a></li>
+<li class="chapter" data-level="7.2" data-path="statistical-models.html"><a href="statistical-models.html#the-poisson-distribution"><i class="fa fa-check"></i><b>7.2</b> The Poisson Distribution</a></li>
+<li class="chapter" data-level="7.3" data-path="statistical-models.html"><a href="statistical-models.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>7.3</b> Maximum Likelihood Estimation</a></li>
+<li class="chapter" data-level="7.4" data-path="statistical-models.html"><a href="statistical-models.html#distributions-for-positive-continuous-values"><i class="fa fa-check"></i><b>7.4</b> Distributions for Positive Continuous Values</a></li>
+<li class="chapter" data-level="7.5" data-path="statistical-models.html"><a href="statistical-models.html#bayesian-statistics"><i class="fa fa-check"></i><b>7.5</b> Bayesian Statistics</a></li>
+<li class="chapter" data-level="7.6" data-path="statistical-models.html"><a href="statistical-models.html#hierarchical-models"><i class="fa fa-check"></i><b>7.6</b> Hierarchical Models</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html"><i class="fa fa-check"></i><b>8</b> Distance and Dimension Reduction</a><ul>
+<li class="chapter" data-level="8.1" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#introduction-5"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#euclidean-distance"><i class="fa fa-check"></i><b>8.2</b> Euclidean Distance</a></li>
+<li class="chapter" data-level="8.3" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#distance-in-high-dimensions"><i class="fa fa-check"></i><b>8.3</b> Distance in High Dimensions</a></li>
+<li class="chapter" data-level="8.4" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#dimension-reduction-motivation"><i class="fa fa-check"></i><b>8.4</b> Dimension Reduction Motivation</a></li>
+<li class="chapter" data-level="8.5" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#singular-value-decomposition"><i class="fa fa-check"></i><b>8.5</b> Singular Value Decomposition</a></li>
+<li class="chapter" data-level="8.6" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#projections"><i class="fa fa-check"></i><b>8.6</b> Projections</a></li>
+<li class="chapter" data-level="8.7" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#rotations-1"><i class="fa fa-check"></i><b>8.7</b> Rotations</a></li>
+<li class="chapter" data-level="8.8" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#multi-dimensional-scaling-plots"><i class="fa fa-check"></i><b>8.8</b> Multi-Dimensional Scaling Plots</a></li>
+<li class="chapter" data-level="8.9" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#principal-component-analysis"><i class="fa fa-check"></i><b>8.9</b> Principal Component Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html"><i class="fa fa-check"></i><b>9</b> Basic Machine Learning</a><ul>
+<li class="chapter" data-level="9.1" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#clustering"><i class="fa fa-check"></i><b>9.1</b> Clustering</a></li>
+<li class="chapter" data-level="9.2" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#conditional-probabilities-and-expectations"><i class="fa fa-check"></i><b>9.2</b> Conditional Probabilities and Expectations</a></li>
+<li class="chapter" data-level="9.3" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#smoothing"><i class="fa fa-check"></i><b>9.3</b> Smoothing</a></li>
+<li class="chapter" data-level="9.4" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#bin-smoothing"><i class="fa fa-check"></i><b>9.4</b> Bin Smoothing</a></li>
+<li class="chapter" data-level="9.5" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#loess"><i class="fa fa-check"></i><b>9.5</b> Loess</a></li>
+<li class="chapter" data-level="9.6" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#class-prediction"><i class="fa fa-check"></i><b>9.6</b> Class Prediction</a></li>
+<li class="chapter" data-level="9.7" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#cross-validation"><i class="fa fa-check"></i><b>9.7</b> Cross-validation</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="batch-effects.html"><a href="batch-effects.html"><i class="fa fa-check"></i><b>10</b> Batch Effects</a><ul>
+<li class="chapter" data-level="10.1" data-path="batch-effects.html"><a href="batch-effects.html#confounding"><i class="fa fa-check"></i><b>10.1</b> Confounding</a></li>
+<li class="chapter" data-level="10.2" data-path="batch-effects.html"><a href="batch-effects.html#confounding-high-throughput-example"><i class="fa fa-check"></i><b>10.2</b> Confounding: High-Throughput Example</a></li>
+<li class="chapter" data-level="10.3" data-path="batch-effects.html"><a href="batch-effects.html#discovering-batch-effects-with-eda"><i class="fa fa-check"></i><b>10.3</b> Discovering Batch Effects with EDA</a></li>
+<li class="chapter" data-level="10.4" data-path="batch-effects.html"><a href="batch-effects.html#gene-expression-data"><i class="fa fa-check"></i><b>10.4</b> Gene Expression Data</a></li>
+<li class="chapter" data-level="10.5" data-path="batch-effects.html"><a href="batch-effects.html#motivation-for-statistical-approaches"><i class="fa fa-check"></i><b>10.5</b> Motivation for Statistical Approaches</a></li>
+<li class="chapter" data-level="10.6" data-path="batch-effects.html"><a href="batch-effects.html#adjusting-for-batch-effects-with-linear-models"><i class="fa fa-check"></i><b>10.6</b> Adjusting for Batch Effects with Linear Models</a></li>
+<li class="chapter" data-level="10.7" data-path="batch-effects.html"><a href="batch-effects.html#factor-analysis"><i class="fa fa-check"></i><b>10.7</b> Factor Analysis</a></li>
+<li class="chapter" data-level="10.8" data-path="batch-effects.html"><a href="batch-effects.html#modeling-batch-effects-with-factor-analysis"><i class="fa fa-check"></i><b>10.8</b> Modeling Batch Effects with Factor Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">生物信息R数据分析</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="batch-effects" class="section level1">
+<h1><span class="header-section-number">第 10 章</span> Batch Effects</h1>
+<p>One often overlooked complication with high-throughput studies is batch effects, which occur because measurements are affected by laboratory conditions, reagent lots, and personnel differences. This becomes a major problem when batch effects are confounded with an outcome of interest and lead to incorrect conclusions. In this chapter, we describe batch effects in detail: how to detect, interpret, model, and adjust for batch effects.</p>
+<p>Batch effects are the biggest challenge faced by genomics research, especially in the context of precision medicine. The presence of batch effects in one form or another has been reported among most, if not all, high-throughput technologies [Leek et al. (2010) Nature Reviews Genetics 11, 733-739]. But batch effects are not specific to genomics technology. In fact, in a 1972 paper, WJ Youden describes batch effects in the context of empirical estimates of physical constants. He pointed out the “subjective character of present estimates” of physical constants and how estimates changed from laboratory to laboratory. For example, in Table 1, Youden shows the following estimates of the astronomical unit from different laboratories. The reports included an estimate of spread (what we now would call a confidence interval).</p>
+<div class="figure">
+<img src="bookdown_files/figure-html/astronomical_units-1.png" alt="Estimates of the astronomical unit with estimates of spread, versus year it was reported. The two laboratories that reported more than one estimate are shown in color." width="672" />
+<p class="caption">
+(#fig:astronomical_units)Estimates of the astronomical unit with estimates of spread, versus year it was reported. The two laboratories that reported more than one estimate are shown in color.
+</p>
+</div>
+<p>Judging by the variability across labs and the fact that the reported bounds do not explain this variability, clearly shows the presence of an effect that differs across labs, but not within. This type of variability is what we call a batch effect. Note that there are laboratories that reported two estimates (purple and orange) and batch effects are seen across the two different measurements from the same laboratories as well.</p>
+<p>We can use statistical notation to precisely describe the problem. The scientists making these measurements assumed they observed:</p>
+<p><span class="math display">\[
+Y_{i,j} = 
+\mu + \varepsilon_{i,j}, j=1,\dots,N
+\]</span></p>
+<p>with <span class="math inline">\(Y_{i,j}\)</span> the <span class="math inline">\(j\)</span>-th measurement of laboratory <span class="math inline">\(i\)</span>, <span class="math inline">\(\mu\)</span> the true physical constant, and <span class="math inline">\(\varepsilon_{i,j}\)</span> independent measurement error. To account for the variability introduced by <span class="math inline">\(\varepsilon_{i,j}\)</span>, we compute standard errors from the data. As we saw earlier in the book, we estimate the physical constant with the average of the <span class="math inline">\(N\)</span> measurements…</p>
+<p><span class="math display">\[
+\bar{Y}_i = 
+\frac{1}{N} \sum_{i=1}^{N} Y_{i,j}
+\]</span></p>
+<p>.. and we can construct a confidence interval by:</p>
+<p><span class="math display">\[
+\bar{Y}_i 
+ \pm 2 s_i / \sqrt{N} \mbox{ with }
+s_i^2= 
+\frac{1}{N-1} \sum_{i=1}^N (Y_{i,j} - 
+\bar{Y}_i)^2
+\]</span></p>
+<p>However, this confidence interval will be too small because it does not catch the batch effect variability. A more appropriate model is:</p>
+<p><span class="math display">\[
+Y_{i,j} = \mu +
+\gamma_i + \varepsilon_{i,j}, j=1, \dots, N
+\]</span></p>
+<p>with <span class="math inline">\(\gamma_i\)</span> a laboratory specific bias or <em>batch effect</em>.</p>
+<p>From the plot it is quite clear that the variability of <span class="math inline">\(\gamma\)</span> across laboratories is larger than the variability of <span class="math inline">\(\varepsilon\)</span> within a lab. The problem here is that there is no information about <span class="math inline">\(\gamma\)</span> in the data from a single lab. The statistical term for the problem is that <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\gamma\)</span> are unidentifiable. We can estimate the sum <span class="math inline">\(\mu_i+\gamma_i\)</span> , but we can’t distinguish one from the other.</p>
+<p>We can also view <span class="math inline">\(\gamma\)</span> as a random variable. In this case, each laboratory has an error term <span class="math inline">\(\gamma_i\)</span> that is the same across measurements from that lab, but different from lab to lab. Under this interpretation the problem is that:</p>
+<p><span class="math display">\[
+ s_i / \sqrt{N} \mbox{ with } 
+ s_i^2= 
+\frac{1}{N-1} \sum_{i=1}^N (Y_{ij} - 
+\bar{Y}_i)^2
+\]</span></p>
+<p>is an underestimate of the standard error since it does not account for the within lab correlation induced by <span class="math inline">\(\gamma\)</span>.</p>
+<p>With data from several laboratories we can in fact estimate the <span class="math inline">\(\gamma\)</span>, if we assume they average out to 0. Or we can consider them to be random effects and simply estimate a new estimate and standard error with all measurements. Here is a confidence interval treating each reported average as a random observation:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">avg &lt;-<span class="st"> </span><span class="kw">mean</span>(dat[,<span class="dv">3</span>])
+se &lt;-<span class="st"> </span><span class="kw">sd</span>(dat[,<span class="dv">3</span>]) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">nrow</span>(dat))</code></pre></div>
+<pre><code>## 95% confidence interval is: [ 92.87 , 92.99 ]</code></pre>
+<pre><code>## which does include the current estimate is: 92.96</code></pre>
+<p>Youden’s paper also includes batch effect examples from more recent estimates of the speed of light, as well as estimates of the gravity constant. Here we demonstrate the widespread presence and complex nature of batch effects in high-throughput biological measurements.</p>
+<div id="confounding" class="section level2">
+<h2><span class="header-section-number">10.1</span> Confounding</h2>
+<p>Batch effects have the most devastating effects when they are <em>confounded</em> with outcomes of interest. Here we describe confounding and how it relates to data interpretation.</p>
+<p>“Correlation is not causation” is one of the most important lessons you should take from this or any other data analysis course. A common example for why this statement is so often true is confounding. Simply stated confounding occurs when we observe a correlation or association between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, but this is strictly the result of both <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> depending on an extraneous variable <span class="math inline">\(Z\)</span>. Here we describe Simpson’s paradox, an example based on a famous legal case, and an example of confounding in high-throughput biology.</p>
+<div id="example-of-simpsons-paradox" class="section level4">
+<h4><span class="header-section-number">10.1.0.1</span> Example of Simpson’s Paradox</h4>
+<p>Admission data from U.C. Berkeley 1973 showed that more men were being admitted than women: 44% men were admitted compared to 30% women.See: PJ Bickel, EA Hammel, and JW O’Connell. Science (1975). Here is the data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dagdata)
+<span class="kw">data</span>(admissions)
+admissions<span class="op">$</span>total=admissions<span class="op">$</span>Percent<span class="op">*</span>admissions<span class="op">$</span>Number<span class="op">/</span><span class="dv">100</span>
+
+##percent men get in
+<span class="kw">sum</span>(admissions<span class="op">$</span>total[admissions<span class="op">$</span>Gender<span class="op">==</span><span class="dv">1</span>]<span class="op">/</span><span class="kw">sum</span>(admissions<span class="op">$</span>Number[admissions<span class="op">$</span>Gender<span class="op">==</span><span class="dv">1</span>]))</code></pre></div>
+<pre><code>## [1] 0.4452</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##percent women get in
+<span class="kw">sum</span>(admissions<span class="op">$</span>total[admissions<span class="op">$</span>Gender<span class="op">==</span><span class="dv">0</span>]<span class="op">/</span><span class="kw">sum</span>(admissions<span class="op">$</span>Number[admissions<span class="op">$</span>Gender<span class="op">==</span><span class="dv">0</span>]))</code></pre></div>
+<pre><code>## [1] 0.3033</code></pre>
+<p>A chi-square test clearly rejects the hypothesis that gender and admission are independent:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##make a 2 x 2 table
+index =<span class="st"> </span>admissions<span class="op">$</span>Gender<span class="op">==</span><span class="dv">1</span>
+men =<span class="st"> </span>admissions[index,]
+women =<span class="st"> </span>admissions[<span class="op">!</span>index,]
+menYes =<span class="st"> </span><span class="kw">sum</span>(men<span class="op">$</span>Number<span class="op">*</span>men<span class="op">$</span>Percent<span class="op">/</span><span class="dv">100</span>)
+menNo =<span class="st"> </span><span class="kw">sum</span>(men<span class="op">$</span>Number<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>men<span class="op">$</span>Percent<span class="op">/</span><span class="dv">100</span>))
+womenYes =<span class="st"> </span><span class="kw">sum</span>(women<span class="op">$</span>Number<span class="op">*</span>women<span class="op">$</span>Percent<span class="op">/</span><span class="dv">100</span>)
+womenNo =<span class="st"> </span><span class="kw">sum</span>(women<span class="op">$</span>Number<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>women<span class="op">$</span>Percent<span class="op">/</span><span class="dv">100</span>))
+tab =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(menYes,womenYes,menNo,womenNo),<span class="dv">2</span>,<span class="dv">2</span>)
+<span class="kw">print</span>(<span class="kw">chisq.test</span>(tab)<span class="op">$</span>p.val)</code></pre></div>
+<pre><code>## [1] 9.139e-22</code></pre>
+<p>But closer inspection shows a paradoxical result. Here are the percent admissions by major:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y=<span class="kw">cbind</span>(admissions[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)],admissions[<span class="dv">7</span><span class="op">:</span><span class="dv">12</span>,<span class="dv">3</span>])
+<span class="kw">colnames</span>(y)[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]=<span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Female&quot;</span>)
+y</code></pre></div>
+<pre><code>##   Major Male Female
+## 1     A   62     82
+## 2     B   63     68
+## 3     C   37     34
+## 4     D   33     35
+## 5     E   28     24
+## 6     F    6      7</code></pre>
+<p>Notice that we no longer see a clear gender bias. The chi-square test we performed above suggests a dependence between admission and gender. Yet when the data is grouped by major, this dependence seems to disappear. What’s going on?</p>
+<p>This is an example of <em>Simpson’s paradox</em>. A plot showing the percentages that applied to a major against the percent that get into that major, for males and females starts to point to an explanation.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y=<span class="kw">cbind</span>(admissions[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>,<span class="dv">5</span>],admissions[<span class="dv">7</span><span class="op">:</span><span class="dv">12</span>,<span class="dv">5</span>])
+y=<span class="kw">sweep</span>(y,<span class="dv">2</span>,<span class="kw">colSums</span>(y),<span class="st">&quot;/&quot;</span>)<span class="op">*</span><span class="dv">100</span>
+x=<span class="kw">rowMeans</span>(<span class="kw">cbind</span>(admissions[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>,<span class="dv">3</span>],admissions[<span class="dv">7</span><span class="op">:</span><span class="dv">12</span>,<span class="dv">3</span>]))
+
+<span class="kw">library</span>(rafalib)
+<span class="kw">mypar</span>()
+<span class="kw">matplot</span>(x,y,<span class="dt">xlab=</span><span class="st">&quot;percent that gets in the major&quot;</span>,
+        <span class="dt">ylab=</span><span class="st">&quot;percent that applies to major&quot;</span>,
+        <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>),<span class="dt">cex=</span><span class="fl">1.5</span>)
+<span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Female&quot;</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>),<span class="dt">pch=</span><span class="kw">c</span>(<span class="st">&quot;1&quot;</span>,<span class="st">&quot;2&quot;</span>),<span class="dt">box.lty=</span><span class="dv">0</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/hard_major_confounding-1.png" alt="Percent of students that applied versus percent that were admitted by gender." width="672" />
+<p class="caption">
+(#fig:hard_major_confounding)Percent of students that applied versus percent that were admitted by gender.
+</p>
+</div>
+<p>What the plot suggests is that males were much more likely to apply to “easy” majors. The plot shows that males and “easy” majors are confounded.</p>
+</div>
+<div id="confounding-explained-graphically" class="section level4">
+<h4><span class="header-section-number">10.1.0.2</span> Confounding explained graphically</h4>
+<p>Here we visualize the confounding. In the plots below, each letter represents a person. Accepted individuals are denoted in green and not admitted in orange. The letter indicates the major. In this first plot we group all the students together and notice that the proportion of green is larger for men.</p>
+<div class="figure">
+<img src="bookdown_files/figure-html/simpsons_paradox_illustration-1.png" alt="Admitted are in green and majors are denoted with letters. Here we clearly see that more males were admitted." width="1008" />
+<p class="caption">
+(#fig:simpsons_paradox_illustration)Admitted are in green and majors are denoted with letters. Here we clearly see that more males were admitted.
+</p>
+</div>
+<p>Now we stratify the data by major. The key point here is that most of the accepted men (green) come from the easy majors: A and B.</p>
+<div class="figure">
+<img src="bookdown_files/figure-html/simpsons_paradox_illustration2-1.png" alt="Simpon's Paradox illustrated. Admitted students are in green. Students are now stratified by the major to which they applied." width="1008" />
+<p class="caption">
+(#fig:simpsons_paradox_illustration2)Simpon’s Paradox illustrated. Admitted students are in green. Students are now stratified by the major to which they applied.
+</p>
+</div>
+</div>
+<div id="average-after-stratifying" class="section level4">
+<h4><span class="header-section-number">10.1.0.3</span> Average after stratifying</h4>
+<p>In this plot, we can see that if we condition or stratify by major, and then look at differences, we control for the confounder and this effect goes away.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y=<span class="kw">cbind</span>(admissions[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>,<span class="dv">3</span>],admissions[<span class="dv">7</span><span class="op">:</span><span class="dv">12</span>,<span class="dv">3</span>])
+<span class="kw">matplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>,y,<span class="dt">xaxt=</span><span class="st">&quot;n&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;major&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;percent&quot;</span>,<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>),<span class="dt">cex=</span><span class="fl">1.5</span>)
+<span class="kw">axis</span>(<span class="dv">1</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>,LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>])
+<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Female&quot;</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>),<span class="dt">pch=</span><span class="kw">c</span>(<span class="st">&quot;1&quot;</span>,<span class="st">&quot;2&quot;</span>),
+       <span class="dt">box.lty=</span><span class="dv">0</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/admission_by_major-1.png" alt="Admission percentage by major for each gender." width="672" />
+<p class="caption">
+(#fig:admission_by_major)Admission percentage by major for each gender.
+</p>
+</div>
+<p>The average difference by major is actually 3.5% higher for women.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(y[,<span class="dv">1</span>]<span class="op">-</span>y[,<span class="dv">2</span>])</code></pre></div>
+<pre><code>## [1] -3.5</code></pre>
+</div>
+<div id="simpsons-paradox-in-baseball" class="section level4">
+<h4><span class="header-section-number">10.1.0.4</span> Simpson’s Paradox in baseball</h4>
+<p>Simpson’s Paradox is commonly seen in baseball statistics. Here is a well known example in which David Justice had a higher batting average than Derek Jeter in both 1995 and 1996, but Jeter had a higher overall average:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>1995</th>
+<th>1996</th>
+<th>Combined</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Derek Jeter</td>
+<td>12/48 (.250)</td>
+<td>183/582 (.314)</td>
+<td>195/630 (.310)</td>
+</tr>
+<tr class="even">
+<td>David Justice</td>
+<td>104/411 (.253)</td>
+<td>45/140 (.321)</td>
+<td>149/551 (.270)</td>
+</tr>
+</tbody>
+</table>
+<p>The confounder here is games played. Jeter played more games during the year he batted better, while the opposite is true for Justice.</p>
+<p><a name="genomics"></a></p>
+</div>
+</div>
+<div id="confounding-high-throughput-example" class="section level2">
+<h2><span class="header-section-number">10.2</span> Confounding: High-Throughput Example</h2>
+<p>To describe the problem of confounding with a real example, we will use a dataset from <a href="http://www.ncbi.nlm.nih.gov/pubmed/17206142">this paper</a> that claimed that roughly 50% of genes where differentially expressed when comparing blood from two ethnic groups. We include the data in one of our data packages:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Biobase) ##available from Bioconductor
+<span class="kw">library</span>(genefilter) 
+<span class="kw">library</span>(GSE5859) ##available from github
+<span class="kw">data</span>(GSE5859)</code></pre></div>
+<p>We can extract the gene expression data and sample information table using the Bioconductor functions <code>exprs</code> and <code>pData</code> like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">geneExpression =<span class="st"> </span><span class="kw">exprs</span>(e)
+sampleInfo =<span class="st"> </span><span class="kw">pData</span>(e)</code></pre></div>
+<p>Note that some samples were processed at different times.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(sampleInfo<span class="op">$</span>date)</code></pre></div>
+<pre><code>## [1] &quot;2003-02-04&quot; &quot;2003-02-04&quot; &quot;2002-12-17&quot; &quot;2003-01-30&quot;
+## [5] &quot;2003-01-03&quot; &quot;2003-01-16&quot;</code></pre>
+<p>This is an extraneous variable and should not affect the values in <code>geneExpression</code>. However, as we have seen in previous analyses, it does appear to have an effect. We will therefore explore this here.</p>
+<p>We can immediately see that year and ethnicity are almost completely confounded:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">year =<span class="st"> </span><span class="kw">factor</span>( <span class="kw">format</span>(sampleInfo<span class="op">$</span>date,<span class="st">&quot;%y&quot;</span>) )
+tab =<span class="st"> </span><span class="kw">table</span>(year,sampleInfo<span class="op">$</span>ethnicity)
+<span class="kw">print</span>(tab)</code></pre></div>
+<pre><code>##     
+## year ASN CEU HAN
+##   02   0  32   0
+##   03   0  54   0
+##   04   0  13   0
+##   05  80   3   0
+##   06   2   0  24</code></pre>
+<p>By running a t-test and creating a volcano plot, we note that thousands of genes appear to be differentially expressed between ethnicities. Yet when we perform a similar comparison only on the CEU population between the years 2002 and 2003, we again obtain thousands of differentially expressed genes:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(genefilter)
+
+##remove control genes
+out &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">&quot;AFFX&quot;</span>,<span class="kw">rownames</span>(geneExpression))
+
+eth &lt;-<span class="st"> </span>sampleInfo<span class="op">$</span>ethnicity
+ind&lt;-<span class="st"> </span><span class="kw">which</span>(eth<span class="op">%in%</span><span class="kw">c</span>(<span class="st">&quot;CEU&quot;</span>,<span class="st">&quot;ASN&quot;</span>))
+res1 &lt;-<span class="st"> </span><span class="kw">rowttests</span>(geneExpression[<span class="op">-</span>out,ind],<span class="kw">droplevels</span>(eth[ind]))
+ind &lt;-<span class="st"> </span><span class="kw">which</span>(year<span class="op">%in%</span><span class="kw">c</span>(<span class="st">&quot;02&quot;</span>,<span class="st">&quot;03&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>eth<span class="op">==</span><span class="st">&quot;CEU&quot;</span>)
+res2 &lt;-<span class="st"> </span><span class="kw">rowttests</span>(geneExpression[<span class="op">-</span>out,ind],<span class="kw">droplevels</span>(year[ind]))
+
+XLIM &lt;-<span class="st"> </span><span class="kw">max</span>(<span class="kw">abs</span>(<span class="kw">c</span>(res1<span class="op">$</span>dm,res2<span class="op">$</span>dm)))<span class="op">*</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)
+YLIM &lt;-<span class="st"> </span><span class="kw">range</span>(<span class="op">-</span><span class="kw">log10</span>(<span class="kw">c</span>(res1<span class="op">$</span>p,res2<span class="op">$</span>p)))
+<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+<span class="kw">plot</span>(res1<span class="op">$</span>dm,<span class="op">-</span><span class="kw">log10</span>(res1<span class="op">$</span>p),<span class="dt">xlim=</span>XLIM,<span class="dt">ylim=</span>YLIM,
+     <span class="dt">xlab=</span><span class="st">&quot;Effect size&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;-log10(p-value)&quot;</span>,<span class="dt">main=</span><span class="st">&quot;Populations&quot;</span>)
+<span class="kw">plot</span>(res2<span class="op">$</span>dm,<span class="op">-</span><span class="kw">log10</span>(res2<span class="op">$</span>p),<span class="dt">xlim=</span>XLIM,<span class="dt">ylim=</span>YLIM,
+     <span class="dt">xlab=</span><span class="st">&quot;Effect size&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;-log10(p-value)&quot;</span>,<span class="dt">main=</span><span class="st">&quot;2003 v 2002&quot;</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/volcano_plots-1.png" alt="Volcano plots for gene expression data. Comparison by ethnicity (left) and by year within one ethnicity (right)." width="1008" />
+<p class="caption">
+(#fig:volcano_plots)Volcano plots for gene expression data. Comparison by ethnicity (left) and by year within one ethnicity (right).
+</p>
+</div>
+</div>
+<div id="discovering-batch-effects-with-eda" class="section level2">
+<h2><span class="header-section-number">10.3</span> Discovering Batch Effects with EDA</h2>
+<p>Now that we understand PCA, we are going to demonstrate how we use it in practice with an emphasis on exploratory data analysis. To illustrate, we will go through an actual dataset that has not been sanitized for teaching purposes. We start with the raw data as it was provided in the public repository. The only step we did for you is to preprocess these data and create an R package with a preformed Bioconductor object.</p>
+</div>
+<div id="gene-expression-data" class="section level2">
+<h2><span class="header-section-number">10.4</span> Gene Expression Data</h2>
+<p>Start by loading the data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rafalib)
+<span class="kw">library</span>(Biobase)
+<span class="kw">library</span>(GSE5859) ##Available from GitHub
+<span class="kw">data</span>(GSE5859)</code></pre></div>
+<p>We start by exploring the sample correlation matrix and noting that one pair has a correlation of 1. This must mean that the same sample was uploaded twice to the public repository, but given different names. The following code identifies this sample and removes it.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cors &lt;-<span class="st"> </span><span class="kw">cor</span>(<span class="kw">exprs</span>(e))
+Pairs=<span class="kw">which</span>(<span class="kw">abs</span>(cors)<span class="op">&gt;</span><span class="fl">0.9999</span>,<span class="dt">arr.ind=</span><span class="ot">TRUE</span>)
+out =<span class="st"> </span>Pairs[<span class="kw">which</span>(Pairs[,<span class="dv">1</span>]<span class="op">&lt;</span>Pairs[,<span class="dv">2</span>]),,drop=<span class="ot">FALSE</span>]
+<span class="cf">if</span>(<span class="kw">length</span>(out[,<span class="dv">2</span>])<span class="op">&gt;</span><span class="dv">0</span>) e=e[,<span class="op">-</span>out[<span class="dv">2</span>]]</code></pre></div>
+<p>We also remove control probes from the analysis:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">out &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">&quot;AFFX&quot;</span>,<span class="kw">featureNames</span>(e))
+e &lt;-<span class="st"> </span>e[<span class="op">-</span>out,]</code></pre></div>
+<p>Now we are ready to proceed. We will create a detrended gene expression data matrix and extract the dates and outcome of interest from the sample annotation table.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">exprs</span>(e)<span class="op">-</span><span class="kw">rowMeans</span>(<span class="kw">exprs</span>(e))
+dates &lt;-<span class="st"> </span><span class="kw">pData</span>(e)<span class="op">$</span>date
+eth &lt;-<span class="st"> </span><span class="kw">pData</span>(e)<span class="op">$</span>ethnicity</code></pre></div>
+<p>The original dataset did not include sex in the sample information. We did this for you in the subset dataset we provided for illustrative purposes. In the code below, we show how we predict the sex of each sample. The basic idea is to look at the median gene expression levels on Y chromosome genes. Males should have much higher values. To do this, we need to upload an annotation package that provides information for the features of the platform used in this experiment:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">annotation</span>(e)</code></pre></div>
+<pre><code>## [1] &quot;hgfocus&quot;</code></pre>
+<p>We need to download and install the <code>hgfocus.db</code> package and then extract the chromosome location information.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(hgfocus.db) ##install from Bioconductor</code></pre></div>
+<pre><code>## Warning in rsqlite_fetch(res@ptr, n = n): Don&#39;t need to
+## call dbFetch() for statements, only for queries</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">map2gene &lt;-<span class="st"> </span><span class="kw">mapIds</span>(hgfocus.db, <span class="dt">keys=</span><span class="kw">featureNames</span>(e),
+                   <span class="dt">column=</span><span class="st">&quot;ENTREZID&quot;</span>, <span class="dt">keytype=</span><span class="st">&quot;PROBEID&quot;</span>,
+                   <span class="dt">multiVals=</span><span class="st">&quot;first&quot;</span>)</code></pre></div>
+<pre><code>## Warning in rsqlite_fetch(res@ptr, n = n): Don&#39;t need to
+## call dbFetch() for statements, only for queries
+
+## Warning in rsqlite_fetch(res@ptr, n = n): Don&#39;t need to
+## call dbFetch() for statements, only for queries</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Homo.sapiens)
+map2chr &lt;-<span class="st"> </span><span class="kw">mapIds</span>(Homo.sapiens, <span class="dt">keys=</span>map2gene,
+                  <span class="dt">column=</span><span class="st">&quot;TXCHROM&quot;</span>, <span class="dt">keytype=</span><span class="st">&quot;ENTREZID&quot;</span>,
+                  <span class="dt">multiVals=</span><span class="st">&quot;first&quot;</span>)
+chryexp &lt;-<span class="st"> </span><span class="kw">colMeans</span>(y[<span class="kw">which</span>(<span class="kw">unlist</span>(map2chr)<span class="op">==</span><span class="st">&quot;chrY&quot;</span>),])</code></pre></div>
+<p>If we create a histogram of the median gene expression values on chromosome Y, we clearly see two modes which must be females and males:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mypar</span>()
+<span class="kw">hist</span>(chryexp)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/predict_sex-1.png" alt="Histogram of median expression y-axis. We can see females and males." width="672" />
+<p class="caption">
+(#fig:predict_sex)Histogram of median expression y-axis. We can see females and males.
+</p>
+</div>
+<p>So we can predict sex this way:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sex &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">ifelse</span>(chryexp<span class="op">&lt;</span><span class="dv">0</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span>))</code></pre></div>
+<div id="calculating-the-pcs" class="section level4">
+<h4><span class="header-section-number">10.4.0.1</span> Calculating the PCs</h4>
+<p>We have shown how we can compute principal components using:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">s &lt;-<span class="st"> </span><span class="kw">svd</span>(y)
+<span class="kw">dim</span>(s<span class="op">$</span>v)</code></pre></div>
+<pre><code>## [1] 207 207</code></pre>
+<p>We can also use <code>prcomp</code> which creates an object with just the PCs and also demeans by default. They provide practically the same principal components so we continue the analysis with the object <span class="math inline">\(s\)</span>.</p>
+</div>
+<div id="variance-explained-1" class="section level4">
+<h4><span class="header-section-number">10.4.0.2</span> Variance explained</h4>
+<p>A first step in determining how much sample correlation induced <em>structure</em> there is in the data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(RColorBrewer)
+cols=<span class="kw">colorRampPalette</span>(<span class="kw">rev</span>(<span class="kw">brewer.pal</span>(<span class="dv">11</span>,<span class="st">&quot;RdBu&quot;</span>)))(<span class="dv">100</span>)
+n &lt;-<span class="st"> </span><span class="kw">ncol</span>(y)
+<span class="kw">image</span>(<span class="dv">1</span><span class="op">:</span>n,<span class="dv">1</span><span class="op">:</span>n,<span class="kw">cor</span>(y),<span class="dt">xlab=</span><span class="st">&quot;samples&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;samples&quot;</span>,<span class="dt">col=</span>cols,<span class="dt">zlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</code></pre></div>
+<div class="figure"><span id="fig:correlations"></span>
+<img src="bookdown_files/figure-html/correlations-1.png" alt="Image of correlations. Cell (i,j)  represents correlation between samples i and j. Red is high, white is 0 and red is negative." width="672" />
+<p class="caption">
+图 10.1: Image of correlations. Cell (i,j) represents correlation between samples i and j. Red is high, white is 0 and red is negative.
+</p>
+</div>
+<p>Here we are using the term <em>structure</em> to refer to the deviation from what one would see if the samples were in fact independent from each other. The plot above clearly shows groups of samples that are more correlated between themselves than to others.</p>
+<p>One simple exploratory plot we make to determine how many principal components we need to describe this <em>structure</em> is the variance-explained plot. This is what the variance explained for the PCs would look like if data were independent :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y0 &lt;-<span class="st"> </span><span class="kw">matrix</span>( <span class="kw">rnorm</span>( <span class="kw">nrow</span>(y)<span class="op">*</span><span class="kw">ncol</span>(y) ) , <span class="kw">nrow</span>(y), <span class="kw">ncol</span>(y) )
+d0 &lt;-<span class="st"> </span><span class="kw">svd</span>(y0)<span class="op">$</span>d
+<span class="kw">plot</span>(d0<span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="kw">sum</span>(d0<span class="op">^</span><span class="dv">2</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">25</span>))</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/null_variance_explained1-1.png" alt="Variance explained plot for simulated independent data." width="672" />
+<p class="caption">
+(#fig:null_variance_explained1)Variance explained plot for simulated independent data.
+</p>
+</div>
+<p>Instead we see this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(s<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="kw">sum</span>(s<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span>))</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/variance_explained2-1.png" alt="Variance explained plot for gene expression data." width="672" />
+<p class="caption">
+(#fig:variance_explained2)Variance explained plot for gene expression data.
+</p>
+</div>
+<p>At least 20 or so PCs appear to be higher than what we would expect with independent data. A next step is to try to explain these PCs with measured variables. Is this driven by ethnicity? Sex? Date? Or something else?</p>
+</div>
+<div id="mds-plot" class="section level4">
+<h4><span class="header-section-number">10.4.0.3</span> MDS plot</h4>
+<p>As previously shown, we can make MDS plots to start exploring the data to answer these questions. One way to explore the relationship between variables of interest and PCs is to use color to denote these variables. For example, here are the first two PCs with color representing ethnicity:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cols =<span class="st"> </span><span class="kw">as.numeric</span>(eth)
+<span class="kw">mypar</span>()
+<span class="kw">plot</span>(s<span class="op">$</span>v[,<span class="dv">1</span>],s<span class="op">$</span>v[,<span class="dv">2</span>],<span class="dt">col=</span>cols,<span class="dt">pch=</span><span class="dv">16</span>,
+     <span class="dt">xlab=</span><span class="st">&quot;PC1&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;PC2&quot;</span>)
+<span class="kw">legend</span>(<span class="st">&quot;bottomleft&quot;</span>,<span class="kw">levels</span>(eth),<span class="dt">col=</span><span class="kw">seq</span>(<span class="dt">along=</span><span class="kw">levels</span>(eth)),<span class="dt">pch=</span><span class="dv">16</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/mds_plot-1.png" alt="First two PCs for gene expression data with color representing ethnicity." width="672" />
+<p class="caption">
+(#fig:mds_plot)First two PCs for gene expression data with color representing ethnicity.
+</p>
+</div>
+<p>There is a very clear association between the first PC and ethnicity. However, we also see that for the orange points there are sub-clusters. We know from previous analyses that ethnicity and preprocessing date are correlated:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">year =<span class="st"> </span><span class="kw">factor</span>(<span class="kw">format</span>(dates,<span class="st">&quot;%y&quot;</span>))
+<span class="kw">table</span>(year,eth)</code></pre></div>
+<pre><code>##     eth
+## year ASN CEU HAN
+##   02   0  32   0
+##   03   0  54   0
+##   04   0  13   0
+##   05  80   3   0
+##   06   2   0  23</code></pre>
+<p>So explore the possibility of date being a major source of variability by looking at the same plot, but now with color representing year:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cols =<span class="st"> </span><span class="kw">as.numeric</span>(year)
+<span class="kw">mypar</span>()
+<span class="kw">plot</span>(s<span class="op">$</span>v[,<span class="dv">1</span>],s<span class="op">$</span>v[,<span class="dv">2</span>],<span class="dt">col=</span>cols,<span class="dt">pch=</span><span class="dv">16</span>,
+     <span class="dt">xlab=</span><span class="st">&quot;PC1&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;PC2&quot;</span>)
+<span class="kw">legend</span>(<span class="st">&quot;bottomleft&quot;</span>,<span class="kw">levels</span>(year),<span class="dt">col=</span><span class="kw">seq</span>(<span class="dt">along=</span><span class="kw">levels</span>(year)),<span class="dt">pch=</span><span class="dv">16</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/mds_plot2-1.png" alt="First two PCs for gene expression data with color representing processing year." width="672" />
+<p class="caption">
+(#fig:mds_plot2)First two PCs for gene expression data with color representing processing year.
+</p>
+</div>
+<p>We see that year is also very correlated with the first PC. So which variable is driving this? Given the high level of confounding, it is not easy to parse out. Nonetheless, in the assessment questions and below, we provide some further exploratory approaches.</p>
+</div>
+<div id="boxplot-of-pcs" class="section level4">
+<h4><span class="header-section-number">10.4.0.4</span> Boxplot of PCs</h4>
+<p>The structure seen in the plot of the between sample correlations shows a complex structure that seems to have more than 5 factors (one for each year). It certainly has more complexity than what would be explained by ethnicity. We can also explore the correlation with months.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">month &lt;-<span class="st"> </span><span class="kw">format</span>(dates,<span class="st">&quot;%y%m&quot;</span>)
+<span class="kw">length</span>( <span class="kw">unique</span>(month))</code></pre></div>
+<pre><code>## [1] 21</code></pre>
+<p>Because there are so many months (21), it becomes complicated to use color. Instead we can stratify by month and look at boxplots of our PCs:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">variable &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(month)
+<span class="kw">mypar</span>(<span class="dv">2</span>,<span class="dv">2</span>)
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>){
+  <span class="kw">boxplot</span>(<span class="kw">split</span>(s<span class="op">$</span>v[,i],variable),<span class="dt">las=</span><span class="dv">2</span>,<span class="dt">range=</span><span class="dv">0</span>)
+  <span class="kw">stripchart</span>(<span class="kw">split</span>(s<span class="op">$</span>v[,i],variable),<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">vertical=</span><span class="ot">TRUE</span>,<span class="dt">pch=</span><span class="dv">1</span>,<span class="dt">cex=</span>.<span class="dv">5</span>,<span class="dt">col=</span><span class="dv">1</span>)
+  }</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/pc_boxplots-1.png" alt="Boxplot of first four PCs stratified by month." width="1008" />
+<p class="caption">
+(#fig:pc_boxplots)Boxplot of first four PCs stratified by month.
+</p>
+</div>
+<p>Here we see that month has a very strong correlation with the first PC, even when stratifying by ethnic group as well as some of the others. Remember that samples processed between 2002-2004 are all from the same ethnic group. In cases such as these, in which we have many samples, we can use an analysis of variance to see which PCs correlate with month:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">corr &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(s<span class="op">$</span>v),<span class="cf">function</span>(i){
+  fit &lt;-<span class="st"> </span><span class="kw">lm</span>(s<span class="op">$</span>v[,i]<span class="op">~</span><span class="kw">as.factor</span>(month))
+  <span class="kw">return</span>( <span class="kw">summary</span>(fit)<span class="op">$</span>adj.r.squared  )
+  })
+<span class="kw">mypar</span>()
+<span class="kw">plot</span>(<span class="kw">seq</span>(<span class="dt">along=</span>corr), corr, <span class="dt">xlab=</span><span class="st">&quot;PC&quot;</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/month_PC_corr-1.png" alt="Adjusted R-squared after fitting a model with each month as a factor to each PC." width="672" />
+<p class="caption">
+(#fig:month_PC_corr)Adjusted R-squared after fitting a model with each month as a factor to each PC.
+</p>
+</div>
+<p>We see a very strong correlation with the first PC and relatively strong correlations for the first 20 or so PCs. We can also compute F-statistics comparing within month to across month variability:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Fstats&lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(s<span class="op">$</span>v),<span class="cf">function</span>(i){
+   fit &lt;-<span class="st"> </span><span class="kw">lm</span>(s<span class="op">$</span>v[,i]<span class="op">~</span><span class="kw">as.factor</span>(month))
+   Fstat &lt;-<span class="st"> </span><span class="kw">summary</span>(<span class="kw">aov</span>(fit))[[<span class="dv">1</span>]][<span class="dv">1</span>,<span class="dv">4</span>]
+   <span class="kw">return</span>(Fstat)
+  })
+<span class="kw">mypar</span>()
+<span class="kw">plot</span>(<span class="kw">seq</span>(<span class="dt">along=</span>Fstats),<span class="kw">sqrt</span>(Fstats))
+p &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(month))
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">sqrt</span>(<span class="kw">qf</span>(<span class="fl">0.995</span>,p<span class="op">-</span><span class="dv">1</span>,<span class="kw">ncol</span>(s<span class="op">$</span>v)<span class="op">-</span><span class="dv">1</span>)))</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/fstat_month_PC-1.png" alt="Square root of F-statistics from an analysis of variance to explain PCs with month." width="672" />
+<p class="caption">
+(#fig:fstat_month_PC)Square root of F-statistics from an analysis of variance to explain PCs with month.
+</p>
+</div>
+<p>We have seen how PCA combined with EDA can be a powerful technique to detect and understand batches. In a later section, we will see how we can use the PCs as estimates in factor analysis to improve model estimates.</p>
+</div>
+</div>
+<div id="motivation-for-statistical-approaches" class="section level2">
+<h2><span class="header-section-number">10.5</span> Motivation for Statistical Approaches</h2>
+<div id="data-example-1" class="section level4">
+<h4><span class="header-section-number">10.5.0.1</span> Data example</h4>
+<p>To illustrate how we can adjust for batch effects using statistical methods, we will create a data example in which the outcome of interest is somewhat confounded with batch, but not completely. To aid with the illustration and assessment of the methods we demonstrate, we will also select an outcome for which we have an expectation of what genes should be differentially expressed. Namely, we make sex the outcome of interest and expect genes on the Y chromosome to be differentially expressed. We may also see genes from the X chromosome as differentially expressed since some escape X inactivation. The data with these properties is the one included in this dataset:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##available from course github repository
+<span class="kw">library</span>(GSE5859Subset)
+<span class="kw">data</span>(GSE5859Subset)</code></pre></div>
+<p>We can see the correlation between sex and month:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">month &lt;-<span class="st"> </span><span class="kw">format</span>(sampleInfo<span class="op">$</span>date,<span class="st">&quot;%m&quot;</span>)
+<span class="kw">table</span>(sampleInfo<span class="op">$</span>group, month)</code></pre></div>
+<pre><code>##    month
+##     06 10
+##   0  9  3
+##   1  3  9</code></pre>
+<p>To illustrate the confounding, we will pick some genes to show in a heatmap plot. We pick 1) all Y chromosome genes, 2) some genes that we see correlate with batch, and 3) some randomly selected genes. The image below (code not shown) shows high values in red, low values in blue, middle values in yellow. Each column is a sample and each row is one of the randomly selected genes:</p>
+<div class="figure">
+<img src="bookdown_files/figure-html/image_of_subset-1.png" alt="Image of gene expression data for genes selected to show difference in group as well as the batch effect, along with some randomly chosen genes." width="672" />
+<p class="caption">
+(#fig:image_of_subset)Image of gene expression data for genes selected to show difference in group as well as the batch effect, along with some randomly chosen genes.
+</p>
+</div>
+<p>In the plot above, the first 12 columns are females (1s) and the last 12 columns are males (0s). We can see some Y chromosome genes towards the top since they are blue for females and red from males. We can also see some genes that correlate with month towards the bottom of the image. Some genes are low in June (6) and high in October (10), while others do the opposite. The month effect is not as clear as the sex effect, but it is certainly present.</p>
+<p>In what follows, we will imitate the typical analysis we would do in practice. We will act as if we don’t know which genes are supposed to be differentially expressed between males and females, find genes that are differentially expressed, and the evaluate these methods by comparing to what we expect to be correct. Note while in the plot we only show a few genes, for the analysis we analyze all 8,793.</p>
+</div>
+<div id="assessment-plots-and-summaries" class="section level4">
+<h4><span class="header-section-number">10.5.0.2</span> Assessment plots and summaries</h4>
+<p>For the assessment of the methods we present, we will assume that autosomal (not on chromosome X or Y) genes on the list are likely false positives. We will also assume that genes on chromosome Y are likely true positives. Chromosome X genes could go either way. This gives us the opportunity to estimate both specificity and sensitivity. Since in practice we rarely know the “truth”, these evaluations are not possible. Simulations are therefore commonly used for evaluation purposes: we know the truth because we construct the data. However, simulations are at risk of not capturing all the nuances of real experimental data. In contrast, this dataset is an experimental dataset.</p>
+<p>In the next sections, we will use the histogram p-values to evaluate the specificity (low false positive rates) of the batch adjustment procedures presented here. Because the autosomal genes are not expected to be differentially expressed, we should see a a flat p-value histogram. To evaluate sensitivity (low false negative rates), we will report the number of the reported genes on chromosome X and chromosome Y for which we reject the null hypothesis. We also include a volcano plot with a horizontal dashed line separating the genes called significant from those that are not, and colors used to highlight chromosome X and Y genes.</p>
+<p>Below are the results of applying a naive t-test and report genes with q-values smaller than 0.1.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(qvalue)
+res &lt;-<span class="st"> </span><span class="kw">rowttests</span>(geneExpression,<span class="kw">as.factor</span>( sampleInfo<span class="op">$</span>group ))
+<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+<span class="kw">hist</span>(res<span class="op">$</span>p.value[<span class="kw">which</span>(<span class="op">!</span>chr<span class="op">%in%</span><span class="kw">c</span>(<span class="st">&quot;chrX&quot;</span>,<span class="st">&quot;chrY&quot;</span>) )],<span class="dt">main=</span><span class="st">&quot;&quot;</span>,<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1300</span>))
+
+<span class="kw">plot</span>(res<span class="op">$</span>dm,<span class="op">-</span><span class="kw">log10</span>(res<span class="op">$</span>p.value))
+<span class="kw">points</span>(res<span class="op">$</span>dm[<span class="kw">which</span>(chr<span class="op">==</span><span class="st">&quot;chrX&quot;</span>)],<span class="op">-</span><span class="kw">log10</span>(res<span class="op">$</span>p.value[<span class="kw">which</span>(chr<span class="op">==</span><span class="st">&quot;chrX&quot;</span>)]),<span class="dt">col=</span><span class="dv">1</span>,<span class="dt">pch=</span><span class="dv">16</span>)
+<span class="kw">points</span>(res<span class="op">$</span>dm[<span class="kw">which</span>(chr<span class="op">==</span><span class="st">&quot;chrY&quot;</span>)],<span class="op">-</span><span class="kw">log10</span>(res<span class="op">$</span>p.value[<span class="kw">which</span>(chr<span class="op">==</span><span class="st">&quot;chrY&quot;</span>)]),<span class="dt">col=</span><span class="dv">2</span>,<span class="dt">pch=</span><span class="dv">16</span>,
+       <span class="dt">xlab=</span><span class="st">&quot;Effect size&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;-log10(p-value)&quot;</span>)
+<span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;chrX&quot;</span>,<span class="st">&quot;chrY&quot;</span>),<span class="dt">col=</span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,<span class="dt">pch=</span><span class="dv">16</span>)
+qvals &lt;-<span class="st"> </span><span class="kw">qvalue</span>(res<span class="op">$</span>p.value)<span class="op">$</span>qvalue
+index &lt;-<span class="st"> </span><span class="kw">which</span>(qvals<span class="op">&lt;</span><span class="fl">0.1</span>)
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="op">-</span><span class="kw">log10</span>(<span class="kw">max</span>(res<span class="op">$</span>p.value[index])))</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/pvalue_hist_and_volcano_plots-1.png" alt="p-value histogram and volcano plot for comparison between sexes. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positive) are shown in green." width="1008" />
+<p class="caption">
+(#fig:pvalue_hist_and_volcano_plots)p-value histogram and volcano plot for comparison between sexes. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positive) are shown in green.
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="st">&quot;Total genes with q-value &lt; 0.1: &quot;</span>,<span class="kw">length</span>(index),<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>,
+    <span class="st">&quot;Number of selected genes on chrY: &quot;</span>, <span class="kw">sum</span>(chr[index]<span class="op">==</span><span class="st">&quot;chrY&quot;</span>,<span class="dt">na.rm=</span><span class="ot">TRUE</span>),<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>,
+    <span class="st">&quot;Number of selected genes on chrX: &quot;</span>, <span class="kw">sum</span>(chr[index]<span class="op">==</span><span class="st">&quot;chrX&quot;</span>,<span class="dt">na.rm=</span><span class="ot">TRUE</span>),<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</code></pre></div>
+<pre><code>## Total genes with q-value &lt; 0.1: 59
+## Number of selected genes on chrY: 8
+## Number of selected genes on chrX: 12</code></pre>
+<p>We immediately note that the histogram is not flat. Instead, low p-values are over-represented. Furthermore, more than half of the genes on the final list are autosomal. We now describe two statistical solutions and try to improve on this.</p>
+</div>
+</div>
+<div id="adjusting-for-batch-effects-with-linear-models" class="section level2">
+<h2><span class="header-section-number">10.6</span> Adjusting for Batch Effects with Linear Models</h2>
+<p>We have already observed that processing date has an effect on gene expression. We will therefore try to <em>adjust</em> for this by including it in a model. When we perform a t-test comparing the two groups, it is equivalent to fitting the following linear model:</p>
+<p><span class="math display">\[Y_{ij} = \alpha_j + x_i \beta_{j} + \varepsilon_{ij}\]</span></p>
+<p>to each gene <span class="math inline">\(j\)</span> with <span class="math inline">\(x_i=1\)</span> if subject <span class="math inline">\(i\)</span> is female and 0 otherwise. Note that <span class="math inline">\(\beta_{j}\)</span> represents the estimated difference for gene <span class="math inline">\(j\)</span> and <span class="math inline">\(\varepsilon_{ij}\)</span> represents the within group variation. So what is the problem?</p>
+<p>The theory we described in the linear models chapter assumes that the error terms are independent. We know that this is not the case for all genes because we know the error terms from October will be more alike to each other than the June error terms. We can <em>adjust</em> for this by including a term that models this effect:</p>
+<p><span class="math display">\[Y_{ij} = \alpha_j + x_i \beta_{j} + z_i \gamma_j+\varepsilon_{ij}.\]</span></p>
+<p>Here <span class="math inline">\(z_i=1\)</span> if sample <span class="math inline">\(i\)</span> was processed in October and 0 otherwise and <span class="math inline">\(\gamma_j\)</span> is the month effect for gene <span class="math inline">\(j\)</span>. This an example of how linear models give us much more flexibility than procedures such as the t-test.</p>
+<p>We construct a model matrix that includes batch.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sex &lt;-<span class="st"> </span>sampleInfo<span class="op">$</span>group
+X &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(<span class="op">~</span>sex<span class="op">+</span>batch)</code></pre></div>
+<p>Now we can fit a model for each gene. For example, note the difference between the original model and one that has been adjusted for batch:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">j &lt;-<span class="st"> </span><span class="dv">7635</span>
+y &lt;-<span class="st"> </span>geneExpression[j,]
+X0 &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(<span class="op">~</span>sex) 
+fit &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>X0<span class="op">-</span><span class="dv">1</span>)
+<span class="kw">summary</span>(fit)<span class="op">$</span>coef</code></pre></div>
+<pre><code>##               Estimate Std. Error t value  Pr(&gt;|t|)
+## X0(Intercept)   6.9556     0.2166  32.112 5.612e-20
+## X0sex          -0.6557     0.3063  -2.141 4.365e-02</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">X &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(<span class="op">~</span>sex<span class="op">+</span>batch)
+fit &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>X)
+<span class="kw">summary</span>(fit)<span class="op">$</span>coef</code></pre></div>
+<pre><code>##             Estimate Std. Error t value  Pr(&gt;|t|)
+## (Intercept)  7.26330     0.1606 45.2384 2.036e-22
+## Xsex        -0.04024     0.2427 -0.1658 8.699e-01
+## Xbatch10    -1.23090     0.2427 -5.0709 5.071e-05</code></pre>
+<p>We then fit this new model for each gene. For instance, we can use <code>sapply</code> to recover the estimated coefficient and p-value in the following way:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="st"> </span><span class="kw">t</span>( <span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(geneExpression),<span class="cf">function</span>(j){
+  y &lt;-<span class="st"> </span>geneExpression[j,]
+  fit &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>X<span class="op">-</span><span class="dv">1</span>)
+  <span class="kw">summary</span>(fit)<span class="op">$</span>coef[<span class="dv">2</span>,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)]
+} ) )
+
+
+##turn into data.frame so we can use the same code for plots as above
+res &lt;-<span class="st"> </span><span class="kw">data.frame</span>(res)
+<span class="kw">names</span>(res) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;dm&quot;</span>,<span class="st">&quot;p.value&quot;</span>)
+
+<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+<span class="kw">hist</span>(res<span class="op">$</span>p.value[<span class="kw">which</span>(<span class="op">!</span>chr<span class="op">%in%</span><span class="kw">c</span>(<span class="st">&quot;chrX&quot;</span>,<span class="st">&quot;chrY&quot;</span>) )],<span class="dt">main=</span><span class="st">&quot;&quot;</span>,<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1300</span>))
+
+<span class="kw">plot</span>(res<span class="op">$</span>dm,<span class="op">-</span><span class="kw">log10</span>(res<span class="op">$</span>p.value))
+<span class="kw">points</span>(res<span class="op">$</span>dm[<span class="kw">which</span>(chr<span class="op">==</span><span class="st">&quot;chrX&quot;</span>)],<span class="op">-</span><span class="kw">log10</span>(res<span class="op">$</span>p.value[<span class="kw">which</span>(chr<span class="op">==</span><span class="st">&quot;chrX&quot;</span>)]),<span class="dt">col=</span><span class="dv">1</span>,<span class="dt">pch=</span><span class="dv">16</span>)
+<span class="kw">points</span>(res<span class="op">$</span>dm[<span class="kw">which</span>(chr<span class="op">==</span><span class="st">&quot;chrY&quot;</span>)],<span class="op">-</span><span class="kw">log10</span>(res<span class="op">$</span>p.value[<span class="kw">which</span>(chr<span class="op">==</span><span class="st">&quot;chrY&quot;</span>)]),<span class="dt">col=</span><span class="dv">2</span>,<span class="dt">pch=</span><span class="dv">16</span>,
+       <span class="dt">xlab=</span><span class="st">&quot;Effect size&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;-log10(p-value)&quot;</span>)
+<span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;chrX&quot;</span>,<span class="st">&quot;chrY&quot;</span>),<span class="dt">col=</span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,<span class="dt">pch=</span><span class="dv">16</span>)
+qvals &lt;-<span class="st"> </span><span class="kw">qvalue</span>(res<span class="op">$</span>p.value)<span class="op">$</span>qvalue
+index &lt;-<span class="st"> </span><span class="kw">which</span>(qvals<span class="op">&lt;</span><span class="fl">0.1</span>)
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="op">-</span><span class="kw">log10</span>(<span class="kw">max</span>(res<span class="op">$</span>p.value[index])))</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/pvalue_hist_and_volcano_plots2-1.png" alt="p-value histogram and volcano plot for comparison between sexes after adjustment for month. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positive) are shown in green." width="1008" />
+<p class="caption">
+(#fig:pvalue_hist_and_volcano_plots2)p-value histogram and volcano plot for comparison between sexes after adjustment for month. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positive) are shown in green.
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="st">&quot;Total genes with q-value &lt; 0.1: &quot;</span>,<span class="kw">length</span>(index),<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>,
+    <span class="st">&quot;Number of selected genes on chrY: &quot;</span>, <span class="kw">sum</span>(chr[index]<span class="op">==</span><span class="st">&quot;chrY&quot;</span>,<span class="dt">na.rm=</span><span class="ot">TRUE</span>),<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>,
+    <span class="st">&quot;Number of selected genes on chrX: &quot;</span>, <span class="kw">sum</span>(chr[index]<span class="op">==</span><span class="st">&quot;chrX&quot;</span>,<span class="dt">na.rm=</span><span class="ot">TRUE</span>),<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</code></pre></div>
+<pre><code>## Total genes with q-value &lt; 0.1: 17
+## Number of selected genes on chrY: 6
+## Number of selected genes on chrX: 9</code></pre>
+<p>There is a great improvement in specificity (less false positives) without much loss in sensitivity (we still find many chromosome Y genes). However, we still see some bias in the histogram. In a later section we will see that month does not perfectly account for the batch effect and that better estimates are possible.</p>
+<div id="a-note-on-computing-efficiency" class="section level4">
+<h4><span class="header-section-number">10.6.0.1</span> A note on computing efficiency</h4>
+<p>In the code above, the design matrix does not change within the iterations we are computing <span class="math inline">\((X^\top X)^{-1}\)</span> repeatedly and applying to each gene. Instead we can perform this calculation in one matrix algebra calculation by computing it once and then obtaining all the betas by multiplying <span class="math inline">\((X^\top X)^{-1}X^\top Y\)</span> with the columns of <span class="math inline">\(Y\)</span> representing genes in this case. The <code>limma</code> package has an implementation of this idea (using the QR decomposition). Notice how much faster this is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(limma)
+X &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(<span class="op">~</span>sex<span class="op">+</span>batch)
+fit &lt;-<span class="st"> </span><span class="kw">lmFit</span>(geneExpression,X)</code></pre></div>
+<p>The estimated regression coefficients for each gene are obtained like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>( fit<span class="op">$</span>coef)</code></pre></div>
+<pre><code>## [1] 8793    3</code></pre>
+<p>We have one estimate for each gene. To obtain p-values for one of these, we have to construct the ratios:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">k &lt;-<span class="st"> </span><span class="dv">2</span> ##second coef
+ses &lt;-<span class="st"> </span>fit<span class="op">$</span>stdev.unscaled[,k]<span class="op">*</span>fit<span class="op">$</span>sigma
+ttest &lt;-<span class="st"> </span>fit<span class="op">$</span>coef[,k]<span class="op">/</span>ses
+pvals &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="kw">pt</span>(<span class="op">-</span><span class="kw">abs</span>(ttest),fit<span class="op">$</span>df)</code></pre></div>
+</div>
+<div id="combat" class="section level4">
+<h4><span class="header-section-number">10.6.0.2</span> Combat</h4>
+<p><a href="http://biostatistics.oxfordjournals.org/content/8/1/118.short">Combat</a> is a popular method and is based on using linear models to adjust for batch effects. It fits a hierarchical model to estimate and remove row specific batch effects. Combat uses a modular approach. In a first step, what is considered to be a batch effect is removed:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sva) <span class="co">#available from Bioconductor</span>
+mod &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(<span class="op">~</span>sex)
+cleandat &lt;-<span class="st"> </span><span class="kw">ComBat</span>(geneExpression,batch,mod)</code></pre></div>
+<pre><code>## Found 2 batches
+## Adjusting for 1 covariate(s) or covariate level(s)
+## Standardizing Data across genes
+## Fitting L/S model and finding priors
+## Finding parametric adjustments
+## Adjusting the Data</code></pre>
+<p>Then the results can be used to fit a model with our variable of interest:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res&lt;-genefilter<span class="op">::</span><span class="kw">rowttests</span>(cleandat,<span class="kw">factor</span>(sex))</code></pre></div>
+<p>In this case, the results are less specific than what we obtain by fitting the simple linear model:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+<span class="kw">hist</span>(res<span class="op">$</span>p.value[<span class="kw">which</span>(<span class="op">!</span>chr<span class="op">%in%</span><span class="kw">c</span>(<span class="st">&quot;chrX&quot;</span>,<span class="st">&quot;chrY&quot;</span>) )],<span class="dt">main=</span><span class="st">&quot;&quot;</span>,<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1300</span>))
+
+<span class="kw">plot</span>(res<span class="op">$</span>dm,<span class="op">-</span><span class="kw">log10</span>(res<span class="op">$</span>p.value))
+<span class="kw">points</span>(res<span class="op">$</span>dm[<span class="kw">which</span>(chr<span class="op">==</span><span class="st">&quot;chrX&quot;</span>)],<span class="op">-</span><span class="kw">log10</span>(res<span class="op">$</span>p.value[<span class="kw">which</span>(chr<span class="op">==</span><span class="st">&quot;chrX&quot;</span>)]),<span class="dt">col=</span><span class="dv">1</span>,<span class="dt">pch=</span><span class="dv">16</span>)
+<span class="kw">points</span>(res<span class="op">$</span>dm[<span class="kw">which</span>(chr<span class="op">==</span><span class="st">&quot;chrY&quot;</span>)],<span class="op">-</span><span class="kw">log10</span>(res<span class="op">$</span>p.value[<span class="kw">which</span>(chr<span class="op">==</span><span class="st">&quot;chrY&quot;</span>)]),<span class="dt">col=</span><span class="dv">2</span>,<span class="dt">pch=</span><span class="dv">16</span>,
+       <span class="dt">xlab=</span><span class="st">&quot;Effect size&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;-log10(p-value)&quot;</span>)
+<span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;chrX&quot;</span>,<span class="st">&quot;chrY&quot;</span>),<span class="dt">col=</span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,<span class="dt">pch=</span><span class="dv">16</span>)
+qvals &lt;-<span class="st"> </span><span class="kw">qvalue</span>(res<span class="op">$</span>p.value)<span class="op">$</span>qvalue
+index &lt;-<span class="st"> </span><span class="kw">which</span>(qvals<span class="op">&lt;</span><span class="fl">0.1</span>)
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="op">-</span><span class="kw">log10</span>(<span class="kw">max</span>(res<span class="op">$</span>p.value[index])))</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/pvalue_hist_and_volcano_plots3-1.png" alt="p-value histogram and volcano plot for comparison between sexes for Combat. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positive) are shown in green." width="1008" />
+<p class="caption">
+(#fig:pvalue_hist_and_volcano_plots3)p-value histogram and volcano plot for comparison between sexes for Combat. The Y chromosome genes (considered to be positives) are highlighted in red. The X chromosome genes (a subset is considered to be positive) are shown in green.
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="st">&quot;Total genes with q-value &lt; 0.1: &quot;</span>,<span class="kw">length</span>(index),<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>,
+    <span class="st">&quot;Number of selected genes on chrY: &quot;</span>, <span class="kw">sum</span>(chr[index]<span class="op">==</span><span class="st">&quot;chrY&quot;</span>,<span class="dt">na.rm=</span><span class="ot">TRUE</span>),<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>,
+    <span class="st">&quot;Number of selected genes on chrX: &quot;</span>, <span class="kw">sum</span>(chr[index]<span class="op">==</span><span class="st">&quot;chrX&quot;</span>,<span class="dt">na.rm=</span><span class="ot">TRUE</span>),<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</code></pre></div>
+<pre><code>## Total genes with q-value &lt; 0.1: 68
+## Number of selected genes on chrY: 8
+## Number of selected genes on chrX: 16</code></pre>
+</div>
+</div>
+<div id="factor-analysis" class="section level2">
+<h2><span class="header-section-number">10.7</span> Factor Analysis</h2>
+<p>Before we introduce the next type of statistical method for batch effect correction, we introduce the statistical idea that motivates the main idea: Factor Analysis. Factor Analysis was first developed over a century ago. Karl Pearson noted that correlation between different subjects when the correlation was computed across students. To explain this, he posed a model having one factor that was common across subjects for each student that explained this correlation:</p>
+<p><span class="math display">\[
+Y_ij = \alpha_i W_1 + \varepsilon_{ij}
+\]</span></p>
+<p>with <span class="math inline">\(Y_{ij}\)</span> the grade for individual <span class="math inline">\(i\)</span> on subject <span class="math inline">\(j\)</span> and <span class="math inline">\(\alpha_i\)</span> representing the ability of student <span class="math inline">\(i\)</span> to obtain good grades.</p>
+<p>In this example, <span class="math inline">\(W_1\)</span> is a constant. Here we will motivate factor analysis with a slightly more complicated situation that resembles the presence of batch effects. We generate a random <span class="math inline">\(N \times 6\)</span> matrix <span class="math inline">\(\mathbf{Y}\)</span> with representing grades in six different subjects for N different children. We generate the data in a way that subjects are correlated with some more than others:</p>
+<div id="sample-correlations" class="section level4">
+<h4><span class="header-section-number">10.7.0.1</span> Sample correlations</h4>
+<p>Note that we observe high correlation across the six subjects:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="kw">cor</span>(Y),<span class="dv">2</span>)</code></pre></div>
+<pre><code>##          Math Science   CS  Eng Hist Classics
+## Math     1.00    0.67 0.64 0.34 0.29     0.28
+## Science  0.67    1.00 0.65 0.29 0.29     0.26
+## CS       0.64    0.65 1.00 0.35 0.30     0.29
+## Eng      0.34    0.29 0.35 1.00 0.71     0.72
+## Hist     0.29    0.29 0.30 0.71 1.00     0.68
+## Classics 0.28    0.26 0.29 0.72 0.68     1.00</code></pre>
+<p>A graphical look shows that the correlation suggests a grouping of the subjects into STEM and the humanities.</p>
+<p>In the figure below, high correlations are red, no correlation is white and negative correlations are blue (code not shown).</p>
+<div class="figure">
+<img src="bookdown_files/figure-html/correlation_images-1.png" alt="Images of correlation between columns. High correlation is red, no correlation is white, and negative correlation is blue." width="1008" />
+<p class="caption">
+(#fig:correlation_images)Images of correlation between columns. High correlation is red, no correlation is white, and negative correlation is blue.
+</p>
+</div>
+<p>The figure shows the following: there is correlation across all subjects, indicating that students have an underlying hidden factor (academic ability for example) that results in subjects begin correlated since students that test high in one subject tend to test high in the others. We also see that this correlation is higher with the STEM subjects and within the humanities subjects. This implies that there is probably another hidden factor that determines if students are better in STEM or humanities. We now show how these concepts can be explained with a statistical model.</p>
+</div>
+<div id="factor-model" class="section level4">
+<h4><span class="header-section-number">10.7.0.2</span> Factor model</h4>
+<p>Based on the plot above, we hypothesize that there are two hidden factors <span class="math inline">\(\mathbf{W}_1\)</span> and <span class="math inline">\(\mathbf{W}_2\)</span> and, to account for the observed correlation structure, we model the data in the following way:</p>
+<p><span class="math display">\[
+Y_{ij} = \alpha_{i,1} W_{1,j} + \alpha_{i,2} W_{2,j} + \varepsilon_{ij}
+\]</span></p>
+<p>The interpretation of these parameters are as follows: <span class="math inline">\(\alpha_{i,1}\)</span> is the overall academic ability for student <span class="math inline">\(i\)</span> and <span class="math inline">\(\alpha_{i,2}\)</span> is the difference in ability between the STEM and humanities for student <span class="math inline">\(i\)</span>. Now, can we estimate the <span class="math inline">\(W\)</span> and <span class="math inline">\(\alpha\)</span> ?</p>
+</div>
+<div id="factor-analysis-and-pca" class="section level4">
+<h4><span class="header-section-number">10.7.0.3</span> Factor analysis and PCA</h4>
+<p>It turns out that under certain assumptions, the first two principal components are optimal estimates for <span class="math inline">\(W_1\)</span> and <span class="math inline">\(W_2\)</span>. So we can estimate them like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">s &lt;-<span class="st"> </span><span class="kw">svd</span>(Y)
+What &lt;-<span class="st"> </span><span class="kw">t</span>(s<span class="op">$</span>v[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])
+<span class="kw">colnames</span>(What)&lt;-<span class="kw">colnames</span>(Y)
+<span class="kw">round</span>(What,<span class="dv">2</span>)</code></pre></div>
+<pre><code>##       Math Science    CS  Eng Hist Classics
+## [1,]  0.36    0.36  0.36 0.47 0.43     0.45
+## [2,] -0.44   -0.49 -0.42 0.34 0.34     0.39</code></pre>
+<p>As expected, the first factor is close to a constant and will help explain the observed correlation across all subjects, while the second is a factor differs between STEM and humanities. We can now use these estimates in the model:</p>
+<p><span class="math display">\[
+Y_{ij} = \alpha_{i,1} \hat{W}_{1,j} + \alpha_{i,2} \hat{W}_{2,j} + \varepsilon_{ij}
+\]</span></p>
+<p>and we can now fit the model and note that it explains a large percent of the variability.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit =<span class="st"> </span>s<span class="op">$</span>u[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]<span class="op">%*%</span><span class="st"> </span>(s<span class="op">$</span>d[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]<span class="op">*</span>What)
+<span class="kw">var</span>(<span class="kw">as.vector</span>(fit))<span class="op">/</span><span class="kw">var</span>(<span class="kw">as.vector</span>(Y))</code></pre></div>
+<pre><code>## [1] 0.7881</code></pre>
+<p>The important lesson here is that when we have correlated units, the standard linear models are not appropriate. We need to account for the observed structure somehow. Factor analysis is a powerful way of achieving this.</p>
+</div>
+<div id="factor-analysis-in-general" class="section level4">
+<h4><span class="header-section-number">10.7.0.4</span> Factor analysis in general</h4>
+<p>In high-throughput data, it is quite common to see correlation structure. For example, notice the complex correlations we see across samples in the plot below. These are the correlations for a gene expression experiment with columns ordered by date:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Biobase)
+<span class="kw">library</span>(GSE5859)
+<span class="kw">data</span>(GSE5859)
+n &lt;-<span class="st"> </span><span class="kw">nrow</span>(<span class="kw">pData</span>(e))
+o &lt;-<span class="st"> </span><span class="kw">order</span>(<span class="kw">pData</span>(e)<span class="op">$</span>date)
+Y=<span class="kw">exprs</span>(e)[,o]
+cors=<span class="kw">cor</span>(Y<span class="op">-</span><span class="kw">rowMeans</span>(Y))
+cols=<span class="kw">colorRampPalette</span>(<span class="kw">rev</span>(<span class="kw">brewer.pal</span>(<span class="dv">11</span>,<span class="st">&quot;RdBu&quot;</span>)))(<span class="dv">100</span>)
+
+<span class="kw">mypar</span>()
+<span class="kw">image</span>(<span class="dv">1</span><span class="op">:</span>n,<span class="dv">1</span><span class="op">:</span>n,cors,<span class="dt">col=</span>cols,<span class="dt">xlab=</span><span class="st">&quot;samples&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;samples&quot;</span>,<span class="dt">zlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/gene_expression_correlations-1.png" alt="Image of correlations. Cell (i,j)  represents correlation between samples i and j. Red is high, white is 0 and red is negative." width="672" />
+<p class="caption">
+(#fig:gene_expression_correlations)Image of correlations. Cell (i,j) represents correlation between samples i and j. Red is high, white is 0 and red is negative.
+</p>
+</div>
+<p>Two factors will not be enough to model the observed correlation structure. However, a more general factor model can be useful:</p>
+<p><span class="math display">\[
+Y_{ij} = \sum_{k=1}^K \alpha_{i,k} W_{j,k} + \varepsilon_{ij}
+\]</span></p>
+<p>And we can use PCA to estimate <span class="math inline">\(\mathbf{W}_1,\dots,\mathbf{W}_K\)</span>. However, choosing <span class="math inline">\(k\)</span> is a challenge and a topic of current research. In the next section we describe how exploratory data analysis might help.</p>
+</div>
+</div>
+<div id="modeling-batch-effects-with-factor-analysis" class="section level2">
+<h2><span class="header-section-number">10.8</span> Modeling Batch Effects with Factor Analysis</h2>
+<p>We continue to use this data set:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GSE5859Subset)
+<span class="kw">data</span>(GSE5859Subset)</code></pre></div>
+<p>Below is the image we showed earlier with a subset of genes showing both the sex effect and the month time effects, but now with an image showing the sample to sample correlations (computed on all genes) showing the complex structure of the data (code not shown):</p>
+<div class="figure">
+<img src="bookdown_files/figure-html/correlation_image-1.png" alt="Image of subset gene expression data (left) and image of correlations for this dataset (right)." width="1008" />
+<p class="caption">
+(#fig:correlation_image)Image of subset gene expression data (left) and image of correlations for this dataset (right).
+</p>
+</div>
+<p>We have seen how the approach that assumes month explains the batch and adjusts with linear models perform relatively well. However, there was still room for improvement. This is most likely due to the fact that month is only a surrogate for some hidden factor or factors that actually induces structure or between sample correlation.</p>
+<div id="what-is-a-batch" class="section level4">
+<h4><span class="header-section-number">10.8.0.1</span> What is a batch?</h4>
+<p>Here is a plot of dates for each sample, with color representing month:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">times &lt;-sampleInfo<span class="op">$</span>date 
+<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">1</span>)
+o=<span class="kw">order</span>(times)
+<span class="kw">plot</span>(times[o],<span class="dt">pch=</span><span class="dv">21</span>,<span class="dt">bg=</span><span class="kw">as.numeric</span>(batch)[o],<span class="dt">ylab=</span><span class="st">&quot;Date&quot;</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/what_is_batch-1.png" alt="Dates with color denoting month." width="672" />
+<p class="caption">
+(#fig:what_is_batch)Dates with color denoting month.
+</p>
+</div>
+<p>We note that there is more than one day per month. Could day have an effect as well? We can use PCA and EDA to try to answer this question. Here is a plot of the first principal component ordered by date:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">s &lt;-<span class="st"> </span><span class="kw">svd</span>(y)
+<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">1</span>)
+o&lt;-<span class="kw">order</span>(times)
+cols &lt;-<span class="st"> </span><span class="kw">as.numeric</span>( batch)
+<span class="kw">plot</span>(s<span class="op">$</span>v[o,<span class="dv">1</span>],<span class="dt">pch=</span><span class="dv">21</span>,<span class="dt">cex=</span><span class="fl">1.25</span>,<span class="dt">bg=</span>cols[o],<span class="dt">ylab=</span><span class="st">&quot;First PC&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Date order&quot;</span>)
+<span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;Month 1&quot;</span>,<span class="st">&quot;Month 2&quot;</span>),<span class="dt">col=</span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">box.lwd=</span><span class="dv">0</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/PC1_versus_time-1.png" alt="First PC plotted against order by date with colors representing month." width="672" />
+<p class="caption">
+(#fig:PC1_versus_time)First PC plotted against order by date with colors representing month.
+</p>
+</div>
+<p>Day seems to be highly correlated with the first PC, which explains a high percentage of the variability:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">1</span>)
+<span class="kw">plot</span>(s<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="kw">sum</span>(s<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span>),<span class="dt">ylab=</span><span class="st">&quot;% variance explained&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Principal component&quot;</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/variance_explained3-1.png" alt="Variance explained." width="672" />
+<p class="caption">
+(#fig:variance_explained3)Variance explained.
+</p>
+</div>
+<p>Further exploration shows that the first six or so PC seem to be at least partially driven by date:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mypar</span>(<span class="dv">3</span>,<span class="dv">4</span>)
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>){
+  days &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;2005-&quot;</span>,<span class="st">&quot;&quot;</span>,times)  
+  <span class="kw">boxplot</span>(<span class="kw">split</span>(s<span class="op">$</span>v[,i],<span class="kw">gsub</span>(<span class="st">&quot;2005-&quot;</span>,<span class="st">&quot;&quot;</span>,days)))
+}</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/PCs_stratified_by_time-1.png" alt="First 12 PCs stratified by dates." width="1008" />
+<p class="caption">
+(#fig:PCs_stratified_by_time)First 12 PCs stratified by dates.
+</p>
+</div>
+<p>So what happens if we simply remove the top six PC from the data and then perform a t-test?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">D &lt;-<span class="st"> </span>s<span class="op">$</span>d; D[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]&lt;-<span class="dv">0</span> <span class="co">#take out first 2</span>
+cleandat &lt;-<span class="st"> </span><span class="kw">sweep</span>(s<span class="op">$</span>u,<span class="dv">2</span>,D,<span class="st">&quot;*&quot;</span>)<span class="op">%*%</span><span class="kw">t</span>(s<span class="op">$</span>v)
+res &lt;-<span class="kw">rowttests</span>(cleandat,<span class="kw">factor</span>(sex))</code></pre></div>
+<p>This does remove the batch effect, but it seems we have also removed much of the biological effect we are interested in. In fact, no genes have q-value &lt;0.1 anymore.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(qvalue)
+<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+<span class="kw">hist</span>(res<span class="op">$</span>p.value[<span class="kw">which</span>(<span class="op">!</span>chr<span class="op">%in%</span><span class="kw">c</span>(<span class="st">&quot;chrX&quot;</span>,<span class="st">&quot;chrY&quot;</span>) )],<span class="dt">main=</span><span class="st">&quot;&quot;</span>,<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1300</span>))
+
+<span class="kw">plot</span>(res<span class="op">$</span>dm,<span class="op">-</span><span class="kw">log10</span>(res<span class="op">$</span>p.value))
+<span class="kw">points</span>(res<span class="op">$</span>dm[<span class="kw">which</span>(chr<span class="op">==</span><span class="st">&quot;chrX&quot;</span>)],<span class="op">-</span><span class="kw">log10</span>(res<span class="op">$</span>p.value[<span class="kw">which</span>(chr<span class="op">==</span><span class="st">&quot;chrX&quot;</span>)]),<span class="dt">col=</span><span class="dv">1</span>,<span class="dt">pch=</span><span class="dv">16</span>)
+<span class="kw">points</span>(res<span class="op">$</span>dm[<span class="kw">which</span>(chr<span class="op">==</span><span class="st">&quot;chrY&quot;</span>)],<span class="op">-</span><span class="kw">log10</span>(res<span class="op">$</span>p.value[<span class="kw">which</span>(chr<span class="op">==</span><span class="st">&quot;chrY&quot;</span>)]),<span class="dt">col=</span><span class="dv">2</span>,<span class="dt">pch=</span><span class="dv">16</span>,
+       <span class="dt">xlab=</span><span class="st">&quot;Effect size&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;-log10(p-value)&quot;</span>)
+<span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;chrX&quot;</span>,<span class="st">&quot;chrY&quot;</span>),<span class="dt">col=</span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,<span class="dt">pch=</span><span class="dv">16</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/pval_hist_and_volcano_after_removing_PCs-1.png" alt="p-value histogram and volcano plot after blindly removing the first two PCs." width="1008" />
+<p class="caption">
+(#fig:pval_hist_and_volcano_after_removing_PCs)p-value histogram and volcano plot after blindly removing the first two PCs.
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qvals &lt;-<span class="st"> </span><span class="kw">qvalue</span>(res<span class="op">$</span>p.value)<span class="op">$</span>qvalue
+index &lt;-<span class="st"> </span><span class="kw">which</span>(qvals<span class="op">&lt;</span><span class="fl">0.1</span>)
+
+<span class="kw">cat</span>(<span class="st">&quot;Total genes with q-value &lt; 0.1: &quot;</span>,<span class="kw">length</span>(index),<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>,
+    <span class="st">&quot;Number of selected genes on chrY: &quot;</span>, <span class="kw">sum</span>(chr[index]<span class="op">==</span><span class="st">&quot;chrY&quot;</span>,<span class="dt">na.rm=</span><span class="ot">TRUE</span>),<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>,
+    <span class="st">&quot;Number of selected genes on chrX: &quot;</span>, <span class="kw">sum</span>(chr[index]<span class="op">==</span><span class="st">&quot;chrX&quot;</span>,<span class="dt">na.rm=</span><span class="ot">TRUE</span>),<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</code></pre></div>
+<pre><code>## Total genes with q-value &lt; 0.1: 0
+## Number of selected genes on chrY: 0
+## Number of selected genes on chrX: 0</code></pre>
+<p>In this case we seem to have over corrected since we now recover many fewer chromosome Y genes and the p-value histogram shows a dearth of small p-values that makes the distribution non-uniform. Because sex is probably correlated with some of the first PCs, this may be a case of “throwing out the baby with the bath water”.</p>
+</div>
+<div id="surrogate-variable-analysis" class="section level4">
+<h4><span class="header-section-number">10.8.0.2</span> Surrogate Variable Analysis</h4>
+<p>A solution to the problem of over-correcting and removing the variability associated with the outcome of interest is fit models with both the covariate of interest, as well as those believed to be batches. An example of an approach that does this is <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1994707/">Surrogate Variable Analysis</a> (SVA).</p>
+<p>The basic idea of SVA is to first estimate the factors, but taking care not to include the outcome of interest. To do this, an interactive approach is used in which each row is given a weight that quantifies the probability of the gene being exclusively associated with the surrogate variables and not the outcome of interest. These weights are then used in the SVD calculation with higher weights given to rows not associated with the outcome of interest and associated with batches. Below is a demonstration of two iterations. The three images are the data multiplied by the weight (for a subset of genes), the weights, and the estimated first factor (code not shown).</p>
+<pre><code>## Number of significant surrogate variables is:  5 
+## Iteration (out of 1 ):1</code></pre>
+<pre><code>## Number of significant surrogate variables is:  5 
+## Iteration (out of 2 ):1  2</code></pre>
+<div class="figure">
+<img src="bookdown_files/figure-html/illustration_of_sva-1.png" alt="Illustration of iterative procedure used by SVA. Only two iterations are shown." width="1008" />
+<p class="caption">
+(#fig:illustration_of_sva)Illustration of iterative procedure used by SVA. Only two iterations are shown.
+</p>
+</div>
+<p>The algorithm iterates this procedure several times (controlled by <code>B</code> argument) and returns an estimate of the surrogate variables, which are analogous to the hidden factors of factor analysis. To actually run SVA, we run the <code>sva</code> function. In this case, SVA picks the number of surrogate values or factors for us.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(limma)
+svafit &lt;-<span class="st"> </span><span class="kw">sva</span>(geneExpression,mod)</code></pre></div>
+<pre><code>## Number of significant surrogate variables is:  5 
+## Iteration (out of 5 ):1  2  3  4  5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">svaX&lt;-<span class="kw">model.matrix</span>(<span class="op">~</span>sex<span class="op">+</span>svafit<span class="op">$</span>sv)
+lmfit &lt;-<span class="st"> </span><span class="kw">lmFit</span>(geneExpression,svaX)
+tt&lt;-<span class="st"> </span>lmfit<span class="op">$</span>coef[,<span class="dv">2</span>]<span class="op">*</span><span class="kw">sqrt</span>(lmfit<span class="op">$</span>df.residual)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>lmfit<span class="op">$</span>sigma)</code></pre></div>
+<p>There is an improvement over previous approaches:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">dm=</span> <span class="op">-</span>lmfit<span class="op">$</span>coef[,<span class="dv">2</span>],
+                  <span class="dt">p.value=</span><span class="dv">2</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">pt</span>(<span class="kw">abs</span>(tt),lmfit<span class="op">$</span>df.residual[<span class="dv">1</span>]) ) )
+<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+<span class="kw">hist</span>(res<span class="op">$</span>p.value[<span class="kw">which</span>(<span class="op">!</span>chr<span class="op">%in%</span><span class="kw">c</span>(<span class="st">&quot;chrX&quot;</span>,<span class="st">&quot;chrY&quot;</span>) )],<span class="dt">main=</span><span class="st">&quot;&quot;</span>,<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1300</span>))
+
+<span class="kw">plot</span>(res<span class="op">$</span>dm,<span class="op">-</span><span class="kw">log10</span>(res<span class="op">$</span>p.value))
+<span class="kw">points</span>(res<span class="op">$</span>dm[<span class="kw">which</span>(chr<span class="op">==</span><span class="st">&quot;chrX&quot;</span>)],<span class="op">-</span><span class="kw">log10</span>(res<span class="op">$</span>p.value[<span class="kw">which</span>(chr<span class="op">==</span><span class="st">&quot;chrX&quot;</span>)]),<span class="dt">col=</span><span class="dv">1</span>,<span class="dt">pch=</span><span class="dv">16</span>)
+<span class="kw">points</span>(res<span class="op">$</span>dm[<span class="kw">which</span>(chr<span class="op">==</span><span class="st">&quot;chrY&quot;</span>)],<span class="op">-</span><span class="kw">log10</span>(res<span class="op">$</span>p.value[<span class="kw">which</span>(chr<span class="op">==</span><span class="st">&quot;chrY&quot;</span>)]),<span class="dt">col=</span><span class="dv">2</span>,<span class="dt">pch=</span><span class="dv">16</span>,
+       <span class="dt">xlab=</span><span class="st">&quot;Effect size&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;-log10(p-value)&quot;</span>)
+<span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;chrX&quot;</span>,<span class="st">&quot;chrY&quot;</span>),<span class="dt">col=</span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,<span class="dt">pch=</span><span class="dv">16</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/pval_hist_and_volcano_sva-1.png" alt="p-value histogram and volcano plot obtained with SVA." width="1008" />
+<p class="caption">
+(#fig:pval_hist_and_volcano_sva)p-value histogram and volcano plot obtained with SVA.
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qvals &lt;-<span class="st"> </span><span class="kw">qvalue</span>(res<span class="op">$</span>p.value)<span class="op">$</span>qvalue
+index &lt;-<span class="st"> </span><span class="kw">which</span>(qvals<span class="op">&lt;</span><span class="fl">0.1</span>)
+
+<span class="kw">cat</span>(<span class="st">&quot;Total genes with q-value &lt; 0.1: &quot;</span>,<span class="kw">length</span>(index),<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>,
+    <span class="st">&quot;Number of selected genes on chrY: &quot;</span>, <span class="kw">sum</span>(chr[index]<span class="op">==</span><span class="st">&quot;chrY&quot;</span>,<span class="dt">na.rm=</span><span class="ot">TRUE</span>),<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>,
+    <span class="st">&quot;Number of selected genes on chrX: &quot;</span>, <span class="kw">sum</span>(chr[index]<span class="op">==</span><span class="st">&quot;chrX&quot;</span>,<span class="dt">na.rm=</span><span class="ot">TRUE</span>),<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</code></pre></div>
+<pre><code>## Total genes with q-value &lt; 0.1: 14
+## Number of selected genes on chrY: 5
+## Number of selected genes on chrX: 8</code></pre>
+<p>To visualize what SVA achieved, below is a visualization of the original dataset decomposed into sex effects, surrogate variables, and independent noise estimated by the algorithm (code not shown):</p>
+<div class="figure">
+<img src="bookdown_files/figure-html/different_sources_of_var-1.png" alt="Original data split into three sources of variability estimated by SVA: sex-related signal, surrogate-variable induced structure, and independent error." width="1008" />
+<p class="caption">
+(#fig:different_sources_of_var)Original data split into three sources of variability estimated by SVA: sex-related signal, surrogate-variable induced structure, and independent error.
+</p>
+</div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="basic-machine-learning.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/xie186/DataAnalysisForLifeScience_cn/edit/master/10_batch.Rmd",
+"text": "编辑"
+},
+"download": ["bookdown.pdf", "bookdown.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>生物信息R数据分析</title>
+  <meta name="description" content="生物信息R数据分析">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="生物信息R数据分析" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="images/cover.jpg" />
+  <meta property="og:description" content="生物信息R数据分析" />
+  <meta name="github-repo" content="xie186/HarvardDataScienceForLifeScience_cn" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="生物信息R数据分析" />
+  
+  <meta name="twitter:description" content="生物信息R数据分析" />
+  <meta name="twitter:image" content="images/cover.jpg" />
+
+<meta name="author" content="作者：Rafael A. Irizarry; Mike I. Love 翻译：张三 李四 麻子">
+
+
+<meta name="date" content="2017-11-19">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="distance-and-dimension-reduction.html">
+<link rel="next" href="batch-effects.html">
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">生物信息R数据分析</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Cover picture</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a><ul>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#who-will-find-this-book-useful"><i class="fa fa-check"></i>Who Will Find This Book Useful?</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#what-does-this-book-cover"><i class="fa fa-check"></i>What Does This Book Cover?</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#how-is-this-book-different"><i class="fa fa-check"></i>How Is This Book Different?</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
+<li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#installing-r"><i class="fa fa-check"></i><b>1.1</b> Installing R</a></li>
+<li class="chapter" data-level="1.2" data-path="getting-started.html"><a href="getting-started.html#installing-rstudio"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#learn-r-basics"><i class="fa fa-check"></i><b>1.3</b> Learn R Basics</a></li>
+<li class="chapter" data-level="1.4" data-path="getting-started.html"><a href="getting-started.html#installing-packages"><i class="fa fa-check"></i><b>1.4</b> Installing Packages</a></li>
+<li class="chapter" data-level="1.5" data-path="getting-started.html"><a href="getting-started.html#importing-data-into-r"><i class="fa fa-check"></i><b>1.5</b> Importing Data into R</a></li>
+<li class="chapter" data-level="1.6" data-path="getting-started.html"><a href="getting-started.html#brief-introduction-to-dplyr"><i class="fa fa-check"></i><b>1.6</b> Brief Introduction to <code>dplyr</code></a></li>
+<li class="chapter" data-level="1.7" data-path="getting-started.html"><a href="getting-started.html#mathematical-notation"><i class="fa fa-check"></i><b>1.7</b> Mathematical Notation</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="inference.html"><a href="inference.html"><i class="fa fa-check"></i><b>2</b> Inference</a><ul>
+<li class="chapter" data-level="2.1" data-path="inference.html"><a href="inference.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="inference.html"><a href="inference.html#random-variables"><i class="fa fa-check"></i><b>2.2</b> Random Variables</a></li>
+<li class="chapter" data-level="2.3" data-path="inference.html"><a href="inference.html#the-null-hypothesis"><i class="fa fa-check"></i><b>2.3</b> The Null Hypothesis</a></li>
+<li class="chapter" data-level="2.4" data-path="inference.html"><a href="inference.html#distributions"><i class="fa fa-check"></i><b>2.4</b> Distributions</a></li>
+<li class="chapter" data-level="2.5" data-path="inference.html"><a href="inference.html#probability-distribution"><i class="fa fa-check"></i><b>2.5</b> Probability Distribution</a></li>
+<li class="chapter" data-level="2.6" data-path="inference.html"><a href="inference.html#normal-distribution"><i class="fa fa-check"></i><b>2.6</b> Normal Distribution</a></li>
+<li class="chapter" data-level="2.7" data-path="inference.html"><a href="inference.html#populations-samples-and-estimates"><i class="fa fa-check"></i><b>2.7</b> Populations, Samples and Estimates</a></li>
+<li class="chapter" data-level="2.8" data-path="inference.html"><a href="inference.html#central-limit-theorem-and-t-distribution"><i class="fa fa-check"></i><b>2.8</b> Central Limit Theorem and t-distribution</a></li>
+<li class="chapter" data-level="2.9" data-path="inference.html"><a href="inference.html#central-limit-theorem-in-practice"><i class="fa fa-check"></i><b>2.9</b> Central Limit Theorem in Practice</a></li>
+<li class="chapter" data-level="2.10" data-path="inference.html"><a href="inference.html#t-tests-in-practice"><i class="fa fa-check"></i><b>2.10</b> t-tests in Practice</a></li>
+<li class="chapter" data-level="2.11" data-path="inference.html"><a href="inference.html#the-t-distribution-in-practice"><i class="fa fa-check"></i><b>2.11</b> The t-distribution in Practice</a></li>
+<li class="chapter" data-level="2.12" data-path="inference.html"><a href="inference.html#confidence-intervals"><i class="fa fa-check"></i><b>2.12</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="2.13" data-path="inference.html"><a href="inference.html#power-calculations"><i class="fa fa-check"></i><b>2.13</b> Power Calculations</a></li>
+<li class="chapter" data-level="2.14" data-path="inference.html"><a href="inference.html#monte-carlo-simulation"><i class="fa fa-check"></i><b>2.14</b> Monte Carlo Simulation</a></li>
+<li class="chapter" data-level="2.15" data-path="inference.html"><a href="inference.html#parametric-simulations-for-the-observations"><i class="fa fa-check"></i><b>2.15</b> Parametric Simulations for the Observations</a></li>
+<li class="chapter" data-level="2.16" data-path="inference.html"><a href="inference.html#permutation-tests"><i class="fa fa-check"></i><b>2.16</b> Permutation Tests</a></li>
+<li class="chapter" data-level="2.17" data-path="inference.html"><a href="inference.html#association-tests"><i class="fa fa-check"></i><b>2.17</b> Association Tests</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>3</b> Exploratory Data Analysis</a><ul>
+<li class="chapter" data-level="3.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#quantile-quantile-plots"><i class="fa fa-check"></i><b>3.1</b> Quantile Quantile Plots</a></li>
+<li class="chapter" data-level="3.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#boxplots"><i class="fa fa-check"></i><b>3.2</b> Boxplots</a></li>
+<li class="chapter" data-level="3.3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#scatterplots-and-correlation"><i class="fa fa-check"></i><b>3.3</b> Scatterplots and Correlation</a></li>
+<li class="chapter" data-level="3.4" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#stratification"><i class="fa fa-check"></i><b>3.4</b> Stratification</a></li>
+<li class="chapter" data-level="3.5" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#bivariate-normal-distribution"><i class="fa fa-check"></i><b>3.5</b> Bivariate Normal Distribution</a></li>
+<li class="chapter" data-level="3.6" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#plots-to-avoid"><i class="fa fa-check"></i><b>3.6</b> Plots to Avoid</a></li>
+<li class="chapter" data-level="3.7" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#misunderstanding-correlation-advanced"><i class="fa fa-check"></i><b>3.7</b> Misunderstanding Correlation (Advanced)</a></li>
+<li class="chapter" data-level="3.8" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#robust-summaries"><i class="fa fa-check"></i><b>3.8</b> Robust Summaries</a></li>
+<li class="chapter" data-level="3.9" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#wilcoxon-rank-sum-test"><i class="fa fa-check"></i><b>3.9</b> Wilcoxon Rank Sum Test</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="matrix-algebra.html"><a href="matrix-algebra.html"><i class="fa fa-check"></i><b>4</b> Matrix Algebra</a><ul>
+<li class="chapter" data-level="4.1" data-path="matrix-algebra.html"><a href="matrix-algebra.html#motivating-examples"><i class="fa fa-check"></i><b>4.1</b> Motivating Examples</a></li>
+<li class="chapter" data-level="4.2" data-path="matrix-algebra.html"><a href="matrix-algebra.html#matrix-notation"><i class="fa fa-check"></i><b>4.2</b> Matrix Notation</a></li>
+<li class="chapter" data-level="4.3" data-path="matrix-algebra.html"><a href="matrix-algebra.html#solving-systems-of-equations"><i class="fa fa-check"></i><b>4.3</b> Solving Systems of Equations</a></li>
+<li class="chapter" data-level="4.4" data-path="matrix-algebra.html"><a href="matrix-algebra.html#vectors-matrices-and-scalars"><i class="fa fa-check"></i><b>4.4</b> Vectors, Matrices, and Scalars</a></li>
+<li class="chapter" data-level="4.5" data-path="matrix-algebra.html"><a href="matrix-algebra.html#matrix-operations"><i class="fa fa-check"></i><b>4.5</b> Matrix Operations</a></li>
+<li class="chapter" data-level="4.6" data-path="matrix-algebra.html"><a href="matrix-algebra.html#examples"><i class="fa fa-check"></i><b>4.6</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="linear-models-1.html"><a href="linear-models-1.html"><i class="fa fa-check"></i><b>5</b> Linear Models</a><ul>
+<li class="chapter" data-level="5.1" data-path="linear-models-1.html"><a href="linear-models-1.html#the-design-matrix"><i class="fa fa-check"></i><b>5.1</b> The Design Matrix</a></li>
+<li class="chapter" data-level="5.2" data-path="linear-models-1.html"><a href="linear-models-1.html#the-mathematics-behind-lm"><i class="fa fa-check"></i><b>5.2</b> The Mathematics Behind lm()</a></li>
+<li class="chapter" data-level="5.3" data-path="linear-models-1.html"><a href="linear-models-1.html#standard-errors"><i class="fa fa-check"></i><b>5.3</b> Standard Errors</a></li>
+<li class="chapter" data-level="5.4" data-path="linear-models-1.html"><a href="linear-models-1.html#interactions-and-contrasts"><i class="fa fa-check"></i><b>5.4</b> Interactions and Contrasts</a></li>
+<li class="chapter" data-level="5.5" data-path="linear-models-1.html"><a href="linear-models-1.html#linear-model-with-interactions"><i class="fa fa-check"></i><b>5.5</b> Linear Model with Interactions</a></li>
+<li class="chapter" data-level="5.6" data-path="linear-models-1.html"><a href="linear-models-1.html#analysis-of-variance"><i class="fa fa-check"></i><b>5.6</b> Analysis of Variance</a></li>
+<li class="chapter" data-level="5.7" data-path="linear-models-1.html"><a href="linear-models-1.html#collinearity"><i class="fa fa-check"></i><b>5.7</b> Collinearity</a></li>
+<li class="chapter" data-level="5.8" data-path="linear-models-1.html"><a href="linear-models-1.html#rank"><i class="fa fa-check"></i><b>5.8</b> Rank</a></li>
+<li class="chapter" data-level="5.9" data-path="linear-models-1.html"><a href="linear-models-1.html#removing-confounding"><i class="fa fa-check"></i><b>5.9</b> Removing Confounding</a></li>
+<li class="chapter" data-level="5.10" data-path="linear-models-1.html"><a href="linear-models-1.html#the-qr-factorization-advanced"><i class="fa fa-check"></i><b>5.10</b> The QR Factorization (Advanced)</a></li>
+<li class="chapter" data-level="5.11" data-path="linear-models-1.html"><a href="linear-models-1.html#going-further"><i class="fa fa-check"></i><b>5.11</b> Going Further</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html"><i class="fa fa-check"></i><b>6</b> Inference for High Dimensional Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#introduction-4"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#inference-in-practice"><i class="fa fa-check"></i><b>6.2</b> Inference in Practice</a></li>
+<li class="chapter" data-level="6.3" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#procedures"><i class="fa fa-check"></i><b>6.3</b> Procedures</a></li>
+<li class="chapter" data-level="6.4" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#error-rates"><i class="fa fa-check"></i><b>6.4</b> Error Rates</a></li>
+<li class="chapter" data-level="6.5" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#the-bonferroni-correction"><i class="fa fa-check"></i><b>6.5</b> The Bonferroni Correction</a></li>
+<li class="chapter" data-level="6.6" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#false-discovery-rate"><i class="fa fa-check"></i><b>6.6</b> False Discovery Rate</a></li>
+<li class="chapter" data-level="6.7" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#direct-approach-to-fdr-and-q-values-advanced"><i class="fa fa-check"></i><b>6.7</b> Direct Approach to FDR and q-values (Advanced)</a></li>
+<li class="chapter" data-level="6.8" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#basic-exploratory-data-analysis"><i class="fa fa-check"></i><b>6.8</b> Basic Exploratory Data Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="statistical-models.html"><a href="statistical-models.html"><i class="fa fa-check"></i><b>7</b> Statistical Models</a><ul>
+<li class="chapter" data-level="7.1" data-path="statistical-models.html"><a href="statistical-models.html#the-binomial-distribution"><i class="fa fa-check"></i><b>7.1</b> The Binomial Distribution</a></li>
+<li class="chapter" data-level="7.2" data-path="statistical-models.html"><a href="statistical-models.html#the-poisson-distribution"><i class="fa fa-check"></i><b>7.2</b> The Poisson Distribution</a></li>
+<li class="chapter" data-level="7.3" data-path="statistical-models.html"><a href="statistical-models.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>7.3</b> Maximum Likelihood Estimation</a></li>
+<li class="chapter" data-level="7.4" data-path="statistical-models.html"><a href="statistical-models.html#distributions-for-positive-continuous-values"><i class="fa fa-check"></i><b>7.4</b> Distributions for Positive Continuous Values</a></li>
+<li class="chapter" data-level="7.5" data-path="statistical-models.html"><a href="statistical-models.html#bayesian-statistics"><i class="fa fa-check"></i><b>7.5</b> Bayesian Statistics</a></li>
+<li class="chapter" data-level="7.6" data-path="statistical-models.html"><a href="statistical-models.html#hierarchical-models"><i class="fa fa-check"></i><b>7.6</b> Hierarchical Models</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html"><i class="fa fa-check"></i><b>8</b> Distance and Dimension Reduction</a><ul>
+<li class="chapter" data-level="8.1" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#introduction-5"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#euclidean-distance"><i class="fa fa-check"></i><b>8.2</b> Euclidean Distance</a></li>
+<li class="chapter" data-level="8.3" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#distance-in-high-dimensions"><i class="fa fa-check"></i><b>8.3</b> Distance in High Dimensions</a></li>
+<li class="chapter" data-level="8.4" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#dimension-reduction-motivation"><i class="fa fa-check"></i><b>8.4</b> Dimension Reduction Motivation</a></li>
+<li class="chapter" data-level="8.5" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#singular-value-decomposition"><i class="fa fa-check"></i><b>8.5</b> Singular Value Decomposition</a></li>
+<li class="chapter" data-level="8.6" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#projections"><i class="fa fa-check"></i><b>8.6</b> Projections</a></li>
+<li class="chapter" data-level="8.7" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#rotations-1"><i class="fa fa-check"></i><b>8.7</b> Rotations</a></li>
+<li class="chapter" data-level="8.8" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#multi-dimensional-scaling-plots"><i class="fa fa-check"></i><b>8.8</b> Multi-Dimensional Scaling Plots</a></li>
+<li class="chapter" data-level="8.9" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#principal-component-analysis"><i class="fa fa-check"></i><b>8.9</b> Principal Component Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html"><i class="fa fa-check"></i><b>9</b> Basic Machine Learning</a><ul>
+<li class="chapter" data-level="9.1" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#clustering"><i class="fa fa-check"></i><b>9.1</b> Clustering</a></li>
+<li class="chapter" data-level="9.2" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#conditional-probabilities-and-expectations"><i class="fa fa-check"></i><b>9.2</b> Conditional Probabilities and Expectations</a></li>
+<li class="chapter" data-level="9.3" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#smoothing"><i class="fa fa-check"></i><b>9.3</b> Smoothing</a></li>
+<li class="chapter" data-level="9.4" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#bin-smoothing"><i class="fa fa-check"></i><b>9.4</b> Bin Smoothing</a></li>
+<li class="chapter" data-level="9.5" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#loess"><i class="fa fa-check"></i><b>9.5</b> Loess</a></li>
+<li class="chapter" data-level="9.6" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#class-prediction"><i class="fa fa-check"></i><b>9.6</b> Class Prediction</a></li>
+<li class="chapter" data-level="9.7" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#cross-validation"><i class="fa fa-check"></i><b>9.7</b> Cross-validation</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="batch-effects.html"><a href="batch-effects.html"><i class="fa fa-check"></i><b>10</b> Batch Effects</a><ul>
+<li class="chapter" data-level="10.1" data-path="batch-effects.html"><a href="batch-effects.html#confounding"><i class="fa fa-check"></i><b>10.1</b> Confounding</a></li>
+<li class="chapter" data-level="10.2" data-path="batch-effects.html"><a href="batch-effects.html#confounding-high-throughput-example"><i class="fa fa-check"></i><b>10.2</b> Confounding: High-Throughput Example</a></li>
+<li class="chapter" data-level="10.3" data-path="batch-effects.html"><a href="batch-effects.html#discovering-batch-effects-with-eda"><i class="fa fa-check"></i><b>10.3</b> Discovering Batch Effects with EDA</a></li>
+<li class="chapter" data-level="10.4" data-path="batch-effects.html"><a href="batch-effects.html#gene-expression-data"><i class="fa fa-check"></i><b>10.4</b> Gene Expression Data</a></li>
+<li class="chapter" data-level="10.5" data-path="batch-effects.html"><a href="batch-effects.html#motivation-for-statistical-approaches"><i class="fa fa-check"></i><b>10.5</b> Motivation for Statistical Approaches</a></li>
+<li class="chapter" data-level="10.6" data-path="batch-effects.html"><a href="batch-effects.html#adjusting-for-batch-effects-with-linear-models"><i class="fa fa-check"></i><b>10.6</b> Adjusting for Batch Effects with Linear Models</a></li>
+<li class="chapter" data-level="10.7" data-path="batch-effects.html"><a href="batch-effects.html#factor-analysis"><i class="fa fa-check"></i><b>10.7</b> Factor Analysis</a></li>
+<li class="chapter" data-level="10.8" data-path="batch-effects.html"><a href="batch-effects.html#modeling-batch-effects-with-factor-analysis"><i class="fa fa-check"></i><b>10.8</b> Modeling Batch Effects with Factor Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">生物信息R数据分析</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="basic-machine-learning" class="section level1">
+<h1><span class="header-section-number">第 9 章</span> Basic Machine Learning</h1>
+<p>Machine learning is a very broad topic and a highly active research area. In the life sciences, much of what is described as “precision medicine” is an application of machine learning to biomedical data. The general idea is to predict or discover outcomes from measured predictors. Can we discover new types of cancer from gene expression profiles? Can we predict drug response from a series of genotypes? Here we give a very brief introduction to two major machine learning components: clustering and class prediction. There are many good resources to learn more about machine learning, for example the excellent textbook <em>The Elements of Statistical Learning: Data Mining, Inference, and Prediction</em>, by Trevor Hastie, Robert Tibshirani and Jerome Friedman. A free PDF of this book can be found <a href="http://statweb.stanford.edu/~tibs/ElemStatLearn/">here</a>.</p>
+<div id="clustering" class="section level2">
+<h2><span class="header-section-number">9.1</span> Clustering</h2>
+<p>We will demonstrate the concepts and code needed to perform clustering analysis with the tissue gene expression data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tissuesGeneExpression)
+<span class="kw">data</span>(tissuesGeneExpression)</code></pre></div>
+<p>To illustrate the main application of clustering in the life sciences, let’s pretend that we don’t know these are different tissues and are interested in clustering. The first step is to compute the distance between each sample:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d &lt;-<span class="st"> </span><span class="kw">dist</span>( <span class="kw">t</span>(e) )</code></pre></div>
+<p><a name="hierarchical"></a></p>
+<div id="hierarchical-clustering" class="section level4">
+<h4><span class="header-section-number">9.1.0.1</span> Hierarchical clustering</h4>
+<p>With the distance between each pair of samples computed, we need clustering algorithms to join them into groups. Hierarchical clustering is one of the many clustering algorithms available to do this. Each sample is assigned to its own group and then the algorithm continues iteratively, joining the two most similar clusters at each step, and continuing until there is just one group. While we have defined distances between samples, we have not yet defined distances between groups. There are various ways this can be done and they all rely on the individual pairwise distances. The helpfile for <code>hclust</code> includes detailed information.</p>
+<p>We can perform hierarchical clustering based on the distances defined above using the <code>hclust</code> function. This function returns an <code>hclust</code> object that describes the groupings that were created using the algorithm described above. The <code>plot</code> method represents these relationships with a tree or dendrogram:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rafalib)
+<span class="kw">mypar</span>()
+hc &lt;-<span class="st"> </span><span class="kw">hclust</span>(d)
+hc</code></pre></div>
+<pre><code>## 
+## Call:
+## hclust(d = d)
+## 
+## Cluster method   : complete 
+## Distance         : euclidean 
+## Number of objects: 189</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(hc,<span class="dt">labels=</span>tissue,<span class="dt">cex=</span><span class="fl">0.5</span>)</code></pre></div>
+<div class="figure"><span id="fig:dendrogram"></span>
+<img src="bookdown_files/figure-html/dendrogram-1.png" alt="Dendrogram showing hierarchical clustering of tissue gene expression data." width="1008" />
+<p class="caption">
+图 9.1: Dendrogram showing hierarchical clustering of tissue gene expression data.
+</p>
+</div>
+<p>Does this technique “discover” the clusters defined by the different tissues? In this plot, it is not easy to see the different tissues so we add colors by using the <code>myplclust</code> function from the <code>rafalib</code> package.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">myplclust</span>(hc, <span class="dt">labels=</span>tissue, <span class="dt">lab.col=</span><span class="kw">as.fumeric</span>(tissue), <span class="dt">cex=</span><span class="fl">0.5</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/color_dendrogram-1.png" alt="Dendrogram showing hierarchical clustering of tissue gene expression data with colors denoting tissues." width="1008" />
+<p class="caption">
+(#fig:color_dendrogram)Dendrogram showing hierarchical clustering of tissue gene expression data with colors denoting tissues.
+</p>
+</div>
+<p>Visually, it does seem as if the clustering technique has discovered the tissues. However, hierarchical clustering does not define specific clusters, but rather defines the dendrogram above. From the dendrogram we can decipher the distance between any two groups by looking at the height at which the two groups split into two. To define clusters, we need to “cut the tree” at some distance and group all samples that are within that distance into groups below. To visualize this, we draw a horizontal line at the height we wish to cut and this defines that line. We use 120 as an example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">myplclust</span>(hc, <span class="dt">labels=</span>tissue, <span class="dt">lab.col=</span><span class="kw">as.fumeric</span>(tissue),<span class="dt">cex=</span><span class="fl">0.5</span>)
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">120</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/color_dendrogram2-1.png" alt="Dendrogram showing hierarchical clustering of tissue gene expression data with colors denoting tissues. Horizontal line defines actual clusters." width="1008" />
+<p class="caption">
+(#fig:color_dendrogram2)Dendrogram showing hierarchical clustering of tissue gene expression data with colors denoting tissues. Horizontal line defines actual clusters.
+</p>
+</div>
+<p>If we use the line above to cut the tree into clusters, we can examine how the clusters overlap with the actual tissues:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hclusters &lt;-<span class="st"> </span><span class="kw">cutree</span>(hc, <span class="dt">h=</span><span class="dv">120</span>)
+<span class="kw">table</span>(<span class="dt">true=</span>tissue, <span class="dt">cluster=</span>hclusters)</code></pre></div>
+<pre><code>##              cluster
+## true           1  2  3  4  5  6  7  8  9 10 11 12 13
+##   cerebellum   0  0  0  0 31  0  0  0  2  0  0  5  0
+##   colon        0  0  0  0  0  0 34  0  0  0  0  0  0
+##   endometrium  0  0  0  0  0  0  0  0  0  0 15  0  0
+##   hippocampus  0  0 12 19  0  0  0  0  0  0  0  0  0
+##   kidney       9 18  0  0  0 10  0  0  2  0  0  0  0
+##   liver        0  0  0  0  0  0  0 24  0  2  0  0  0
+##   placenta     0  0  0  0  0  0  0  0  0  0  0  0  2
+##              cluster
+## true          14
+##   cerebellum   0
+##   colon        0
+##   endometrium  0
+##   hippocampus  0
+##   kidney       0
+##   liver        0
+##   placenta     4</code></pre>
+<p>We can also ask <code>cutree</code> to give us back a given number of clusters. The function then automatically finds the height that results in the requested number of clusters:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hclusters &lt;-<span class="st"> </span><span class="kw">cutree</span>(hc, <span class="dt">k=</span><span class="dv">8</span>)
+<span class="kw">table</span>(<span class="dt">true=</span>tissue, <span class="dt">cluster=</span>hclusters)</code></pre></div>
+<pre><code>##              cluster
+## true           1  2  3  4  5  6  7  8
+##   cerebellum   0  0 31  0  0  2  5  0
+##   colon        0  0  0 34  0  0  0  0
+##   endometrium 15  0  0  0  0  0  0  0
+##   hippocampus  0 12 19  0  0  0  0  0
+##   kidney      37  0  0  0  0  2  0  0
+##   liver        0  0  0  0 24  2  0  0
+##   placenta     0  0  0  0  0  0  0  6</code></pre>
+<p>In both cases we do see that, with some exceptions, each tissue is uniquely represented by one of the clusters. In some instances, the one tissue is spread across two tissues, which is due to selecting too many clusters. Selecting the number of clusters is generally a challenging step in practice and an active area of research.</p>
+<p><a name="kmeans"></a></p>
+</div>
+<div id="k-means" class="section level4">
+<h4><span class="header-section-number">9.1.0.2</span> K-means</h4>
+<p>We can also cluster with the <code>kmeans</code> function to perform k-means clustering. As an example, let’s run k-means on the samples in the space of the first two genes:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
+km &lt;-<span class="st"> </span><span class="kw">kmeans</span>(<span class="kw">t</span>(e[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,]), <span class="dt">centers=</span><span class="dv">7</span>)
+<span class="kw">names</span>(km)</code></pre></div>
+<pre><code>## [1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;       
+## [4] &quot;withinss&quot;     &quot;tot.withinss&quot; &quot;betweenss&quot;   
+## [7] &quot;size&quot;         &quot;iter&quot;         &quot;ifault&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+<span class="kw">plot</span>(e[<span class="dv">1</span>,], e[<span class="dv">2</span>,], <span class="dt">col=</span><span class="kw">as.fumeric</span>(tissue), <span class="dt">pch=</span><span class="dv">16</span>)
+<span class="kw">plot</span>(e[<span class="dv">1</span>,], e[<span class="dv">2</span>,], <span class="dt">col=</span>km<span class="op">$</span>cluster, <span class="dt">pch=</span><span class="dv">16</span>)</code></pre></div>
+<div class="figure"><span id="fig:kmeans"></span>
+<img src="bookdown_files/figure-html/kmeans-1.png" alt="Plot of gene expression for first two genes (order of appearance in data) with color representing tissue (left) and clusters found with kmeans (right)." width="1008" />
+<p class="caption">
+图 9.2: Plot of gene expression for first two genes (order of appearance in data) with color representing tissue (left) and clusters found with kmeans (right).
+</p>
+</div>
+<p>In the first plot, color represents the actual tissues, while in the second, color represents the clusters that were defined by <code>kmeans</code>. We can see from tabulating the results that this particular clustering exercise did not perform well:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(<span class="dt">true=</span>tissue,<span class="dt">cluster=</span>km<span class="op">$</span>cluster)</code></pre></div>
+<pre><code>##              cluster
+## true           1  2  3  4  5  6  7
+##   cerebellum   0  1  8  0  6  0 23
+##   colon        2 11  2 15  4  0  0
+##   endometrium  0  3  4  0  0  0  8
+##   hippocampus 19  0  2  0 10  0  0
+##   kidney       7  8 20  0  0  0  4
+##   liver        0  0  0  0  0 18  8
+##   placenta     0  4  0  0  0  0  2</code></pre>
+<p>This is very likely due to the fact that the first two genes are not informative regarding tissue type. We can see this in the first plot above. If we instead perform k-means clustering using all of the genes, we obtain a much improved result. To visualize this, we can use an MDS plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">km &lt;-<span class="st"> </span><span class="kw">kmeans</span>(<span class="kw">t</span>(e), <span class="dt">centers=</span><span class="dv">7</span>)
+mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(d)
+
+<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+<span class="kw">plot</span>(mds[,<span class="dv">1</span>], mds[,<span class="dv">2</span>]) 
+<span class="kw">plot</span>(mds[,<span class="dv">1</span>], mds[,<span class="dv">2</span>], <span class="dt">col=</span>km<span class="op">$</span>cluster, <span class="dt">pch=</span><span class="dv">16</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/kmeans_mds-1.png" alt="Plot of gene expression for first two PCs with color representing tissues (left) and clusters found using all genes (right)." width="1008" />
+<p class="caption">
+(#fig:kmeans_mds)Plot of gene expression for first two PCs with color representing tissues (left) and clusters found using all genes (right).
+</p>
+</div>
+<p>By tabulating the results, we see that we obtain a similar answer to that obtained with hierarchical clustering.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(<span class="dt">true=</span>tissue,<span class="dt">cluster=</span>km<span class="op">$</span>cluster)</code></pre></div>
+<pre><code>##              cluster
+## true           1  2  3  4  5  6  7
+##   cerebellum   0  0  5  0 31  2  0
+##   colon        0 34  0  0  0  0  0
+##   endometrium  0 15  0  0  0  0  0
+##   hippocampus  0  0 31  0  0  0  0
+##   kidney       0 37  0  0  0  2  0
+##   liver        2  0  0  0  0  0 24
+##   placenta     0  0  0  6  0  0  0</code></pre>
+<p><a name="heatmap"></a></p>
+</div>
+<div id="heatmaps" class="section level4">
+<h4><span class="header-section-number">9.1.0.3</span> Heatmaps</h4>
+<p>Heatmaps are ubiquitous in the genomics literature. They are very useful plots for visualizing the measurements for a subset of rows over all the samples. A <em>dendrogram</em> is added on top and on the side that is created with hierarchical clustering. We will demonstrate how to create heatmaps from within R. Let’s begin by defining a color palette:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(RColorBrewer) 
+hmcol &lt;-<span class="st"> </span><span class="kw">colorRampPalette</span>(<span class="kw">brewer.pal</span>(<span class="dv">9</span>, <span class="st">&quot;GnBu&quot;</span>))(<span class="dv">100</span>)</code></pre></div>
+<p>Now, pick the genes with the top variance over all samples:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(genefilter)
+rv &lt;-<span class="st"> </span><span class="kw">rowVars</span>(e)
+idx &lt;-<span class="st"> </span><span class="kw">order</span>(<span class="op">-</span>rv)[<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>]</code></pre></div>
+<p>While a <code>heatmap</code> function is included in R, we recommend the <code>heatmap.2</code> function from the <code>gplots</code> package on CRAN because it is a bit more customized. For example, it stretches to fill the window. Here we add colors to indicate the tissue on the top:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gplots) ##Available from CRAN
+cols &lt;-<span class="st"> </span><span class="kw">palette</span>(<span class="kw">brewer.pal</span>(<span class="dv">8</span>, <span class="st">&quot;Dark2&quot;</span>))[<span class="kw">as.fumeric</span>(tissue)]
+<span class="kw">head</span>(<span class="kw">cbind</span>(<span class="kw">colnames</span>(e),cols))</code></pre></div>
+<pre><code>##                        cols     
+## [1,] &quot;GSM11805.CEL.gz&quot; &quot;#1B9E77&quot;
+## [2,] &quot;GSM11814.CEL.gz&quot; &quot;#1B9E77&quot;
+## [3,] &quot;GSM11823.CEL.gz&quot; &quot;#1B9E77&quot;
+## [4,] &quot;GSM11830.CEL.gz&quot; &quot;#1B9E77&quot;
+## [5,] &quot;GSM12067.CEL.gz&quot; &quot;#1B9E77&quot;
+## [6,] &quot;GSM12075.CEL.gz&quot; &quot;#1B9E77&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">heatmap.2</span>(e[idx,], <span class="dt">labCol=</span>tissue,
+          <span class="dt">trace=</span><span class="st">&quot;none&quot;</span>, 
+          <span class="dt">ColSideColors=</span>cols, 
+          <span class="dt">col=</span>hmcol)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/heatmap.2-1.png" alt="Heatmap created using the 40 most variable genes and the function heatmap.2." width="1008" />
+<p class="caption">
+(#fig:heatmap.2)Heatmap created using the 40 most variable genes and the function heatmap.2.
+</p>
+</div>
+<p>We did not use tissue information to create this heatmap, and we can quickly see, with just 40 genes, good separation across tissues.</p>
+</div>
+</div>
+<div id="conditional-probabilities-and-expectations" class="section level2">
+<h2><span class="header-section-number">9.2</span> Conditional Probabilities and Expectations</h2>
+<p>Prediction problems can be divided into categorical and continuous outcomes. However, many of the algorithms can be applied to both due to the connection between <em>conditional probabilities</em> and <em>conditional expectations</em>.</p>
+<p>For categorical data, for example binary outcomes, if we know the probability of <span class="math inline">\(Y\)</span> being any of the possible outcomes <span class="math inline">\(k\)</span> given a set of predictors <span class="math inline">\(X=(X_1,\dots,X_p)^\top\)</span>,</p>
+<p><span class="math display">\[
+f_k(x) = \mbox{Pr}(Y=k \mid X=x)
+\]</span></p>
+<p>we can optimize our predictions. Specifically, for any <span class="math inline">\(x\)</span> we predict the <span class="math inline">\(k\)</span> that has the largest probability <span class="math inline">\(f_k(x)\)</span>.</p>
+<p>To simplify the exposition below, we will consider the case of binary data. You can think of the probability <span class="math inline">\(\mbox{Pr}(Y=1 \mid X=x)\)</span> as the proportion of 1s in the stratum of the population for which <span class="math inline">\(X=x\)</span>. Given that the expectation is the average of all <span class="math inline">\(Y\)</span> values, in this case the expectation is equivalent to the probability: <span class="math inline">\(f(x) \equiv \mbox{E}(Y \mid X=x)=\mbox{Pr}(Y=1 \mid X=x)\)</span>. We therefore use only the expectation in the descriptions below as it is more general.</p>
+<p>In general, the expected value has an attractive mathematical property, which is that it minimizes the expected distance between the predictor <span class="math inline">\(\hat{Y}\)</span> and <span class="math inline">\(Y\)</span>:</p>
+<p><span class="math display">\[
+\mbox{E}\{ (\hat{Y} - Y)^2  \mid  X=x \}
+\]</span></p>
+<div id="regression-in-the-context-of-prediction" class="section level4">
+<h4><span class="header-section-number">9.2.0.1</span> Regression in the context of prediction</h4>
+<p><a name="regression"></a></p>
+<p>We use the son and father height example to illustrate how regression can be interpreted as a machine learning technique. In our example, we are trying to predict the son’s height <span class="math inline">\(Y\)</span> based on the father’s <span class="math inline">\(X\)</span>. Here we have only one predictor. Now if we were asked to predict the height of a randomly selected son, we would go with the average height:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rafalib)
+<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">1</span>)
+<span class="kw">data</span>(father.son,<span class="dt">package=</span><span class="st">&quot;UsingR&quot;</span>)
+x=<span class="kw">round</span>(father.son<span class="op">$</span>fheight) ##round to nearest inch
+y=<span class="kw">round</span>(father.son<span class="op">$</span>sheight)
+<span class="kw">hist</span>(y,<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="kw">min</span>(y),<span class="kw">max</span>(y)))
+<span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">mean</span>(y),<span class="dt">col=</span><span class="st">&quot;red&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/height_hist-1.png" alt="Histogram of son heights." width="672" />
+<p class="caption">
+(#fig:height_hist)Histogram of son heights.
+</p>
+</div>
+<p>In this case, we can also approximate the distribution of <span class="math inline">\(Y\)</span> as normal, which implies the mean maximizes the probability density.</p>
+<p>Let’s imagine that we are given more information. We are told that the father of this randomly selected son has a height of 71 inches (1.25 SDs taller than the average). What is our prediction now?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+<span class="kw">plot</span>(x,y,<span class="dt">xlab=</span><span class="st">&quot;Father&#39;s height in inches&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Son&#39;s height in inches&quot;</span>,
+     <span class="dt">main=</span><span class="kw">paste</span>(<span class="st">&quot;correlation =&quot;</span>,<span class="kw">signif</span>(<span class="kw">cor</span>(x,y),<span class="dv">2</span>)))
+<span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.35</span>,<span class="fl">0.35</span>)<span class="op">+</span><span class="dv">71</span>,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)
+<span class="kw">hist</span>(y[x<span class="op">==</span><span class="dv">71</span>],<span class="dt">xlab=</span><span class="st">&quot;Heights&quot;</span>,<span class="dt">nc=</span><span class="dv">8</span>,<span class="dt">main=</span><span class="st">&quot;&quot;</span>,<span class="dt">xlim=</span><span class="kw">range</span>(y))</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/conditional_distribution-1.png" alt="Son versus father height (left) with the red lines denoting the stratum defined by conditioning on fathers being 71 inches tall. Conditional distribution: son height distribution of stratum defined by 71 inch fathers." width="1008" />
+<p class="caption">
+(#fig:conditional_distribution)Son versus father height (left) with the red lines denoting the stratum defined by conditioning on fathers being 71 inches tall. Conditional distribution: son height distribution of stratum defined by 71 inch fathers.
+</p>
+</div>
+<p>The best guess is still the expectation, but our strata has changed from all the data, to only the <span class="math inline">\(Y\)</span> with <span class="math inline">\(X=71\)</span>. So we can stratify and take the average, which is the conditional expectation. Our prediction for any <span class="math inline">\(x\)</span> is therefore:</p>
+<p><span class="math display">\[
+f(x) = E(Y \mid X=x)
+\]</span></p>
+<p>It turns out that because this data is approximated by a bivariate normal distribution, using calculus, we can show that:</p>
+<p><span class="math display">\[
+f(x) = \mu_Y + \rho \frac{\sigma_Y}{\sigma_X} (X-\mu_X)
+\]</span></p>
+<p>and if we estimate these five parameters from the sample, we get the regression line:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+<span class="kw">plot</span>(x,y,<span class="dt">xlab=</span><span class="st">&quot;Father&#39;s height in inches&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Son&#39;s height in inches&quot;</span>,
+     <span class="dt">main=</span><span class="kw">paste</span>(<span class="st">&quot;correlation =&quot;</span>,<span class="kw">signif</span>(<span class="kw">cor</span>(x,y),<span class="dv">2</span>)))
+<span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.35</span>,<span class="fl">0.35</span>)<span class="op">+</span><span class="dv">71</span>,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)
+
+fit &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>x)
+<span class="kw">abline</span>(fit,<span class="dt">col=</span><span class="dv">1</span>)
+
+<span class="kw">hist</span>(y[x<span class="op">==</span><span class="dv">71</span>],<span class="dt">xlab=</span><span class="st">&quot;Heights&quot;</span>,<span class="dt">nc=</span><span class="dv">8</span>,<span class="dt">main=</span><span class="st">&quot;&quot;</span>,<span class="dt">xlim=</span><span class="kw">range</span>(y))
+<span class="kw">abline</span>(<span class="dt">v =</span> fit<span class="op">$</span>coef[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>fit<span class="op">$</span>coef[<span class="dv">2</span>]<span class="op">*</span><span class="dv">71</span>, <span class="dt">col=</span><span class="dv">1</span>)</code></pre></div>
+<div class="figure"><span id="fig:regression"></span>
+<img src="bookdown_files/figure-html/regression-1.png" alt="Son versus father height showing predicted heights based on regression line (left). Conditional distribution with vertical line representing regression prediction." width="1008" />
+<p class="caption">
+图 9.3: Son versus father height showing predicted heights based on regression line (left). Conditional distribution with vertical line representing regression prediction.
+</p>
+</div>
+<p>In this particular case, the regression line provides an optimal prediction function for <span class="math inline">\(Y\)</span>. But this is not generally true because, in the typical machine learning problems, the optimal <span class="math inline">\(f(x)\)</span> is rarely a simple line.</p>
+</div>
+</div>
+<div id="smoothing" class="section level2">
+<h2><span class="header-section-number">9.3</span> Smoothing</h2>
+<p>Smoothing is a very powerful technique used all across data analysis. It is designed to estimate <span class="math inline">\(f(x)\)</span> when the shape is unknown, but assumed to be <em>smooth</em>. The general idea is to group data points that are expected to have similar expectations and compute the average, or fit a simple parametric model. We illustrate two smoothing techniques using a gene expression example.</p>
+<p>The following data are gene expression measurements from replicated RNA samples.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##Following three packages are available from Bioconductor
+<span class="kw">library</span>(Biobase)
+<span class="kw">library</span>(SpikeIn)
+<span class="kw">library</span>(hgu95acdf)</code></pre></div>
+<pre><code>## Warning: replacing previous import
+## &#39;AnnotationDbi::tail&#39; by &#39;utils::tail&#39; when loading
+## &#39;hgu95acdf&#39;</code></pre>
+<pre><code>## Warning: replacing previous import
+## &#39;AnnotationDbi::head&#39; by &#39;utils::head&#39; when loading
+## &#39;hgu95acdf&#39;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(SpikeIn95)</code></pre></div>
+<p>We consider the data used in an MA-plot comparing two replicated samples (<span class="math inline">\(Y\)</span> = log ratios and <span class="math inline">\(X\)</span> = averages) and take down-sample in a way that balances the number of points for different strata of <span class="math inline">\(X\)</span> (code not shown):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rafalib)
+<span class="kw">mypar</span>()
+<span class="kw">plot</span>(X,Y)</code></pre></div>
+<div class="figure"><span id="fig:MAplot1"></span>
+<img src="bookdown_files/figure-html/MAplot1-1.png" alt="MA-plot comparing gene expression from two arrays." width="1008" />
+<p class="caption">
+图 9.4: MA-plot comparing gene expression from two arrays.
+</p>
+</div>
+<p>In the MA plot we see that <span class="math inline">\(Y\)</span> depends on <span class="math inline">\(X\)</span>. This dependence must be a bias because these are based on replicates, which means <span class="math inline">\(Y\)</span> should be 0 on average regardless of <span class="math inline">\(X\)</span>. We want to predict <span class="math inline">\(f(x)=\mbox{E}(Y \mid X=x)\)</span> so that we can remove this bias. Linear regression does not capture the apparent curvature in <span class="math inline">\(f(x)\)</span>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mypar</span>()
+<span class="kw">plot</span>(X,Y)
+fit &lt;-<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X)
+<span class="kw">points</span>(X,Y,<span class="dt">pch=</span><span class="dv">21</span>,<span class="dt">bg=</span><span class="kw">ifelse</span>(Y<span class="op">&gt;</span>fit<span class="op">$</span>fitted,<span class="dv">1</span>,<span class="dv">3</span>))
+<span class="kw">abline</span>(fit,<span class="dt">col=</span><span class="dv">2</span>,<span class="dt">lwd=</span><span class="dv">4</span>,<span class="dt">lty=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/MAplot_with_regression_line-1.png" alt="MA-plot comparing gene expression from two arrays with fitted regression line. The two colors represent positive and negative residuals." width="1008" />
+<p class="caption">
+(#fig:MAplot_with_regression_line)MA-plot comparing gene expression from two arrays with fitted regression line. The two colors represent positive and negative residuals.
+</p>
+</div>
+<p>The points above the fitted line (green) and those below (purple) are not evenly distributed. We therefore need an alternative more flexible approach.</p>
+</div>
+<div id="bin-smoothing" class="section level2">
+<h2><span class="header-section-number">9.4</span> Bin Smoothing</h2>
+<p>Instead of fitting a line, let’s go back to the idea of stratifying and computing the mean. This is referred to as <em>bin smoothing</em>. The general idea is that the underlying curve is “smooth” enough so that, in small bins, the curve is approximately constant. If we assume the curve is constant, then all the <span class="math inline">\(Y\)</span> in that bin have the same expected value. For example, in the plot below, we highlight points in a bin centered at 8.6, as well as the points of a bin centered at 12.1, if we use bins of size 1. We also show the fitted mean values for the <span class="math inline">\(Y\)</span> in those bins with dashed lines (code not shown):</p>
+<div class="figure"><span id="fig:binsmoother"></span>
+<img src="bookdown_files/figure-html/binsmoother-1.png" alt="MAplot comparing gene expression from two arrays with bin smoother fit shown for two points." width="1008" />
+<p class="caption">
+图 9.5: MAplot comparing gene expression from two arrays with bin smoother fit shown for two points.
+</p>
+</div>
+<p>By computing this mean for bins around every point, we form an estimate of the underlying curve <span class="math inline">\(f(x)\)</span>. Below we show the procedure happening as we move from the smallest value of <span class="math inline">\(x\)</span> to the largest. We show 10 intermediate cases as well (code not shown):</p>
+<div class="figure">
+<img src="bookdown_files/figure-html/bin_smoothing_demo-1.png" alt="Illustration of how bin smoothing estimates a curve. Showing 12 steps of process." width="984" />
+<p class="caption">
+(#fig:bin_smoothing_demo)Illustration of how bin smoothing estimates a curve. Showing 12 steps of process.
+</p>
+</div>
+<p>The final result looks like this (code not shown):</p>
+<div class="figure">
+<img src="bookdown_files/figure-html/bin_smooth_final-1.png" alt="MA-plot with curve obtained with bin-smoothed curve shown." width="1008" />
+<p class="caption">
+(#fig:bin_smooth_final)MA-plot with curve obtained with bin-smoothed curve shown.
+</p>
+</div>
+<p>There are several functions in R that implement bin smoothers. One example is <code>ksmooth</code>. However, in practice, we typically prefer methods that use slightly more complicated models than fitting a constant. The final result above, for example, is somewhat wiggly. Methods such as <code>loess</code>, which we explain next, improve on this.</p>
+</div>
+<div id="loess" class="section level2">
+<h2><span class="header-section-number">9.5</span> Loess</h2>
+<p>Local weighted regression (loess) is similar to bin smoothing in principle. The main difference is that we approximate the local behavior with a line or a parabola. This permits us to expand the bin sizes, which stabilizes the estimates. Below we see lines fitted to two bins that are slightly larger than those we used for the bin smoother (code not shown). We can use larger bins because fitting lines provide slightly more flexibility.</p>
+<div class="figure"><span id="fig:loess"></span>
+<img src="bookdown_files/figure-html/loess-1.png" alt="MA-plot comparing gene expression from two arrays with bin local regression fit shown for two points." width="1008" />
+<p class="caption">
+图 9.6: MA-plot comparing gene expression from two arrays with bin local regression fit shown for two points.
+</p>
+</div>
+<p>As we did for the bin smoother, we show 12 steps of the process that leads to a loess fit (code not shown):</p>
+<div class="figure">
+<img src="bookdown_files/figure-html/loess_demo-1.png" alt="Illustration of how loess estimates a curve. Showing 12 steps of the process." width="984" />
+<p class="caption">
+(#fig:loess_demo)Illustration of how loess estimates a curve. Showing 12 steps of the process.
+</p>
+</div>
+<p>The final result is a smoother fit than the bin smoother since we use larger sample sizes to estimate our local parameters (code not shown):</p>
+<div class="figure">
+<img src="bookdown_files/figure-html/loess_final-1.png" alt="MA-plot with curve obtained with loess." width="1008" />
+<p class="caption">
+(#fig:loess_final)MA-plot with curve obtained with loess.
+</p>
+</div>
+<p>The function <code>loess</code> performs this analysis for us:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit &lt;-<span class="st"> </span><span class="kw">loess</span>(Y<span class="op">~</span>X, <span class="dt">degree=</span><span class="dv">1</span>, <span class="dt">span=</span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)
+
+newx &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(X),<span class="kw">max</span>(X),<span class="dt">len=</span><span class="dv">100</span>) 
+smooth &lt;-<span class="st"> </span><span class="kw">predict</span>(fit,<span class="dt">newdata=</span><span class="kw">data.frame</span>(<span class="dt">X=</span>newx))
+
+<span class="kw">mypar</span> ()
+<span class="kw">plot</span>(X,Y,<span class="dt">col=</span><span class="st">&quot;darkgrey&quot;</span>,<span class="dt">pch=</span><span class="dv">16</span>)
+<span class="kw">lines</span>(newx,smooth,<span class="dt">col=</span><span class="st">&quot;black&quot;</span>,<span class="dt">lwd=</span><span class="dv">3</span>)</code></pre></div>
+<div class="figure"><span id="fig:loess2"></span>
+<img src="bookdown_files/figure-html/loess2-1.png" alt="Loess fitted with the loess function." width="984" />
+<p class="caption">
+图 9.7: Loess fitted with the loess function.
+</p>
+</div>
+<p>There are three other important differences between <code>loess</code> and the typical bin smoother. The first is that rather than keeping the bin size the same, <code>loess</code> keeps the number of points used in the local fit the same. This number is controlled via the <code>span</code> argument which expects a proportion. For example, if <code>N</code> is the number of data points and <code>span=0.5</code>, then for a given <span class="math inline">\(x\)</span> , <code>loess</code> will use the <code>0.5*N</code> closest points to <span class="math inline">\(x\)</span> for the fit. The second difference is that, when fitting the parametric model to obtain <span class="math inline">\(f(x)\)</span>, <code>loess</code> uses weighted least squares, with higher weights for points that are closer to <span class="math inline">\(x\)</span>. The third difference is that <code>loess</code> has the option of fitting the local model robustly. An iterative algorithm is implemented in which, after fitting a model in one iteration, outliers are detected and downweighted for the next iteration. To use this option, we use the argument <code>family=&quot;symmetric&quot;</code>.</p>
+</div>
+<div id="class-prediction" class="section level2">
+<h2><span class="header-section-number">9.6</span> Class Prediction</h2>
+<p>Here we give a brief introduction to the main task of machine learning: class prediction. In fact, many refer to class prediction as machine learning and we sometimes use the two terms interchangeably. We give a very brief introduction to this vast topic, focusing on some specific examples.</p>
+<p>Some of the examples we give here are motivated by those in the excellent textbook <em>The Elements of Statistical Learning: Data Mining, Inference, and Prediction</em>, by Trevor Hastie, Robert Tibshirani and Jerome Friedman, which can be found <a href="http://statweb.stanford.edu/~tibs/ElemStatLearn/">here</a>.</p>
+<p>Similar to inference in the context of regression, Machine Learning (ML) studies the relationships between outcomes <span class="math inline">\(Y\)</span> and covariates <span class="math inline">\(X\)</span>. In ML, we call <span class="math inline">\(X\)</span> the predictors or features. The main difference between ML and inference is that, in ML, we are interested mainly in predicting <span class="math inline">\(Y\)</span> using <span class="math inline">\(X\)</span>. Statistical models are used, but while in inference we estimate and interpret model parameters, in ML they are mainly a means to an end: predicting <span class="math inline">\(Y\)</span>.</p>
+<p>Here we introduce the main concepts needed to understand ML, along with two specific algorithms: regression and k nearest neighbors (kNN). Keep in mind that there are dozens of popular algorithms that we do not cover here.</p>
+<p>In a previous section, we covered the very simple one-predictor case. However, most of ML is concerned with cases with more than one predictor. For illustration purposes, we move to a case in which <span class="math inline">\(X\)</span> is two dimensional and <span class="math inline">\(Y\)</span> is binary. We simulate a situation with a non-linear relationship using an example from the Hastie, Tibshirani and Friedman book. In the plot below, we show the actual values of <span class="math inline">\(f(x_1,x_2)=E(Y \mid X_1=x_1,X_2=x_2)\)</span> using colors. The following code is used to create a relatively complex conditional probability function. We create the test and train data we use later (code not shown). Here is the plot of <span class="math inline">\(f(x_1,x_2)\)</span> with red representing values close to 1, blue representing values close to 0, and yellow values in between.</p>
+<div class="figure">
+<img src="bookdown_files/figure-html/conditional_prob-1.png" alt="Probability of Y=1 as a function of X1 and X2. Red is close to 1, yellow close to 0.5, and blue close to 0." width="672" />
+<p class="caption">
+(#fig:conditional_prob)Probability of Y=1 as a function of X1 and X2. Red is close to 1, yellow close to 0.5, and blue close to 0.
+</p>
+</div>
+<p>If we show points for which <span class="math inline">\(E(Y \mid X=x)&gt;0.5\)</span> in red and the rest in blue, we see the boundary region that denotes the boundary in which we switch from predicting 0 to 1.</p>
+<div class="figure">
+<img src="bookdown_files/figure-html/bayes_rule-1.png" alt="Bayes rule. The line divides part of the space for which probability is larger than 0.5 (red) and lower than 0.5 (blue)." width="672" />
+<p class="caption">
+(#fig:bayes_rule)Bayes rule. The line divides part of the space for which probability is larger than 0.5 (red) and lower than 0.5 (blue).
+</p>
+</div>
+<p>The above plots relate to the “truth” that we do not get to see. Most ML methodology is concerned with estimating <span class="math inline">\(f(x)\)</span>. A typical first step is usually to consider a sample, referred to as the training set, to estimate <span class="math inline">\(f(x)\)</span>. We will review two specific ML techniques. First, we need to review the main concept we use to evaluate the performance of these methods.</p>
+<div id="training-and-test-sets" class="section level4">
+<h4><span class="header-section-number">9.6.0.1</span> Training and test sets</h4>
+<p>In the code (not shown) for the first plot in this chapter, we created a test and a training set. We plot them here:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#x, test, cols, and coltest were created in code that was not shown</span>
+<span class="co">#x is training x1 and x2, test is test x1 and x2</span>
+<span class="co">#cols (0=blue, 1=red) are training observations</span>
+<span class="co">#coltests are test observations</span>
+<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+<span class="kw">plot</span>(x,<span class="dt">pch=</span><span class="dv">21</span>,<span class="dt">bg=</span>cols,<span class="dt">xlab=</span><span class="st">&quot;X1&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;X2&quot;</span>,<span class="dt">xlim=</span>XLIM,<span class="dt">ylim=</span>YLIM)
+<span class="kw">plot</span>(test,<span class="dt">pch=</span><span class="dv">21</span>,<span class="dt">bg=</span>colstest,<span class="dt">xlab=</span><span class="st">&quot;X1&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;X2&quot;</span>,<span class="dt">xlim=</span>XLIM,<span class="dt">ylim=</span>YLIM)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/test_train-1.png" alt="Training data (left) and test data (right)." width="1008" />
+<p class="caption">
+(#fig:test_train)Training data (left) and test data (right).
+</p>
+</div>
+<p>You will notice that the test and train set have similar global properties since they were generated by the same random variables (more blue towards the bottom right), but are, by construction, different. The reason we create test and training sets is to detect over-training by testing on a different data than the one used to fit models or train algorithms. We will see how important this is below.</p>
+</div>
+<div id="predicting-with-regression" class="section level4">
+<h4><span class="header-section-number">9.6.0.2</span> Predicting with regression</h4>
+<p>A first naive approach to this ML problem is to fit a two variable linear regression model:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##x and y were created in the code (not shown) for the first plot
+<span class="co">#y is outcome for the training set</span>
+X1 &lt;-<span class="st"> </span>x[,<span class="dv">1</span>] ##these are the covariates
+X2 &lt;-<span class="st"> </span>x[,<span class="dv">2</span>] 
+fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>X1<span class="op">+</span>X2)</code></pre></div>
+<p>Once we the have fitted values, we can estimate <span class="math inline">\(f(x_1,x_2)\)</span> with <span class="math inline">\(\hat{f}(x_1,x_2)=\hat{\beta}_0 + \hat{\beta}_1x_1 +\hat{\beta}_2 x_2\)</span>. To provide an actual prediction, we simply predict 1 when <span class="math inline">\(\hat{f}(x_1,x_2)&gt;0.5\)</span>. We now examine the error rates in the test and training sets and also plot the boundary region:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##prediction on train
+yhat &lt;-<span class="st"> </span><span class="kw">predict</span>(fit1)
+yhat &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(yhat<span class="op">&gt;</span><span class="fl">0.5</span>)
+<span class="kw">cat</span>(<span class="st">&quot;Linear regression prediction error in train:&quot;</span>,<span class="dv">1</span><span class="op">-</span><span class="kw">mean</span>(yhat<span class="op">==</span>y),<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre></div>
+<pre><code>## Linear regression prediction error in train: 0.295</code></pre>
+<p>We can quickly obtain predicted values for any set of values using the <code>predict</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">yhat &lt;-<span class="st"> </span><span class="kw">predict</span>(fit1,<span class="dt">newdata=</span><span class="kw">data.frame</span>(<span class="dt">X1=</span>newx[,<span class="dv">1</span>],<span class="dt">X2=</span>newx[,<span class="dv">2</span>]))</code></pre></div>
+<p>Now we can create a plot showing where we predict 1s and where we predict 0s, as well as the boundary. We can also use the <code>predict</code> function to obtain predicted values for our test set. Note that nowhere do we fit the model on the test set:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">colshat &lt;-<span class="st"> </span>yhat
+colshat[yhat<span class="op">&gt;=</span><span class="fl">0.5</span>] &lt;-<span class="st"> </span>mycols[<span class="dv">2</span>]
+colshat[yhat<span class="op">&lt;</span><span class="fl">0.5</span>] &lt;-<span class="st"> </span>mycols[<span class="dv">1</span>]
+m &lt;-<span class="st"> </span><span class="op">-</span>fit1<span class="op">$</span>coef[<span class="dv">2</span>]<span class="op">/</span>fit1<span class="op">$</span>coef[<span class="dv">3</span>] <span class="co">#boundary slope</span>
+b &lt;-<span class="st"> </span>(<span class="fl">0.5</span> <span class="op">-</span><span class="st"> </span>fit1<span class="op">$</span>coef[<span class="dv">1</span>])<span class="op">/</span>fit1<span class="op">$</span>coef[<span class="dv">3</span>] <span class="co">#boundary intercept</span>
+
+##prediction on test
+yhat &lt;-<span class="st"> </span><span class="kw">predict</span>(fit1,<span class="dt">newdata=</span><span class="kw">data.frame</span>(<span class="dt">X1=</span>test[,<span class="dv">1</span>],<span class="dt">X2=</span>test[,<span class="dv">2</span>]))
+yhat &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(yhat<span class="op">&gt;</span><span class="fl">0.5</span>)
+<span class="kw">cat</span>(<span class="st">&quot;Linear regression prediction error in test:&quot;</span>,<span class="dv">1</span><span class="op">-</span><span class="kw">mean</span>(yhat<span class="op">==</span>ytest),<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre></div>
+<pre><code>## Linear regression prediction error in test: 0.3075</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(test,<span class="dt">type=</span><span class="st">&quot;n&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;X1&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;X2&quot;</span>,<span class="dt">xlim=</span>XLIM,<span class="dt">ylim=</span>YLIM)
+<span class="kw">abline</span>(b,m)
+<span class="kw">points</span>(newx,<span class="dt">col=</span>colshat,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">cex=</span><span class="fl">0.35</span>)
+
+##test was created in the code (not shown) for the first plot
+<span class="kw">points</span>(test,<span class="dt">bg=</span>cols,<span class="dt">pch=</span><span class="dv">21</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/regression_prediction-1.png" alt="We estimate the probability of 1 with a linear regression model with X1 and X2 as predictors. The resulting prediction map is divided into parts that are larger than 0.5 (red) and lower than 0.5 (blue)." width="672" />
+<p class="caption">
+(#fig:regression_prediction)We estimate the probability of 1 with a linear regression model with X1 and X2 as predictors. The resulting prediction map is divided into parts that are larger than 0.5 (red) and lower than 0.5 (blue).
+</p>
+</div>
+<p>The error rates in the test and train sets are quite similar. Thus, we do not seem to be over-training. This is not surprising as we are fitting a 2 parameter model to 400 data points. However, note that the boundary is a line. Because we are fitting a plane to the data, there is no other option here. The linear regression method is too rigid. The rigidity makes it stable and avoids over-training, but it also keeps the model from adapting to the non-linear relationship between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span>. We saw this before in the smoothing section. The next ML technique we consider is similar to the smoothing techniques described before.</p>
+<p><a name="knn"></a></p>
+</div>
+<div id="k-nearest-neighbor" class="section level4">
+<h4><span class="header-section-number">9.6.0.3</span> K-nearest neighbor</h4>
+<p>K-nearest neighbors (kNN) is similar to bin smoothing, but it is easier to adapt to multiple dimensions. Basically, for any point <span class="math inline">\(x\)</span> for which we want an estimate, we look for the k nearest points and then take an average of these points. This gives us an estimate of <span class="math inline">\(f(x_1,x_2)\)</span>, just like the bin smoother gave us an estimate of a curve. We can now control flexibility through <span class="math inline">\(k\)</span>. Here we compare <span class="math inline">\(k=1\)</span> and <span class="math inline">\(k=100\)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(class)
+<span class="kw">mypar</span>(<span class="dv">2</span>,<span class="dv">2</span>)
+<span class="cf">for</span>(k <span class="cf">in</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">100</span>)){
+  ##predict on train
+  yhat &lt;-<span class="st"> </span><span class="kw">knn</span>(x,x,y,<span class="dt">k=</span>k)
+  <span class="kw">cat</span>(<span class="st">&quot;KNN prediction error in train:&quot;</span>,<span class="dv">1</span><span class="op">-</span><span class="kw">mean</span>((<span class="kw">as.numeric</span>(yhat)<span class="op">-</span><span class="dv">1</span>)<span class="op">==</span>y),<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
+  ##make plot
+  yhat &lt;-<span class="st"> </span><span class="kw">knn</span>(x,test,y,<span class="dt">k=</span>k)
+  <span class="kw">cat</span>(<span class="st">&quot;KNN prediction error in test:&quot;</span>,<span class="dv">1</span><span class="op">-</span><span class="kw">mean</span>((<span class="kw">as.numeric</span>(yhat)<span class="op">-</span><span class="dv">1</span>)<span class="op">==</span>ytest),<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
+}</code></pre></div>
+<pre><code>## KNN prediction error in train: 0 
+## KNN prediction error in test: 0.375 
+## KNN prediction error in train: 0.2425 
+## KNN prediction error in test: 0.2825</code></pre>
+<p>To visualize why we make no errors in the train set and many errors in the test set when <span class="math inline">\(k=1\)</span> and obtain more stable results from <span class="math inline">\(k=100\)</span>, we show the prediction regions (code not shown):</p>
+<div class="figure"><span id="fig:knn"></span>
+<img src="bookdown_files/figure-html/knn-1.png" alt="Prediction regions obtained with kNN for k=1 (top) and k=200 (bottom). We show both train (left) and test data (right)." width="1008" />
+<p class="caption">
+图 9.8: Prediction regions obtained with kNN for k=1 (top) and k=200 (bottom). We show both train (left) and test data (right).
+</p>
+</div>
+<p>When <span class="math inline">\(k=1\)</span>, we make no mistakes in the training test since every point is its closest neighbor and it is equal to itself. However, we see some islands of blue in the red area that, once we move to the test set, are more error prone. In the case <span class="math inline">\(k=100\)</span>, we do not have this problem and we also see that we improve the error rate over linear regression. We can also see that our estimate of <span class="math inline">\(f(x_1,x_2)\)</span> is closer to the truth.</p>
+</div>
+<div id="bayes-rule" class="section level4">
+<h4><span class="header-section-number">9.6.0.4</span> Bayes rule</h4>
+<p>Here we include a comparison of the test and train set errors for various values of <span class="math inline">\(k\)</span>. We also include the error rate that we would make if we actually knew <span class="math inline">\(\mbox{E}(Y \mid X_1=x1,X_2=x_2)\)</span> referred to as <em>Bayes Rule</em>.</p>
+<p>We start by computing the error rates…</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">###Bayes Rule
+yhat &lt;-<span class="st"> </span><span class="kw">apply</span>(test,<span class="dv">1</span>,p)
+<span class="kw">cat</span>(<span class="st">&quot;Bayes rule prediction error in train&quot;</span>,<span class="dv">1</span><span class="op">-</span><span class="kw">mean</span>(<span class="kw">round</span>(yhat)<span class="op">==</span>y),<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre></div>
+<pre><code>## Bayes rule prediction error in train 0.2775</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bayes.error=<span class="dv">1</span><span class="op">-</span><span class="kw">mean</span>(<span class="kw">round</span>(yhat)<span class="op">==</span>y)
+train.error &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">16</span>)
+test.error &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">16</span>)
+<span class="cf">for</span>(k <span class="cf">in</span> <span class="kw">seq</span>(<span class="dt">along=</span>train.error)){
+  ##predict on train
+  yhat &lt;-<span class="st"> </span><span class="kw">knn</span>(x,x,y,<span class="dt">k=</span><span class="dv">2</span><span class="op">^</span>(k<span class="op">/</span><span class="dv">2</span>))
+  train.error[k] &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">-</span><span class="kw">mean</span>((<span class="kw">as.numeric</span>(yhat)<span class="op">-</span><span class="dv">1</span>)<span class="op">==</span>y)
+  ##prediction on test    
+  yhat &lt;-<span class="st"> </span><span class="kw">knn</span>(x,test,y,<span class="dt">k=</span><span class="dv">2</span><span class="op">^</span>(k<span class="op">/</span><span class="dv">2</span>))
+  test.error[k] &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">-</span><span class="kw">mean</span>((<span class="kw">as.numeric</span>(yhat)<span class="op">-</span><span class="dv">1</span>)<span class="op">==</span>y)
+}</code></pre></div>
+<p>… and then plot the error rates against values of <span class="math inline">\(k\)</span>. We also show the Bayes rules error rate as a horizontal line.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ks &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">^</span>(<span class="kw">seq</span>(<span class="dt">along=</span>train.error)<span class="op">/</span><span class="dv">2</span>)
+<span class="kw">mypar</span>()
+<span class="kw">plot</span>(ks,train.error,<span class="dt">type=</span><span class="st">&quot;n&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;K&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Prediction Error&quot;</span>,<span class="dt">log=</span><span class="st">&quot;x&quot;</span>,
+     <span class="dt">ylim=</span><span class="kw">range</span>(<span class="kw">c</span>(test.error,train.error)))
+<span class="kw">lines</span>(ks,train.error,<span class="dt">type=</span><span class="st">&quot;b&quot;</span>,<span class="dt">col=</span><span class="dv">4</span>,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">lwd=</span><span class="dv">2</span>)
+<span class="kw">lines</span>(ks,test.error,<span class="dt">type=</span><span class="st">&quot;b&quot;</span>,<span class="dt">col=</span><span class="dv">5</span>,<span class="dt">lty=</span><span class="dv">3</span>,<span class="dt">lwd=</span><span class="dv">2</span>)
+<span class="kw">abline</span>(<span class="dt">h=</span>bayes.error,<span class="dt">col=</span><span class="dv">6</span>)
+<span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;Train&quot;</span>,<span class="st">&quot;Test&quot;</span>,<span class="st">&quot;Bayes&quot;</span>),<span class="dt">col=</span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>),<span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>),<span class="dt">box.lwd=</span><span class="dv">0</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/bayes_rule2-1.png" alt="Prediction error in train (pink) and test (green) versus number of neighbors. The yellow line represents what one obtains with Bayes Rule." width="672" />
+<p class="caption">
+(#fig:bayes_rule2)Prediction error in train (pink) and test (green) versus number of neighbors. The yellow line represents what one obtains with Bayes Rule.
+</p>
+</div>
+<p>Note that these error rates are random variables and have standard errors. In the next section we describe cross-validation which helps reduce some of this variability. However, even with this variability, the plot clearly shows the problem of over-fitting when using values lower than 20 and under-fitting with values above 100.</p>
+</div>
+</div>
+<div id="cross-validation" class="section level2">
+<h2><span class="header-section-number">9.7</span> Cross-validation</h2>
+<p>Here we describe <em>cross-validation</em>: one of the fundamental methods in machine learning for method assessment and picking parameters in a prediction or machine learning task. Suppose we have a set of observations with many features and each observation is associated with a label. We will call this set our training data. Our task is to predict the label of any new samples by learning patterns from the training data. For a concrete example, let’s consider gene expression values, where each gene acts as a feature. We will be given a new set of unlabeled data (the test data) with the task of predicting the tissue type of the new samples.</p>
+<p>If we choose a machine learning algorithm with a tunable parameter, we have to come up with a strategy for picking an optimal value for this parameter. We could try some values, and then just choose the one which performs the best on our training data, in terms of the number of errors the algorithm would make if we apply it to the samples we have been given for training. However, we have seen how this leads to over-fitting.</p>
+<p>Let’s start by loading the tissue gene expression dataset:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tissuesGeneExpression)
+<span class="kw">data</span>(tissuesGeneExpression)</code></pre></div>
+<p>For illustration purposes, we will drop one of the tissues which doesn’t have many samples:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(tissue)</code></pre></div>
+<pre><code>## tissue
+##  cerebellum       colon endometrium hippocampus 
+##          38          34          15          31 
+##      kidney       liver    placenta 
+##          39          26           6</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ind &lt;-<span class="st"> </span><span class="kw">which</span>(tissue <span class="op">!=</span><span class="st"> &quot;placenta&quot;</span>)
+y &lt;-<span class="st"> </span>tissue[ind]
+X &lt;-<span class="st"> </span><span class="kw">t</span>( e[,ind] )</code></pre></div>
+<p>This tissue will not form part of our example.</p>
+<p>Now let’s try out k-nearest neighbors for classification, using <span class="math inline">\(k=5\)</span>. What is our average error in predicting the tissue in the training set, when we’ve used the same data for training and for testing?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(class)
+pred &lt;-<span class="st"> </span><span class="kw">knn</span>(<span class="dt">train =</span>  X, <span class="dt">test =</span> X, <span class="dt">cl=</span>y, <span class="dt">k=</span><span class="dv">5</span>)
+<span class="kw">mean</span>(y <span class="op">!=</span><span class="st"> </span>pred)</code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<p>We have no errors in prediction in the training set with <span class="math inline">\(k=5\)</span>. What if we use <span class="math inline">\(k=1\)</span>?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pred &lt;-<span class="st"> </span><span class="kw">knn</span>(<span class="dt">train=</span>X, <span class="dt">test=</span>X, <span class="dt">cl=</span>y, <span class="dt">k=</span><span class="dv">1</span>)
+<span class="kw">mean</span>(y <span class="op">!=</span><span class="st"> </span>pred)</code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<p>Trying to classify the same observations as we use to <em>train</em> the model can be very misleading. In fact, for k-nearest neighbors, using k=1 will always give 0 classification error in the training set, because we use the single observation to classify itself. The reliable way to get a sense of the performance of an algorithm is to make it give a prediction for a sample it has never seen. Similarly, if we want to know what the best value for a tunable parameter is, we need to see how different values of the parameter perform on samples, which are not in the training data.</p>
+<p>Cross-validation is a widely-used method in machine learning, which solves this training and test data problem, while still using all the data for testing the predictive accuracy. It accomplishes this by splitting the data into a number of <em>folds</em>. If we have <span class="math inline">\(N\)</span> folds, then the first step of the algorithm is to train the algorithm using <span class="math inline">\((N-1)\)</span> of the folds, and test the algorithm’s accuracy on the single left-out fold. This is then repeated N times until each fold has been used as in the <em>test</em> set. If we have <span class="math inline">\(M\)</span> parameter settings to try out, then this is accomplished in an outer loop, so we have to fit the algorithm a total of <span class="math inline">\(N \times M\)</span> times.</p>
+<p>We will use the <code>createFolds</code> function from the <code>caret</code> package to make 5 folds of our gene expression data, which are balanced over the tissues. Don’t be confused by the fact that the <code>createFolds</code> function uses the same letter ‘k’ as the ‘k’ in k-nearest neighbors. These ‘k’ are totally unrelated. The caret function <code>createFolds</code> is asking for how many folds to create, the <span class="math inline">\(N\)</span> from above. The ‘k’ in the <code>knn</code> function is for how many closest observations to use in classifying a new sample. Here we will create 10 folds:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(caret)
+<span class="kw">set.seed</span>(<span class="dv">1</span>)
+idx &lt;-<span class="st"> </span><span class="kw">createFolds</span>(y, <span class="dt">k=</span><span class="dv">10</span>)
+<span class="kw">sapply</span>(idx, length)</code></pre></div>
+<pre><code>## Fold01 Fold02 Fold03 Fold04 Fold05 Fold06 Fold07 
+##     18     19     17     17     18     20     19 
+## Fold08 Fold09 Fold10 
+##     19     20     16</code></pre>
+<p>The folds are returned as a list of numeric indices. The first fold of data is therefore:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y[idx[[<span class="dv">1</span>]]] ##the labels</code></pre></div>
+<pre><code>##  [1] &quot;kidney&quot;      &quot;kidney&quot;      &quot;hippocampus&quot;
+##  [4] &quot;hippocampus&quot; &quot;hippocampus&quot; &quot;cerebellum&quot; 
+##  [7] &quot;cerebellum&quot;  &quot;cerebellum&quot;  &quot;colon&quot;      
+## [10] &quot;colon&quot;       &quot;colon&quot;       &quot;colon&quot;      
+## [13] &quot;kidney&quot;      &quot;kidney&quot;      &quot;endometrium&quot;
+## [16] &quot;endometrium&quot; &quot;liver&quot;       &quot;liver&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>( X[idx[[<span class="dv">1</span>]], <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>] ) ##the genes (only showing the first 3 genes...)</code></pre></div>
+<pre><code>##                 1007_s_at 1053_at 117_at
+## GSM12075.CEL.gz     9.967   6.060  7.644
+## GSM12098.CEL.gz     9.946   5.928  7.847
+## GSM21214.cel.gz    10.955   5.777  7.494
+## GSM21218.cel.gz    10.758   5.984  8.526
+## GSM21230.cel.gz    11.496   5.760  7.788
+## GSM87086.cel.gz     9.799   5.862  7.279</code></pre>
+<p>We can see that, in fact, the tissues are fairly equally represented across the 10 folds:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(idx, <span class="cf">function</span>(i) <span class="kw">table</span>(y[i]))</code></pre></div>
+<pre><code>##             Fold01 Fold02 Fold03 Fold04 Fold05 Fold06
+## cerebellum       3      4      4      4      4      4
+## colon            4      3      3      3      4      4
+## endometrium      2      2      1      1      1      2
+## hippocampus      3      3      3      3      3      3
+## kidney           4      4      3      4      4      4
+## liver            2      3      3      2      2      3
+##             Fold07 Fold08 Fold09 Fold10
+## cerebellum       4      4      4      3
+## colon            3      3      4      3
+## endometrium      1      2      2      1
+## hippocampus      4      3      3      3
+## kidney           4      4      4      4
+## liver            3      3      3      2</code></pre>
+<p>Because tissues have very different gene expression profiles, predicting tissue with all genes will be very easy. For illustration purposes we will try to predict tissue type with just two dimensional data. We will reduce the dimension of our data using <code>cmdscale</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rafalib)
+<span class="kw">mypar</span>()
+Xsmall &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(<span class="kw">dist</span>(X))
+<span class="kw">plot</span>(Xsmall,<span class="dt">col=</span><span class="kw">as.fumeric</span>(y))
+<span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>,<span class="kw">levels</span>(<span class="kw">factor</span>(y)),<span class="dt">fill=</span><span class="kw">seq_along</span>(<span class="kw">levels</span>(<span class="kw">factor</span>(y))))</code></pre></div>
+<div class="figure"><span id="fig:mds"></span>
+<img src="bookdown_files/figure-html/mds-1.png" alt="First two PCs of the tissue gene expression data with color representing tissue. We use these two PCs as our two predictors throughout." width="672" />
+<p class="caption">
+图 9.9: First two PCs of the tissue gene expression data with color representing tissue. We use these two PCs as our two predictors throughout.
+</p>
+</div>
+<p>Now we can try out the k-nearest neighbors method on a single fold. We provide the <code>knn</code> function with all the samples in <code>Xsmall</code> <em>except</em> those which are in the first fold. We remove these samples using the code <code>-idx[[1]]</code> inside the square brackets. We then use those samples in the test set. The <code>cl</code> argument is for the true classifications or labels (here, tissue) of the training data. We use 5 observations to classify in our k-nearest neighbor algorithm:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pred &lt;-<span class="st"> </span><span class="kw">knn</span>(<span class="dt">train=</span>Xsmall[ <span class="op">-</span>idx[[<span class="dv">1</span>]] , ], <span class="dt">test=</span>Xsmall[ idx[[<span class="dv">1</span>]], ], <span class="dt">cl=</span>y[ <span class="op">-</span>idx[[<span class="dv">1</span>]] ], <span class="dt">k=</span><span class="dv">5</span>)
+<span class="kw">table</span>(<span class="dt">true=</span>y[ idx[[<span class="dv">1</span>]] ], pred)</code></pre></div>
+<pre><code>##              pred
+## true          cerebellum colon endometrium hippocampus
+##   cerebellum           2     0           0           1
+##   colon                0     4           0           0
+##   endometrium          0     0           1           0
+##   hippocampus          1     0           0           2
+##   kidney               0     0           0           0
+##   liver                0     0           0           0
+##              pred
+## true          kidney liver
+##   cerebellum       0     0
+##   colon            0     0
+##   endometrium      1     0
+##   hippocampus      0     0
+##   kidney           4     0
+##   liver            0     2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(y[ idx[[<span class="dv">1</span>]] ] <span class="op">!=</span><span class="st"> </span>pred)</code></pre></div>
+<pre><code>## [1] 0.1667</code></pre>
+<p>Now we have some misclassifications. How well do we do for the rest of the folds?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) {
+  pred &lt;-<span class="st"> </span><span class="kw">knn</span>(<span class="dt">train=</span>Xsmall[ <span class="op">-</span>idx[[i]] , ], <span class="dt">test=</span>Xsmall[ idx[[i]], ], <span class="dt">cl=</span>y[ <span class="op">-</span>idx[[i]] ], <span class="dt">k=</span><span class="dv">5</span>)
+  <span class="kw">print</span>(<span class="kw">paste0</span>(i,<span class="st">&quot;) error rate: &quot;</span>, <span class="kw">round</span>(<span class="kw">mean</span>(y[ idx[[i]] ] <span class="op">!=</span><span class="st"> </span>pred),<span class="dv">3</span>)))
+}</code></pre></div>
+<pre><code>## [1] &quot;1) error rate: 0.167&quot;
+## [1] &quot;2) error rate: 0.105&quot;
+## [1] &quot;3) error rate: 0.118&quot;
+## [1] &quot;4) error rate: 0.118&quot;
+## [1] &quot;5) error rate: 0.278&quot;
+## [1] &quot;6) error rate: 0.05&quot;
+## [1] &quot;7) error rate: 0.105&quot;
+## [1] &quot;8) error rate: 0.211&quot;
+## [1] &quot;9) error rate: 0.15&quot;
+## [1] &quot;10) error rate: 0.312&quot;</code></pre>
+<p>So we can see there is some variation for each fold, with error rates hovering around 0.1-0.3. But is <code>k=5</code> the best setting for the k parameter? In order to explore the best setting for k, we need to create an outer loop, where we try different values for k, and then calculate the average test set error across all the folds.</p>
+<p>We will try out each value of k from 1 to 12. Instead of using two <code>for</code> loops, we will use <code>sapply</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
+ks &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span>
+res &lt;-<span class="st"> </span><span class="kw">sapply</span>(ks, <span class="cf">function</span>(k) {
+  ##try out each version of k from 1 to 12
+  res.k &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">seq_along</span>(idx), <span class="cf">function</span>(i) {
+    ##loop over each of the 10 cross-validation folds
+    ##predict the held-out samples using k nearest neighbors
+    pred &lt;-<span class="st"> </span><span class="kw">knn</span>(<span class="dt">train=</span>Xsmall[ <span class="op">-</span>idx[[i]], ],
+                <span class="dt">test=</span>Xsmall[ idx[[i]], ],
+                <span class="dt">cl=</span>y[ <span class="op">-</span>idx[[i]] ], <span class="dt">k =</span> k)
+    ##the ratio of misclassified samples
+    <span class="kw">mean</span>(y[ idx[[i]] ] <span class="op">!=</span><span class="st"> </span>pred)
+  })
+  ##average over the 10 folds
+  <span class="kw">mean</span>(res.k)
+})</code></pre></div>
+<p>Now for each value of k, we have an associated test set error rate from the cross-validation procedure.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res</code></pre></div>
+<pre><code>##  [1] 0.1978 0.1703 0.1883 0.1751 0.1613 0.1501 0.1553
+##  [8] 0.1885 0.1822 0.1763 0.1761 0.1813</code></pre>
+<p>We can then plot the error rate for each value of k, which helps us to see in what region there might be a minimal error rate:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(ks, res, <span class="dt">type=</span><span class="st">&quot;o&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;misclassification error&quot;</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/misclassification_error-1.png" alt="Misclassification error versus number of neighbors." width="672" />
+<p class="caption">
+(#fig:misclassification_error)Misclassification error versus number of neighbors.
+</p>
+</div>
+<p>Remember, because the training set is a random sample and because our fold-generation procedure involves random number generation, the “best” value of k we pick through this procedure is also a random variable. If we had new training data and if we recreated our folds, we might get a different value for the optimal k.</p>
+<p>Finally, to show that gene expression can perfectly predict tissue, we use 5 dimensions instead of 2, which results in perfect prediction:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Xsmall &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(<span class="kw">dist</span>(X),<span class="dt">k=</span><span class="dv">5</span>)
+<span class="kw">set.seed</span>(<span class="dv">1</span>)
+ks &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span>
+res &lt;-<span class="st"> </span><span class="kw">sapply</span>(ks, <span class="cf">function</span>(k) {
+  res.k &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">seq_along</span>(idx), <span class="cf">function</span>(i) {
+    pred &lt;-<span class="st"> </span><span class="kw">knn</span>(<span class="dt">train=</span>Xsmall[ <span class="op">-</span>idx[[i]], ],
+                <span class="dt">test=</span>Xsmall[ idx[[i]], ],
+                <span class="dt">cl=</span>y[ <span class="op">-</span>idx[[i]] ], <span class="dt">k =</span> k)
+    <span class="kw">mean</span>(y[ idx[[i]] ] <span class="op">!=</span><span class="st"> </span>pred)
+  })
+  <span class="kw">mean</span>(res.k)
+})
+<span class="kw">plot</span>(ks, res, <span class="dt">type=</span><span class="st">&quot;o&quot;</span>,<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.20</span>),<span class="dt">ylab=</span><span class="st">&quot;misclassification error&quot;</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/misclassification_error2-1.png" alt="Misclassification error versus number of neighbors when we use 5 dimensions instead of 2." width="672" />
+<p class="caption">
+(#fig:misclassification_error2)Misclassification error versus number of neighbors when we use 5 dimensions instead of 2.
+</p>
+</div>
+<p>Important note: we applied <code>cmdscale</code> to the entire dataset to create a smaller one for illustration purposes. However, in a real machine learning application, this may result in an underestimation of test set error for small sample sizes, where dimension reduction using the unlabeled full dataset gives a boost in performance. A safer choice would have been to transform the data separately for each fold, by calculating a rotation and dimension reduction using the training set only and applying this to the test set.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="distance-and-dimension-reduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="batch-effects.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/xie186/DataAnalysisForLifeScience_cn/edit/master/09_ml.Rmd",
+"text": "编辑"
+},
+"download": ["bookdown.pdf", "bookdown.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

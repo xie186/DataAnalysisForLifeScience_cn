@@ -1,0 +1,50 @@
+
+
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+p.flushright {
+  text-align: right;
+}
+blockquote > p:last-child {
+  text-align: right;
+}
+blockquote > p:first-child {
+  text-align: inherit;
+}
+
+div.FOO {
+  font-size:12;
+}
+
+div.EXERSIZE {
+  #background-color: ligthblue;
+  background-color: #F0F0F0;
+  border-box: black;
+  color: black;
+}
+
+div.CODE {
+  #background-color: blue;
+  #background-color: blue;
+  color: gray;
+  #text-indent: 25px;
+  padding-left: 2em;
+  font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
+  font-size: 1px;
+
+  border-color: rgba(180,139,117,0.5); /* #B48A74; */
+  border-width: 1px; /* this allows you to adjust the thickness */
+  border-style: solid;
+}

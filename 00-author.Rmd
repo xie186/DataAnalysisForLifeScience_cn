@@ -1,12 +1,8 @@
 
 # Acknowledgments {-}
 
-```{block echo=FLASE}
 The authors would like to thank Alex Nones for proofreading the manuscript during its various stages. Also, thanks to Karl Broman for contributing the "Plots to Avoid" section and to Stephanie Hicks for designing some of the exercises. Finally, thanks to John Kimmel and three anonymous referees for excellent feedback and 
 constructive criticism of the book.
-```
-
-翻译内容
 
 This book was conceived during the teaching of several HarvardX courses, coordinated by Heather Sternshein. We are also grateful 
 to our TAs, Idan Ginsburg and Stephanie Chan, and all the students whose questions and comments helped us improve the book. The courses were

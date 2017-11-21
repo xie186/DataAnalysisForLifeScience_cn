@@ -8,6 +8,7 @@ syntax. If you don't, your first homework, listed below, is to
 complete a tutorial. Here we give step-by-step instructions on how to
 get set up to follow along. 
 
+翻译
 
 ## Installing R
 

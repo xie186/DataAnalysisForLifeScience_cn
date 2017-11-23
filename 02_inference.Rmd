@@ -441,6 +441,39 @@ $\bar{Y}-\bar{X}$  and $\mu_Y - \mu_X$. Specifically, we will describe
 how the Central Limit Theorem permits us to use an approximation to
 answer this question, as well as motivate the widely used t-distribution.
 
+### Population, Samples, and Estimates Exercises
+
+__Exercises__
+
+For these exercises, we will be using the following dataset:
+
+```
+library(downloader) 
+url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/mice_pheno.csv"
+filename <- basename(url)
+download(url, destfile=filename)
+dat <- read.csv(filename)
+```
+
+We will remove the lines that contain missing values:
+
+```
+dat <- na.omit( dat )
+```
+
+1. Use `dplyr` to create a vector `x` with the body weight of all males on the control (`chow`) diet. What is this population’s average?
+
+2. Now use the `rafalib` package and use the `popsd` function to compute the population standard deviation.
+
+3. Set the seed at 1. Take a random sample $X of size 25 from `x`. What is the sample average?
+
+4. Use `dplyr` to create a vector `y` with the body weight of all males on the high fat (`hf`) diet. What is this population’s average?
+
+5. 
+
+
+
+
 
 
 ## Central Limit Theorem and t-distribution

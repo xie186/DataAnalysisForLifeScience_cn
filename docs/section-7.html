@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>生物信息R数据分析</title>
+  <meta name="description" content="生物信息R数据分析">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="生物信息R数据分析" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="images/cover.jpg" />
+  <meta property="og:description" content="生物信息R数据分析" />
+  <meta name="github-repo" content="xie186/HarvardDataScienceForLifeScience_cn" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="生物信息R数据分析" />
+  
+  <meta name="twitter:description" content="生物信息R数据分析" />
+  <meta name="twitter:image" content="images/cover.jpg" />
+
+<meta name="author" content="作者：Rafael A. Irizarry; Mike I. Love 翻译：张三 李四 麻子">
+
+
+<meta name="date" content="2017-11-25">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="inference-for-high-dimensional-data.html">
+<link rel="next" href="distance-and-dimension-reduction.html">
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">生物信息R数据分析</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Cover picture</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a><ul>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#who-will-find-this-book-useful"><i class="fa fa-check"></i>Who Will Find This Book Useful?</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#what-does-this-book-cover"><i class="fa fa-check"></i>What Does This Book Cover?</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#how-is-this-book-different"><i class="fa fa-check"></i>How Is This Book Different?</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
+<li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#installing-r"><i class="fa fa-check"></i><b>1.1</b> Installing R</a></li>
+<li class="chapter" data-level="1.2" data-path="getting-started.html"><a href="getting-started.html#installing-rstudio"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#learn-r-basics"><i class="fa fa-check"></i><b>1.3</b> Learn R Basics</a></li>
+<li class="chapter" data-level="1.4" data-path="getting-started.html"><a href="getting-started.html#installing-packages"><i class="fa fa-check"></i><b>1.4</b> Installing Packages</a></li>
+<li class="chapter" data-level="1.5" data-path="getting-started.html"><a href="getting-started.html#importing-data-into-r"><i class="fa fa-check"></i><b>1.5</b> Importing Data into R</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="getting-started.html"><a href="getting-started.html#getting-started-exercises"><i class="fa fa-check"></i><b>1.5.1</b> Getting Started Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="getting-started.html"><a href="getting-started.html#brief-introduction-to-dplyr"><i class="fa fa-check"></i><b>1.6</b> Brief Introduction to <code>dplyr</code></a><ul>
+<li class="chapter" data-level="1.6.1" data-path="getting-started.html"><a href="getting-started.html#dplyr-exercises"><i class="fa fa-check"></i><b>1.6.1</b> <code>dplyr</code> exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="getting-started.html"><a href="getting-started.html#mathematical-notation"><i class="fa fa-check"></i><b>1.7</b> Mathematical Notation</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="inference.html"><a href="inference.html"><i class="fa fa-check"></i><b>2</b> Inference</a><ul>
+<li class="chapter" data-level="2.1" data-path="inference.html"><a href="inference.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="inference.html"><a href="inference.html#random-variables"><i class="fa fa-check"></i><b>2.2</b> Random Variables</a></li>
+<li class="chapter" data-level="2.3" data-path="inference.html"><a href="inference.html#the-null-hypothesis"><i class="fa fa-check"></i><b>2.3</b> The Null Hypothesis</a></li>
+<li class="chapter" data-level="2.4" data-path="inference.html"><a href="inference.html#distributions"><i class="fa fa-check"></i><b>2.4</b> Distributions</a></li>
+<li class="chapter" data-level="2.5" data-path="inference.html"><a href="inference.html#probability-distribution"><i class="fa fa-check"></i><b>2.5</b> Probability Distribution</a></li>
+<li class="chapter" data-level="2.6" data-path="inference.html"><a href="inference.html#normal-distribution"><i class="fa fa-check"></i><b>2.6</b> Normal Distribution</a></li>
+<li class="chapter" data-level="2.7" data-path="inference.html"><a href="inference.html#populations-samples-and-estimates"><i class="fa fa-check"></i><b>2.7</b> Populations, Samples and Estimates</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="inference.html"><a href="inference.html#population-samples-and-estimates-exercises"><i class="fa fa-check"></i><b>2.7.1</b> Population, Samples, and Estimates Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="inference.html"><a href="inference.html#central-limit-theorem-and-t-distribution"><i class="fa fa-check"></i><b>2.8</b> Central Limit Theorem and t-distribution</a></li>
+<li class="chapter" data-level="2.9" data-path="inference.html"><a href="inference.html#central-limit-theorem-in-practice"><i class="fa fa-check"></i><b>2.9</b> Central Limit Theorem in Practice</a></li>
+<li class="chapter" data-level="2.10" data-path="inference.html"><a href="inference.html#t-tests-in-practice"><i class="fa fa-check"></i><b>2.10</b> t-tests in Practice</a></li>
+<li class="chapter" data-level="2.11" data-path="inference.html"><a href="inference.html#the-t-distribution-in-practice"><i class="fa fa-check"></i><b>2.11</b> The t-distribution in Practice</a></li>
+<li class="chapter" data-level="2.12" data-path="inference.html"><a href="inference.html#confidence-intervals"><i class="fa fa-check"></i><b>2.12</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="2.13" data-path="inference.html"><a href="inference.html#power-calculations"><i class="fa fa-check"></i><b>2.13</b> Power Calculations</a></li>
+<li class="chapter" data-level="2.14" data-path="inference.html"><a href="inference.html#monte-carlo-simulation"><i class="fa fa-check"></i><b>2.14</b> Monte Carlo Simulation</a></li>
+<li class="chapter" data-level="2.15" data-path="inference.html"><a href="inference.html#parametric-simulations-for-the-observations"><i class="fa fa-check"></i><b>2.15</b> Parametric Simulations for the Observations</a></li>
+<li class="chapter" data-level="2.16" data-path="inference.html"><a href="inference.html#permutation-tests"><i class="fa fa-check"></i><b>2.16</b> Permutation Tests</a></li>
+<li class="chapter" data-level="2.17" data-path="inference.html"><a href="inference.html#association-tests"><i class="fa fa-check"></i><b>2.17</b> Association Tests</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>3</b> Exploratory Data Analysis</a><ul>
+<li class="chapter" data-level="3.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#quantile-quantile-plots"><i class="fa fa-check"></i><b>3.1</b> Quantile Quantile Plots</a></li>
+<li class="chapter" data-level="3.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#boxplots"><i class="fa fa-check"></i><b>3.2</b> Boxplots</a></li>
+<li class="chapter" data-level="3.3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#scatterplots-and-correlation"><i class="fa fa-check"></i><b>3.3</b> Scatterplots and Correlation</a></li>
+<li class="chapter" data-level="3.4" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#stratification"><i class="fa fa-check"></i><b>3.4</b> Stratification</a></li>
+<li class="chapter" data-level="3.5" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#bivariate-normal-distribution"><i class="fa fa-check"></i><b>3.5</b> Bivariate Normal Distribution</a></li>
+<li class="chapter" data-level="3.6" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#plots-to-avoid"><i class="fa fa-check"></i><b>3.6</b> Plots to Avoid</a></li>
+<li class="chapter" data-level="3.7" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#misunderstanding-correlation-advanced"><i class="fa fa-check"></i><b>3.7</b> Misunderstanding Correlation (Advanced)</a></li>
+<li class="chapter" data-level="3.8" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#robust-summaries"><i class="fa fa-check"></i><b>3.8</b> Robust Summaries</a></li>
+<li class="chapter" data-level="3.9" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#wilcoxon-rank-sum-test"><i class="fa fa-check"></i><b>3.9</b> Wilcoxon Rank Sum Test</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="matrix-algebra.html"><a href="matrix-algebra.html"><i class="fa fa-check"></i><b>4</b> Matrix Algebra</a><ul>
+<li class="chapter" data-level="4.1" data-path="matrix-algebra.html"><a href="matrix-algebra.html#motivating-examples"><i class="fa fa-check"></i><b>4.1</b> Motivating Examples</a></li>
+<li class="chapter" data-level="4.2" data-path="matrix-algebra.html"><a href="matrix-algebra.html#matrix-notation"><i class="fa fa-check"></i><b>4.2</b> Matrix Notation</a></li>
+<li class="chapter" data-level="4.3" data-path="matrix-algebra.html"><a href="matrix-algebra.html#solving-systems-of-equations"><i class="fa fa-check"></i><b>4.3</b> Solving Systems of Equations</a></li>
+<li class="chapter" data-level="4.4" data-path="matrix-algebra.html"><a href="matrix-algebra.html#vectors-matrices-and-scalars"><i class="fa fa-check"></i><b>4.4</b> Vectors, Matrices, and Scalars</a></li>
+<li class="chapter" data-level="4.5" data-path="matrix-algebra.html"><a href="matrix-algebra.html#matrix-operations"><i class="fa fa-check"></i><b>4.5</b> Matrix Operations</a></li>
+<li class="chapter" data-level="4.6" data-path="matrix-algebra.html"><a href="matrix-algebra.html#examples"><i class="fa fa-check"></i><b>4.6</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="linear-models-1.html"><a href="linear-models-1.html"><i class="fa fa-check"></i><b>5</b> Linear Models</a><ul>
+<li class="chapter" data-level="5.1" data-path="linear-models-1.html"><a href="linear-models-1.html#the-design-matrix"><i class="fa fa-check"></i><b>5.1</b> The Design Matrix</a></li>
+<li class="chapter" data-level="5.2" data-path="linear-models-1.html"><a href="linear-models-1.html#the-mathematics-behind-lm"><i class="fa fa-check"></i><b>5.2</b> The Mathematics Behind lm()</a></li>
+<li class="chapter" data-level="5.3" data-path="linear-models-1.html"><a href="linear-models-1.html#standard-errors"><i class="fa fa-check"></i><b>5.3</b> Standard Errors</a></li>
+<li class="chapter" data-level="5.4" data-path="linear-models-1.html"><a href="linear-models-1.html#interactions-and-contrasts"><i class="fa fa-check"></i><b>5.4</b> Interactions and Contrasts</a></li>
+<li class="chapter" data-level="5.5" data-path="linear-models-1.html"><a href="linear-models-1.html#linear-model-with-interactions"><i class="fa fa-check"></i><b>5.5</b> Linear Model with Interactions</a></li>
+<li class="chapter" data-level="5.6" data-path="linear-models-1.html"><a href="linear-models-1.html#analysis-of-variance"><i class="fa fa-check"></i><b>5.6</b> Analysis of Variance</a></li>
+<li class="chapter" data-level="5.7" data-path="linear-models-1.html"><a href="linear-models-1.html#collinearity"><i class="fa fa-check"></i><b>5.7</b> Collinearity</a></li>
+<li class="chapter" data-level="5.8" data-path="linear-models-1.html"><a href="linear-models-1.html#rank"><i class="fa fa-check"></i><b>5.8</b> Rank</a></li>
+<li class="chapter" data-level="5.9" data-path="linear-models-1.html"><a href="linear-models-1.html#removing-confounding"><i class="fa fa-check"></i><b>5.9</b> Removing Confounding</a></li>
+<li class="chapter" data-level="5.10" data-path="linear-models-1.html"><a href="linear-models-1.html#the-qr-factorization-advanced"><i class="fa fa-check"></i><b>5.10</b> The QR Factorization (Advanced)</a></li>
+<li class="chapter" data-level="5.11" data-path="linear-models-1.html"><a href="linear-models-1.html#going-further"><i class="fa fa-check"></i><b>5.11</b> Going Further</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html"><i class="fa fa-check"></i><b>6</b> Inference for High Dimensional Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#introduction-4"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#inference-in-practice"><i class="fa fa-check"></i><b>6.2</b> Inference in Practice</a></li>
+<li class="chapter" data-level="6.3" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#procedures"><i class="fa fa-check"></i><b>6.3</b> Procedures</a></li>
+<li class="chapter" data-level="6.4" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#error-rates"><i class="fa fa-check"></i><b>6.4</b> Error Rates</a></li>
+<li class="chapter" data-level="6.5" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#the-bonferroni-correction"><i class="fa fa-check"></i><b>6.5</b> The Bonferroni Correction</a></li>
+<li class="chapter" data-level="6.6" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#false-discovery-rate"><i class="fa fa-check"></i><b>6.6</b> False Discovery Rate</a></li>
+<li class="chapter" data-level="6.7" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#direct-approach-to-fdr-and-q-values-advanced"><i class="fa fa-check"></i><b>6.7</b> Direct Approach to FDR and q-values (Advanced)</a></li>
+<li class="chapter" data-level="6.8" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#basic-exploratory-data-analysis"><i class="fa fa-check"></i><b>6.8</b> Basic Exploratory Data Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="section-7.html"><a href="section-7.html"><i class="fa fa-check"></i><b>7</b> 统计模型</a><ul>
+<li class="chapter" data-level="7.1" data-path="section-7.html"><a href="section-7.html#the-binomial-distribution"><i class="fa fa-check"></i><b>7.1</b> The Binomial Distribution</a></li>
+<li class="chapter" data-level="7.2" data-path="section-7.html"><a href="section-7.html#the-poisson-distribution"><i class="fa fa-check"></i><b>7.2</b> The Poisson Distribution</a></li>
+<li class="chapter" data-level="7.3" data-path="section-7.html"><a href="section-7.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>7.3</b> Maximum Likelihood Estimation</a></li>
+<li class="chapter" data-level="7.4" data-path="section-7.html"><a href="section-7.html#distributions-for-positive-continuous-values"><i class="fa fa-check"></i><b>7.4</b> Distributions for Positive Continuous Values</a></li>
+<li class="chapter" data-level="7.5" data-path="section-7.html"><a href="section-7.html#bayesian-statistics"><i class="fa fa-check"></i><b>7.5</b> Bayesian Statistics</a></li>
+<li class="chapter" data-level="7.6" data-path="section-7.html"><a href="section-7.html#hierarchical-models"><i class="fa fa-check"></i><b>7.6</b> Hierarchical Models</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html"><i class="fa fa-check"></i><b>8</b> Distance and Dimension Reduction</a><ul>
+<li class="chapter" data-level="8.1" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#introduction-5"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#euclidean-distance"><i class="fa fa-check"></i><b>8.2</b> Euclidean Distance</a></li>
+<li class="chapter" data-level="8.3" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#distance-in-high-dimensions"><i class="fa fa-check"></i><b>8.3</b> Distance in High Dimensions</a></li>
+<li class="chapter" data-level="8.4" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#dimension-reduction-motivation"><i class="fa fa-check"></i><b>8.4</b> Dimension Reduction Motivation</a></li>
+<li class="chapter" data-level="8.5" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#singular-value-decomposition"><i class="fa fa-check"></i><b>8.5</b> Singular Value Decomposition</a></li>
+<li class="chapter" data-level="8.6" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#projections"><i class="fa fa-check"></i><b>8.6</b> Projections</a></li>
+<li class="chapter" data-level="8.7" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#rotations-1"><i class="fa fa-check"></i><b>8.7</b> Rotations</a></li>
+<li class="chapter" data-level="8.8" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#multi-dimensional-scaling-plots"><i class="fa fa-check"></i><b>8.8</b> Multi-Dimensional Scaling Plots</a></li>
+<li class="chapter" data-level="8.9" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#principal-component-analysis"><i class="fa fa-check"></i><b>8.9</b> Principal Component Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html"><i class="fa fa-check"></i><b>9</b> Basic Machine Learning</a><ul>
+<li class="chapter" data-level="9.1" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#clustering"><i class="fa fa-check"></i><b>9.1</b> Clustering</a></li>
+<li class="chapter" data-level="9.2" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#conditional-probabilities-and-expectations"><i class="fa fa-check"></i><b>9.2</b> Conditional Probabilities and Expectations</a></li>
+<li class="chapter" data-level="9.3" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#smoothing"><i class="fa fa-check"></i><b>9.3</b> Smoothing</a></li>
+<li class="chapter" data-level="9.4" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#bin-smoothing"><i class="fa fa-check"></i><b>9.4</b> Bin Smoothing</a></li>
+<li class="chapter" data-level="9.5" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#loess"><i class="fa fa-check"></i><b>9.5</b> Loess</a></li>
+<li class="chapter" data-level="9.6" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#class-prediction"><i class="fa fa-check"></i><b>9.6</b> Class Prediction</a></li>
+<li class="chapter" data-level="9.7" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#cross-validation"><i class="fa fa-check"></i><b>9.7</b> Cross-validation</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="batch-effects.html"><a href="batch-effects.html"><i class="fa fa-check"></i><b>10</b> Batch Effects</a><ul>
+<li class="chapter" data-level="10.1" data-path="batch-effects.html"><a href="batch-effects.html#confounding"><i class="fa fa-check"></i><b>10.1</b> Confounding</a></li>
+<li class="chapter" data-level="10.2" data-path="batch-effects.html"><a href="batch-effects.html#confounding-high-throughput-example"><i class="fa fa-check"></i><b>10.2</b> Confounding: High-Throughput Example</a></li>
+<li class="chapter" data-level="10.3" data-path="batch-effects.html"><a href="batch-effects.html#discovering-batch-effects-with-eda"><i class="fa fa-check"></i><b>10.3</b> Discovering Batch Effects with EDA</a></li>
+<li class="chapter" data-level="10.4" data-path="batch-effects.html"><a href="batch-effects.html#gene-expression-data"><i class="fa fa-check"></i><b>10.4</b> Gene Expression Data</a></li>
+<li class="chapter" data-level="10.5" data-path="batch-effects.html"><a href="batch-effects.html#motivation-for-statistical-approaches"><i class="fa fa-check"></i><b>10.5</b> Motivation for Statistical Approaches</a></li>
+<li class="chapter" data-level="10.6" data-path="batch-effects.html"><a href="batch-effects.html#adjusting-for-batch-effects-with-linear-models"><i class="fa fa-check"></i><b>10.6</b> Adjusting for Batch Effects with Linear Models</a></li>
+<li class="chapter" data-level="10.7" data-path="batch-effects.html"><a href="batch-effects.html#factor-analysis"><i class="fa fa-check"></i><b>10.7</b> Factor Analysis</a></li>
+<li class="chapter" data-level="10.8" data-path="batch-effects.html"><a href="batch-effects.html#modeling-batch-effects-with-factor-analysis"><i class="fa fa-check"></i><b>10.8</b> Modeling Batch Effects with Factor Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">生物信息R数据分析</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="section-7" class="section level1">
+<h1><span class="header-section-number">第 7 章</span> 统计模型</h1>
+<blockquote>
+<p>All models are wrong, but some are useful. -George E. P. Box</p>
+</blockquote>
+<p>  当我们在文献里面看见P值时, 这意味着作者采用了某种概率分布来对零假设建模。 很多时候,使用哪种概率分布是相对比较简单的.例如,在茶品鉴中我们可以使用简单的概率计算来确定零假设.大多数的P值或者是从样本均值或者是从线性模型的最小平方。</p>
+<p>The CLT is backed by theoretical results that guarantee that the approximation is accurate. However, we cannot always use this approximation, such as when our sample size is too small. Previously, we described how the sample average can be approximated as t-distributed when the population data is approximately normal. However, there is no theoretical backing for this assumption. We are now <em>modeling</em>. In the case of height, we know from experience that this turns out to be a very good model.</p>
+<p>But this does not imply that every dataset we collect will follow a normal distribution. Some examples are: coin tosses, the number of people who win the lottery, and US incomes. The normal distribution is not the only parametric distribution that is available for modeling. Here we provide a very brief introduction to some of the most widely used parametric distributions and some of their uses in the life sciences. We focus on the models and concepts needed to understand the techniques currently used to perform statistical inference on high-throughput data. To do this we also need to introduce the basics of Bayesian statistics. For more in-depth description of probability models and parametric distributions please consult a Statistics textbook such as <a href="https://www.stat.berkeley.edu/~rice/Book3ed/index.html">this one</a>.</p>
+<div id="the-binomial-distribution" class="section level2">
+<h2><span class="header-section-number">7.1</span> The Binomial Distribution</h2>
+<p>The first distribution we will describe is the binomial distribution. It reports the probability of observing <span class="math inline">\(S=k\)</span> successes in <span class="math inline">\(N\)</span> trials as</p>
+<p><span class="math display">\[
+\mbox{Pr}(S=k) = {N \choose k}p^k (1-p)^{N-k}
+\]</span></p>
+<p>with <span class="math inline">\(p\)</span> the probability of success. The best known example is coin tosses with <span class="math inline">\(S\)</span> the number of heads when tossing <span class="math inline">\(N\)</span> coins. In this example <span class="math inline">\(p=0.5\)</span>.</p>
+<p>Note that <span class="math inline">\(S/N\)</span> is the average of independent random variables and thus the CLT tells us that <span class="math inline">\(S\)</span> is approximately normal when <span class="math inline">\(N\)</span> is large. This distribution has many applications in the life sciences. Recently, it has been used by the variant callers and genotypers applied to next generation sequencing. A special case of this distribution is approximated by the Poisson distribution which we describe next.</p>
+</div>
+<div id="the-poisson-distribution" class="section level2">
+<h2><span class="header-section-number">7.2</span> The Poisson Distribution</h2>
+<p>Since it is the sum of binary outcomes, the number of people that win the lottery follows a binomial distribution (we assume each person buys one ticket). The number of trials <span class="math inline">\(N\)</span> is the number of people that buy tickets and is usually very large. However, the number of people that win the lottery oscillates between 0 and 3, which implies the normal approximation does not hold. So why does CLT not hold? One can explain this mathematically, but the intuition is that with the sum of successes so close to and also constrained to be larger than 0, it is impossible for the distribution to be normal. Here is a quick simulation:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p=<span class="dv">10</span><span class="op">^-</span><span class="dv">7</span> ##1 in 10,000,0000 chances of winning
+N=<span class="dv">5</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span> ##5,000,000 tickets bought
+winners=<span class="kw">rbinom</span>(<span class="dv">1000</span>,N,p) ##1000 is the number of different lotto draws
+tab=<span class="kw">table</span>(winners)
+<span class="kw">plot</span>(tab)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/lottery_winners_outcomes-1.png" alt="Number of people that win the lottery obtained from Monte Carlo simulation." width="672" />
+<p class="caption">
+(#fig:lottery_winners_outcomes)Number of people that win the lottery obtained from Monte Carlo simulation.
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">prop.table</span>(tab)</code></pre></div>
+<pre><code>## winners
+##     0     1     2     3     4 
+## 0.604 0.316 0.067 0.012 0.001</code></pre>
+<p>For cases like this, where <span class="math inline">\(N\)</span> is very large, but <span class="math inline">\(p\)</span> is small enough to make <span class="math inline">\(N \times p\)</span> (call it <span class="math inline">\(\lambda\)</span>) a number between 0 and, for example, 10, then <span class="math inline">\(S\)</span> can be shown to follow a Poisson distribution, which has a simple parametric form:</p>
+<p><span class="math display">\[
+\mbox{Pr}(S=k)=\frac{\lambda^k \exp{-\lambda}}{k!}
+\]</span></p>
+<p>The Poisson distribution is commonly used in RNA-seq analyses. Because we are sampling thousands of molecules and most genes represent a very small proportion of the totality of molecules, the Poisson distribution seems appropriate.</p>
+<p>So how does this help us? One way is that it provides insight about the statistical properties of summaries that are widely used in practice. For example, let’s say we only have one sample from each of a case and control RNA-seq experiment and we want to report the genes with the largest fold-changes. One insight that the Poisson model provides is that under the null hypothesis of no true differences, the statistical variability of this quantity depends on the total abundance of the gene. We can show this mathematically, but here is a quick simulation to demonstrate the point:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N=<span class="dv">10000</span>##number of genes
+lambdas=<span class="dv">2</span><span class="op">^</span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">16</span>,<span class="dt">len=</span>N) ##these are the true abundances of genes
+y=<span class="kw">rpois</span>(N,lambdas)##note that the null hypothesis is true for all genes
+x=<span class="kw">rpois</span>(N,lambdas) 
+ind=<span class="kw">which</span>(y<span class="op">&gt;</span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>x<span class="op">&gt;</span><span class="dv">0</span>)##make sure no 0s due to ratio and log
+
+<span class="kw">library</span>(rafalib)
+<span class="kw">splot</span>(<span class="kw">log2</span>(lambdas),<span class="kw">log2</span>(y<span class="op">/</span>x),<span class="dt">subset=</span>ind)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/rna_seq_simulation-1.png" alt="MA plot of simulated RNA-seq data. Replicated measurements follow a Poisson distribution." width="672" />
+<p class="caption">
+(#fig:rna_seq_simulation)MA plot of simulated RNA-seq data. Replicated measurements follow a Poisson distribution.
+</p>
+</div>
+<p>For lower values of <code>lambda</code> there is much more variability and, if we were to report anything with a fold change of 2 or more, the number of false positives would be quite high for low abundance genes.</p>
+<div id="ngs-experiments-and-the-poisson-distribution" class="section level4">
+<h4><span class="header-section-number">7.2.0.1</span> NGS experiments and the Poisson distribution</h4>
+<p>In this section we will use the data stored in this dataset:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(parathyroidSE) ##available from Bioconductor
+<span class="kw">data</span>(parathyroidGenesSE)
+se &lt;-<span class="st"> </span>parathyroidGenesSE</code></pre></div>
+<p>The data is contained in a <code>SummarizedExperiment</code> object, which we do not describe here. The important thing to know is that it includes a matrix of data, where each row is a genomic feature and each column is a sample. We can extract this data using the <code>assay</code> function. For this dataset, the value of a single cell in the data matrix is the count of reads which align to a given gene for a given sample. Thus, a similar plot to the one we simulated above with technical replicates reveals that the behavior predicted by the model is present in experimental data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">assay</span>(se)[,<span class="dv">23</span>]
+y &lt;-<span class="st"> </span><span class="kw">assay</span>(se)[,<span class="dv">24</span>]
+ind=<span class="kw">which</span>(y<span class="op">&gt;</span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>x<span class="op">&gt;</span><span class="dv">0</span>)##make sure no 0s due to ratio and log
+<span class="kw">splot</span>((<span class="kw">log2</span>(x)<span class="op">+</span><span class="kw">log2</span>(y))<span class="op">/</span><span class="dv">2</span>,<span class="kw">log</span>(x<span class="op">/</span>y),<span class="dt">subset=</span>ind)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/RNA-seq_MAplot-1.png" alt="MA plot of replicated RNA-seq data." width="672" />
+<p class="caption">
+(#fig:RNA-seq_MAplot)MA plot of replicated RNA-seq data.
+</p>
+</div>
+<p>If we compute the standard deviations across four individuals, it is quite a bit higher than what is predicted by a Poisson model. Assuming most genes are differentially expressed across individuals, then, if the Poisson model is appropriate, there should be a linear relationship in this plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rafalib)
+<span class="kw">library</span>(matrixStats)
+
+vars=<span class="kw">rowVars</span>(<span class="kw">assay</span>(se)[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">16</span>,<span class="dv">21</span>)]) ##we know these are four
+means=<span class="kw">rowMeans</span>(<span class="kw">assay</span>(se)[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">16</span>,<span class="dv">21</span>)]) ##different individuals
+
+<span class="kw">splot</span>(means,vars,<span class="dt">log=</span><span class="st">&quot;xy&quot;</span>,<span class="dt">subset=</span><span class="kw">which</span>(means<span class="op">&gt;</span><span class="dv">0</span><span class="op">&amp;</span>vars<span class="op">&gt;</span><span class="dv">0</span>)) ##plot a subset of data
+<span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dt">col=</span><span class="dv">2</span>,<span class="dt">lwd=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/var_vs_mean-1.png" alt="Variance versus mean plot. Summaries were obtained from the RNA-seq data." width="672" />
+<p class="caption">
+(#fig:var_vs_mean)Variance versus mean plot. Summaries were obtained from the RNA-seq data.
+</p>
+</div>
+<p>The reason for this is that the variability plotted here includes biological variability, which the motivation for the Poisson does not include. The negative binomial distribution, which combines the sampling variability of a Poisson and biological variability, is a more appropriate distribution to model this type of experiment. The negative binomial has two parameters and permits more flexibility for count data. For more on the use of the negative binomial to model RNA-seq data you can read <a href="http://www.ncbi.nlm.nih.gov/pubmed/20979621">this paper</a>. The Poisson is a special case of the negative binomial distribution.</p>
+</div>
+</div>
+<div id="maximum-likelihood-estimation" class="section level2">
+<h2><span class="header-section-number">7.3</span> Maximum Likelihood Estimation</h2>
+<p>To illustrate the concept of maximum likelihood estimates (MLE), we use a relatively simple dataset containing palindrome locations in the HMCV genome. We read in the locations of the palindrome and then count the number of palindromes in each 4,000 basepair segments.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datadir=<span class="st">&quot;http://www.biostat.jhsph.edu/bstcourse/bio751/data&quot;</span>
+x=<span class="kw">read.csv</span>(<span class="kw">file.path</span>(datadir,<span class="st">&quot;hcmv.csv&quot;</span>))[,<span class="dv">2</span>]
+
+breaks=<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">4000</span><span class="op">*</span><span class="kw">round</span>(<span class="kw">max</span>(x)<span class="op">/</span><span class="dv">4000</span>),<span class="dv">4000</span>)
+tmp=<span class="kw">cut</span>(x,breaks)
+counts=<span class="kw">table</span>(tmp)
+
+<span class="kw">library</span>(rafalib)
+<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">1</span>)
+<span class="kw">hist</span>(counts)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/palindrome_count_histogram-1.png" alt="Palindrome count histogram." width="672" />
+<p class="caption">
+(#fig:palindrome_count_histogram)Palindrome count histogram.
+</p>
+</div>
+<p>The counts do appear to follow a Poisson distribution. But what is the rate <span class="math inline">\(\lambda\)</span> ? The most common approach to estimating this rate is <em>maximum likelihood estimation</em>. To find the maximum likelihood estimate (MLE), we note that these data are independent and the probability of observing the values we observed is:</p>
+<p><span class="math display">\[
+\Pr(X_1=k_1,\dots,X_n=k_n;\lambda) = \prod_{i=1}^n \lambda^{k_i} / k_i! \exp ( -\lambda)
+\]</span></p>
+<p>The MLE is the value of <span class="math inline">\(\lambda\)</span> that maximizes the likelihood:.</p>
+<p><span class="math display">\[
+\mbox{L}(\lambda; X_1=k_1,\dots,X_n=k_1)=\exp\left\{\sum_{i=1}^n \log \Pr(X_i=k_i;\lambda)\right\}
+\]</span></p>
+<p>In practice, it is more convenient to maximize the log-likelihood which is the summation that is exponentiated in the expression above. Below we write code that computes the log-likelihood for any <span class="math inline">\(\lambda\)</span> and use the function <code>optimize</code> to find the value that maximizes this function (the MLE). We show a plot of the log-likelihood along with vertical line showing the MLE.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l&lt;-<span class="cf">function</span>(lambda) <span class="kw">sum</span>(<span class="kw">dpois</span>(counts,lambda,<span class="dt">log=</span><span class="ot">TRUE</span>)) 
+
+lambdas&lt;-<span class="kw">seq</span>(<span class="dv">3</span>,<span class="dv">7</span>,<span class="dt">len=</span><span class="dv">100</span>)
+ls &lt;-<span class="st"> </span><span class="kw">exp</span>(<span class="kw">sapply</span>(lambdas,l))
+
+<span class="kw">plot</span>(lambdas,ls,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>)
+
+mle=<span class="kw">optimize</span>(l,<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">10</span>),<span class="dt">maximum=</span><span class="ot">TRUE</span>)
+<span class="kw">abline</span>(<span class="dt">v=</span>mle<span class="op">$</span>maximum)</code></pre></div>
+<div class="figure"><span id="fig:mle"></span>
+<img src="bookdown_files/figure-html/mle-1.png" alt="Likelihood versus lambda." width="672" />
+<p class="caption">
+图 7.1: Likelihood versus lambda.
+</p>
+</div>
+<p>If you work out the math and do a bit of calculus, you realize that this is a particularly simple example for which the MLE is the average.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>( <span class="kw">c</span>(mle<span class="op">$</span>maximum, <span class="kw">mean</span>(counts) ) )</code></pre></div>
+<pre><code>## [1] 5.158 5.158</code></pre>
+<p>Note that a plot of observed counts versus counts predicted by the Poisson shows that the fit is quite good in this case:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">theoretical&lt;-<span class="kw">qpois</span>((<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">99</span>)<span class="op">+</span><span class="fl">0.5</span>)<span class="op">/</span><span class="dv">100</span>,<span class="kw">mean</span>(counts))
+
+<span class="kw">qqplot</span>(theoretical,counts)
+<span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/obs_versus_theoretical_Poisson_count-1.png" alt="Observed counts versus theoretical Poisson counts." width="672" />
+<p class="caption">
+(#fig:obs_versus_theoretical_Poisson_count)Observed counts versus theoretical Poisson counts.
+</p>
+</div>
+<p>We therefore can model the palindrome count data with a Poisson with <span class="math inline">\(\lambda=5.16\)</span>.</p>
+</div>
+<div id="distributions-for-positive-continuous-values" class="section level2">
+<h2><span class="header-section-number">7.4</span> Distributions for Positive Continuous Values</h2>
+<p>Different genes vary differently across biological replicates. Later, in the hierarchical models chapter, we will describe one of the <a href="http://www.ncbi.nlm.nih.gov/pubmed/16646809">most influential statistical methods</a> in the analysis of genomics data. This method provides great improvements over naive approaches to detecting differentially expressed genes. This is achieved by modeling the distribution of the gene variances. Here we describe the parametric model used in this method.</p>
+<p>We want to model the distribution of the gene-specific standard errors. Are they normal? Keep in mind that we are modeling the population standard errors so CLT does not apply, even though we have thousands of genes.</p>
+<p>As an example, we use an experimental data that included both technical and biological replicates for gene expression measurements on mice. We can load the data and compute the gene specific sample standard error for both the technical replicates and the biological replicates</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Biobase) ##available from Bioconductor
+<span class="kw">library</span>(maPooling) ##available from course github repo
+
+<span class="kw">data</span>(maPooling)
+pd=<span class="kw">pData</span>(maPooling)
+
+##determine which samples are bio reps and which are tech reps
+strain=<span class="kw">factor</span>(<span class="kw">as.numeric</span>(<span class="kw">grepl</span>(<span class="st">&quot;b&quot;</span>,<span class="kw">rownames</span>(pd))))
+pooled=<span class="kw">which</span>(<span class="kw">rowSums</span>(pd)<span class="op">==</span><span class="dv">12</span> <span class="op">&amp;</span><span class="st"> </span>strain<span class="op">==</span><span class="dv">1</span>)
+techreps=<span class="kw">exprs</span>(maPooling[,pooled])
+individuals=<span class="kw">which</span>(<span class="kw">rowSums</span>(pd)<span class="op">==</span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>strain<span class="op">==</span><span class="dv">1</span>)
+
+##remove replicates
+individuals=individuals[<span class="op">-</span><span class="kw">grep</span>(<span class="st">&quot;tr&quot;</span>,<span class="kw">names</span>(individuals))]
+bioreps=<span class="kw">exprs</span>(maPooling)[,individuals]
+
+###now compute the gene specific standard deviations
+<span class="kw">library</span>(matrixStats)
+techsds=<span class="kw">rowSds</span>(techreps)
+biosds=<span class="kw">rowSds</span>(bioreps)</code></pre></div>
+<p>We can now explore the sample standard deviation:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">###now plot
+<span class="kw">library</span>(rafalib)
+<span class="kw">mypar</span>()
+<span class="kw">shist</span>(biosds,<span class="dt">unit=</span><span class="fl">0.1</span>,<span class="dt">col=</span><span class="dv">1</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">1.5</span>))
+<span class="kw">shist</span>(techsds,<span class="dt">unit=</span><span class="fl">0.1</span>,<span class="dt">col=</span><span class="dv">2</span>,<span class="dt">add=</span><span class="ot">TRUE</span>)
+<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;Biological&quot;</span>,<span class="st">&quot;Technical&quot;</span>), <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/bio_sd_versus_tech_sd-1.png" alt="Histograms of biological variance and technical variance." width="672" />
+<p class="caption">
+(#fig:bio_sd_versus_tech_sd)Histograms of biological variance and technical variance.
+</p>
+</div>
+<p>An important observation here is that the biological variability is substantially higher than the technical variability. This provides strong evidence that genes do in fact have gene-specific biological variability.</p>
+<p>If we want to model this variability, we first notice that the normal distribution is not appropriate here since the right tail is rather large. Also, because SDs are strictly positive, there is a limitation to how symmetric this distribution can be. A qqplot shows this very clearly:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qqnorm</span>(biosds)
+<span class="kw">qqline</span>(biosds)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/sd_qqplot-1.png" alt="Normal qq-plot for sample standard deviations." width="672" />
+<p class="caption">
+(#fig:sd_qqplot)Normal qq-plot for sample standard deviations.
+</p>
+</div>
+<p>There are parametric distributions that possess these properties (strictly positive and <em>heavy</em> right tails). Two examples are the <em>gamma</em> and <em>F</em> distributions. The density of the gamma distribution is defined by:</p>
+<p><span class="math display">\[
+f(x;\alpha,\beta)=\frac{\beta^\alpha x^{\alpha-1}\exp{-\beta x}}{\Gamma(\alpha)}
+\]</span></p>
+<p>It is defined by two parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> that can, indirectly, control location and scale. They also control the shape of the distribution. For more on this distribution please refer to <a href="https://www.stat.berkeley.edu/~rice/Book3ed/index.html">this book</a>.</p>
+<p>Two special cases of the gamma distribution are the chi-squared and exponential distribution. We used the chi-squared earlier to analyze a 2x2 table data. For chi-square, we have <span class="math inline">\(\alpha=\nu/2\)</span> and <span class="math inline">\(\beta=2\)</span> with <span class="math inline">\(\nu\)</span> the degrees of freedom. For exponential, we have <span class="math inline">\(\alpha=1\)</span> and <span class="math inline">\(\beta=\lambda\)</span> the rate.</p>
+<p>The F-distribution comes up in analysis of variance (ANOVA). It is also always positive and has large right tails. Two parameters control its shape:</p>
+<p><span class="math display">\[
+f(x,d_1,d_2)=\frac{1}{B\left( \frac{d_1}{2},\frac{d_2}{2}\right)}
+  \left(\frac{d_1}{d_2}\right)^{\frac{d_1}{2}}  
+  x^{\frac{d_1}{2}-1}\left(1+\frac{d1}{d2}x\right)^{-\frac{d_1+d_2}{2}}
+\]</span></p>
+<p>with <span class="math inline">\(B\)</span> the <em>beta function</em> and <span class="math inline">\(d_1\)</span> and <span class="math inline">\(d_2\)</span> are called the degrees of freedom for reasons having to do with how it arises in ANOVA. A third parameter is sometimes used with the F-distribution, which is a scale parameter.</p>
+<div id="modeling-the-variance" class="section level4">
+<h4><span class="header-section-number">7.4.0.1</span> Modeling the variance</h4>
+<p>In a later section we will learn about a hierarchical model approach to improve estimates of variance. In these cases it is mathematically convenient to model the distribution of the variance <span class="math inline">\(\sigma^2\)</span>. The hierarchical model used <a href="http://www.ncbi.nlm.nih.gov/pubmed/16646809">here</a> implies that the sample standard deviation of genes follows scaled F-statistics:</p>
+<p><span class="math display">\[
+s^2 \sim s_0^2 F_{d,d_0}
+\]</span></p>
+<p>with <span class="math inline">\(d\)</span> the degrees of freedom involved in computing <span class="math inline">\(s^2\)</span>. For example, in a case comparing 3 versus 3, the degrees of freedom would be 4. This leaves two free parameters to adjust to the data. Here <span class="math inline">\(d\)</span> will control the location and <span class="math inline">\(s_0\)</span> will control the scale. Below are some examples of <span class="math inline">\(F\)</span> distribution plotted on top of the histogram from the sample variances:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rafalib)
+<span class="kw">mypar</span>(<span class="dv">3</span>,<span class="dv">3</span>)
+sds=<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dt">len=</span><span class="dv">100</span>)
+<span class="cf">for</span>(d <span class="cf">in</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">10</span>)){
+  <span class="cf">for</span>(s0 <span class="cf">in</span> <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>)){
+    tmp=<span class="kw">hist</span>(biosds,<span class="dt">main=</span><span class="kw">paste</span>(<span class="st">&quot;s_0 =&quot;</span>,s0,<span class="st">&quot;d =&quot;</span>,d),
+      <span class="dt">xlab=</span><span class="st">&quot;sd&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;density&quot;</span>,<span class="dt">freq=</span><span class="ot">FALSE</span>,<span class="dt">nc=</span><span class="dv">100</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))
+    dd=<span class="kw">df</span>(sds<span class="op">^</span><span class="dv">2</span><span class="op">/</span>s0<span class="op">^</span><span class="dv">2</span>,<span class="dv">11</span>,d)
+    ##multiply by normalizing constant to assure same range on plot
+    k=<span class="kw">sum</span>(tmp<span class="op">$</span>density)<span class="op">/</span><span class="kw">sum</span>(dd) 
+    <span class="kw">lines</span>(sds,dd<span class="op">*</span>k,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">col=</span><span class="dv">2</span>,<span class="dt">lwd=</span><span class="dv">2</span>)
+    }
+}</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/modeling_variance-1.png" alt="Histograms of sample standard deviations and densities of estimated distributions." width="984" />
+<p class="caption">
+(#fig:modeling_variance)Histograms of sample standard deviations and densities of estimated distributions.
+</p>
+</div>
+<p>Now which <span class="math inline">\(s_0\)</span> and <span class="math inline">\(d\)</span> fit our data best? This is a rather advanced topic as the MLE does not perform well for this particular distribution (we refer to Smyth (2004)). The Bioconductor <code>limma</code> package provides a function to estimate these parameters:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(limma)
+estimates=<span class="kw">fitFDist</span>(biosds<span class="op">^</span><span class="dv">2</span>,<span class="dv">11</span>)
+
+theoretical&lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">qf</span>((<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">999</span>)<span class="op">+</span><span class="fl">0.5</span>)<span class="op">/</span><span class="dv">1000</span>, <span class="dv">11</span>, estimates<span class="op">$</span>df2)<span class="op">*</span>estimates<span class="op">$</span>scale)
+observed &lt;-<span class="st"> </span>biosds</code></pre></div>
+<p>The fitted models do appear to provide a reasonable approximation, as demonstrated by the qq-plot and histogram:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+<span class="kw">qqplot</span>(theoretical,observed)
+<span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>)
+tmp=<span class="kw">hist</span>(biosds,<span class="dt">main=</span><span class="kw">paste</span>(<span class="st">&quot;s_0 =&quot;</span>, <span class="kw">signif</span>(estimates[[<span class="dv">1</span>]],<span class="dv">2</span>),
+                  <span class="st">&quot;d =&quot;</span>, <span class="kw">signif</span>(estimates[[<span class="dv">2</span>]],<span class="dv">2</span>)),
+  <span class="dt">xlab=</span><span class="st">&quot;sd&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;density&quot;</span>, <span class="dt">freq=</span><span class="ot">FALSE</span>, <span class="dt">nc=</span><span class="dv">100</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">9</span>))
+dd=<span class="kw">df</span>(sds<span class="op">^</span><span class="dv">2</span><span class="op">/</span>estimates<span class="op">$</span>scale,<span class="dv">11</span>,estimates<span class="op">$</span>df2)
+k=<span class="kw">sum</span>(tmp<span class="op">$</span>density)<span class="op">/</span><span class="kw">sum</span>(dd) ##a normalizing constant to assure same area in plot
+<span class="kw">lines</span>(sds, dd<span class="op">*</span>k, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">col=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/variance_model_fit-1.png" alt="qq-plot (left) and density (right) demonstrate that model fits data well." width="1008" />
+<p class="caption">
+(#fig:variance_model_fit)qq-plot (left) and density (right) demonstrate that model fits data well.
+</p>
+</div>
+</div>
+</div>
+<div id="bayesian-statistics" class="section level2">
+<h2><span class="header-section-number">7.5</span> Bayesian Statistics</h2>
+<p>One distinguishing characteristic of high-throughput data is that although we want to report on specific features, we observe many related outcomes. For example, we measure the expression of thousands of genes, or the height of thousands of peaks representing protein binding, or the methylation levels across several CpGs. However, most of the statistical inference approaches we have shown here treat each feature independently and pretty much ignores data from other features. We will learn how using statistical models provides power by modeling features jointly. The most successful of these approaches are what we refer to as hierarchical models, which we explain below in the context of Bayesian statistics.</p>
+<div id="bayes-theorem" class="section level4">
+<h4><span class="header-section-number">7.5.0.1</span> Bayes theorem</h4>
+<p>We start by reviewing Bayes theorem. We do this using a hypothetical cystic fibrosis test as an example. Suppose a test for cystic fibrosis has an accuracy of 99%. We will use the following notation:</p>
+<p><span class="math display">\[
+\mbox{Prob}(+ \mid D=1)=0.99, \mbox{Prob}(- \mid D=0)=0.99 
+\]</span></p>
+<p>with <span class="math inline">\(+\)</span> meaning a positive test and <span class="math inline">\(D\)</span> representing if you actually have the disease (1) or not (0).</p>
+<p>Suppose we select a random person and they test positive, what is the probability that they have the disease? We write this as <span class="math inline">\(\mbox{Prob}(D=1 \mid +)?\)</span> The cystic fibrosis rate is 1 in 3,900 which implies that <span class="math inline">\(\mbox{Prob}(D=1)=0.00025\)</span>. To answer this question we will use Bayes Theorem, which in general tells us that:</p>
+<p><span class="math display">\[
+\mbox{Pr}(A \mid B)  =  \frac{\mbox{Pr}(B \mid A)\mbox{Pr}(A)}{\mbox{Pr}(B)} 
+\]</span></p>
+<p>This equation applied to our problem becomes:</p>
+<p><span class="math display">\[
+\begin{align*}
+\mbox{Prob}(D=1 \mid +) &amp; =  \frac{ P(+ \mid D=1) \cdot P(D=1)} {\mbox{Prob}(+)} \\
+&amp; =  \frac{\mbox{Prob}(+ \mid D=1)\cdot P(D=1)} {\mbox{Prob}(+ \mid D=1) \cdot P(D=1) + \mbox{Prob}(+ \mid D=0) \mbox{Prob}( D=0)} 
+\end{align*}
+\]</span></p>
+<p>Plugging in the numbers we get:</p>
+<p><span class="math display">\[
+\frac{0.99 \cdot 0.00025}{0.99 \cdot 0.00025 + 0.01 \cdot (.99975)}  =  0.02 
+\]</span></p>
+<p>This says that despite the test having 0.99 accuracy, the probability of having the disease given a positive test is only 0.02. This may appear counterintuitive to some. The reason this is the case is because we have to factor in the very rare probability that a person, chosen at random, has the disease. To illustrate this we run a Monte Carlo simulation.</p>
+</div>
+<div id="simulation" class="section level4">
+<h4><span class="header-section-number">7.5.0.2</span> Simulation</h4>
+<p>The following simulation is meant to help you visualize Bayes Theorem. We start by randomly selecting 1500 people from a population in which the disease in question has a 5% prevalence.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">3</span>)
+prev &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">20</span>
+##Later, we are arranging 1000 people in 80 rows and 20 columns
+M &lt;-<span class="st"> </span><span class="dv">50</span> ; N &lt;-<span class="st"> </span><span class="dv">30</span>
+##do they have the disease?
+d&lt;-<span class="kw">rbinom</span>(N<span class="op">*</span>M,<span class="dv">1</span>,<span class="dt">p=</span>prev)</code></pre></div>
+<p>Now each person gets the test which is correct 90% of the time.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">accuracy &lt;-<span class="st"> </span><span class="fl">0.9</span>
+test &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>,N<span class="op">*</span>M)
+##do controls test positive?
+test[d<span class="op">==</span><span class="dv">1</span>]  &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="kw">sum</span>(d<span class="op">==</span><span class="dv">1</span>), <span class="dv">1</span>, <span class="dt">p=</span>accuracy)
+##do cases test positive?
+test[d<span class="op">==</span><span class="dv">0</span>]  &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="kw">sum</span>(d<span class="op">==</span><span class="dv">0</span>), <span class="dv">1</span>, <span class="dt">p=</span><span class="dv">1</span><span class="op">-</span>accuracy)</code></pre></div>
+<p>Because there are so many more controls than cases, even with a low false positive rate, we get more controls than cases in the group that tested positive (code not shown):</p>
+<div class="figure"><span id="fig:simulation"></span>
+<img src="bookdown_files/figure-html/simulation-1.png" alt="Simulation demonstrating Bayes theorem. Top plot shows every individual with red denoting cases. Each one takes a test and with 90% gives correct answer. Those called positive (either correctly or incorrectly) are put in the bottom left pane. Those called negative in the bottom right." width="1008" />
+<p class="caption">
+图 7.2: Simulation demonstrating Bayes theorem. Top plot shows every individual with red denoting cases. Each one takes a test and with 90% gives correct answer. Those called positive (either correctly or incorrectly) are put in the bottom left pane. Those called negative in the bottom right.
+</p>
+</div>
+<p>The proportions of red in the top plot shows <span class="math inline">\(\mbox{Pr}(D=1)\)</span>. The bottom left shows <span class="math inline">\(\mbox{Pr}(D=1 \mid +)\)</span> and the bottom right shows <span class="math inline">\(\mbox{Pr}(D=0 \mid +)\)</span>.</p>
+</div>
+<div id="bayes-in-practice" class="section level4">
+<h4><span class="header-section-number">7.5.0.3</span> Bayes in practice</h4>
+<!-- ![iglesias](http://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg/902px-Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg) -->
+<p>José Iglesias is a professional baseball player. In April 2013, when he was starting his career, he was performing rather well:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Month</th>
+<th>At Bats</th>
+<th>H</th>
+<th>AVG</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>April</td>
+<td>20</td>
+<td>9</td>
+<td>.450</td>
+</tr>
+</tbody>
+</table>
+<p>The batting average (<code>AVG</code>) statistic is one way of measuring success. Roughly speaking, it tells us the success rate when batting. An <code>AVG</code> of .450 means José has been successful 45% of the times he has batted (<code>At Bats</code>) which is rather high as we will see. Note, for example, that no one has finished a season with an <code>AVG</code> of .400 since Ted Williams did it in 1941! To illustrate the way hierarchical models are powerful, we will try to predict José’s batting average at the end of the season, after he has gone to bat over 500 times.</p>
+<p>With the techniques we have learned up to now, referred to as <em>frequentist techniques</em>, the best we can do is provide a confidence interval. We can think of outcomes from hitting as a binomial with a success rate of <span class="math inline">\(p\)</span>. So if the success rate is indeed .450, the standard error of just 20 at bats is:</p>
+<p><span class="math display">\[
+\sqrt{\frac{.450 (1-.450)}{20}}=.111
+\]</span></p>
+<p>This means that our confidence interval is .450-.222 to .450+.222 or .228 to .672.</p>
+<p>This prediction has two problems. First, it is very large so not very useful. Also, it is centered at .450 which implies that our best guess is that this new player will break Ted Williams’ record. If you follow baseball, this last statement will seem wrong and this is because you are implicitly using a hierarchical model that factors in information from years of following baseball. Here we show how we can quantify this intuition.</p>
+<p>First, let’s explore the distribution of batting averages for all players with more than 500 at bats during the previous three seasons:</p>
+<div class="figure">
+<img src="bookdown_files/figure-html/batting_averages-1.png" alt="Batting average histograms for 2010, 2011, and 2012." width="1008" />
+<p class="caption">
+(#fig:batting_averages)Batting average histograms for 2010, 2011, and 2012.
+</p>
+</div>
+<p>We note that the average player had an <code>AVG</code> of .275 and the standard deviation of the population of players was 0.027. So we can see already that .450 would be quite an anomaly since it is over six SDs away from the mean. So is José lucky or the best batter seen in the last 50 years? Perhaps it’s a combination of both. But how lucky and how good is he? If we become convinced that he is lucky, we should trade him to a team that trusts the .450 observation and is maybe overestimating his potential.</p>
+</div>
+<div id="the-hierarchical-model" class="section level4">
+<h4><span class="header-section-number">7.5.0.4</span> The hierarchical model</h4>
+<p>The hierarchical model provides a mathematical description of how we came to see the observation of .450. First, we pick a player at random with an intrinsic ability summarized by, for example, <span class="math inline">\(\theta\)</span>, then we see 20 random outcomes with success probability <span class="math inline">\(\theta\)</span>.</p>
+<p><span class="math display">\[
+\begin{align*}
+\theta &amp;\sim N(\mu, \tau^2) \mbox{ describes randomness in picking a player}\\
+Y \mid \theta &amp;\sim N(\theta, \sigma^2) \mbox{ describes randomness in the performance of this particular player}
+\end{align*}
+\]</span></p>
+<p>Note the two levels (this is why we call them hierarchical): 1) Player to player variability and 2) variability due to luck when batting. In a Bayesian framework, the first level is called a <em>prior distribution</em> and the second the <em>sampling distribution</em>.</p>
+<p>Now, let’s use this model for José’s data. Suppose we want to predict his innate ability in the form of his <em>true</em> batting average <span class="math inline">\(\theta\)</span>. This would be the hierarchical model for our data:</p>
+<p><span class="math display">\[
+\begin{align*}
+\theta &amp;\sim N(.275, .027^2) \\
+Y \mid \theta &amp;\sim N(\theta, .111^2) 
+\end{align*}
+\]</span></p>
+<p>We now are ready to compute a posterior distribution to summarize our prediction of <span class="math inline">\(\theta\)</span>. The continuous version of Bayes rule can be used here to derive the <em>posterior probability</em>, which is the distribution of the parameter <span class="math inline">\(\theta\)</span> given the observed data:</p>
+<p><span class="math display">\[
+\begin{align*}
+f_{ \theta \mid Y} (\theta\mid Y) &amp;=
+\frac{f_{Y\mid \theta}(Y\mid \theta) f_{\theta}(\theta)
+}{f_Y(Y)}\\
+&amp;= \frac{f_{Y\mid \theta}(Y\mid \theta) f_{\theta}(\theta)}
+{\int_{\theta}f_{Y\mid \theta}(Y\mid \theta)f_{\theta}(\theta)}
+\end{align*}
+\]</span></p>
+<p>We are particularly interested in the <span class="math inline">\(\theta\)</span> that maximizes the posterior probability <span class="math inline">\(f_{\theta\mid Y}(\theta\mid Y)\)</span>. In our case, we can show that the posterior is normal and we can compute the mean <span class="math inline">\(\mbox{E}(\theta\mid y)\)</span> and variance <span class="math inline">\(\mbox{var}(\theta\mid y)\)</span>. Specifically, we can show the average of this distribution is the following:</p>
+<p><span class="math display">\[
+\begin{align*}
+\mbox{E}(\theta\mid y) &amp;= B \mu + (1-B) Y\\
+&amp;= \mu + (1-B)(Y-\mu)\\
+B &amp;= \frac{\sigma^2}{\sigma^2+\tau^2}
+\end{align*}
+\]</span></p>
+<p>It is a weighted average of the population average <span class="math inline">\(\mu\)</span> and the observed data <span class="math inline">\(Y\)</span>. The weight depends on the SD of the population <span class="math inline">\(\tau\)</span> and the SD of our observed data <span class="math inline">\(\sigma\)</span>. This weighted average is sometimes referred to as <em>shrinking</em> because it <em>shrinks</em> estimates towards a prior mean. In the case of José Iglesias, we have:</p>
+<p><span class="math display">\[
+\begin{align*}
+\mbox{E}(\theta \mid Y=.450) &amp;= B \times .275 + (1 - B) \times .450 \\
+&amp;= .275 + (1 - B)(.450 - .275) \\
+B &amp;=\frac{.111^2}{.111^2 + .027^2} = 0.944\\
+\mbox{E}(\theta \mid Y=450) &amp;\approx .285
+\end{align*}
+\]</span></p>
+<p>The variance can be shown to be:</p>
+<p><span class="math display">\[
+\mbox{var}(\theta\mid y) = \frac{1}{1/\sigma^2+1/\tau^2}
+= \frac{1}{1/.111^2 + 1/.027^2} = 0.00069
+\]</span> and the standard deviation is therefore <span class="math inline">\(0.026\)</span>. So we started with a frequentist 95% confidence interval that ignored data from other players and summarized just José’s data: .450 <span class="math inline">\(\pm\)</span> 0.220. Then we used a Bayesian approach that incorporated data from other players and other years to obtain a posterior probability. This is actually referred to as an empirical Bayes approach because we used data to construct the prior. From the posterior we can report what is called a 95% credible interval by reporting a region, centered at the mean, with a 95% chance of occurring. In our case, this turns out to be: .285 <span class="math inline">\(\pm\)</span> 0.052.</p>
+<p>The Bayesian credible interval suggests that if another team is impressed by the .450 observation, we should consider trading José as we are predicting he will be just slightly above average. Interestingly, the Red Sox traded José to the Detroit Tigers in July. Here are the José Iglesias batting averages for the next five months.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Month</th>
+<th>At Bat</th>
+<th>Hits</th>
+<th>AVG</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>April</td>
+<td>20</td>
+<td>9</td>
+<td>.450</td>
+</tr>
+<tr class="even">
+<td>May</td>
+<td>26</td>
+<td>11</td>
+<td>.423</td>
+</tr>
+<tr class="odd">
+<td>June</td>
+<td>86</td>
+<td>34</td>
+<td>.395</td>
+</tr>
+<tr class="even">
+<td>July</td>
+<td>83</td>
+<td>17</td>
+<td>.205</td>
+</tr>
+<tr class="odd">
+<td>August</td>
+<td>85</td>
+<td>25</td>
+<td>.294</td>
+</tr>
+<tr class="even">
+<td>September</td>
+<td>50</td>
+<td>10</td>
+<td>.200</td>
+</tr>
+<tr class="odd">
+<td>Total w/o April</td>
+<td>330</td>
+<td>97</td>
+<td>.293</td>
+</tr>
+</tbody>
+</table>
+<p>Although both intervals included the final batting average, the Bayesian credible interval provided a much more precise prediction. In particular, it predicted that he would not be as good the remainder of the season.</p>
+</div>
+</div>
+<div id="hierarchical-models" class="section level2">
+<h2><span class="header-section-number">7.6</span> Hierarchical Models</h2>
+<p>In this section, we use the mathematical theory which describes an approach that has become widely applied in the analysis of high-throughput data. The general idea is to build a <em>hierachichal model</em> with two levels. One level describes variability across samples/units, and the other describes variability across features. This is similar to the baseball example in which the first level described variability across players and the second described the randomness for the success of one player. The first level of variation is accounted for by all the models and approaches we have described here, for example the model that leads to the t-test. The second level provides power by permitting us to “borrow” information from all features to inform the inference performed on each one.</p>
+<p>Here we describe one specific case that is currently the most widely used approach to inference with gene expression data. It is the model implemented by the <code>limma</code> Bioconductor package. This idea has been adapted to develop methods for other data types such as RNAseq by, for example, <a href="http://www.ncbi.nlm.nih.gov/pubmed/19910308">edgeR</a> and <a href="http://www.ncbi.nlm.nih.gov/pubmed/25516281">DESeq2</a>. This package provides an alternative to the t-test that greatly improves power by modeling the variance. While in the baseball example we modeled averages, here we model variances. Modelling variances requires more advanced math, but the concepts are practically the same. We motivate and demonstrate the approach with an example.</p>
+<p>Here is a volcano showing effect sizes and p-value from applying a t-test to data from an experiment running six replicated samples with 16 genes artificially made to be different in two groups of three samples each. These 16 genes are the only genes for which the alternative hypothesis is true. In the plot they are shown in blue.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(SpikeInSubset) ##Available from Bioconductor
+<span class="kw">data</span>(rma95)
+<span class="kw">library</span>(genefilter)
+fac &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,<span class="dt">each=</span><span class="dv">3</span>))
+tt &lt;-<span class="st"> </span><span class="kw">rowttests</span>(<span class="kw">exprs</span>(rma95),fac)
+smallp &lt;-<span class="st"> </span><span class="kw">with</span>(tt, p.value <span class="op">&lt;</span><span class="st"> </span>.<span class="dv">01</span>)
+spike &lt;-<span class="st"> </span><span class="kw">rownames</span>(rma95) <span class="op">%in%</span><span class="st"> </span><span class="kw">colnames</span>(<span class="kw">pData</span>(rma95))
+cols &lt;-<span class="st"> </span><span class="kw">ifelse</span>(spike,<span class="st">&quot;dodgerblue&quot;</span>,<span class="kw">ifelse</span>(smallp,<span class="st">&quot;red&quot;</span>,<span class="st">&quot;black&quot;</span>))
+
+<span class="kw">with</span>(tt, <span class="kw">plot</span>(<span class="op">-</span>dm, <span class="op">-</span><span class="kw">log10</span>(p.value), <span class="dt">cex=</span>.<span class="dv">8</span>, <span class="dt">pch=</span><span class="dv">16</span>,
+     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">4.5</span>),
+     <span class="dt">xlab=</span><span class="st">&quot;difference in means&quot;</span>,
+     <span class="dt">col=</span>cols))
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">2</span>,<span class="dt">v=</span><span class="kw">c</span>(<span class="op">-</span>.<span class="dv">2</span>,.<span class="dv">2</span>), <span class="dt">lty=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure"><span id="fig:volcano-plot"></span>
+<img src="bookdown_files/figure-html/volcano-plot-1.png" alt="Volcano plot for t-test comparing two groups. Spiked-in genes are denoted with blue. Among the rest of the genes, those with p-value &lt; 0.01 are denoted with red." width="672" />
+<p class="caption">
+图 7.3: Volcano plot for t-test comparing two groups. Spiked-in genes are denoted with blue. Among the rest of the genes, those with p-value &lt; 0.01 are denoted with red.
+</p>
+</div>
+<p>We cut-off the range of the y-axis at 4.5, but there is one blue point with a p-value smaller than <span class="math inline">\(10^{-6}\)</span>. Two findings stand out from this plot. The first is that only one of the positives would be found to be significant with a standard 5% FDR cutoff:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>( <span class="kw">p.adjust</span>(tt<span class="op">$</span>p.value,<span class="dt">method =</span> <span class="st">&quot;BH&quot;</span>)[spike] <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.05</span>)</code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>This of course has to do with the low power associated with a sample size of three in each group. The second finding is that if we forget about inference and simply rank the genes based on the size of the t-statistic, we obtain many false positives in any rank list of size larger than 1. For example, six of the top 10 genes ranked by t-statistic are false positives.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>( <span class="dt">top50=</span><span class="kw">rank</span>(tt<span class="op">$</span>p.value)<span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>, spike) <span class="co">#t-stat and p-val rank is the same</span></code></pre></div>
+<pre><code>##        spike
+## top50   FALSE  TRUE
+##   FALSE 12604    12
+##   TRUE      6     4</code></pre>
+<p>In the plot we notice that these are mostly genes for which the effect size is relatively small, implying that the estimated standard error is small. We can confirm this with a plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tt<span class="op">$</span>s &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="kw">exprs</span>(rma95), <span class="dv">1</span>, <span class="cf">function</span>(row) 
+  <span class="kw">sqrt</span>(.<span class="dv">5</span> <span class="op">*</span><span class="st"> </span>(<span class="kw">var</span>(row[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]) <span class="op">+</span><span class="st"> </span><span class="kw">var</span>(row[<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>]) ) ) )
+<span class="kw">with</span>(tt, <span class="kw">plot</span>(s, <span class="op">-</span><span class="kw">log10</span>(p.value), <span class="dt">cex=</span>.<span class="dv">8</span>, <span class="dt">pch=</span><span class="dv">16</span>,
+              <span class="dt">log=</span><span class="st">&quot;x&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;estimate of standard deviation&quot;</span>,
+              <span class="dt">col=</span>cols))</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/pval_versus_sd-1.png" alt="p-values versus standard deviation estimates." width="672" />
+<p class="caption">
+(#fig:pval_versus_sd)p-values versus standard deviation estimates.
+</p>
+</div>
+<p>Here is where a hierarchical model can be useful. If we can make an assumption about the distribution of these variances across genes, then we can improve estimates by “adjusting” estimates that are “too small” according to this distribution. In a previous section we described how the F-distribution approximates the distribution of the observed variances.</p>
+<p><span class="math display">\[
+s^2 \sim s_0^2 F_{d,d_0}
+\]</span></p>
+<p>Because we have thousands of data points, we can actually check this assumption and also estimate the parameters <span class="math inline">\(s_0\)</span> and <span class="math inline">\(d_0\)</span>. This particular approach is referred to as empirical Bayes because it can be described as using data (empirical) to build the prior distribution (Bayesian approach).</p>
+<p>Now we apply what we learned with the baseball example to the standard error estimates. As before we have an observed value for each gene <span class="math inline">\(s_g\)</span>, a sampling distribution as a prior distribution. We can therefore compute a posterior distribution for the variance <span class="math inline">\(\sigma^2_g\)</span> and obtain the posterior mean. You can see the details of the derivation in <a href="http://www.ncbi.nlm.nih.gov/pubmed/16646809">this paper</a>.</p>
+<p><span class="math display">\[
+\mbox{E}[\sigma^2_g \mid s_g] = \frac{d_0 s_0^2 + d s^2_g}{d_0 + d}
+\]</span></p>
+<p>As in the baseball example, the posterior mean <em>shrinks</em> the observed variance <span class="math inline">\(s_g^2\)</span> towards the global variance <span class="math inline">\(s_0^2\)</span> and the weights depend on the sample size through the degrees of freedom <span class="math inline">\(d\)</span> and, in this case, the shape of the prior distribution through <span class="math inline">\(d_0\)</span>.</p>
+<p>In the plot above we can see how the variance estimates <em>shrink</em> for 40 genes (code not shown):</p>
+<div class="figure"><span id="fig:shrinkage"></span>
+<img src="bookdown_files/figure-html/shrinkage-1.png" alt="Illustration of how estimates shrink towards the prior expectation. Forty genes spanning the range of values were selected." width="672" />
+<p class="caption">
+图 7.4: Illustration of how estimates shrink towards the prior expectation. Forty genes spanning the range of values were selected.
+</p>
+</div>
+<p>An important aspect of this adjustment is that genes having a sample standard deviation close to 0 are no longer close to 0 (they shrink towards <span class="math inline">\(s_0\)</span>). We can now create a version of the t-test that instead of the sample standard deviation uses this posterior mean or “shrunken” estimate of the variance. We refer to these as <em>moderated</em> t-tests. Once we do this, the improvements can be seen clearly in the volcano plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(limma)
+fit &lt;-<span class="st"> </span><span class="kw">lmFit</span>(rma95, <span class="kw">model.matrix</span>(<span class="op">~</span><span class="st"> </span>fac))
+ebfit &lt;-<span class="st"> </span><span class="kw">ebayes</span>(fit)
+limmares &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">dm=</span><span class="kw">coef</span>(fit)[,<span class="st">&quot;fac2&quot;</span>], <span class="dt">p.value=</span>ebfit<span class="op">$</span>p.value[,<span class="st">&quot;fac2&quot;</span>])
+<span class="kw">with</span>(limmares, <span class="kw">plot</span>(dm, <span class="op">-</span><span class="kw">log10</span>(p.value),<span class="dt">cex=</span>.<span class="dv">8</span>, <span class="dt">pch=</span><span class="dv">16</span>,
+     <span class="dt">col=</span>cols,<span class="dt">xlab=</span><span class="st">&quot;difference in means&quot;</span>,
+     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">5</span>)))
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">2</span>,<span class="dt">v=</span><span class="kw">c</span>(<span class="op">-</span>.<span class="dv">2</span>,.<span class="dv">2</span>), <span class="dt">lty=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure"><span id="fig:volcano-plot2"></span>
+<img src="bookdown_files/figure-html/volcano-plot2-1.png" alt="Volcano plot for moderated t-test comparing two groups. Spiked-in genes are denoted with blue. Among the rest of the genes, those with p-value &lt; 0.01 are denoted with red." width="672" />
+<p class="caption">
+图 7.5: Volcano plot for moderated t-test comparing two groups. Spiked-in genes are denoted with blue. Among the rest of the genes, those with p-value &lt; 0.01 are denoted with red.
+</p>
+</div>
+<p>The number of false positives in the top 10 is now reduced to 2.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>( <span class="dt">top50=</span><span class="kw">rank</span>(limmares<span class="op">$</span>p.value)<span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>, spike) </code></pre></div>
+<pre><code>##        spike
+## top50   FALSE  TRUE
+##   FALSE 12608     8
+##   TRUE      2     8</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="inference-for-high-dimensional-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="distance-and-dimension-reduction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/xie186/DataAnalysisForLifeScience_cn/edit/master/07_modeling.Rmd",
+"text": "编辑"
+},
+"download": ["bookdown.pdf", "bookdown.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

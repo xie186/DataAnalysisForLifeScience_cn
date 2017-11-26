@@ -12,7 +12,6 @@
 When we see a p-value in the literature, it means a probability distribution of some sort was used to quantify the null hypothesis. Many times deciding which probability distribution to use is relatively straightforward. For example, in the tea tasting challenge we can use simple probability calculations to determine the null distribution. Most  p-values in the scientific literature are based on sample averages or least squares estimates from a linear model and make use of the CLT to approximate the null distribution of their statistic as normal.
 ```
 
-
 &emsp;&emsp;当我们在文献里面看见P值时, 这意味着作者采用了某种概率分布来对零假设建模。 很多时候,使用哪种概率分布是相对比较简单的.例如,在茶品鉴中我们可以使用简单的概率计算来确定零假设.大多数的P值或者是从样本均值或者是从线性模型的最小平方。 
 
 The CLT is backed by theoretical results that guarantee that the approximation is accurate. However, we cannot always use this approximation, such as when our sample size is too small. Previously, we described how the sample average can be approximated as t-distributed when the population data is approximately normal. However, there is no theoretical backing for this assumption. We are now *modeling*. In the case of height, we know from experience that this turns out to be a very good model. 

@@ -25,7 +25,7 @@
 <meta name="author" content="作者：Rafael A. Irizarry; Mike I. Love 翻译：张三 李四 麻子">
 
 
-<meta name="date" content="2017-11-25">
+<meta name="date" content="2017-11-27">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -250,9 +250,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <blockquote>
 <p>All models are wrong, but some are useful. -George E. P. Box</p>
 </blockquote>
-<p>  当我们在文献里面看见P值时, 这意味着作者采用了某种概率分布来对零假设建模。 很多时候,使用哪种概率分布是相对比较简单的.例如,在茶品鉴中我们可以使用简单的概率计算来确定零假设.大多数的P值或者是从样本均值或者是从线性模型的最小平方。</p>
-<p>The CLT is backed by theoretical results that guarantee that the approximation is accurate. However, we cannot always use this approximation, such as when our sample size is too small. Previously, we described how the sample average can be approximated as t-distributed when the population data is approximately normal. However, there is no theoretical backing for this assumption. We are now <em>modeling</em>. In the case of height, we know from experience that this turns out to be a very good model.</p>
+<p>  当我们在文献里面看见P值时, 这意味着作者采用了某种概率分布来对零假设建模。 很多时候,使用哪种概率分布是相对比较简单的。例如,在茶品鉴中我们可以使用简单的概率计算来确定零假设。大多数的P值或者是从样本均值或者是从线性模型的最小平方。</p>
+<p>  中心极限定理(CLT)的理论基础保证了近似(approximation)的准确性。但是我们并不能总是使用这种近似,比如当样本太小的时候。前面我们讲到了当总体符合正太分布时,样本均值可以近似成t分布。但是,这种假设并没有理论基础。现在我们开始建模。我们从经验中知道身高是一个很好的例子用来建模。</p>
 <p>But this does not imply that every dataset we collect will follow a normal distribution. Some examples are: coin tosses, the number of people who win the lottery, and US incomes. The normal distribution is not the only parametric distribution that is available for modeling. Here we provide a very brief introduction to some of the most widely used parametric distributions and some of their uses in the life sciences. We focus on the models and concepts needed to understand the techniques currently used to perform statistical inference on high-throughput data. To do this we also need to introduce the basics of Bayesian statistics. For more in-depth description of probability models and parametric distributions please consult a Statistics textbook such as <a href="https://www.stat.berkeley.edu/~rice/Book3ed/index.html">this one</a>.</p>
+<p>  但是这并不代表我们调查的每一个数据集都服从正态分布.比如一些不符合正态分布的例子有:掷硬币,中奖人数以及美国人的收入.正态分布并不是唯一的可以用来建模的参数分布.这里我们会简单的解少一些常见的参数分布以及它们在生命科学领域的应用.我们主要集中在模型.因此,我们也需要介绍贝叶斯统计的基本知识.如果你想获得对概率模型和参数分布更深入的描述,请参考教科书<a href="https://www.stat.berkeley.edu/~rice/Book3ed/index.html">数据(<strong><em>Mathematical Statistics and Data Analysis</em></strong>)</a>.</p>
 <div id="the-binomial-distribution" class="section level2">
 <h2><span class="header-section-number">7.1</span> The Binomial Distribution</h2>
 <p>The first distribution we will describe is the binomial distribution. It reports the probability of observing <span class="math inline">\(S=k\)</span> successes in <span class="math inline">\(N\)</span> trials as</p>

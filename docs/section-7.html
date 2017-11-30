@@ -188,7 +188,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="7" data-path="section-7.html"><a href="section-7.html"><i class="fa fa-check"></i><b>7</b> 统计模型</a><ul>
 <li class="chapter" data-level="7.1" data-path="section-7.html"><a href="section-7.html#-the-binomial-distribution"><i class="fa fa-check"></i><b>7.1</b> 二项分布 (The Binomial Distribution)</a></li>
-<li class="chapter" data-level="7.2" data-path="section-7.html"><a href="section-7.html#-the-poisson-distribution"><i class="fa fa-check"></i><b>7.2</b> 柏松分布 (The Poisson Distribution)</a></li>
+<li class="chapter" data-level="7.2" data-path="section-7.html"><a href="section-7.html#-the-poisson-distribution"><i class="fa fa-check"></i><b>7.2</b> 泊松分布 (The Poisson Distribution)</a></li>
 <li class="chapter" data-level="7.3" data-path="section-7.html"><a href="section-7.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>7.3</b> Maximum Likelihood Estimation</a></li>
 <li class="chapter" data-level="7.4" data-path="section-7.html"><a href="section-7.html#distributions-for-positive-continuous-values"><i class="fa fa-check"></i><b>7.4</b> Distributions for Positive Continuous Values</a></li>
 <li class="chapter" data-level="7.5" data-path="section-7.html"><a href="section-7.html#bayesian-statistics"><i class="fa fa-check"></i><b>7.5</b> Bayesian Statistics</a></li>
@@ -263,7 +263,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>  [XXneedattention]需要指出的是<span class="math inline">\(S/N\)</span>是独立随机变量的均值,因此中心极限定律告诉我们在<span class="math inline">\(N\)</span>很大时<span class="math inline">\(S\)</span>近似正太分布。最近,二项分布被用于下代测序技术中的变异鉴定和基因型分型中。该分布的一个特殊性是泊松分布可近似为二项分布,接下来我们来介绍泊松分布。</p>
 </div>
 <div id="-the-poisson-distribution" class="section level2">
-<h2><span class="header-section-number">7.2</span> 柏松分布 (The Poisson Distribution)</h2>
+<h2><span class="header-section-number">7.2</span> 泊松分布 (The Poisson Distribution)</h2>
 <p>  彩票中奖人数服从二项分布(我们假设每个人只买一张彩票)。试验的次数<span class="math inline">\(N\)</span>是买彩票的人数,通常这个数会比较大。但是,彩票中奖人数却是在0至3之间,因此正态分布近似并不成立。为什么中心极限定律并不成立呢?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p=<span class="dv">10</span><span class="op">^-</span><span class="dv">7</span> ##1 in 10,000,0000 chances of winning
 N=<span class="dv">5</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span> ##5,000,000 tickets bought
@@ -280,14 +280,11 @@ tab=<span class="kw">table</span>(winners)
 <pre><code>## winners
 ##     0     1     2     3     4 
 ## 0.604 0.316 0.067 0.012 0.001</code></pre>
-<p>For cases like this, where <span class="math inline">\(N\)</span> is very large, but <span class="math inline">\(p\)</span> is small enough to make <span class="math inline">\(N \times p\)</span> (call it <span class="math inline">\(\lambda\)</span>) a number between 0 and, for example, 10, then <span class="math inline">\(S\)</span> can be shown to follow a Poisson distribution, which has a simple parametric form:</p>
 <p>  在这种情况下,<span class="math inline">\(N\)</span>非常大,而<span class="math inline">\(p\)</span>又足够小从而使<span class="math inline">\(N \times p\)</span>(这里称它为<span class="math inline">\(\lambda\)</span>)成为一个从0到某个值(例如10)的数。 这个时候<span class="math inline">\(S\)</span>可被看成是服从泊松分布.泊松分布可以用一个简单的公式来表示:</p>
 <p><span class="math display">\[
 \mbox{Pr}(S=k)=\frac{\lambda^k e^{-\lambda}}{k!}
 \]</span></p>
-<p>The Poisson distribution is commonly used in RNA-seq analyses. Because we are sampling thousands of molecules and most genes represent a very small proportion of the totality of molecules, the Poisson distribution seems appropriate.</p>
 <p>  泊松分布在RNA-seq数据的分析中被广泛的使用。因为在RNA-seq数据中我们有成千上万个基因,而大多数的基因的表达量只占总表达量的一小部分。泊松分布比较适合这种情况。</p>
-<p>So how does this help us? One way is that it provides insight about the statistical properties of summaries that are widely used in practice. For example, let’s say we only have one sample from each of a case and control RNA-seq experiment and we want to report the genes with the largest fold-changes. One insight that the Poisson model provides is that under the null hypothesis of no true differences, the statistical variability of this quantity depends on the total abundance of the gene. We can show this mathematically, but here is a quick simulation to demonstrate the point:</p>
 <p>  为什么泊松分布能帮助我们呢？ 其中一个作用是泊松分布为我们提供了在实践中经常会用到的统计属性。例如，在在一对处理和对照组的RNA-seq数据中，我们想鉴定倍数变化最明显的基因。泊松分布模型中的一种情况是，在零假设为没有差异的时候，倍数变化的变异程度取决于基因的表达丰度。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N=<span class="dv">10000</span>##number of genes
 lambdas=<span class="dv">2</span><span class="op">^</span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">16</span>,<span class="dt">len=</span>N) ##these are the true abundances of genes
@@ -337,7 +334,7 @@ means=<span class="kw">rowMeans</span>(<span class="kw">assay</span>(se)[,<span 
 (#fig:var_vs_mean)Variance versus mean plot. Summaries were obtained from the RNA-seq data.
 </p>
 </div>
-<p>横坐标均值和纵坐标方差与图中的实线并不拟合是因为图中的变异中包含了生物学变异，而泊松分布模型并不能包含这些生物学变异。负二项分布可以挣</p>
+<p>  横坐标均值和纵坐标方差与图中的实线并不拟合是因为图中的变异中包含了生物学变异，而泊松分布模型并不能包含这些生物学变异。负二项分布可以结合泊松分布变异和生物学变异，因此更适合这种生物学数据。负二项分布有两个参数从而可以更灵活的处理短序列计数的数据。如果你想了解跟多的关于使用负二项分布来对RNA-seq数据建模的内容，可以参考<a href="http://www.ncbi.nlm.nih.gov/pubmed/20979621">这篇文献</a>。泊松分布是负二项分布的一个特例。</p>
 </div>
 <div id="maximum-likelihood-estimation" class="section level2">
 <h2><span class="header-section-number">7.3</span> Maximum Likelihood Estimation</h2>

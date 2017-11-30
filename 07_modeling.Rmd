@@ -20,27 +20,49 @@ The CLT is backed by theoretical results that guarantee that the approximation i
 
 &emsp;&emsp;中心极限定理(CLT)的理论基础保证了近似(approximation)的准确性。但是我们并不能总是使用这种近似,比如当样本太小的时候。前面我们讲到了当总体符合正太分布时,样本均值可以近似成t分布。但是,这种假设并没有理论基础。现在我们开始建模。我们从经验中知道身高是一个很好的例子用来建模。
 
+```{block2 echo = FALSE}
 But this does not imply that every dataset we collect will follow a normal distribution. Some examples are: coin tosses, the number of people who win the lottery, and US incomes. The normal distribution is not the only parametric distribution that is available for modeling. Here we provide a very brief introduction to some of the most widely used parametric distributions and some of their uses in the life sciences. We focus on the models and concepts needed to understand the techniques currently used to perform statistical inference on high-throughput data. To do this we also need to introduce the basics of Bayesian statistics. For more in-depth description of probability models and parametric distributions please consult a Statistics textbook such as [this one](https://www.stat.berkeley.edu/~rice/Book3ed/index.html). 
+```
 
-&emsp;&emsp;但是这并不代表我们调查的每一个数据集都服从正态分布.比如一些不符合正态分布的例子有:掷硬币,中奖人数以及美国人的收入.正态分布并不是唯一的可以用来建模的参数分布.这里我们会简单的解少一些常见的参数分布以及它们在生命科学领域的应用.我们主要集中在模型.因此,我们也需要介绍贝叶斯统计的基本知识.如果你想获得对概率模型和参数分布更深入的描述,请参考教科书[数据(__*Mathematical Statistics and Data Analysis*__)](https://www.stat.berkeley.edu/~rice/Book3ed/index.html). 
+&emsp;&emsp;但是这并不代表我们调查的每一个数据集都服从正态分布。比如一些不符合正态分布的例子有:掷硬币,中奖人数以及美国人的收入.正态分布并不是唯一的可以用来建模的参数分布。这里我们会简单的解少一些常见的参数分布以及它们在生命科学领域的应用。我们主要集中在模型。因此,我们也需要介绍贝叶斯统计的基本知识。如果你想获得对概率模型和参数分布更深入的描述,请参考教科书[数据(__*Mathematical Statistics and Data Analysis*__)](https://www.stat.berkeley.edu/~rice/Book3ed/index.html)。
 
-
-
+```{block2 echo = FALSE}
 ## The Binomial Distribution
+```
 
+## 二项分布 (The Binomial Distribution)
+
+```{block2 echo = FALSE}
 The first distribution we will describe is the binomial distribution. It reports the probability of observing $S=k$ successes in $N$ trials as
+```
+
+&emsp;&emsp;第一个我们要介绍的分布是二项分布。二项分布给出的是在$N$次试验中观测到$S=k$成功的概率。
 
 $$
 \mbox{Pr}(S=k) = {N \choose k}p^k (1-p)^{N-k}
 $$
+```{block2 echo=FALSE}
+with $p$ the probability of success. The best known example is coin tosses with $S$ the number of heads when tossing $N$ coins. In this example $p=0.5$.
+```
+&emsp;&emsp;其中$p$是成功事件的概率。最经典的例子是掷$N$次硬币。掷硬币的例子中,$N$是掷硬币的次数,而$p=0.5$,表示观测到正面的概率。
 
-with $p$ the probability of success. The best known example is coin tosses with $S$ the number of heads when tossing $N$ coins. In this example $p=0.5$.  
-
+```{block2 echo=FALSE}
 Note that $S/N$ is the average of independent random variables and thus the CLT tells us that $S$ is approximately normal when $N$ is large. This distribution has many applications in the life sciences. Recently, it has been used by the variant callers and genotypers applied to next generation sequencing. A special case of this distribution is approximated by the Poisson distribution which we describe next. 
+```
 
+&emsp;&emsp;[XXneedattention]需要指出的是$S/N$是独立随机变量的均值,因此中心极限定律告诉我们在$N$很大时$S$近似正太分布。最近,二项分布被用于下代测序技术中的变异鉴定和基因型分型中。该分布的一个特殊性是泊松分布可近似为二项分布,接下来我们来介绍泊松分布。
+
+```{block2 echo=FALSE}
 ## The Poisson Distribution
+```
 
+## 柏松分布 (The Poisson Distribution)
+
+```{block2 echo=FALSE}
 Since it is the sum of binary outcomes, the number of people that win the lottery follows a binomial distribution (we assume each person buys one ticket). The number of trials $N$ is the number of people that buy tickets and is usually very large. However, the number of people that win the lottery oscillates between 0 and 3, which implies the normal approximation does not hold. So why does CLT not hold? One can explain this mathematically, but the intuition is that with the sum of successes so close to and also constrained to be larger than 0, it is impossible for the distribution to be normal. Here is a quick simulation:
+```
+
+&emsp;&emsp;彩票中奖人数服从二项分布(我们假设每个人只买一张彩票)。试验的次数$N$是买彩票的人数,通常这个数会比较大。但是,彩票中奖人数却是在0至3之间,因此正态分布近似并不成立。为什么中心极限定律并不成立呢? 
 
 ```{r lottery_winners_outcomes, fig.cap="Number of people that win the lottery obtained from Monte Carlo simulation."}
 p=10^-7 ##1 in 10,000,0000 chances of winning
@@ -53,13 +75,21 @@ prop.table(tab)
 
 For cases like this, where $N$ is very large, but $p$ is small enough to make $N \times p$ (call it $\lambda$) a number between 0 and, for example, 10, then $S$ can be shown to follow a Poisson distribution, which has a simple parametric form:
 
+&emsp;&emsp;在这种情况下,$N$非常大,而$p$又足够小从而使$N \times p$(这里称它为$\lambda$)成为一个从0到某个值(例如10)的数。 这个时候$S$可被看成是服从泊松分布.泊松分布可以用一个简单的公式来表示:
+
 $$
-\mbox{Pr}(S=k)=\frac{\lambda^k \exp{-\lambda}}{k!}
+\mbox{Pr}(S=k)=\frac{\lambda^k e^{-\lambda}}{k!}
 $$
+
 
 The Poisson distribution is commonly used in RNA-seq analyses. Because we are sampling thousands of molecules and most genes represent a very small proportion of the totality of molecules, the Poisson distribution seems appropriate. 
 
+&emsp;&emsp;泊松分布在RNA-seq数据的分析中被广泛的使用。因为在RNA-seq数据中我们有成千上万个基因,而大多数的基因的表达量只占总表达量的一小部分。泊松分布比较适合这种情况。
+
 So how does this help us? One way is that it provides insight about the statistical properties of summaries that are widely used in practice. For example, let's say we only have one sample from each of a case and control RNA-seq experiment and we want to report the genes with the largest fold-changes. One insight that the Poisson model provides is that under the null hypothesis of no true differences, the statistical variability of this quantity depends on the total abundance of the gene. We can show this mathematically, but here is a quick simulation to demonstrate the point:
+
+&emsp;&emsp;为什么泊松分布能帮助我们呢？ 其中一个作用是泊松分布为我们提供了在实践中经常会用到的统计属性。例如，在在一对处理和对照组的RNA-seq数据中，我们想鉴定倍数变化最明显的基因。泊松分布模型中的一种情况是，在零假设为没有差异的时候，倍数变化的变异程度取决于基因的表达丰度。
+
 
 ```{r rna_seq_simulation, fig.cap="MA plot of simulated RNA-seq data. Replicated measurements follow a Poisson distribution."}
 N=10000##number of genes
@@ -72,12 +102,24 @@ library(rafalib)
 splot(log2(lambdas),log2(y/x),subset=ind)
 ```
 
+```{block2 echo=FALSE}
 For lower values of `lambda` there is much more variability and, if we were to report anything with a fold change of 2 or more, the number of false positives would be quite high for low abundance genes.
+```
+
+&emsp;&emsp;比较小的`lambda`有更大的变异。如果我们认为倍数变化大于或者等于2的基因是差异表达基因的话,那么对于低丰度的基因,假阳性的数目将会相当的高。
 
 
+```{block2 echo=FALSE}
 #### NGS experiments and the Poisson distribution
+···
 
+#### 下代测序实验和泊松分布
+
+```{block2 echo=FALSE}
 In this section we will use the data stored in this dataset:
+```
+
+&emsp;&emsp;在这一节，我们将使用下面的数据：
 
 ```{r,message=FALSE}
 library(parathyroidSE) ##available from Bioconductor
@@ -85,16 +127,30 @@ data(parathyroidGenesSE)
 se <- parathyroidGenesSE
 ```
 
+```{block2 echo=FALSE}
 The data is contained in a `SummarizedExperiment` object, which we do not describe here. The important thing to know is that it includes a matrix of data, where each row is a genomic feature and each column is a sample. We can extract this data using the `assay` function. For this dataset, the value of a single cell in the data matrix is the count of reads which align to a given gene for a given sample. Thus, a similar plot to the one we simulated above with technical replicates reveals that the behavior predicted by the model is present in experimental data:
+```
+
+&emsp;&emsp;这个数据保存在一个`SummarizedExperiment`对象中，这里我们不对其进项详述。你只需要知道`SummarizedExperiment`对象中包含一个矩阵数据，这个矩阵中每一列是一个基因，每一行是一个样本。我们可以使用函数`assay`来提取这个矩阵。在这个矩阵中，每一个单元格是对应的样本中比对到对应基因的短序列的个数（read count）。利用这个数据我们得到了一个和模拟数据相似的一个图，这表明泊松模型预测的结果和我们真实实验数据得到的结果一致。
+
+>&emsp;&emsp;在R代码中，`ind=which(y>0 & x>0)`的作用是将x和y中均大于零的索引值（index）提出来。在使用`splot`时只对这些数据进行作图，因为这些`0`的行会在进行除法和对数运算时会导致报错。因为这里我们没有$\lambda$，我们使用`(log2(x)+log2(y))/2`作为对$\lambda$的估算。
+
+```{r echo=FALSE}
+tab <- assay(se) ##Just for xie186
+```
 
 ```{r RNA-seq_MAplot, fig.cap="MA plot of replicated RNA-seq data."}
 x <- assay(se)[,23]
 y <- assay(se)[,24]
-ind=which(y>0 & x>0)##make sure no 0s due to ratio and log
+ind=which(y>0 & x>0)##make sure no 0s due to ratio and log 
 splot((log2(x)+log2(y))/2,log(x/y),subset=ind)
 ```
 
+```{block2 echo=FALSE}
 If we compute the standard deviations across four individuals, it is quite a bit higher than what is predicted by a Poisson model. Assuming most genes are differentially expressed across individuals, then, if the Poisson model is appropriate, there should be a linear relationship in this plot:
+```
+
+&emsp;&emsp;如果我们选取其中四个样本中计算其方差。从图中我们可以看到这些方差与泊松分布中预测的值相比高很多（在泊松分布模型中变量的均值和方差相等，均为$\lambda$）。假设大多数的基因在不同的样本中是差异表达的，那么如果泊松分布模型是合适的话，我们应该在图中看到横坐标均值和纵坐标方差与图中的实线拟合。
 
 ```{r var_vs_mean, fig.cap="Variance versus mean plot. Summaries were obtained from the RNA-seq data.",message=FALSE}
 library(rafalib)
@@ -107,7 +163,10 @@ splot(means,vars,log="xy",subset=which(means>0&vars>0)) ##plot a subset of data
 abline(0,1,col=2,lwd=2)
 ```
 
+```{block2 echo=FALSE}
 The reason for this is that the variability plotted here includes biological variability, which the motivation for the Poisson does not include.  The negative binomial distribution, which combines the sampling variability of a Poisson and biological variability, is a more appropriate distribution to model this type of experiment. The negative binomial has two parameters and permits more flexibility for count data. For more on the use of the negative binomial to model RNA-seq data you can read [this paper](http://www.ncbi.nlm.nih.gov/pubmed/20979621). The Poisson is a special case of the negative binomial distribution.
+```
+横坐标均值和纵坐标方差与图中的实线并不拟合是因为图中的变异中包含了生物学变异，而泊松分布模型并不能包含这些生物学变异。负二项分布可以挣
 
 
 ## Maximum Likelihood Estimation

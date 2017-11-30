@@ -56,7 +56,7 @@ Note that $S/N$ is the average of independent random variables and thus the CLT 
 ## The Poisson Distribution
 ```
 
-## 柏松分布 (The Poisson Distribution)
+## 泊松分布 (The Poisson Distribution)
 
 ```{block2 echo=FALSE}
 Since it is the sum of binary outcomes, the number of people that win the lottery follows a binomial distribution (we assume each person buys one ticket). The number of trials $N$ is the number of people that buy tickets and is usually very large. However, the number of people that win the lottery oscillates between 0 and 3, which implies the normal approximation does not hold. So why does CLT not hold? One can explain this mathematically, but the intuition is that with the sum of successes so close to and also constrained to be larger than 0, it is impossible for the distribution to be normal. Here is a quick simulation:
@@ -73,7 +73,9 @@ plot(tab)
 prop.table(tab)
 ```
 
+```{block2 echo=FALSE}
 For cases like this, where $N$ is very large, but $p$ is small enough to make $N \times p$ (call it $\lambda$) a number between 0 and, for example, 10, then $S$ can be shown to follow a Poisson distribution, which has a simple parametric form:
+```
 
 &emsp;&emsp;在这种情况下,$N$非常大,而$p$又足够小从而使$N \times p$(这里称它为$\lambda$)成为一个从0到某个值(例如10)的数。 这个时候$S$可被看成是服从泊松分布.泊松分布可以用一个简单的公式来表示:
 
@@ -81,12 +83,15 @@ $$
 \mbox{Pr}(S=k)=\frac{\lambda^k e^{-\lambda}}{k!}
 $$
 
-
+```{block2 echo=FALSE}
 The Poisson distribution is commonly used in RNA-seq analyses. Because we are sampling thousands of molecules and most genes represent a very small proportion of the totality of molecules, the Poisson distribution seems appropriate. 
+```
 
 &emsp;&emsp;泊松分布在RNA-seq数据的分析中被广泛的使用。因为在RNA-seq数据中我们有成千上万个基因,而大多数的基因的表达量只占总表达量的一小部分。泊松分布比较适合这种情况。
 
+```{block2 echo=FALSE}
 So how does this help us? One way is that it provides insight about the statistical properties of summaries that are widely used in practice. For example, let's say we only have one sample from each of a case and control RNA-seq experiment and we want to report the genes with the largest fold-changes. One insight that the Poisson model provides is that under the null hypothesis of no true differences, the statistical variability of this quantity depends on the total abundance of the gene. We can show this mathematically, but here is a quick simulation to demonstrate the point:
+```
 
 &emsp;&emsp;为什么泊松分布能帮助我们呢？ 其中一个作用是泊松分布为我们提供了在实践中经常会用到的统计属性。例如，在在一对处理和对照组的RNA-seq数据中，我们想鉴定倍数变化最明显的基因。泊松分布模型中的一种情况是，在零假设为没有差异的时候，倍数变化的变异程度取决于基因的表达丰度。
 
@@ -166,7 +171,7 @@ abline(0,1,col=2,lwd=2)
 ```{block2 echo=FALSE}
 The reason for this is that the variability plotted here includes biological variability, which the motivation for the Poisson does not include.  The negative binomial distribution, which combines the sampling variability of a Poisson and biological variability, is a more appropriate distribution to model this type of experiment. The negative binomial has two parameters and permits more flexibility for count data. For more on the use of the negative binomial to model RNA-seq data you can read [this paper](http://www.ncbi.nlm.nih.gov/pubmed/20979621). The Poisson is a special case of the negative binomial distribution.
 ```
-横坐标均值和纵坐标方差与图中的实线并不拟合是因为图中的变异中包含了生物学变异，而泊松分布模型并不能包含这些生物学变异。负二项分布可以挣
+&emsp;&emsp;横坐标均值和纵坐标方差与图中的实线并不拟合是因为图中的变异中包含了生物学变异，而泊松分布模型并不能包含这些生物学变异。负二项分布可以结合泊松分布变异和生物学变异，因此更适合这种生物学数据。负二项分布有两个参数从而可以更灵活的处理短序列计数的数据。如果你想了解跟多的关于使用负二项分布来对RNA-seq数据建模的内容，可以参考[这篇文献](http://www.ncbi.nlm.nih.gov/pubmed/20979621)。泊松分布是负二项分布的一个特例。
 
 
 ## Maximum Likelihood Estimation

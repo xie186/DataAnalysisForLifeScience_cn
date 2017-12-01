@@ -1,9 +1,21 @@
 
+```{block2 echo=FALSE}
 # Distance and Dimension Reduction
+```
 
+# 距离和维度降低
+
+```{block2 echo=FALSE}
 ## Introduction
+```
 
+## 简介
+
+```{block2 echo=FALSE}
 The concept of distance is quite intuitive. For example, when we cluster animals into subgroups, we are implicitly defining a distance that permits us to say what animals are "close" to each other.
+```
+
+&emsp;&emsp;距离的概念是相当直观和简单的。例如，当我们将不同的动物划分成不同的类别时，我们通过一定的标准定义了一个距离从而使得我们可以说哪些动物互相之间是比较接近的。
 
 ![Clustering of animals.](images/handmade/animals.png)
 

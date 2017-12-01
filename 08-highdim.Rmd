@@ -3,13 +3,13 @@
 # Distance and Dimension Reduction
 ```
 
-# 距离和维度降低
+# 距离和维度降低 &emsp;&emsp;
 
 ```{block2 echo=FALSE}
 ## Introduction
 ```
 
-## 简介
+## 简介 &emsp;&emsp;
 
 ```{block2 echo=FALSE}
 The concept of distance is quite intuitive. For example, when we cluster animals into subgroups, we are implicitly defining a distance that permits us to say what animals are "close" to each other.
@@ -19,10 +19,15 @@ The concept of distance is quite intuitive. For example, when we cluster animals
 
 ![Clustering of animals.](images/handmade/animals.png)
 
+```{block2 echo=FALSE}
 Many of the analyses we perform with high-dimensional data relate directly or indirectly to distance. Many clustering and machine learning techniques rely on being able to define distance, using features or predictors. For example, to create _heatmaps_, which are widely used in genomics and other high-throughput fields, a distance is computed explicitly. 
+```
+
+&emsp;&emsp;在我们分析的高维度的数据中大多数的分析总是直接或者间接的与距离有关系。很多的聚类和机器学习依赖于利用特征值或者预测变量来定义距离。例如在基因组学和其他高通量领域中，`热图`被广泛用于数据的展示中。在这个过程中，很明显的我们需要计算距离。
 
 ![Example of heatmap. Image Source: Heatmap, Gaeddal, 01.28.2007 Wikimedia Commons](images/handmade/Heatmap.png)
 
+```{block2 echo=FALSE}
 In these plots the measurements, which are stored in a matrix, are
 represented with colors after the columns and rows have been
 clustered. (A side note: red and green, a common color theme for heatmaps,
@@ -30,6 +35,9 @@ are two of the most difficult colors for many color-blind people to discern.)
 Here we will learn the necessary mathematics and computing
 skills to understand and create heatmaps. We start by reviewing the
 mathematical definition of distance.
+```
+
+&emsp;&emsp;在这些图中，所用的数据通常储存在一个矩阵中。首先，通过距离行和列被分别聚类；然后，这些数据在图中用不同的颜色来代表（边注：红和绿是在热图中被广泛使用的一种主体颜色，但是许多色盲的人无法辨别这两种颜色）。这里我们将通过学习基本的数学和计算技巧来理解和产生热图。下面我们将从距离的数学定义开始学习。
 
 ## Euclidean Distance
 
@@ -46,21 +54,37 @@ text(-0.1,0,"A",cex=2)
 text(1.1,1,"B",cex=2)
 ```
 
-The euclidean distance between $A$ and $B$ is simply:
+  ```{block2 echo=FALSE}
+  The euclidean distance between $A$ and $B$ is simply:
+  ```
+&emsp;&emsp;$A$和$B$之间的欧氏距离可以很直观的表示为：
 
 $$\sqrt{ (A_x-B_x)^2 + (A_y-B_y)^2}$$
 
-
+```{block2 echo=FALSE}
 ## Distance in High Dimensions
-
-We introduce a dataset with gene expression measurements for 22,215 genes from 189 samples. The R objects can be downloaded like this:
-
-```{r,eval=FALSE}
-library(devtools)
-install_github("genomicsclass/tissuesGeneExpression")
 ```
 
+## 高维数据的距离 &emsp;&emsp;
+
+```{block2 echo=FALSE}
+We introduce a dataset with gene expression measurements for 22,215 genes from 189 samples. The R objects can be downloaded like this:
+```
+
+&emsp;&emsp;这里我们用的数据是22,215个基因在189个样本中的表达量。数据对应的R对象可以通过下面的R代码来下载：
+
+
+```{r,eval=FALSE}
+#library(devtools)
+#install_github("genomicsclass/tissuesGeneExpression")
+```
+
+```{block2 echo=FALSE}
 The data represent RNA expression levels for eight tissues, each with several individuals.
+```
+
+&emsp;&emsp;这个数据代表了八个组织的基因表达量，每个组织又有来自不同个体的生物学重复。
+
 
 ```{r}
 library(tissuesGeneExpression)
@@ -69,23 +93,44 @@ dim(e) ##e contains the expression data
 table(tissue) ##tissue[i] tells us what tissue is represented by e[,i]
 ```
 
+```{block2 echo=FALSE}
 We are interested in describing distance between samples in the context of this dataset. We might also be interested in finding genes that _behave similarly_ across samples.
+```
 
+&emsp;&emsp;在这数据中，我们对不同样本之间的距离比较感兴趣。我们可能也会对不同样本中有__相似表达模式__的基因比较感兴趣。
+
+```{block2 echo=FALSE}
 To define distance, we need to know what the points are since mathematical distance is computed between points. With high dimensional data, points are no longer on the Cartesian plane. Instead they are in higher dimensions. For example, sample $i$ is defined by a point in 22,215 dimensional space: $(Y_{1,i},\dots,Y_{22215,i})^\top$. Feature $g$ is defined by a point in 189 dimensions $(Y_{g,1},\dots,Y_{g,189})^\top$
+```
 
+&emsp;&emsp; 为了定义距离，我们需要知道这个数据中点的定义是什么，因为数学上定义的距离是通过计算点和点之间的距离得到的。然而在高维数据中，这些点并不是在直角平面中的点。他们是在更高维度中的点。例如，$i$样本是一个有着22,215维度的点，$(Y_{1,i},\dots,Y_{22215,i})^\top$。而基因$g$是一个有着189个维度的点$(Y_{g,1},\dots,Y_{g,189})^\top$。
+
+```{block2 echo=FALSE}
 Once we define points, the Euclidean distance is defined in a very similar way as it is defined for two dimensions. For instance, the distance between two samples $i$ and $j$ is:
+```
+&emsp;&emsp; 在我们定义了点之后，我们可以像计算二维平面中距离一样来计算欧式距离。例如，$i$和$j$样本之间的距离可以表示为：
 
 $$
 \mbox{dist}(i,j) = \sqrt{ \sum_{g=1}^{22215} (Y_{g,i}-Y_{g,j })^2 }
 $$
 
+```{block2 echo=FALSE}
 and the distance between two features $h$ and $g$ is:
+```
+
+&emsp;&emsp;同时，两个基因$h$和$g$可以表示为：
 
 $$
 \mbox{dist}(h,g) = \sqrt{ \sum_{i=1}^{189} (Y_{h,i}-Y_{g,i})^2 }
 $$
 
+```{block2 echo=FALSE}
 Note: In practice, distances between features are typically applied after standardizing the data for each feature. This is equivalent to computing one minus the correlation. This is done because the differences in overall levels between features are often not due to biological effects but technical ones. More details on this topic can be found in [this presentation](http://master.bioconductor.org/help/course-materials/2002/Summer02Course/Distance/distance.pdf).
+```
+
+&emsp;&emsp;我们需要指出的是，在实践中，通常在计算基因和基因之间的距离之前，通常需要对每个基因的数据进行标准化，例如Z分数(Z-score)转化。这是因为不同基因之间整体的差异往往不是有生物学的因素造成的，往往这些差异是有技术因素造成的。如果想了解更多的细节，可以参考[这个报告](http://master.bioconductor.org/help/course-materials/2002/Summer02Course/Distance/distance.pdf)。
+
+
 
 #### Distance with matrix algebra
 

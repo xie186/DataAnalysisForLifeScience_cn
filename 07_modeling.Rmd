@@ -173,10 +173,18 @@ The reason for this is that the variability plotted here includes biological var
 ```
 &emsp;&emsp;横坐标均值和纵坐标方差与图中的实线并不拟合是因为图中的变异中包含了生物学变异，而泊松分布模型并不能包含这些生物学变异。负二项分布可以结合泊松分布变异和生物学变异，因此更适合这种生物学数据。负二项分布有两个参数从而可以更灵活的处理短序列计数的数据。如果你想了解跟多的关于使用负二项分布来对RNA-seq数据建模的内容，可以参考[这篇文献](http://www.ncbi.nlm.nih.gov/pubmed/20979621)。泊松分布是负二项分布的一个特例。
 
-
+```{block2 echo=FALSE}
 ## Maximum Likelihood Estimation
+```
 
+## 最大似然估计
+
+```{block2 echo=FALSE}
 To illustrate the concept of maximum likelihood estimates (MLE), we use a relatively simple dataset containing palindrome locations in the HMCV genome. We read in the locations of the palindrome and then count the number of palindromes in each 4,000 basepair segments.
+```
+
+&emsp;&emsp;为了能解释最大似然估计的概念，这里我们使用一个相对比较简单的数据。该数据中包含了HMCV（人巨细胞病毒：human cytomegalovirus）基因组中的回文序列。我们读取这些回文序列的位置，然后计算每4k区段内的回文序列数目。
+
 
 ```{r, palindrome_count_histogram, fig.cap="Palindrome count histogram."}
 datadir="http://www.biostat.jhsph.edu/bstcourse/bio751/data"
@@ -191,19 +199,31 @@ mypar(1,1)
 hist(counts)
 ```
 
+```{block2 echo=FALSE}
 The counts do appear to follow a Poisson distribution. But what is the rate $\lambda$ ? The most common approach to estimating this rate is _maximum likelihood estimation_. To find the maximum likelihood estimate (MLE), we note that these data are independent and the probability of observing the values we observed is:
+```
 
+&emsp;&emsp;这些回文序列的个数看起来确实服从泊松分布。但是，在这个数据中的$\lambda$是多少呢？最常用的一种方法是最大似然估计。为了找到最大似然估计，我们假设这些数据是独立的，我们观测到这些个数的概率是：
+
+  
 $$
 \Pr(X_1=k_1,\dots,X_n=k_n;\lambda) = \prod_{i=1}^n \lambda^{k_i} / k_i! \exp ( -\lambda)
 $$
+```{block2 echo=FALSE}
+The MLE is the value of $\lambda$ that maximizes the likelihood:
+```
 
-The MLE is the value of $\lambda$ that maximizes the likelihood:. 
+&emsp;&emsp;最大似然估计就是找到能够使上面的公式最大的$\lambda$值。
+
 
 $$
 \mbox{L}(\lambda; X_1=k_1,\dots,X_n=k_1)=\exp\left\{\sum_{i=1}^n \log \Pr(X_i=k_i;\lambda)\right\}
 $$
-
+```{block2 echo=FALSE}
 In practice, it is more convenient to maximize the log-likelihood which is the summation that is exponentiated in the expression above. Below we write code that computes the log-likelihood for any $\lambda$ and use the function `optimize` to find the value that maximizes this function (the MLE). We show a plot of the log-likelihood along with vertical line showing the MLE.
+```
+
+&emsp;&emsp;在实践中，计算
 
 ```{r mle, fig.cap="Likelihood versus lambda."}
 l<-function(lambda) sum(dpois(counts,lambda,log=TRUE)) 
@@ -217,12 +237,23 @@ mle=optimize(l,c(0,10),maximum=TRUE)
 abline(v=mle$maximum)
 ```
 
+```{block2 echo=FALSE}
 If you work out the math and do a bit of calculus, you realize that this is a particularly simple example for which the MLE is the average.
+```
+
+&emsp;&emsp;如果你推算出
+
 ```{r}
 print( c(mle$maximum, mean(counts) ) )
 ```
 
+```{block2 echo=FALSE}
 Note that a plot of observed counts versus counts predicted by the Poisson shows that the fit is quite good in this case:
+```
+
+&emsp;&emsp;
+
+
 ```{r obs_versus_theoretical_Poisson_count, fig.cap="Observed counts versus theoretical Poisson counts."}
 theoretical<-qpois((seq(0,99)+0.5)/100,mean(counts))
 

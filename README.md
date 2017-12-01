@@ -43,6 +43,6 @@ git push origin master
 
 >If you're not comfortable with git command line, you can directly translate on the GitHub website under the corresponding branch. 
 
-__Currently if you're not a collaborator and want to contribute. Please send me an email at xie186 at purdue.edu. __
+__Currently if you're not a collaborator and want to contribute. Please send me an email at xie186 at purdue.edu.__
 
 

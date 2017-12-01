@@ -4,17 +4,6 @@ Link for original book:
 http://genomicsclass.github.io/book/
 
 
-
-
-```
-adduser jqd -g xie186
-adduser bioyuwei -g xie186
-adduser haoblue -g xie186
-adduser jackie6677 -g xie186
-
-```
-
-
 ## How to contribute as a collaborator
 
 1) [Fork the repo](https://help.github.com/articles/fork-a-repo/). 
@@ -54,6 +43,6 @@ git push origin master
 
 >If you're not comfortable with git command line, you can directly translate on the GitHub website under the corresponding branch. 
 
-Currently if you're not a collaborator and want to contribute. Please send me an email at xie186 at purdue.edu. 
+__Currently if you're not a collaborator and want to contribute. Please send me an email at xie186 at purdue.edu. __
 
 

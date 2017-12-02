@@ -25,7 +25,7 @@
 <meta name="author" content="作者：Rafael A. Irizarry; Mike I. Love 翻译：张三 李四 麻子">
 
 
-<meta name="date" content="2017-12-01">
+<meta name="date" content="2017-12-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -190,7 +190,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.1" data-path="section-7.html"><a href="section-7.html#-the-binomial-distribution"><i class="fa fa-check"></i><b>7.1</b> 二项分布 (The Binomial Distribution)</a></li>
 <li class="chapter" data-level="7.2" data-path="section-7.html"><a href="section-7.html#-the-poisson-distribution"><i class="fa fa-check"></i><b>7.2</b> 泊松分布 (The Poisson Distribution)</a></li>
 <li class="chapter" data-level="7.3" data-path="section-7.html"><a href="section-7.html#section-7.3"><i class="fa fa-check"></i><b>7.3</b> 最大似然估计</a></li>
-<li class="chapter" data-level="7.4" data-path="section-7.html"><a href="section-7.html#distributions-for-positive-continuous-values"><i class="fa fa-check"></i><b>7.4</b> Distributions for Positive Continuous Values</a></li>
+<li class="chapter" data-level="7.4" data-path="section-7.html"><a href="section-7.html#section-7.4"><i class="fa fa-check"></i><b>7.4</b> 连续变量的分布</a></li>
 <li class="chapter" data-level="7.5" data-path="section-7.html"><a href="section-7.html#bayesian-statistics"><i class="fa fa-check"></i><b>7.5</b> Bayesian Statistics</a></li>
 <li class="chapter" data-level="7.6" data-path="section-7.html"><a href="section-7.html#hierarchical-models"><i class="fa fa-check"></i><b>7.6</b> Hierarchical Models</a></li>
 </ul></li>
@@ -381,10 +381,10 @@ mle=<span class="kw">optimize</span>(l,<span class="kw">c</span>(<span class="dv
 图 7.1: Likelihood versus lambda.
 </p>
 </div>
-<p>  如果你推算出</p>
+<p>  通过数学运算和一点微分运算，你会意识到在这个例子中最大似然估计是其均值。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>( <span class="kw">c</span>(mle<span class="op">$</span>maximum, <span class="kw">mean</span>(counts) ) )</code></pre></div>
 <pre><code>## [1] 5.158 5.158</code></pre>
-<p>  </p>
+<p>  需要指出的是，图中观测值和泊松分布模型的预测值一致性很高，说明泊松分布模型很适合在这个例子。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">theoretical&lt;-<span class="kw">qpois</span>((<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">99</span>)<span class="op">+</span><span class="fl">0.5</span>)<span class="op">/</span><span class="dv">100</span>,<span class="kw">mean</span>(counts))
 
 <span class="kw">qqplot</span>(theoretical,counts)
@@ -395,13 +395,13 @@ mle=<span class="kw">optimize</span>(l,<span class="kw">c</span>(<span class="dv
 (#fig:obs_versus_theoretical_Poisson_count)Observed counts versus theoretical Poisson counts.
 </p>
 </div>
-<p>We therefore can model the palindrome count data with a Poisson with <span class="math inline">\(\lambda=5.16\)</span>.</p>
+<p>  因此，我们可以使用泊松分布来对回文序列的个数建模，该模型中<span class="math inline">\(\lambda=5.16\)</span>。</p>
 </div>
-<div id="distributions-for-positive-continuous-values" class="section level2">
-<h2><span class="header-section-number">7.4</span> Distributions for Positive Continuous Values</h2>
-<p>Different genes vary differently across biological replicates. Later, in the hierarchical models chapter, we will describe one of the <a href="http://www.ncbi.nlm.nih.gov/pubmed/16646809">most influential statistical methods</a> in the analysis of genomics data. This method provides great improvements over naive approaches to detecting differentially expressed genes. This is achieved by modeling the distribution of the gene variances. Here we describe the parametric model used in this method.</p>
-<p>We want to model the distribution of the gene-specific standard errors. Are they normal? Keep in mind that we are modeling the population standard errors so CLT does not apply, even though we have thousands of genes.</p>
-<p>As an example, we use an experimental data that included both technical and biological replicates for gene expression measurements on mice. We can load the data and compute the gene specific sample standard error for both the technical replicates and the biological replicates</p>
+<div id="section-7.4" class="section level2">
+<h2><span class="header-section-number">7.4</span> 连续变量的分布</h2>
+<p>在不同的生物学重复中，不同的基因差异有着不同的变化。稍后，在介绍贝叶斯层次模型的章节中，我们将介绍在基因组学数据中<a href="http://www.ncbi.nlm.nih.gov/pubmed/16646809">最具影响力的统计模型</a>。在鉴定差异表达基因时，这种方法相对朴素的方法有着巨大的优势。这种优势是通过对方差进行建模实现的。这里我们将介绍这种方法中的参数模型。</p>
+<p>  我们想对基因特异的标准差的分布进行建模。这种分布符合正太分布的？记住我们是在对总体的标准差进行建模，所以即使我们有成千上万个基因，中心极限定理在这里并不适用。</p>
+<p>  我们使用一个小鼠中包含有技术重复和生物学重复的基因表达数据作为例子。我们将读入数据并计算技术重复和生物学重复中基因特异的样本标准差。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Biobase) ##available from Bioconductor
 <span class="kw">library</span>(maPooling) ##available from course github repo
 
@@ -422,7 +422,7 @@ bioreps=<span class="kw">exprs</span>(maPooling)[,individuals]
 <span class="kw">library</span>(matrixStats)
 techsds=<span class="kw">rowSds</span>(techreps)
 biosds=<span class="kw">rowSds</span>(bioreps)</code></pre></div>
-<p>We can now explore the sample standard deviation:</p>
+<p>  现在我们现在可以来探索一下样本的标准差：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">###now plot
 <span class="kw">library</span>(rafalib)
 <span class="kw">mypar</span>()
@@ -435,8 +435,9 @@ biosds=<span class="kw">rowSds</span>(bioreps)</code></pre></div>
 (#fig:bio_sd_versus_tech_sd)Histograms of biological variance and technical variance.
 </p>
 </div>
-<p>An important observation here is that the biological variability is substantially higher than the technical variability. This provides strong evidence that genes do in fact have gene-specific biological variability.</p>
-<p>If we want to model this variability, we first notice that the normal distribution is not appropriate here since the right tail is rather large. Also, because SDs are strictly positive, there is a limitation to how symmetric this distribution can be. A qqplot shows this very clearly:</p>
+<p>  从图中我们可以看到，生物学重复的变异显著的比技术重复之间的变异高。这表明，基因特异的生物学差异确实是存在的。</p>
+<p>  如果我们想对这种变异建模，正态分布首先是不合适的，因为图中分布右尾相当明显。同时，因为标准差总是正数，所以其分布是无法对称的。</p>
+<p>  QQ图可以很直观的表达这一点：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qqnorm</span>(biosds)
 <span class="kw">qqline</span>(biosds)</code></pre></div>
 <div class="figure">
@@ -445,11 +446,11 @@ biosds=<span class="kw">rowSds</span>(bioreps)</code></pre></div>
 (#fig:sd_qqplot)Normal qq-plot for sample standard deviations.
 </p>
 </div>
-<p>There are parametric distributions that possess these properties (strictly positive and <em>heavy</em> right tails). Two examples are the <em>gamma</em> and <em>F</em> distributions. The density of the gamma distribution is defined by:</p>
+<p>  有一些参数分布可以对正数和重右尾的数据建模，例如_gamma_和_F_分布。其中_gamma_分布的密度函数是：</p>
 <p><span class="math display">\[
 f(x;\alpha,\beta)=\frac{\beta^\alpha x^{\alpha-1}\exp{-\beta x}}{\Gamma(\alpha)}
 \]</span></p>
-<p>It is defined by two parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> that can, indirectly, control location and scale. They also control the shape of the distribution. For more on this distribution please refer to <a href="https://www.stat.berkeley.edu/~rice/Book3ed/index.html">this book</a>.</p>
+<p>  公式中的<span class="math inline">\(\alpha\)</span>和<span class="math inline">\(\beta\)</span>可以间接的控制分布的位置和重尾（heavy tail）的程度，进而控制了分布的形状。如果你想了解更多关于这个分布的内容，请参考<a href="https://www.stat.berkeley.edu/~rice/Book3ed/index.html">这本书</a>.</p>
 <p>Two special cases of the gamma distribution are the chi-squared and exponential distribution. We used the chi-squared earlier to analyze a 2x2 table data. For chi-square, we have <span class="math inline">\(\alpha=\nu/2\)</span> and <span class="math inline">\(\beta=2\)</span> with <span class="math inline">\(\nu\)</span> the degrees of freedom. For exponential, we have <span class="math inline">\(\alpha=1\)</span> and <span class="math inline">\(\beta=\lambda\)</span> the rate.</p>
 <p>The F-distribution comes up in analysis of variance (ANOVA). It is also always positive and has large right tails. Two parameters control its shape:</p>
 <p><span class="math display">\[

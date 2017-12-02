@@ -8,7 +8,6 @@
 -George E. P. Box
 
 ```{block2 echo = FALSE}
-
 When we see a p-value in the literature, it means a probability distribution of some sort was used to quantify the null hypothesis. Many times deciding which probability distribution to use is relatively straightforward. For example, in the tea tasting challenge we can use simple probability calculations to determine the null distribution. Most  p-values in the scientific literature are based on sample averages or least squares estimates from a linear model and make use of the CLT to approximate the null distribution of their statistic as normal.
 ```
 
@@ -241,7 +240,8 @@ abline(v=mle$maximum)
 If you work out the math and do a bit of calculus, you realize that this is a particularly simple example for which the MLE is the average.
 ```
 
-&emsp;&emsp;如果你推算出
+&emsp;&emsp;通过数学运算和一点微分运算，你会意识到在这个例子中最大似然估计是其均值。
+
 
 ```{r}
 print( c(mle$maximum, mean(counts) ) )
@@ -251,7 +251,9 @@ print( c(mle$maximum, mean(counts) ) )
 Note that a plot of observed counts versus counts predicted by the Poisson shows that the fit is quite good in this case:
 ```
 
-&emsp;&emsp;
+
+
+&emsp;&emsp;需要指出的是，图中观测值和泊松分布模型的预测值一致性很高，说明泊松分布模型很适合在这个例子。
 
 
 ```{r obs_versus_theoretical_Poisson_count, fig.cap="Observed counts versus theoretical Poisson counts."}
@@ -261,16 +263,35 @@ qqplot(theoretical,counts)
 abline(0,1)
 ```
 
+```{block2 echo=FALSE}
 We therefore can model the palindrome count data with a Poisson with $\lambda=5.16$. 
+```
 
+&emsp;&emsp;因此，我们可以使用泊松分布来对回文序列的个数建模，该模型中$\lambda=5.16$。
+
+```{block2 echo=FALSE}
 ## Distributions for Positive Continuous Values
+```
 
+## 连续变量的分布
+
+```{block2 echo=FALSE}
 Different genes vary differently across biological replicates. Later, in the hierarchical models chapter, we will describe one of the [most influential statistical methods](http://www.ncbi.nlm.nih.gov/pubmed/16646809) in the analysis of genomics data. This method provides great improvements over naive approaches to detecting differentially expressed genes. This is achieved by modeling the distribution of the gene variances. Here we describe the parametric model used in this method.
+```
 
+在不同的生物学重复中，不同的基因差异有着不同的变化。稍后，在介绍贝叶斯层次模型的章节中，我们将介绍在基因组学数据中[最具影响力的统计模型](http://www.ncbi.nlm.nih.gov/pubmed/16646809)。在鉴定差异表达基因时，这种方法相对朴素的方法有着巨大的优势。这种优势是通过对方差进行建模实现的。这里我们将介绍这种方法中的参数模型。
+
+```{block2 echo=FALSE}
 We want to  model the distribution of the gene-specific standard errors. Are they normal? Keep in mind that we are modeling the population standard errors so CLT does not apply, even though we have thousands of genes. 
+```
 
-As an example, we use an experimental data that included both technical and biological replicates for gene expression measurements on mice. We can load the data and compute the gene specific sample standard error for both the technical replicates and the biological replicates
+&emsp;&emsp;我们想对基因特异的标准差的分布进行建模。这种分布符合正太分布的？记住我们是在对总体的标准差进行建模，所以即使我们有成千上万个基因，中心极限定理在这里并不适用。
 
+```{block2 echo=FALSE}
+As an example, we use an experimental data that included both technical and biological replicates for gene expression measurements on mice. We can load the data and compute the gene specific sample standard error for both the technical replicates and the biological replicates.XZ
+```
+
+&emsp;&emsp;我们使用一个小鼠中包含有技术重复和生物学重复的基因表达数据作为例子。我们将读入数据并计算技术重复和生物学重复中基因特异的样本标准差。
 
 ```{r, message=FALSE}
 library(Biobase) ##available from Bioconductor
@@ -295,7 +316,11 @@ techsds=rowSds(techreps)
 biosds=rowSds(bioreps)
 ```
 
+```{block2 echo=FALSE}
 We can now explore the sample standard deviation:
+```
+
+&emsp;&emsp;现在我们现在可以来探索一下样本的标准差：
 
 ```{r bio_sd_versus_tech_sd, fig.cap="Histograms of biological variance and technical variance.",message=FALSE}
 ###now plot
@@ -306,23 +331,46 @@ shist(techsds,unit=0.1,col=2,add=TRUE)
 legend("topright",c("Biological","Technical"), col=c(1,2),lty=c(1,1))
 ```
 
-An important observation here is that the biological variability is substantially higher than the technical variability. This provides strong evidence that genes do in fact have gene-specific biological variability. 
+```{block2 echo=FALSE}
+An important observation here is that the biological variability is substantially higher than the technical variability. This provides strong evidence that genes do in fact have gene-specific biological variability.
+```
 
+&emsp;&emsp;从图中我们可以看到，生物学重复的变异显著的比技术重复之间的变异高。这表明，基因特异的生物学差异确实是存在的。
+
+```{block2 echo=FALSE}
 If we want to model this variability, we first notice that the normal distribution is not appropriate here since the right tail is rather large. Also, because SDs are strictly positive, there is a limitation to how symmetric this distribution can be.
+```
+
+
+&emsp;&emsp;如果我们想对这种变异建模，正态分布首先是不合适的，因为图中分布右尾相当明显。同时，因为标准差总是正数，所以其分布是无法对称的。
+
+```{block2 echo=FALSE}
 A qqplot shows this very clearly:
+```
+
+&emsp;&emsp;QQ图可以很直观的表达这一点：
 
 ```{r, sd_qqplot, fig.cap="Normal qq-plot for sample standard deviations."}
 qqnorm(biosds)
 qqline(biosds)
 ```
 
+```{block2 echo=FALSE}
 There are parametric distributions that possess these properties (strictly positive and _heavy_ right tails). Two examples are the _gamma_ and _F_ distributions. The density of the gamma distribution is defined by: 
+```
+
+&emsp;&emsp;有一些参数分布可以对正数和重右尾的数据建模，例如_gamma_和_F_分布。其中_gamma_分布的密度函数是：
+
 
 $$
 f(x;\alpha,\beta)=\frac{\beta^\alpha x^{\alpha-1}\exp{-\beta x}}{\Gamma(\alpha)}
 $$
 
-It is defined by two parameters $\alpha$ and $\beta$ that can, indirectly, control location and scale. They also control the shape of the distribution. For more on this distribution please refer to [this book](https://www.stat.berkeley.edu/~rice/Book3ed/index.html). 
+```{block2 echo=FALSE}
+It is defined by two parameters $\alpha$ and $\beta$ that can, indirectly, control location and scale. They also control the shape of the distribution. For more on this distribution please refer to [this book](https://www.stat.berkeley.edu/~rice/Book3ed/index.html).
+```
+
+&emsp;&emsp;公式中的$\alpha$和$\beta$可以间接的控制分布的位置和重尾（heavy tail）的程度，进而控制了分布的形状。如果你想了解更多关于这个分布的内容，请参考[这本书](https://www.stat.berkeley.edu/~rice/Book3ed/index.html).
 
 Two special cases of the gamma distribution are the chi-squared and exponential distribution. We used the chi-squared earlier to analyze a 2x2 table data. For chi-square, we have $\alpha=\nu/2$ and $\beta=2$ with $\nu$ the degrees of freedom. For exponential, we have $\alpha=1$ and $\beta=\lambda$ the rate.
 

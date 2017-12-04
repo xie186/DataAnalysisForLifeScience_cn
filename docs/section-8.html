@@ -25,14 +25,14 @@
 <meta name="author" content="作者：Rafael A. Irizarry; Mike I. Love 翻译：张三 李四 麻子">
 
 
-<meta name="date" content="2017-11-19">
+<meta name="date" content="2017-12-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="statistical-models.html">
+<link rel="prev" href="section-7.html">
 <link rel="next" href="basic-machine-learning.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -115,8 +115,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.2" data-path="getting-started.html"><a href="getting-started.html#installing-rstudio"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a></li>
 <li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#learn-r-basics"><i class="fa fa-check"></i><b>1.3</b> Learn R Basics</a></li>
 <li class="chapter" data-level="1.4" data-path="getting-started.html"><a href="getting-started.html#installing-packages"><i class="fa fa-check"></i><b>1.4</b> Installing Packages</a></li>
-<li class="chapter" data-level="1.5" data-path="getting-started.html"><a href="getting-started.html#importing-data-into-r"><i class="fa fa-check"></i><b>1.5</b> Importing Data into R</a></li>
-<li class="chapter" data-level="1.6" data-path="getting-started.html"><a href="getting-started.html#brief-introduction-to-dplyr"><i class="fa fa-check"></i><b>1.6</b> Brief Introduction to <code>dplyr</code></a></li>
+<li class="chapter" data-level="1.5" data-path="getting-started.html"><a href="getting-started.html#importing-data-into-r"><i class="fa fa-check"></i><b>1.5</b> Importing Data into R</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="getting-started.html"><a href="getting-started.html#getting-started-exercises"><i class="fa fa-check"></i><b>1.5.1</b> Getting Started Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="getting-started.html"><a href="getting-started.html#brief-introduction-to-dplyr"><i class="fa fa-check"></i><b>1.6</b> Brief Introduction to <code>dplyr</code></a><ul>
+<li class="chapter" data-level="1.6.1" data-path="getting-started.html"><a href="getting-started.html#dplyr-exercises"><i class="fa fa-check"></i><b>1.6.1</b> <code>dplyr</code> exercises</a></li>
+</ul></li>
 <li class="chapter" data-level="1.7" data-path="getting-started.html"><a href="getting-started.html#mathematical-notation"><i class="fa fa-check"></i><b>1.7</b> Mathematical Notation</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="inference.html"><a href="inference.html"><i class="fa fa-check"></i><b>2</b> Inference</a><ul>
@@ -126,7 +130,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.4" data-path="inference.html"><a href="inference.html#distributions"><i class="fa fa-check"></i><b>2.4</b> Distributions</a></li>
 <li class="chapter" data-level="2.5" data-path="inference.html"><a href="inference.html#probability-distribution"><i class="fa fa-check"></i><b>2.5</b> Probability Distribution</a></li>
 <li class="chapter" data-level="2.6" data-path="inference.html"><a href="inference.html#normal-distribution"><i class="fa fa-check"></i><b>2.6</b> Normal Distribution</a></li>
-<li class="chapter" data-level="2.7" data-path="inference.html"><a href="inference.html#populations-samples-and-estimates"><i class="fa fa-check"></i><b>2.7</b> Populations, Samples and Estimates</a></li>
+<li class="chapter" data-level="2.7" data-path="inference.html"><a href="inference.html#populations-samples-and-estimates"><i class="fa fa-check"></i><b>2.7</b> Populations, Samples and Estimates</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="inference.html"><a href="inference.html#population-samples-and-estimates-exercises"><i class="fa fa-check"></i><b>2.7.1</b> Population, Samples, and Estimates Exercises</a></li>
+</ul></li>
 <li class="chapter" data-level="2.8" data-path="inference.html"><a href="inference.html#central-limit-theorem-and-t-distribution"><i class="fa fa-check"></i><b>2.8</b> Central Limit Theorem and t-distribution</a></li>
 <li class="chapter" data-level="2.9" data-path="inference.html"><a href="inference.html#central-limit-theorem-in-practice"><i class="fa fa-check"></i><b>2.9</b> Central Limit Theorem in Practice</a></li>
 <li class="chapter" data-level="2.10" data-path="inference.html"><a href="inference.html#t-tests-in-practice"><i class="fa fa-check"></i><b>2.10</b> t-tests in Practice</a></li>
@@ -180,24 +186,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.7" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#direct-approach-to-fdr-and-q-values-advanced"><i class="fa fa-check"></i><b>6.7</b> Direct Approach to FDR and q-values (Advanced)</a></li>
 <li class="chapter" data-level="6.8" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#basic-exploratory-data-analysis"><i class="fa fa-check"></i><b>6.8</b> Basic Exploratory Data Analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="statistical-models.html"><a href="statistical-models.html"><i class="fa fa-check"></i><b>7</b> Statistical Models</a><ul>
-<li class="chapter" data-level="7.1" data-path="statistical-models.html"><a href="statistical-models.html#the-binomial-distribution"><i class="fa fa-check"></i><b>7.1</b> The Binomial Distribution</a></li>
-<li class="chapter" data-level="7.2" data-path="statistical-models.html"><a href="statistical-models.html#the-poisson-distribution"><i class="fa fa-check"></i><b>7.2</b> The Poisson Distribution</a></li>
-<li class="chapter" data-level="7.3" data-path="statistical-models.html"><a href="statistical-models.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>7.3</b> Maximum Likelihood Estimation</a></li>
-<li class="chapter" data-level="7.4" data-path="statistical-models.html"><a href="statistical-models.html#distributions-for-positive-continuous-values"><i class="fa fa-check"></i><b>7.4</b> Distributions for Positive Continuous Values</a></li>
-<li class="chapter" data-level="7.5" data-path="statistical-models.html"><a href="statistical-models.html#bayesian-statistics"><i class="fa fa-check"></i><b>7.5</b> Bayesian Statistics</a></li>
-<li class="chapter" data-level="7.6" data-path="statistical-models.html"><a href="statistical-models.html#hierarchical-models"><i class="fa fa-check"></i><b>7.6</b> Hierarchical Models</a></li>
+<li class="chapter" data-level="7" data-path="section-7.html"><a href="section-7.html"><i class="fa fa-check"></i><b>7</b> 统计模型</a><ul>
+<li class="chapter" data-level="7.1" data-path="section-7.html"><a href="section-7.html#-the-binomial-distribution"><i class="fa fa-check"></i><b>7.1</b> 二项分布 (The Binomial Distribution)</a></li>
+<li class="chapter" data-level="7.2" data-path="section-7.html"><a href="section-7.html#-the-poisson-distribution"><i class="fa fa-check"></i><b>7.2</b> 泊松分布 (The Poisson Distribution)</a></li>
+<li class="chapter" data-level="7.3" data-path="section-7.html"><a href="section-7.html#section-7.3"><i class="fa fa-check"></i><b>7.3</b> 最大似然估计</a></li>
+<li class="chapter" data-level="7.4" data-path="section-7.html"><a href="section-7.html#section-7.4"><i class="fa fa-check"></i><b>7.4</b> 连续变量的分布</a></li>
+<li class="chapter" data-level="7.5" data-path="section-7.html"><a href="section-7.html#bayesian-statistics"><i class="fa fa-check"></i><b>7.5</b> Bayesian Statistics</a></li>
+<li class="chapter" data-level="7.6" data-path="section-7.html"><a href="section-7.html#hierarchical-models"><i class="fa fa-check"></i><b>7.6</b> Hierarchical Models</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html"><i class="fa fa-check"></i><b>8</b> Distance and Dimension Reduction</a><ul>
-<li class="chapter" data-level="8.1" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#introduction-5"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
-<li class="chapter" data-level="8.2" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#euclidean-distance"><i class="fa fa-check"></i><b>8.2</b> Euclidean Distance</a></li>
-<li class="chapter" data-level="8.3" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#distance-in-high-dimensions"><i class="fa fa-check"></i><b>8.3</b> Distance in High Dimensions</a></li>
-<li class="chapter" data-level="8.4" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#dimension-reduction-motivation"><i class="fa fa-check"></i><b>8.4</b> Dimension Reduction Motivation</a></li>
-<li class="chapter" data-level="8.5" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#singular-value-decomposition"><i class="fa fa-check"></i><b>8.5</b> Singular Value Decomposition</a></li>
-<li class="chapter" data-level="8.6" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#projections"><i class="fa fa-check"></i><b>8.6</b> Projections</a></li>
-<li class="chapter" data-level="8.7" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#rotations-1"><i class="fa fa-check"></i><b>8.7</b> Rotations</a></li>
-<li class="chapter" data-level="8.8" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#multi-dimensional-scaling-plots"><i class="fa fa-check"></i><b>8.8</b> Multi-Dimensional Scaling Plots</a></li>
-<li class="chapter" data-level="8.9" data-path="distance-and-dimension-reduction.html"><a href="distance-and-dimension-reduction.html#principal-component-analysis"><i class="fa fa-check"></i><b>8.9</b> Principal Component Analysis</a></li>
+<li class="chapter" data-level="8" data-path="section-8.html"><a href="section-8.html"><i class="fa fa-check"></i><b>8</b> 距离和维度降低   </a><ul>
+<li class="chapter" data-level="8.1" data-path="section-8.html"><a href="section-8.html#section-8.1"><i class="fa fa-check"></i><b>8.1</b> 简介   </a></li>
+<li class="chapter" data-level="8.2" data-path="section-8.html"><a href="section-8.html#euclidean-distance"><i class="fa fa-check"></i><b>8.2</b> Euclidean Distance</a></li>
+<li class="chapter" data-level="8.3" data-path="section-8.html"><a href="section-8.html#section-8.3"><i class="fa fa-check"></i><b>8.3</b> 高维数据的距离   </a></li>
+<li class="chapter" data-level="8.4" data-path="section-8.html"><a href="section-8.html#distance-exercises"><i class="fa fa-check"></i><b>8.4</b> Distance exercises</a></li>
+<li class="chapter" data-level="8.5" data-path="section-8.html"><a href="section-8.html#dimension-reduction-motivation"><i class="fa fa-check"></i><b>8.5</b> Dimension Reduction Motivation</a></li>
+<li class="chapter" data-level="8.6" data-path="section-8.html"><a href="section-8.html#singular-value-decomposition"><i class="fa fa-check"></i><b>8.6</b> Singular Value Decomposition</a></li>
+<li class="chapter" data-level="8.7" data-path="section-8.html"><a href="section-8.html#projections"><i class="fa fa-check"></i><b>8.7</b> Projections</a></li>
+<li class="chapter" data-level="8.8" data-path="section-8.html"><a href="section-8.html#rotations-1"><i class="fa fa-check"></i><b>8.8</b> Rotations</a></li>
+<li class="chapter" data-level="8.9" data-path="section-8.html"><a href="section-8.html#multi-dimensional-scaling-plots"><i class="fa fa-check"></i><b>8.9</b> Multi-Dimensional Scaling Plots</a></li>
+<li class="chapter" data-level="8.10" data-path="section-8.html"><a href="section-8.html#mds-exercises"><i class="fa fa-check"></i><b>8.10</b> MDS exercises</a></li>
+<li class="chapter" data-level="8.11" data-path="section-8.html"><a href="section-8.html#principal-component-analysis"><i class="fa fa-check"></i><b>8.11</b> Principal Component Analysis</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html"><i class="fa fa-check"></i><b>9</b> Basic Machine Learning</a><ul>
 <li class="chapter" data-level="9.1" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#clustering"><i class="fa fa-check"></i><b>9.1</b> Clustering</a></li>
@@ -239,35 +247,35 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="distance-and-dimension-reduction" class="section level1">
-<h1><span class="header-section-number">第 8 章</span> Distance and Dimension Reduction</h1>
-<div id="introduction-5" class="section level2">
-<h2><span class="header-section-number">8.1</span> Introduction</h2>
-<p>The concept of distance is quite intuitive. For example, when we cluster animals into subgroups, we are implicitly defining a distance that permits us to say what animals are “close” to each other.</p>
+<div id="section-8" class="section level1">
+<h1><span class="header-section-number">第 8 章</span> 距离和维度降低   </h1>
+<div id="section-8.1" class="section level2">
+<h2><span class="header-section-number">8.1</span> 简介   </h2>
+<p>  距离的概念是相当直观和简单的。例如，当我们将不同的动物划分成不同的类别时，我们通过一定的标准定义了一个距离从而使得我们可以说哪些动物互相之间是比较接近的。</p>
 <div class="figure">
 <img src="images/handmade/animals.png" alt="Clustering of animals." />
 <p class="caption">Clustering of animals.</p>
 </div>
-<p>Many of the analyses we perform with high-dimensional data relate directly or indirectly to distance. Many clustering and machine learning techniques rely on being able to define distance, using features or predictors. For example, to create <em>heatmaps</em>, which are widely used in genomics and other high-throughput fields, a distance is computed explicitly.</p>
+<p>  在我们分析的高维度的数据中大多数的分析总是直接或者间接的与距离有关系。很多的聚类和机器学习依赖于利用特征值或者预测变量来定义距离。例如在基因组学和其他高通量领域中，<code>热图</code>被广泛用于数据的展示中。在这个过程中，很明显的我们需要计算距离。</p>
 <div class="figure">
 <img src="images/handmade/Heatmap.png" alt="Example of heatmap. Image Source: Heatmap, Gaeddal, 01.28.2007 Wikimedia Commons" />
 <p class="caption">Example of heatmap. Image Source: Heatmap, Gaeddal, 01.28.2007 Wikimedia Commons</p>
 </div>
-<p>In these plots the measurements, which are stored in a matrix, are represented with colors after the columns and rows have been clustered. (A side note: red and green, a common color theme for heatmaps, are two of the most difficult colors for many color-blind people to discern.) Here we will learn the necessary mathematics and computing skills to understand and create heatmaps. We start by reviewing the mathematical definition of distance.</p>
+<p>  在这些图中，所用的数据通常储存在一个矩阵中。首先，通过距离行和列被分别聚类；然后，这些数据在图中用不同的颜色来代表（边注：红和绿是在热图中被广泛使用的一种主体颜色，但是许多色盲的人无法辨别这两种颜色）。这里我们将通过学习基本的数学和计算技巧来理解和产生热图。下面我们将从距离的数学定义开始学习。</p>
 </div>
 <div id="euclidean-distance" class="section level2">
 <h2><span class="header-section-number">8.2</span> Euclidean Distance</h2>
 <p>As a review, let’s define the distance between two points, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, on a Cartesian plane.</p>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-285-1.png" width="672" /></p>
-<p>The euclidean distance between <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is simply:</p>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-328-1.png" width="672" /></p>
+<p>  <span class="math inline">\(A\)</span>和<span class="math inline">\(B\)</span>之间的欧氏距离可以很直观的表示为：</p>
 <p><span class="math display">\[\sqrt{ (A_x-B_x)^2 + (A_y-B_y)^2}\]</span></p>
 </div>
-<div id="distance-in-high-dimensions" class="section level2">
-<h2><span class="header-section-number">8.3</span> Distance in High Dimensions</h2>
-<p>We introduce a dataset with gene expression measurements for 22,215 genes from 189 samples. The R objects can be downloaded like this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(devtools)
-<span class="kw">install_github</span>(<span class="st">&quot;genomicsclass/tissuesGeneExpression&quot;</span>)</code></pre></div>
-<p>The data represent RNA expression levels for eight tissues, each with several individuals.</p>
+<div id="section-8.3" class="section level2">
+<h2><span class="header-section-number">8.3</span> 高维数据的距离   </h2>
+<p>  这里我们用的数据是22,215个基因在189个样本中的表达量。数据对应的R对象可以通过下面的R代码来下载：</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#library(devtools)</span>
+<span class="co">#install_github(&quot;genomicsclass/tissuesGeneExpression&quot;)</span></code></pre></div>
+<p>  这个数据代表了八个组织的基因表达量，每个组织又有来自不同个体的生物学重复。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tissuesGeneExpression)
 <span class="kw">data</span>(tissuesGeneExpression)
 <span class="kw">dim</span>(e) ##e contains the expression data</code></pre></div>
@@ -278,17 +286,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ##          38          34          15          31 
 ##      kidney       liver    placenta 
 ##          39          26           6</code></pre>
-<p>We are interested in describing distance between samples in the context of this dataset. We might also be interested in finding genes that <em>behave similarly</em> across samples.</p>
-<p>To define distance, we need to know what the points are since mathematical distance is computed between points. With high dimensional data, points are no longer on the Cartesian plane. Instead they are in higher dimensions. For example, sample <span class="math inline">\(i\)</span> is defined by a point in 22,215 dimensional space: <span class="math inline">\((Y_{1,i},\dots,Y_{22215,i})^\top\)</span>. Feature <span class="math inline">\(g\)</span> is defined by a point in 189 dimensions <span class="math inline">\((Y_{g,1},\dots,Y_{g,189})^\top\)</span></p>
-<p>Once we define points, the Euclidean distance is defined in a very similar way as it is defined for two dimensions. For instance, the distance between two samples <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> is:</p>
+<p>  在这数据中，我们对不同样本之间的距离比较感兴趣。我们可能也会对不同样本中有__相似表达模式__的基因比较感兴趣。</p>
+<p>   为了定义距离，我们需要知道这个数据中点的定义是什么，因为数学上定义的距离是通过计算点和点之间的距离得到的。然而在高维数据中，这些点并不是在直角平面中的点。他们是在更高维度中的点。例如，<span class="math inline">\(i\)</span>样本是一个有着22,215维度的点，<span class="math inline">\((Y_{1,i},\dots,Y_{22215,i})^\top\)</span>。而基因<span class="math inline">\(g\)</span>是一个有着189个维度的点<span class="math inline">\((Y_{g,1},\dots,Y_{g,189})^\top\)</span>。</p>
+<p>   在我们定义了点之后，我们可以像计算二维平面中距离一样来计算欧式距离。例如，<span class="math inline">\(i\)</span>和<span class="math inline">\(j\)</span>样本之间的距离可以表示为：</p>
 <p><span class="math display">\[
 \mbox{dist}(i,j) = \sqrt{ \sum_{g=1}^{22215} (Y_{g,i}-Y_{g,j })^2 }
 \]</span></p>
-<p>and the distance between two features <span class="math inline">\(h\)</span> and <span class="math inline">\(g\)</span> is:</p>
+<p>  同时，两个基因<span class="math inline">\(h\)</span>和<span class="math inline">\(g\)</span>可以表示为：</p>
 <p><span class="math display">\[
 \mbox{dist}(h,g) = \sqrt{ \sum_{i=1}^{189} (Y_{h,i}-Y_{g,i})^2 }
 \]</span></p>
-<p>Note: In practice, distances between features are typically applied after standardizing the data for each feature. This is equivalent to computing one minus the correlation. This is done because the differences in overall levels between features are often not due to biological effects but technical ones. More details on this topic can be found in <a href="http://master.bioconductor.org/help/course-materials/2002/Summer02Course/Distance/distance.pdf">this presentation</a>.</p>
+<p>  我们需要指出的是，在实践中，通常在计算基因和基因之间的距离之前，通常需要对每个基因的数据进行标准化，例如Z分数(Z-score)转化。这是因为不同基因之间整体的差异往往不是有生物学的因素造成的，往往这些差异是有技术因素造成的。如果想了解更多的细节，可以参考<a href="http://master.bioconductor.org/help/course-materials/2002/Summer02Course/Distance/distance.pdf">这个报告</a>。</p>
 <div id="distance-with-matrix-algebra" class="section level4">
 <h4><span class="header-section-number">8.3.0.1</span> Distance with matrix algebra</h4>
 <p>The distance between samples <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> can be written as</p>
@@ -324,13 +332,52 @@ z &lt;-<span class="st"> </span>e[,<span class="dv">87</span>]
 <p>It is important to remember that if we run <code>dist</code> on <code>e</code>, it will compute all pairwise distances between genes. This will try to create a <span class="math inline">\(22215 \times 22215\)</span> matrix that may crash your R sessions.</p>
 </div>
 </div>
+<div id="distance-exercises" class="section level2">
+<h2><span class="header-section-number">8.4</span> Distance exercises</h2>
+<p><strong>Exercises</strong></p>
+<p>If you have not done so already, install the data package <code>tissueGeneExpression</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(devtools)
+<span class="kw">install_github</span>(<span class="st">&quot;genomicsclass/tissuesGeneExpression&quot;</span>)</code></pre></div>
+<p>The data represents RNA expression levels for eight tissues, each with several <em>biological replictes</em>. We call samples that we consider to be from the same population, such as liver tissue from different individuals, <em>biological replicates</em>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tissuesGeneExpression)
+<span class="kw">data</span>(tissuesGeneExpression)
+<span class="kw">head</span>(e)
+<span class="kw">head</span>(tissue)</code></pre></div>
+<ol style="list-style-type: decimal">
+<li><p>How many biological replicates for hippocampus?</p></li>
+<li><p>What is the distance between samples 3 and 45?</p></li>
+<li><p>What is the distance between gene <code>210486_at</code> and <code>200805_at</code></p></li>
+<li><p>If I run the command (don’t run it!):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d =<span class="st"> </span><span class="kw">as.matrix</span>( <span class="kw">dist</span>(e) )</code></pre></div>
+<p>how many cells (number of rows times number of columns) will this matrix have?</p></li>
+<li><p>Compute the distance between all pair of samples:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d =<span class="st"> </span><span class="kw">dist</span>( <span class="kw">t</span>(e) )</code></pre></div>
+<p>Read the help file for <code>dist</code>.</p>
+<p>How many distances are stored in <code>d</code>? Hint: What is the length of d?</p></li>
+<li>Why is the answer to exercise 5 not <code>ncol(e)^2</code>?
+<ul>
+<li><ol style="list-style-type: upper-alpha">
+<li>R made a mistake there.</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: upper-alpha">
+<li>Distances of 0 are left out.</li>
+</ol></li>
+<li><ol start="3" style="list-style-type: upper-alpha">
+<li>Because we take advantage of symmetry: only lower triangular matrix is stored thus only <code>ncol(e)*(ncol(e)-1)/2</code> values.</li>
+</ol></li>
+<li><ol start="4" style="list-style-type: upper-alpha">
+<li>Because it is equal<code>nrow(e)^2</code></li>
+</ol></li>
+</ul></li>
+</ol>
+</div>
 <div id="dimension-reduction-motivation" class="section level2">
-<h2><span class="header-section-number">8.4</span> Dimension Reduction Motivation</h2>
+<h2><span class="header-section-number">8.5</span> Dimension Reduction Motivation</h2>
 <p>Visualizing data is one of the most, if not the most, important step in the analysis of high-throughput data. The right visualization method may reveal problems with the experimental data that can render the results from a standard analysis, although typically appropriate, completely useless.</p>
 <p>We have shown methods for visualizing global properties of the columns or rows, but plots that reveal relationships between columns or between rows are more complicated due to the high dimensionality of data. For example, to compare each of the 189 samples to each other, we would have to create, for example, 17,766 MA-plots. Creating one single scatterplot of the data is impossible since points are very high dimensional.</p>
 <p>We will describe powerful techniques for exploratory data analysis based on <em>dimension reduction</em>. The general idea is to reduce the dataset to have fewer dimensions, yet approximately preserve important properties, such as the distance between samples. If we are able to reduce down to, say, two dimensions, we can then easily make plots. The technique behind it all, the singular value decomposition (SVD), is also useful in other contexts. Before introducing the rather complicated mathematics behind the SVD, we will motivate the ideas behind it with a simple example.</p>
 <div id="example-reducing-two-dimensions-to-one" class="section level4">
-<h4><span class="header-section-number">8.4.0.1</span> Example: Reducing two dimensions to one</h4>
+<h4><span class="header-section-number">8.5.0.1</span> Example: Reducing two dimensions to one</h4>
 <p>We consider an example with twin heights. Here we simulate 100 two dimensional points that represent the number of standard deviations each individual is from the mean height. Each point is a pair of twins:</p>
 <div class="figure">
 <img src="bookdown_files/figure-html/simulate_twin_heights-1.png" alt="Simulated twin pair heights." width="672" />
@@ -388,7 +435,7 @@ y = A^{-1} z
 \]</span></p>
 </div>
 <div id="rotations" class="section level4">
-<h4><span class="header-section-number">8.4.0.2</span> Rotations</h4>
+<h4><span class="header-section-number">8.5.0.2</span> Rotations</h4>
 <p>In the plot above, the distance between the two orange points remains roughly the same, relative to the distance between other points. This is true for all pairs of points. A simple re-scaling of the transformation we performed above will actually make the distances exactly the same. What we will do is multiply by a scalar so that the standard deviations of each point is preserved. If you think of the columns of <code>y</code> as independent random variables with standard deviation <span class="math inline">\(\sigma\)</span>, then note that the standard deviations of <span class="math inline">\(M\)</span> and <span class="math inline">\(A\)</span> are:</p>
 <p><span class="math display">\[
 \mbox{sd}[ Z_1 ] = \mbox{sd}[ (Y_1 + Y_2) / 2 ] = \frac{1}{\sqrt{2}} \sigma \mbox{ and } \mbox{sd}[ Z_2] = \mbox{sd}[ Y_1 - Y_2  ] = {\sqrt{2}} \sigma 
@@ -446,13 +493,13 @@ thelim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">
 <p>The distance computed with just the one dimension provides a very good approximation to the actual distance and a very useful dimension reduction: from 2 dimensions to 1. This first dimension of the transformed data is actually the first <em>principal component</em>. This idea motivates the use of principal component analysis (PCA) and the singular value decomposition (SVD) to achieve dimension reduction more generally.</p>
 </div>
 <div id="important-note-on-a-difference-to-other-explanations" class="section level4">
-<h4><span class="header-section-number">8.4.0.3</span> Important note on a difference to other explanations</h4>
+<h4><span class="header-section-number">8.5.0.3</span> Important note on a difference to other explanations</h4>
 <p>If you search the web for descriptions of PCA, you will notice a difference in notation to how we describe it here. This mainly stems from the fact that it is more common to have rows represent units. Hence, in the example shown here, <span class="math inline">\(Y\)</span> would be transposed to be an <span class="math inline">\(N \times 2\)</span> matrix. In statistics this is also the most common way to represent the data: individuals in the rows. However, for practical reasons, in genomics it is more common to represent units in the columns. For example, genes are rows and samples are columns. For this reason, in this book we explain PCA and all the math that goes with it in a slightly different way than it is usually done. As a result, many of the explanations you find for PCA start out with the sample covariance matrix usually denoted with <span class="math inline">\(\mathbf{X}^\top\mathbf{X}\)</span> and having cells representing covariance between two units. Yet for this to be the case, we need the rows of <span class="math inline">\(\mathbf{X}\)</span> to represents units. So in our notation above, you would have to compute, after scaling, <span class="math inline">\(\mathbf{Y}\mathbf{Y}^\top\)</span> instead.</p>
 <p>Basically, if you want our explanations to match others you have to transpose the matrices we show here.</p>
 </div>
 </div>
 <div id="singular-value-decomposition" class="section level2">
-<h2><span class="header-section-number">8.5</span> Singular Value Decomposition</h2>
+<h2><span class="header-section-number">8.6</span> Singular Value Decomposition</h2>
 <p>In the previous section, we motivated dimension reduction and showed a transformation that permitted us to approximate the distance between two dimensional points with just one dimension. The singular value decomposition (SVD) is a generalization of the algorithm we used in the motivational section. As in the example, the SVD provides a transformation of the original data. This transformation has some very useful properties.</p>
 <p>The main result SVD provides is that we can write an <span class="math inline">\(m \times n\)</span>, matrix <span class="math inline">\(\mathbf{Y}\)</span> as</p>
 <p><span class="math display">\[\mathbf{U}^\top\mathbf{Y} = \mathbf{DV}^\top\]</span></p>
@@ -489,7 +536,7 @@ PC2 =<span class="st"> </span>s<span class="op">$</span>d[<span class="dv">2</sp
 </p>
 </div>
 <div id="how-is-this-useful" class="section level4">
-<h4><span class="header-section-number">8.5.0.1</span> How is this useful?</h4>
+<h4><span class="header-section-number">8.6.0.1</span> How is this useful?</h4>
 <p>It is not immediately obvious how incredibly useful the SVD can be, so let’s consider some examples. In this example, we will greatly reduce the dimension of <span class="math inline">\(V\)</span> and still be able to reconstruct <span class="math inline">\(Y\)</span>.</p>
 <p>Let’s compute the SVD on the gene expression table we have been working with. We will take a subset of 100 genes so that computations are faster.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tissuesGeneExpression)
@@ -559,7 +606,7 @@ resid &lt;-<span class="st"> </span>Y <span class="op">-</span><span class="st">
 <p>The entries of <span class="math inline">\(D\)</span> therefore tell us how much each PC contributes in term of variability explained.</p>
 </div>
 <div id="highly-correlated-data" class="section level4">
-<h4><span class="header-section-number">8.5.0.2</span> Highly correlated data</h4>
+<h4><span class="header-section-number">8.6.0.2</span> Highly correlated data</h4>
 <p>To help understand how the SVD works, we construct a dataset with two highly correlated columns.</p>
 <p>For example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="dv">100</span>
@@ -587,7 +634,7 @@ d[<span class="dv">1</span>]<span class="op">^</span><span class="dv">2</span><s
 </div>
 </div>
 <div id="projections" class="section level2">
-<h2><span class="header-section-number">8.6</span> Projections</h2>
+<h2><span class="header-section-number">8.7</span> Projections</h2>
 <p>Now that we have described the concept of dimension reduction and some of the applications of SVD and principal component analysis, we focus on more details related to the mathematics behind these. We start with <em>projections</em>. A projection is a linear algebra concept that helps us understand many of the mathematical operations we perform on high-dimensional data. For more details, you can review projects in a linear algebra book. Here we provide a quick review and then provide some data analysis related examples.</p>
 <p>As a review, remember that projections minimize the distance between points and subspace.</p>
 <div class="figure">
@@ -597,7 +644,7 @@ d[<span class="dv">1</span>]<span class="op">^</span><span class="dv">2</span><s
 <p>We illustrate projections using a figure, in which the arrow on top is pointing to a point in space. In this particular cartoon, the space is two dimensional, but we should be thinking abstractly. The space is represented by the Cartesian plan and the line on which the little person stands is a subspace of points. The projection to this subspace is the place that is closest to the original point. Geometry tells us that we can find this closest point by dropping a perpendicular line (dotted line) from the point to the space. The little person is standing on the projection. The amount this person had to walk from the origin to the new projected point is referred to as <em>the coordinate</em>.</p>
 <p>For the explanation of projections, we will use the standard matrix algebra notation for points: <span class="math inline">\(\vec{y} \in \mathbb{R}^N\)</span> is a point in <span class="math inline">\(N\)</span>-dimensional space and <span class="math inline">\(L \subset \mathbb{R}^N\)</span> is smaller subspace.</p>
 <div id="simple-example-with-n2" class="section level4">
-<h4><span class="header-section-number">8.6.0.1</span> Simple example with N=2</h4>
+<h4><span class="header-section-number">8.7.0.1</span> Simple example with N=2</h4>
 <p>If we let <span class="math inline">\(Y = \begin{pmatrix} 2 \\ 3\end{pmatrix}\)</span>. We can plot it like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mypar</span> (<span class="dv">1</span>,<span class="dv">1</span>)
 <span class="kw">plot</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">4</span>),<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">4</span>),<span class="dt">xlab=</span><span class="st">&quot;Dimension 1&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Dimension 2&quot;</span>,<span class="dt">type=</span><span class="st">&quot;n&quot;</span>)
@@ -648,7 +695,7 @@ cc =<span class="st"> </span><span class="kw">crossprod</span>(x,y)<span class="
 <p>Note that if <span class="math inline">\(\vec{v}\)</span> was such that <span class="math inline">\(\vec{v}\cdot \vec{v}=1\)</span>, then <span class="math inline">\(\hat{c}\)</span> is simply <span class="math inline">\(\vec{y} \cdot \vec{v}\)</span> and the space <span class="math inline">\(L\)</span> does not change. This simplification is one reason we like orthogonal matrices.</p>
 </div>
 <div id="example-the-sample-mean-is-a-projection" class="section level4">
-<h4><span class="header-section-number">8.6.0.2</span> Example: The sample mean is a projection</h4>
+<h4><span class="header-section-number">8.7.0.2</span> Example: The sample mean is a projection</h4>
 <p>Let <span class="math inline">\(\vec{y} \in \mathbb{R}^N\)</span> and <span class="math inline">\(L \subset \mathbb{R}^N\)</span> is the space spanned by:</p>
 <p><span class="math display">\[\vec{v}=\begin{pmatrix} 1\\ \vdots \\  1\end{pmatrix};
 L = \{ c \vec{v}; c \in \mathbb{R}\}\]</span></p>
@@ -668,7 +715,7 @@ L = \{ c \vec{v}; c \in \mathbb{R}\}\]</span></p>
 <p><span class="math display">\[ N c = \sum_{i=1}^N Y_i \implies \hat{c}=\bar{Y}\]</span></p>
 </div>
 <div id="example-regression-is-also-a-projection" class="section level4">
-<h4><span class="header-section-number">8.6.0.3</span> Example: Regression is also a projection</h4>
+<h4><span class="header-section-number">8.7.0.3</span> Example: Regression is also a projection</h4>
 <p>Let us give a slightly more complicated example. Simple linear regression can also be explained with projections. Our data <span class="math inline">\(\mathbf{Y}\)</span> (we are no longer going to use the <span class="math inline">\(\vec{y}\)</span> notation) is again an <em>N</em>-dimensional vector and our model predicts <span class="math inline">\(Y_i\)</span> with a line <span class="math inline">\(\beta_0 + \beta_1 X_i\)</span>. We want to find the <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> that minimize the distance between <span class="math inline">\(Y\)</span> and the space defined by:</p>
 <p><span class="math display">\[ L = \{ \beta_0 \vec{v}_0 + \beta_1 \vec{v}_1 ; \vec{\beta}=(\beta_0,\beta_1) \in \mathbb{R}^2 \}\]</span></p>
 <p>with:</p>
@@ -700,7 +747,7 @@ X_{N}\\
 </div>
 </div>
 <div id="rotations-1" class="section level2">
-<h2><span class="header-section-number">8.7</span> Rotations</h2>
+<h2><span class="header-section-number">8.8</span> Rotations</h2>
 <p>One of the most useful applications of projections relates to coordinate rotations. In data analysis, simple rotations can result in easier to visualize and interpret data. We will describe the mathematics behind rotations and give some data analysis examples.</p>
 <p>In our previous section, we used the following example:</p>
 <p><span class="math display">\[
@@ -729,8 +776,8 @@ Y = \begin{pmatrix} 2 \\
 <span class="kw">segments</span>(<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dt">lty=</span><span class="dv">2</span>)
 <span class="kw">segments</span>(<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dt">lty=</span><span class="dv">2</span>)
 <span class="kw">text</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="st">&quot; Y&quot;</span>,<span class="dt">pos=</span><span class="dv">4</span>,<span class="dt">cex=</span><span class="dv">3</span>)</code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-304"></span>
-<img src="bookdown_files/figure-html/unnamed-chunk-304-1.png" alt="Plot of (2,3) as coordinates along Dimension 1 (1,0) and Dimension 2 (0,1)." width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-356"></span>
+<img src="bookdown_files/figure-html/unnamed-chunk-356-1.png" alt="Plot of (2,3) as coordinates along Dimension 1 (1,0) and Dimension 2 (0,1)." width="672" />
 <p class="caption">
 图 8.6: Plot of (2,3) as coordinates along Dimension 1 (1,0) and Dimension 2 (0,1).
 </p>
@@ -762,8 +809,8 @@ c2 =<span class="st"> </span><span class="kw">crossprod</span>(x2,y)<span class=
 <span class="kw">segments</span>(x1[<span class="dv">1</span>]<span class="op">*</span>c1,x1[<span class="dv">2</span>]<span class="op">*</span>c1,y[<span class="dv">1</span>],y[<span class="dv">2</span>],<span class="dt">lty=</span><span class="dv">2</span>)
 <span class="kw">segments</span>(x2[<span class="dv">1</span>]<span class="op">*</span>c2,x2[<span class="dv">2</span>]<span class="op">*</span>c2,y[<span class="dv">1</span>],y[<span class="dv">2</span>],<span class="dt">lty=</span><span class="dv">2</span>)
 <span class="kw">text</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="st">&quot; Y&quot;</span>,<span class="dt">pos=</span><span class="dv">4</span>,<span class="dt">cex=</span><span class="dv">3</span>)</code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-305"></span>
-<img src="bookdown_files/figure-html/unnamed-chunk-305-1.png" alt="Plot of (2,3) as a vector in a rotatated space, relative to the original dimensions." width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-357"></span>
+<img src="bookdown_files/figure-html/unnamed-chunk-357-1.png" alt="Plot of (2,3) as a vector in a rotatated space, relative to the original dimensions." width="672" />
 <p class="caption">
 图 8.7: Plot of (2,3) as a vector in a rotatated space, relative to the original dimensions.
 </p>
@@ -781,7 +828,7 @@ A^{-1}= \begin{pmatrix} 0.5&amp; 0.5 \\ 1 &amp;-1\end{pmatrix}
 \]</span></p>
 <p><span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span> carry the same information, but in a different <em>coordinate system</em>.</p>
 <div id="example-twin-heights" class="section level4">
-<h4><span class="header-section-number">8.7.0.1</span> Example: Twin heights</h4>
+<h4><span class="header-section-number">8.8.0.1</span> Example: Twin heights</h4>
 <p>Here are 100 two dimensional points <span class="math inline">\(Y\)</span></p>
 <div class="figure"><span id="fig:twin-heights"></span>
 <img src="bookdown_files/figure-html/twin-heights-1.png" alt="Twin 2 heights versus twin 1 heights." width="672" />
@@ -801,7 +848,7 @@ A^{-1}= \begin{pmatrix} 0.5&amp; 0.5 \\ 1 &amp;-1\end{pmatrix}
 </div>
 </div>
 <div id="multi-dimensional-scaling-plots" class="section level2">
-<h2><span class="header-section-number">8.8</span> Multi-Dimensional Scaling Plots</h2>
+<h2><span class="header-section-number">8.9</span> Multi-Dimensional Scaling Plots</h2>
 <p>We will motivate multi-dimensional scaling (MDS) plots with a gene expression example. To simplify the illustration we will only consider three tissues:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rafalib)
 <span class="kw">library</span>(tissuesGeneExpression)
@@ -813,7 +860,7 @@ group &lt;-<span class="st"> </span><span class="kw">factor</span>(tissue[colind
 <pre><code>## [1] 22215    99</code></pre>
 <p>As an exploratory step, we wish to know if gene expression profiles stored in the columns of <code>mat</code> show more similarity between tissues than across tissues. Unfortunately, as mentioned above, we can’t plot multi-dimensional points. In general, we prefer two-dimensional plots, but making plots for every pair of genes or every pair of samples is not practical. MDS plots become a powerful tool in this situation.</p>
 <div id="the-math-behind-mds" class="section level4">
-<h4><span class="header-section-number">8.8.0.1</span> The math behind MDS</h4>
+<h4><span class="header-section-number">8.9.0.1</span> The math behind MDS</h4>
 <p>Now that we know about SVD and matrix algebra, understanding MDS is relatively straightforward. For illustrative purposes let’s consider the SVD decomposition:</p>
 <p><span class="math display">\[\mathbf{Y} = \mathbf{UDV}^\top\]</span></p>
 <p>and assume that the sum of squares of the first two columns <span class="math inline">\(\mathbf{U^\top Y=DV^\top}\)</span> is much larger than the sum of squares of all other columns. This can be written as: <span class="math inline">\(d_1+ d_2 \gg d_3 + \dots + d_n\)</span> with <span class="math inline">\(d_i\)</span> the i-th entry of the <span class="math inline">\(\mathbf{D}\)</span> matrix. When this happens, we then have:</p>
@@ -898,7 +945,7 @@ PC4 &lt;-<span class="st"> </span>s<span class="op">$</span>d[<span class="dv">4
 <p>Note that the 4th PC shows a strong separation within the kidney samples. Later we will learn about batch effects, which might explain this finding.</p>
 </div>
 <div id="cmdscale" class="section level4">
-<h4><span class="header-section-number">8.8.0.2</span> <code>cmdscale</code></h4>
+<h4><span class="header-section-number">8.9.0.2</span> <code>cmdscale</code></h4>
 <p>Although we used the <code>svd</code> functions above, there is a special function that is specifically made for MDS plots. It takes a distance object as an argument and then uses principal component analysis to provide the best approximation to this distance that can be obtained with <span class="math inline">\(k\)</span> dimensions. This function is more efficient because one does not have to perform the full SVD, which can be time consuming. By default it returns two dimensions, but we can change that through the parameter <code>k</code> which defaults to 2.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d &lt;-<span class="st"> </span><span class="kw">dist</span>(<span class="kw">t</span>(mat))
 mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(d)
@@ -927,14 +974,14 @@ mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(d)
 </div>
 </div>
 <div id="why-the-arbitrary-sign" class="section level4">
-<h4><span class="header-section-number">8.8.0.3</span> Why the arbitrary sign?</h4>
+<h4><span class="header-section-number">8.9.0.3</span> Why the arbitrary sign?</h4>
 <p>The SVD is not unique because we can multiply any column of <span class="math inline">\(\mathbf{V}\)</span> by -1 as long as we multiply the sample column of <span class="math inline">\(\mathbf{U}\)</span> by -1. We can see this immediately by noting that:</p>
 <p><span class="math display">\[
 \mathbf{-1UD(-1)V}^\top = \mathbf{UDV}^\top
 \]</span></p>
 </div>
 <div id="why-we-substract-the-mean" class="section level4">
-<h4><span class="header-section-number">8.8.0.4</span> Why we substract the mean</h4>
+<h4><span class="header-section-number">8.9.0.4</span> Why we substract the mean</h4>
 <p>In all calculations above we subtract the row means before we compute the singular value decomposition. If what we are trying to do is approximate the distance between columns, the distance between <span class="math inline">\(\mathbf{Y}_i\)</span> and <span class="math inline">\(\mathbf{Y}_j\)</span> is the same as the distance between <span class="math inline">\(\mathbf{Y}_i- \mathbf{\mu}\)</span> and <span class="math inline">\(\mathbf{Y}_j - \mathbf{\mu}\)</span> since the <span class="math inline">\(\mu\)</span> cancels out when computing said distance:</p>
 <p><span class="math display">\[
 \left\{ ( \mathbf{Y}_i- \mathbf{\mu} ) - ( \mathbf{Y}_j - \mathbf{\mu} ) \right\}^\top \left\{ (\mathbf{Y}_i- \mathbf{\mu}) - (\mathbf{Y}_j - \mathbf{\mu} ) \right\} = \left\{  \mathbf{Y}_i-  \mathbf{Y}_j  \right\}^\top \left\{ \mathbf{Y}_i - \mathbf{Y}_j  \right\}
@@ -942,11 +989,56 @@ mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(d)
 <p>Because removing the row averages reduces the total variation, it can only make the SVD approximation better.</p>
 </div>
 </div>
+<div id="mds-exercises" class="section level2">
+<h2><span class="header-section-number">8.10</span> MDS exercises</h2>
+<p><strong>Exercises</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Using the <code>z</code> we computed in exercise 4 of the previous exercises:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tissuesGeneExpression)
+<span class="kw">data</span>(tissuesGeneExpression)
+y =<span class="st"> </span>e <span class="op">-</span><span class="st"> </span><span class="kw">rowMeans</span>(e)
+s =<span class="st"> </span><span class="kw">svd</span>(y)
+z =<span class="st"> </span>s<span class="op">$</span>d <span class="op">*</span><span class="st"> </span><span class="kw">t</span>(s<span class="op">$</span>v)</code></pre></div>
+<p>we can make an mds plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rafalib)
+ftissue =<span class="st"> </span><span class="kw">factor</span>(tissue)
+<span class="kw">mypar2</span>(<span class="dv">1</span>,<span class="dv">1</span>)
+<span class="kw">plot</span>(z[<span class="dv">1</span>,],z[<span class="dv">2</span>,],<span class="dt">col=</span><span class="kw">as.numeric</span>(ftissue))
+<span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>,<span class="kw">levels</span>(ftissue),<span class="dt">col=</span><span class="kw">seq_along</span>(ftissue),<span class="dt">pch=</span><span class="dv">1</span>)</code></pre></div>
+<p>Now run the function <code>cmdscale</code> on the original data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d =<span class="st"> </span><span class="kw">dist</span>(<span class="kw">t</span>(e))
+mds =<span class="st"> </span><span class="kw">cmdscale</span>(d)</code></pre></div>
+<p>What is the absolute value of the correlation between the first dimension of <code>z</code> and the first dimension in mds?</p></li>
+<li><p>What is the absolute value of the correlation between the second dimension of <code>z</code> and the second dimension in mds?</p></li>
+<li><p>Load the following dataset:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GSE5859Subset)
+<span class="kw">data</span>(GSE5859Subset)</code></pre></div>
+<p>Compute the svd and compute <code>z</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">s =<span class="st"> </span><span class="kw">svd</span>(geneExpression<span class="op">-</span><span class="kw">rowMeans</span>(geneExpression))
+z =<span class="st"> </span>s<span class="op">$</span>d <span class="op">*</span><span class="st"> </span><span class="kw">t</span>(s<span class="op">$</span>v)</code></pre></div>
+<p>Which dimension of <code>z</code> most correlates with the outcome <code>sampleInfo$group</code> ?</p></li>
+<li><p>What is this max correlation?</p></li>
+<li><p>Which dimension of <code>z</code> has the second highest correlation with the outcome <code>sampleInfo$group</code>?</p></li>
+<li><p>Note these measurements were made during two months:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sampleInfo<span class="op">$</span>date</code></pre></div>
+<p>We can extract the month this way:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">month =<span class="st"> </span><span class="kw">format</span>( sampleInfo<span class="op">$</span>date, <span class="st">&quot;%m&quot;</span>)
+month =<span class="st"> </span><span class="kw">factor</span>( month)</code></pre></div>
+<p>Which dimension of <code>z</code> has the second highest correlation with the outcome <code>month</code></p></li>
+<li><p>What is this correlation?</p></li>
+<li><p>(Advanced) The same dimension is correlated with both the group and the date. The following are also correlated:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(sampleInfo<span class="op">$</span>g,month)</code></pre></div>
+<p>So is this first dimension related directly to group or is it related only through the month? Note that the correlation with month is higher. This is related to <em>batch effects</em> which we will learn about later.</p>
+<p>In exercise 3 we saw that one of the dimensions was highly correlated to the <code>sampleInfo$group</code>. Now take the 5th column of <span class="math display">\[\mathbf{U}\]</span> and stratify by the gene chromosome. Remove <code>chrUn</code> and make a boxplot of the values of <span class="math display">\[\mathbf{U}_5\]</span> stratified by chromosome.</p>
+<p>Which chromosome looks different from the rest? Copy and paste the name as it appears in <code>geneAnnotation</code>.</p></li>
+</ol>
+<p>Given the answer to the last exercise, any guesses as to what <code>sampleInfo$group</code> represents?</p>
+</div>
 <div id="principal-component-analysis" class="section level2">
-<h2><span class="header-section-number">8.9</span> Principal Component Analysis</h2>
+<h2><span class="header-section-number">8.11</span> Principal Component Analysis</h2>
 <p>We have already mentioned principal component analysis (PCA) above and noted its relation to the SVD. Here we provide further mathematical details.</p>
 <div id="example-twin-heights-1" class="section level4">
-<h4><span class="header-section-number">8.9.0.1</span> Example: Twin heights</h4>
+<h4><span class="header-section-number">8.11.0.1</span> Example: Twin heights</h4>
 <p>We started the motivation for dimension reduction with a simulated example and showed a rotation that is very much related to PCA.</p>
 <div class="figure">
 <img src="bookdown_files/figure-html/simulate_twin_heights_again-1.png" alt="Twin heights scatter plot." width="672" />
@@ -1010,7 +1102,7 @@ Z =<span class="st"> </span>u<span class="op">%*%</span>w
 <p>This is a re-scaled average height, which has higher sum of squares. There is a mathematical procedure for determining which <span class="math inline">\(\mathbf{v}\)</span> maximizes the sum of squares and the SVD provides it for us.</p>
 </div>
 <div id="the-principal-components" class="section level4">
-<h4><span class="header-section-number">8.9.0.2</span> The principal components</h4>
+<h4><span class="header-section-number">8.11.0.2</span> The principal components</h4>
 <p>The orthogonal vector that maximizes the sum of squares:</p>
 <p><span class="math display">\[(\mathbf{u}_1^\top\mathbf{Y})^\top(\mathbf{u}_1^\top\mathbf{Y})\]</span></p>
 <p><span class="math inline">\(\mathbf{u}_1^\top\mathbf{Y}\)</span> is referred to as the first PC. The <em>weights</em> <span class="math inline">\(\mathbf{u}\)</span> used to obtain this PC are referred to as the <em>loadings</em>. Using the language of rotations, it is also referred to as the <em>direction</em> of the first PC, which are the new coordinates.</p>
@@ -1023,7 +1115,7 @@ Z =<span class="st"> </span>u<span class="op">%*%</span>w
 <p>When <span class="math inline">\(Y\)</span> is <span class="math inline">\(N \times m\)</span> we repeat to find 3rd, 4th, …, m-th PCs.</p>
 </div>
 <div id="prcomp" class="section level4">
-<h4><span class="header-section-number">8.9.0.3</span> <code>prcomp</code></h4>
+<h4><span class="header-section-number">8.11.0.3</span> <code>prcomp</code></h4>
 <p>We have shown how to obtain PCs using the SVD. However, R has a function specifically designed to find the principal components. In this case, the data is centered by default. The following function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pc &lt;-<span class="st"> </span><span class="kw">prcomp</span>( <span class="kw">t</span>(Y) )</code></pre></div>
 <p>produces the same results as the SVD up to arbitrary sign flips:</p>
@@ -1062,7 +1154,7 @@ Z =<span class="st"> </span>u<span class="op">%*%</span>w
           </div>
         </div>
       </div>
-<a href="statistical-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-7.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="basic-machine-learning.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

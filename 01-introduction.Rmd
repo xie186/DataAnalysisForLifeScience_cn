@@ -1,5 +1,8 @@
+```{{block2 echo = FALSE}}
 # Getting Started
+```
 
+# ????????????
 In this book we will be using the
 [R programming language](https://cran.r-project.org/) for all our
 analysis. You will learn R and statistics simultaneously. However, we

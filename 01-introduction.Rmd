@@ -4,8 +4,13 @@
 # 入门指南
 In this book we will be using the [R programming language](https://cran.r-project.org/) for all our analysis. You will learn R and statistics simultaneously. However, we assume you have some basic programming skills and knowledge of R syntax. If you don't, your first homework, listed below, is to complete a tutorial. Here we give step-by-step instructions on how to get set up to follow along. 
 
+&emsp;&emsp;
 
+```{{block2 echo = FALSE}}
 ## Installing R
+```
+
+## 安装R
 
 The first step is to install R. You can download and install R from
 the [Comprehensive R Archive Network](https://cran.r-project.org/)

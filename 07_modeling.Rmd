@@ -372,9 +372,17 @@ It is defined by two parameters $\alpha$ and $\beta$ that can, indirectly, contr
 
 &emsp;&emsp;公式中的$\alpha$和$\beta$可以间接的控制分布的位置和重尾（heavy tail）的程度，进而控制了分布的形状。如果你想了解更多关于这个分布的内容，请参考[这本书](https://www.stat.berkeley.edu/~rice/Book3ed/index.html).
 
+```{block2 echo=FALSE}
 Two special cases of the gamma distribution are the chi-squared and exponential distribution. We used the chi-squared earlier to analyze a 2x2 table data. For chi-square, we have $\alpha=\nu/2$ and $\beta=2$ with $\nu$ the degrees of freedom. For exponential, we have $\alpha=1$ and $\beta=\lambda$ the rate.
+```
 
+伽玛分布的两个特列是卡平方分布和指数分布分布。前面我们已经用到卡平方来分析一个2x2的列表数据。对于卡平方，$\alpha=\nu/2$，$\beta=2$，同时自由度为$\nu$。对于指数分布，$\alpha=1$，同时$\beta=\lambda$。
+
+```{block2 echo=FALSE}
 The F-distribution comes up in analysis of variance (ANOVA). It is also always positive and has large right tails. Two parameters control its shape:
+```
+
+F分布会在方差分析（ANOVA）中讲到。F分布，变量总是正值同时在右侧有重尾。该分布中，两个参数决定其形状：
 
 $$
 f(x,d_1,d_2)=\frac{1}{B\left( \frac{d_1}{2},\frac{d_2}{2}\right)}

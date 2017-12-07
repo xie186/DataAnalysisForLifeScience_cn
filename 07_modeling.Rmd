@@ -390,7 +390,11 @@ f(x,d_1,d_2)=\frac{1}{B\left( \frac{d_1}{2},\frac{d_2}{2}\right)}
   x^{\frac{d_1}{2}-1}\left(1+\frac{d1}{d2}x\right)^{-\frac{d_1+d_2}{2}}
 $$  
 
+```{block2 echo=FALSE}
 with $B$ the _beta function_ and $d_1$ and $d_2$ are called the degrees of freedom for reasons having to do with how it arises in ANOVA. A third parameter is sometimes used with the F-distribution, which is a scale parameter.
+```
+
+
 
 #### Modeling the variance
 

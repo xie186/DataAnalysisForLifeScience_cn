@@ -446,23 +446,45 @@ k=sum(tmp$density)/sum(dd) ##a normalizing constant to assure same area in plot
 lines(sds, dd*k, type="l", col=2, lwd=2)
 ```
 
-
+```{block2 echo=FALSE}
 ## Bayesian Statistics
+```
 
+## 贝叶斯统计
+
+```{block2 echo=FALSE}
 One distinguishing characteristic of high-throughput data is that although we want to report on specific features, we observe many related outcomes. For example, we measure the expression of thousands of genes, or the height of thousands of peaks representing protein binding, or the methylation levels across several CpGs. However, most of the statistical inference approaches we have shown here treat each feature independently and pretty much ignores data from other features. We will learn how using statistical models provides power by modeling features jointly. The most successful of these approaches are what we refer to as hierarchical models, which we explain below in the context of Bayesian statistics.
+```
 
+&emsp;&emsp;高通量数据的一个突出特点是尽管我们想要研究一些特殊的特征值，但是通常我们也观察多许多相关的其他内容。例如，通过RNA-seq我们能够衡量成千上万个基因的表达量，利用ChIP-seq我们可以计算成千上万个峰的高度（象征蛋白结合强度），利用BS-seq我们可以计算几个CpG位点的甲基化水平。然而，前面我们介绍的大多数的统计推断方法将每一个特征值看成是独立的，因此并没有考虑其他特征值。
+
+```{block2 echo=FALSE}
 #### Bayes theorem
+```
+#### 贝叶斯定理
 
+```{block2 echo=FALSE}
 We start by reviewing Bayes theorem. We do this using a hypothetical cystic fibrosis test as an example. Suppose a test for cystic fibrosis has an accuracy of 99%. We will use the following notation:
+```
+
+&emsp;&emsp;首先，我们来回顾一下贝叶斯定理。我们利用一个假设的囊性纤维化检测试验作为一个例子。假设，该测试试验的准确性是99%。我们将会有下面的公式：
 
 $$
 \mbox{Prob}(+ \mid D=1)=0.99, \mbox{Prob}(- \mid D=0)=0.99 
 $$
 
+```{block2 echo=FALSE}
 with $+$ meaning a positive test and $D$ representing if you actually have the disease (1) or not (0).
+```
 
+&emsp;&emsp;$+$表示检测结果为阳性，$D$表示受试者实际患病（1）或者未患病（0）。
+
+```{block2 echo=FALSE}
 Suppose we select a random person and they test positive, what is the probability that they have the disease?  We write this as $\mbox{Prob}(D=1 \mid +)?$ The cystic fibrosis rate is 1 in 3,900 which implies that  $\mbox{Prob}(D=1)=0.00025$. To answer this question we will use Bayes Theorem, which in general tells us that:
+```
 
+&emsp;&emsp;假设我们随机选取一个人测试，该受试者测试结果为阳性，那么他患病的概率是多少？
+  
 $$
 \mbox{Pr}(A \mid B)  =  \frac{\mbox{Pr}(B \mid A)\mbox{Pr}(A)}{\mbox{Pr}(B)} 
 $$

@@ -547,7 +547,6 @@ Now each person gets the test which is correct 90% of the time.
 ```{r}
 accuracy <- 0.9
 test <- rep(NA,N*M)
-test
 ##do controls test positive?
 test[d==1]  <- rbinom(sum(d==1), 1, p=accuracy)
 ##do cases test positive?
@@ -619,19 +618,30 @@ The batting average (`AVG`) statistic is one way of measuring success. Roughly s
 With the techniques we have learned up to now, referred to as _frequentist techniques_, the best we can do is provide a confidence interval. We can think of outcomes from hitting as a binomial with a success rate of $p$. So if the success rate is indeed .450, the standard error of just 20 at bats is:
 ```
 
-&emsp;&emsp;截止现在，我们所学到的内容都属于频率学派统计学，我们能做到的是提供一个置信区间。
-
-&emsp;&emsp;
+&emsp;&emsp;截止现在，我们所学到的内容都属于频率学派统计学，我们能做到的是提供一个置信区间。我们讲击球事件看做一个成功率为$p$的二项分布。所以如果$p$是0.450，20次击球的标准差是：
 
 $$
 \sqrt{\frac{.450 (1-.450)}{20}}=.111
 $$
 
+```{block2 echo=FALSE}
 This means that our confidence interval is .450-.222 to .450+.222 or .228 to .672.
+```
 
+&emsp;&emsp;这说明我们的执行区间是0.228（.450-.222）到0.672（.450+.222）。
+
+```{block2 echo=FALSE}
 This prediction has two problems. First, it is very large so not very useful. Also, it is centered at .450 which implies that our best guess is that this new player will break Ted Williams' record. If you follow baseball, this last statement will seem wrong and this is because you are implicitly using a hierarchical model that factors in information from years of following baseball. Here we show how we can quantify this intuition.
+```
 
+&emsp;&emsp;这个预测有两个问题。首先，置信区间太大，所以没有实际意义。另外，该预测的中心是0.450（即我们的最佳预测），表明我们的最佳预测是这名新球员的`AVG`可能会打破Ted Williams在1941年创下的记录。如果你关注棒球，你会认为这个预测是有很大问题的。这是因为你已经在使用层次模型了，你将你几年来关注棒球得到的信息以一种直觉的形式来判断这一问题了。接下来我们将介绍我们如果以数学的形式来量化这种直觉。
+
+
+```{block2 echo=FALSE}
 First, let's explore the distribution of batting averages for all players with more than 500 at bats during the previous three seasons:
+```
+
+&emsp;&emsp;首先，让我们先来看看在前三个赛季中击球数超过500次的球员的平均`AVG`：
 
 ```{r,include=FALSE, cache=TRUE}
 tmpfile <- tempfile()
@@ -655,12 +665,22 @@ for(y in 2010:2012){
 }
 ```
 
+```{block2 echo=FALSE}
 We note that the average player had an `AVG` of .275 and the standard deviation of the population of players was 0.027. So we can see already that .450 would be quite an anomaly since it is over six SDs away from the mean. So is José lucky or the best batter seen in the last 50 years? Perhaps it's a combination of both. But how lucky and how good is he? If we become convinced that he is lucky, we should trade him to a team that trusts the .450 observation and is maybe overestimating his potential.
+```
 
+&emsp;&emsp;我们会发现，棒球球员的`AVG`均值是0.275，标准差是0.027。所以我们已经可以看出0.450的`AVG`是非常异常的，这个值偏离均值超过6个标准差。所以José有0.450这个成绩是碰巧的还是说他确实是自1941年以来最好的球员呢？这可能两者的因素都有。但是碰巧的因素和他确实有这么好的概率有多少呢?这样的判断会对球员交易产生影响。如果，经过分析我们认为他只是碰巧取得了这个成绩，他并没有那么好，那么你作为球队老板可能就会选择将他交易到其他球队，也许其他球队会根据0.450这个数据尔高估他，认为他确实非常优秀。
 
+```{block2 echo=FALSE}
 #### The hierarchical model
+```
 
+#### 层次模型
+```{block2 echo=FALSE}
 The hierarchical model provides a mathematical description of how we came to see the observation of .450. First, we pick a player at random with an intrinsic ability summarized by, for example, $\theta$, then we see 20 random outcomes with success probability $\theta$.
+```
+
+&emsp;&emsp;层次模型提供了一种让方法让我们能够用数学的语言来描述这一例子。首先，我们随机选取了一个优秀的球员，这个选择是基于$\theta$。$\theta$是根据20次随机事件得出的一个成功概率。
 
 $$
 \begin{align*}
@@ -669,9 +689,16 @@ Y \mid \theta &\sim N(\theta, \sigma^2) \mbox{ describes randomness in the perfo
 \end{align*}
 $$
 
+```{block2 echo=FALSE}
 Note the two levels (this is why we call them hierarchical): 1) Player to player variability and 2) variability due to luck when batting. In a Bayesian framework, the first level is called a _prior distribution_ and the second the _sampling distribution_.
+```
+```
+&emsp;&emsp;这里有两个层次的意思：1）球员和球员之间的差异；2）击球时运气因素引起的变异。在贝叶斯模型中，第一层次称之为_先验概率_，第二层次为_样本分布_。
 
+
+```{block2 echo=FALSE}
 Now, let's use this model for José's data. Suppose we want to predict his innate ability in the form of his _true_ batting average $\theta$. This would be the hierarchical model for our data:
+```
 
 $$
 \begin{align*}

@@ -517,9 +517,17 @@ This says that despite the test having 0.99 accuracy, the probability of having 
 
 &emsp;&emsp;这个结果表明，尽管检测准确性很高，能够达到0.99。但是在检测结果为阳性的情况下，受试者患病的概率却只有0.02。这看起来和我们的直觉是是相反的。得到这个结果的原因是在我们随机选取的这个受试者患病的概率极低。为了更直观的解释这个结果，我们使用蒙特·卡罗方法模拟一个数据。
 
+```{block2 echo=FALSE}
 #### Simulation
+```
 
+#### 模拟
+
+```{block2 echo=FALSE}
 The following simulation is meant to help you visualize Bayes Theorem. We start by randomly selecting 1500 people from a population in which the disease in question has a 5% prevalence.
+```
+
+&emsp;&emsp;下面的模拟是为了帮助你更直观的理解贝叶斯定理。首先，我们从一个患病率为5%的群体中随机选取1500个人。
 
 ```{r}
 set.seed(3)
@@ -530,17 +538,27 @@ M <- 50 ; N <- 30
 d<-rbinom(N*M,1,p=prev)
 ```
 
+```{block2 echo=FALSE}
 Now each person gets the test which is correct 90% of the time.
+```
+
+&emsp;&emsp;接着我们队每一个人进行测试，测试的准确性是99%。
+
 ```{r}
 accuracy <- 0.9
 test <- rep(NA,N*M)
+test
 ##do controls test positive?
 test[d==1]  <- rbinom(sum(d==1), 1, p=accuracy)
 ##do cases test positive?
 test[d==0]  <- rbinom(sum(d==0), 1, p=1-accuracy)
 ```
 
+```{block2 echo=FALSE}
 Because there are so many more controls than cases, even with a low false positive rate, we get more controls than cases in the group that tested positive (code not shown):
+```
+&emsp;&emsp; 因为对照的个数远远大于病例的个数，所以即使假阳性率比较低的情况下，我们在检测结果为阳性的这一组中依然看到对照的个数大于患病的个数（此处图对应的代码没有显示）。
+
 
 ```{r simulation, fig.cap="Simulation demonstrating Bayes theorem. Top plot shows every individual with red denoting cases. Each one takes a test and with 90% gives correct answer. Those called positive (either correctly or incorrectly) are put in the bottom left pane. Those called negative in the bottom right.", fig.width=10.5, fig.height=7.5,echo=FALSE}
 cols <- c("grey","red")
@@ -567,24 +585,43 @@ plot(people,col=negativecols,pch=16,xaxt="n",yaxt="n",xlab="",ylab="",
      main=paste("Tested Negative:",round(mean(d[test==0])*100,1),"% are red"))
 ```
 
+```{block2 echo=FALSE}
 The proportions of red in the top plot shows $\mbox{Pr}(D=1)$. The bottom left shows $\mbox{Pr}(D=1 \mid +)$ and the bottom right shows $\mbox{Pr}(D=0 \mid +)$.
+```
 
+&emsp;&emsp;在上图中，上半部分红色比例代表$\mbox{Pr}(D=1)$。左下图代表$\mbox{Pr}(D=1 \mid +)$。左下图代表$\mbox{Pr}(D=0 \mid +)$。
 
+```{block2 echo=FALSE}
 #### Bayes in practice
+```
 
 
 <!-- ![iglesias](http://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg/902px-Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg) -->
 
-
+```{block2 echo=FALSE}
 José Iglesias is a professional baseball player. In April 2013, when he was starting his career, he was performing rather well:
+```
+
+&emsp;&emsp;José Iglesias是一个职业的棒球运动员。2013年4月是他职业生涯的第一个月，他的表现非常棒:
+
 
 | Month | At Bats | H | AVG |
 |-------|---------|---|-----|
 | April | 20      | 9 | .450   |
 
+```{block2 echo=FALSE}
 The batting average (`AVG`) statistic is one way of measuring success. Roughly speaking, it tells us the success rate when batting. An `AVG` of .450 means José has been successful 45% of the times he has batted (`At Bats`) which is rather high as we will see. Note, for example, that no one has finished a season with an `AVG` of .400 since Ted Williams did it in 1941! To illustrate the way hierarchical models are powerful, we will try to predict José's batting average at the end of the season, after he has gone to bat over 500 times. 
+```
 
+&emsp;&emsp;棒球的击球率（`AVG`：the batting average）是衡量一个棒球员表现的一个指标。通常来讲，`AVG`表示击球成功的概率。0.450的`AVG`是非常好的一个表现。例如，1941年传奇棒球球员Ted Williams的`AVG`为0.406，从那以后没有一个球员能够取得这么好的成绩。为了解释分层模型是非常有效的，我们将试着利用José的超过500次的急求数据来预测其整个赛季的`AVG`。
+
+```{block2 echo=FALSE}
 With the techniques we have learned up to now, referred to as _frequentist techniques_, the best we can do is provide a confidence interval. We can think of outcomes from hitting as a binomial with a success rate of $p$. So if the success rate is indeed .450, the standard error of just 20 at bats is:
+```
+
+&emsp;&emsp;截止现在，我们所学到的内容都属于频率学派统计学，我们能做到的是提供一个置信区间。
+
+&emsp;&emsp;
 
 $$
 \sqrt{\frac{.450 (1-.450)}{20}}=.111
@@ -802,6 +839,7 @@ with(limmares, plot(dm, -log10(p.value),cex=.8, pch=16,
      xlim=c(-1,1), ylim=c(0,5)))
 abline(h=2,v=c(-.2,.2), lty=2)
 ```
+
 
 The number of false positives in the top 10 is now reduced to 2. 
 

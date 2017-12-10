@@ -376,13 +376,13 @@ It is defined by two parameters $\alpha$ and $\beta$ that can, indirectly, contr
 Two special cases of the gamma distribution are the chi-squared and exponential distribution. We used the chi-squared earlier to analyze a 2x2 table data. For chi-square, we have $\alpha=\nu/2$ and $\beta=2$ with $\nu$ the degrees of freedom. For exponential, we have $\alpha=1$ and $\beta=\lambda$ the rate.
 ```
 
-伽玛分布的两个特列是卡平方分布和指数分布分布。前面我们已经用到卡平方来分析一个2x2的列表数据。对于卡平方，$\alpha=\nu/2$，$\beta=2$，同时自由度为$\nu$。对于指数分布，$\alpha=1$，同时$\beta=\lambda$。
+&emsp;&emsp;伽玛分布的两个特列是卡平方分布和指数分布分布。前面我们已经用到卡平方来分析一个2x2的列表数据。对于卡平方，$\alpha=\nu/2$，$\beta=2$，同时自由度为$\nu$。对于指数分布，$\alpha=1$，同时$\beta=\lambda$。
 
 ```{block2 echo=FALSE}
 The F-distribution comes up in analysis of variance (ANOVA). It is also always positive and has large right tails. Two parameters control its shape:
 ```
 
-F分布会在方差分析（ANOVA）中讲到。F分布，变量总是正值同时在右侧有重尾。该分布中，两个参数决定其形状：
+&emsp;&emsp;F分布会在方差分析（ANOVA）中讲到。F分布，变量总是正值同时在右侧有重尾。该分布中，两个参数决定其形状：
 
 $$
 f(x,d_1,d_2)=\frac{1}{B\left( \frac{d_1}{2},\frac{d_2}{2}\right)}
@@ -395,10 +395,17 @@ with $B$ the _beta function_ and $d_1$ and $d_2$ are called the degrees of freed
 ```
 
 
-
+```{block2 echo=FALSE}
 #### Modeling the variance
+```
 
+#### 方差建模
+
+```{block2 echo=FALSE}
 In a later section we will learn about a hierarchical model approach to improve estimates of variance. In these cases it is mathematically convenient to model the distribution of the variance $\sigma^2$. The hierarchical model used [here](http://www.ncbi.nlm.nih.gov/pubmed/16646809) implies that the sample standard deviation of genes follows scaled F-statistics:
+```
+
+&emsp;&emsp;在稍后的章节中，我们会介绍通过层次模型会提高方差估计。
 
 $$
 s^2 \sim s_0^2 F_{d,d_0}
@@ -699,6 +706,8 @@ Note the two levels (this is why we call them hierarchical): 1) Player to player
 ```{block2 echo=FALSE}
 Now, let's use this model for José's data. Suppose we want to predict his innate ability in the form of his _true_ batting average $\theta$. This would be the hierarchical model for our data:
 ```
+
+&emsp;&emsp;现在，让我们用层次模型来对José的数据进行建模。假设我们的目的是预测他__真实__的击球率来评估他的天赋。下面展示的是这一数据的层次模型：
 
 $$
 \begin{align*}

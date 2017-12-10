@@ -723,9 +723,6 @@ We now are ready to compute a posterior distribution to summarize our prediction
 &emsp;&emsp;现在我们可以计算后验概率分布来预测$\theta$。贝叶斯法则的连续版本可以被用来推断_后验概率_，这也是从观测数据中的参数 $\theta$的缝补。
 
 
-
-
-
 $$
 \begin{align*}
 f_{ \theta \mid Y} (\theta\mid Y) &=
@@ -736,7 +733,12 @@ f_{ \theta \mid Y} (\theta\mid Y) &=
 \end{align*}
 $$
 
+```{block2 echo = FALSE}
 We are particularly interested in the $\theta$ that maximizes the posterior probability $f_{\theta\mid Y}(\theta\mid Y)$. In our case, we can show that the posterior is normal and we can compute the mean $\mbox{E}(\theta\mid y)$ and variance $\mbox{var}(\theta\mid y)$. Specifically, we can show the average of this distribution is the following:
+```
+
+&emsp;&emsp;我们尤其对能够使后验概率$f_{\theta\mid Y}(\theta\mid Y)$取得最大值的$\theta$。在我们的数据中，我们可以看到后验概率的分布符合正态分布，我们也可以计算均值$\mbox{E}(\theta\mid y)$和方差$\mbox{var}(\theta\mid y)$。我们可以具体一下面的形式展示该分布的均值。
+
 
 $$
 \begin{align*}

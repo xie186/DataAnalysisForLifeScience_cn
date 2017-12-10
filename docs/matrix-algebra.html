@@ -25,7 +25,7 @@
 <meta name="author" content="作者：Rafael A. Irizarry; Mike I. Love 翻译：张三 李四 麻子">
 
 
-<meta name="date" content="2017-12-09">
+<meta name="date" content="2017-12-10">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -249,19 +249,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="matrix-algebra" class="section level1">
 <h1><span class="header-section-number">第 4 章</span> Matrix Algebra</h1>
-<p>In this book we try to minimize mathematical notation as much as possible. Furthermore, we avoid using calculus to motivate statistical concepts. However, Matrix Algebra (also referred to as Linear Algebra) and its mathematical notation greatly facilitates the exposition of the advanced data analysis techniques covered in the remainder of this book. We therefore dedicate a chapter of this book to introducing Matrix Algebra. We do this in the context of data analysis and using one of the main applications: Linear Models.</p>
-<p>We will describe three examples from the life sciences: one from physics, one related to genetics, and one from a mouse experiment. They are very different, yet we end up using the same statistical technique: fitting linear models. Linear models are typically taught and described in the language of matrix algebra.</p>
+<p>  本书中，我们尝试尽可能的使用较少的数学上的符号。因此，我们避免使用微积分来推导统计学概念。然而，在这本书的其余部分，矩阵代数（也被称为线性代数）的数学符号能够极大的促进对数据分析技术的阐述。因此，我们在本章节中来介绍矩阵代数。我们在数据分析过程中这样做，并且使用其主要的应用：线性代数。</p>
+<p>  我们将使用三组来自于生命科学的数据，一个来自于物理学、一个与遗传学相关、一个来自于小鼠的实验。这三组数据之间差距较大，但是我们仍然使用相同的统计学方法拟合线性模型来结束分析。人们通常使用数据矩阵的语言来对线性模型进行讲解和表述。</p>
 <div id="motivating-examples" class="section level2">
 <h2><span class="header-section-number">4.1</span> Motivating Examples</h2>
 <div id="falling-objects" class="section level4">
 <h4><span class="header-section-number">4.1.0.1</span> Falling objects</h4>
-<p>Imagine you are Galileo in the 16th century trying to describe the velocity of a falling object. An assistant climbs the Tower of Pisa and drops a ball, while several other assistants record the position at different times. Let’s simulate some data using the equations we know today and adding some measurement error:</p>
+<p>  假设你是16世纪的伽利略，正在尝试着描述高空坠物的的速度。你的一个助手爬上比萨的高塔扔下一个球，然后其他的助手记录不同时间时球的位置。让我们利用我们今天所知道的方程式来模拟一些数据，并且增加一些测量误差。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
 g &lt;-<span class="st"> </span><span class="fl">9.8</span> ##meters per second
 n &lt;-<span class="st"> </span><span class="dv">25</span>
 tt &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="fl">3.4</span>,<span class="dt">len=</span>n) ##time in secs, note: we use tt because t is a base function
 d &lt;-<span class="st"> </span><span class="fl">56.67</span>  <span class="op">-</span><span class="st"> </span><span class="fl">0.5</span><span class="op">*</span>g<span class="op">*</span>tt<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(n,<span class="dt">sd=</span><span class="dv">1</span>) ##meters</code></pre></div>
-<p>The assistants hand the data to Galileo and this is what he sees:</p>
+<p>  助手们拿着数据找到伽利略告诉他这是他们看到的数据:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mypar</span>()
 <span class="kw">plot</span>(tt,d,<span class="dt">ylab=</span><span class="st">&quot;Distance in meters&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Time in seconds&quot;</span>)</code></pre></div>
 <div class="figure"><span id="fig:gravity"></span>
@@ -270,17 +270,13 @@ d &lt;-<span class="st"> </span><span class="fl">56.67</span>  <span class="op">
 图 4.1: Simulated data for distance travelled versus time of falling object measured with error.
 </p>
 </div>
-<p>He does not know the exact equation, but by looking at the plot above he deduces that the position should follow a parabola. So he models the data with:</p>
-<p><span class="math display">\[ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \varepsilon_i, i=1,\dots,n \]</span></p>
-<p>With <span class="math inline">\(Y_i\)</span> representing location, <span class="math inline">\(x_i\)</span> representing the time, and <span class="math inline">\(\varepsilon_i\)</span> accounting for measurement error. This is a linear model because it is a linear combination of known quantities (the <span class="math inline">\(x\)</span>’s) referred to as predictors or covariates and unknown parameters (the <span class="math inline">\(\beta\)</span>’s).</p>
-</div>
-<div id="father-son-heights" class="section level4">
-<h4><span class="header-section-number">4.1.0.2</span> Father &amp; son heights</h4>
-<p>Now imagine you are Francis Galton in the 19th century and you collect paired height data from fathers and sons. You suspect that height is inherited. Your data:</p>
+<p>  他不知道准确的方程式，但是他通过观察纸上的标绘，推断球的位置应该遵循一个抛物线。因此，他根据这些数据建立了一个模型: <span class="math display">\[ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \varepsilon_i, i=1,\dots,n \]</span></p>
+<p>  其中，<span class="math inline">\(Y_i\)</span>代表球的位置，<span class="math inline">\(x_i\)</span>代表观察的时间，<span class="math inline">\(\varepsilon_i\)</span>表示测量的误差。这是一个线性的模型，因为这是已知数据的线性组合，被成为预测器或者叫做参数位置的协变量(<span class="math inline">\(\beta\)</span>’s)。 #### Father &amp; son heights</p>
+<p>  现在假设你是19世纪的弗朗西斯，你收集了一些父亲和儿子之间的身高数据。你猜想，身高是可遗传的，你的数据如下所示:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(father.son,<span class="dt">package=</span><span class="st">&quot;UsingR&quot;</span>)
 x=father.son<span class="op">$</span>fheight
 y=father.son<span class="op">$</span>sheight</code></pre></div>
-<p>looks like this:</p>
+<p>  看起来像这样：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x,y,<span class="dt">xlab=</span><span class="st">&quot;Father&#39;s height&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Son&#39;s height&quot;</span>)</code></pre></div>
 <div class="figure">
 <img src="bookdown_files/figure-html/galton_data-1.png" alt="Galton's data. Son heights versus father heights." width="672" />
@@ -288,13 +284,9 @@ y=father.son<span class="op">$</span>sheight</code></pre></div>
 (#fig:galton_data)Galton’s data. Son heights versus father heights.
 </p>
 </div>
-<p>The sons’ heights do seem to increase linearly with the fathers’ heights. In this case, a model that describes the data is as follows:</p>
-<p><span class="math display">\[ Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i, i=1,\dots,N \]</span></p>
-<p>This is also a linear model with <span class="math inline">\(x_i\)</span> and <span class="math inline">\(Y_i\)</span>, the father and son heights respectively, for the <span class="math inline">\(i\)</span>-th pair and <span class="math inline">\(\varepsilon_i\)</span> a term to account for the extra variability. Here we think of the fathers’ heights as the predictor and being fixed (not random) so we use lower case. Measurement error alone can’t explain all the variability seen in <span class="math inline">\(\varepsilon_i\)</span>. This makes sense as there are other variables not in the model, for example, mothers’ heights, genetic randomness, and environmental factors.</p>
-</div>
-<div id="random-samples-from-multiple-populations" class="section level4">
-<h4><span class="header-section-number">4.1.0.3</span> Random samples from multiple populations</h4>
-<p>Here we read-in mouse body weight data from mice that were fed two different diets: high fat and control (chow). We have a random sample of 12 mice for each. We are interested in determining if the diet has an effect on weight. Here is the data:</p>
+<p>  儿子的身高似乎随着父亲的身高而线性的升高。在这种情况下，可以用一个模型来描述这些数据，如下所示: <span class="math display">\[ Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i, i=1,\dots,N \]</span></p>
+<p>  这也是一个关于父亲的身高<span class="math inline">\(x_i\)</span> 和儿子的身高<span class="math inline">\(Y_i\)</span>的线性模型，对于数据对<span class="math inline">\(i\)</span>-th和<span class="math inline">\(\varepsilon_i\)</span>用来解释额外的变量。这里，我们想利用父亲的身高作为一个预测器并且被固定（不是随机的），因此我们使用小写字母。单独的测量误差不能解释在<span class="math inline">\(\varepsilon_i\)</span>所有的变量。这就表明了这里还存在其他的误差，但是不在所推测的模型中，例如，母亲的身高、遗传的随机性和环境因素 #### Random samples from multiple populations</p>
+<p>  在这里我们从两组不同喂养方式一个是喂养高脂肪数据另一个是喂养正常食物的小鼠中记录老鼠的体重。我们在每一组中随机选择12个小鼠。我们对两组喂养方式是否对小鼠的体重有一定的影响感兴趣。下面是具体的数据。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;femaleMiceWeights.csv&quot;</span>)
 <span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">1</span>)
 <span class="kw">stripchart</span>(Bodyweight<span class="op">~</span>Diet,<span class="dt">data=</span>dat,<span class="dt">vertical=</span><span class="ot">TRUE</span>,<span class="dt">method=</span><span class="st">&quot;jitter&quot;</span>,<span class="dt">pch=</span><span class="dv">1</span>,<span class="dt">main=</span><span class="st">&quot;Mice weights&quot;</span>)</code></pre></div>
@@ -304,12 +296,11 @@ y=father.son<span class="op">$</span>sheight</code></pre></div>
 (#fig:mice_weights)Mouse weights under two diets.
 </p>
 </div>
-<p>We want to estimate the difference in average weight between populations. We demonstrated how to do this using t-tests and confidence intervals, based on the difference in sample averages. We can obtain the same exact results using a linear model:</p>
-<p><span class="math display">\[ Y_i = \beta_0 + \beta_1 x_{i} + \varepsilon_i\]</span></p>
+<p>  我们想要评估在群体之间体重的差异 <span class="math display">\[ Y_i = \beta_0 + \beta_1 x_{i} + \varepsilon_i\]</span></p>
 <p>with <span class="math inline">\(\beta_0\)</span> the chow diet average weight, <span class="math inline">\(\beta_1\)</span> the difference between averages, <span class="math inline">\(x_i = 1\)</span> when mouse <span class="math inline">\(i\)</span> gets the high fat (hf) diet, <span class="math inline">\(x_i = 0\)</span> when it gets the chow diet, and <span class="math inline">\(\varepsilon_i\)</span> explains the differences between mice of the same population.</p>
 </div>
 <div id="linear-models-in-general" class="section level4">
-<h4><span class="header-section-number">4.1.0.4</span> Linear models in general</h4>
+<h4><span class="header-section-number">4.1.0.2</span> Linear models in general</h4>
 <p>We have seen three very different examples in which linear models can be used. A general model that encompasses all of the above examples is the following:</p>
 <p><span class="math display">\[ Y_i = \beta_0 + \beta_1 x_{i,1} + \beta_2 x_{i,2} + \dots +  \beta_2 x_{i,p} + \varepsilon_i, i=1,\dots,n \]</span></p>
 <p><span class="math display">\[ Y_i = \beta_0 + \sum_{j=1}^p \beta_j x_{i,j} + \varepsilon_i, i=1,\dots,n \]</span></p>
@@ -317,14 +308,14 @@ y=father.son<span class="op">$</span>sheight</code></pre></div>
 <p><a name="estimates"></a></p>
 </div>
 <div id="estimating-parameters" class="section level4">
-<h4><span class="header-section-number">4.1.0.5</span> Estimating parameters</h4>
+<h4><span class="header-section-number">4.1.0.3</span> Estimating parameters</h4>
 <p>For the models above to be useful we have to estimate the unknown <span class="math inline">\(\beta\)</span> s. In the first example, we want to describe a physical process for which we can’t have unknown parameters. In the second example, we better understand inheritance by estimating how much, on average, the father’s height affects the son’s height. In the final example, we want to determine if there is in fact a difference: if <span class="math inline">\(\beta_1 \neq 0\)</span>.</p>
 <p>The standard approach in science is to find the values that minimize the distance of the fitted model to the data. The following is called the least squares (LS) equation and we will see it often in this chapter:</p>
 <p><span class="math display">\[ \sum_{i=1}^n \left\{  Y_i - \left(\beta_0 + \sum_{j=1}^p \beta_j x_{i,j}\right)\right\}^2 \]</span></p>
 <p>Once we find the minimum, we will call the values the least squares estimates (LSE) and denote them with <span class="math inline">\(\hat{\beta}\)</span>. The quantity obtained when evaluating the least squares equation at the estimates is called the residual sum of squares (RSS). Since all these quantities depend on <span class="math inline">\(Y\)</span>, <em>they are random variables</em>. The <span class="math inline">\(\hat{\beta}\)</span> s are random variables and we will eventually perform inference on them.</p>
 </div>
 <div id="falling-object-example-revisited" class="section level4">
-<h4><span class="header-section-number">4.1.0.6</span> Falling object example revisited</h4>
+<h4><span class="header-section-number">4.1.0.4</span> Falling object example revisited</h4>
 <p>Thanks to my high school physics teacher, I know that the equation for the trajectory of a falling object is:</p>
 <p><span class="math display">\[d = h_0 + v_0 t -  0.5 \times 9.8 t^2\]</span></p>
 <p>with <span class="math inline">\(h_0\)</span> and <span class="math inline">\(v_0\)</span> the starting height and velocity respectively. The data we simulated above followed this equation and added measurement error to simulate <code>n</code> observations for dropping the ball <span class="math inline">\((v_0=0)\)</span> from the tower of Pisa <span class="math inline">\((h_0=56.67)\)</span>. This is why we used this code to simulate data:</p>
@@ -347,7 +338,7 @@ y &lt;-<span class="st">  </span>f <span class="op">+</span><span class="st"> </
 <p>How do we find the LSE?</p>
 </div>
 <div id="the-lm-function" class="section level4">
-<h4><span class="header-section-number">4.1.0.7</span> The <code>lm</code> function</h4>
+<h4><span class="header-section-number">4.1.0.5</span> The <code>lm</code> function</h4>
 <p>In R we can fit this model by simply using the <code>lm</code> function. We will describe this function in detail later, but here is a preview:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tt2 &lt;-tt<span class="op">^</span><span class="dv">2</span>
 fit &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>tt<span class="op">+</span>tt2)
@@ -360,7 +351,7 @@ fit &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~
 <p>Part of what we do in this section is to explain the mathematics behind this function.</p>
 </div>
 <div id="the-least-squares-estimate-lse" class="section level4">
-<h4><span class="header-section-number">4.1.0.8</span> The least squares estimate (LSE)</h4>
+<h4><span class="header-section-number">4.1.0.6</span> The least squares estimate (LSE)</h4>
 <p>Let’s write a function that computes the RSS for any vector <span class="math inline">\(\beta\)</span>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rss &lt;-<span class="st"> </span><span class="cf">function</span>(Beta0,Beta1,Beta2){
   r &lt;-<span class="st"> </span>y <span class="op">-</span><span class="st"> </span>(Beta0<span class="op">+</span>Beta1<span class="op">*</span>tt<span class="op">+</span>Beta2<span class="op">*</span>tt<span class="op">^</span><span class="dv">2</span>)
@@ -382,7 +373,7 @@ Beta2s&lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op"
 <p>Trial and error here is not going to work. Instead, we can use calculus: take the partial derivatives, set them to 0 and solve. Of course, if we have many parameters, these equations can get rather complex. Linear algebra provides a compact and general way of solving this problem.</p>
 </div>
 <div id="more-on-galton-advanced" class="section level4">
-<h4><span class="header-section-number">4.1.0.9</span> More on Galton (Advanced)</h4>
+<h4><span class="header-section-number">4.1.0.7</span> More on Galton (Advanced)</h4>
 <p>When studying the father-son data, Galton made a fascinating discovery using exploratory analysis.</p>
 <div class="figure">
 <img src="http://upload.wikimedia.org/wikipedia/commons/b/b2/Galton&#39;s_correlation_diagram_1875.jpg" alt="Galton’s plot." />

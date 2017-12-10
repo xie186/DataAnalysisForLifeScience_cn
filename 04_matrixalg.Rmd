@@ -1,9 +1,10 @@
 # Matrix Algebra
-```{block echo FALSE}
+
+```{block2 echo=FALSE}
 In this book we try to minimize mathematical notation as much as possible. Furthermore, we avoid using calculus to motivate statistical concepts. However, Matrix Algebra (also referred to as Linear Algebra) and its mathematical notation greatly facilitates the exposition of the advanced data analysis techniques covered in the remainder of this book. We therefore dedicate a chapter of this book to introducing Matrix Algebra. We do this in the context of data analysis and using one of the main applications: Linear Models.
 ```
 &emsp;&emsp;本书中，我们尝试尽可能的使用较少的数学上的符号。因此，我们避免使用微积分来推导统计学概念。然而，在这本书的其余部分，矩阵代数（也被称为线性代数）的数学符号能够极大的促进对数据分析技术的阐述。因此，我们在本章节中来介绍矩阵代数。我们在数据分析过程中这样做，并且使用其主要的应用：线性代数。
-```{block echo FALSE}
+```{block2 echo=FALSE}
 We will describe three examples from the life sciences: one from physics, one related to genetics, and one from a mouse experiment. They are very different, yet we end up using the same statistical technique: fitting linear models. Linear models are typically taught and described in the language of matrix algebra. 
 ```
 &emsp;&emsp;我们将使用三组来自于生命科学的数据，一个来自于物理学、一个与遗传学相关、一个来自于小鼠的实验。这三组数据之间差距较大，但是我们仍然使用相同的统计学方法拟合线性模型来结束分析。人们通常使用数据矩阵的语言来对线性模型进行讲解和表述。
@@ -14,7 +15,7 @@ library(rafalib)
 ## Motivating Examples
 
 #### Falling objects
-```{block echo FALSE}
+```{block2 echo=FALSE}
 Imagine you are Galileo in the 16th century trying to describe the velocity of a falling object. An assistant climbs the Tower of Pisa and drops a ball, while several other assistants record the position at different times. Let's simulate some data using the equations we know today and adding some measurement error:
 ```
 &emsp;&emsp;假设你是16世纪的伽利略，正在尝试着描述高空坠物的的速度。你的一个助手爬上比萨的高塔扔下一个球，然后其他的助手记录不同时间时球的位置。让我们利用我们今天所知道的方程式来模拟一些数据，并且增加一些测量误差。
@@ -25,7 +26,7 @@ n <- 25
 tt <- seq(0,3.4,len=n) ##time in secs, note: we use tt because t is a base function
 d <- 56.67  - 0.5*g*tt^2 + rnorm(n,sd=1) ##meters
 ```
-```{block echo FALSE}
+```{block2 echo=FALSE}
 The assistants hand the data to Galileo and this is what he sees:
 ```
 &emsp;&emsp;助手们拿着数据找到伽利略告诉他这是他们看到的数据:
@@ -33,17 +34,17 @@ The assistants hand the data to Galileo and this is what he sees:
 mypar()
 plot(tt,d,ylab="Distance in meters",xlab="Time in seconds")
 ```
-```{block echo FALSE}
+```{block2 echo=FALSE}
 He does not know the exact equation, but by looking at the plot above he deduces that the position should follow a parabola. So he models the data with:
 ```
 &emsp;&emsp;他不知道准确的方程式，但是他通过观察纸上的标绘，推断球的位置应该遵循一个抛物线。因此，他根据这些数据建立了一个模型:
 $$ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \varepsilon_i, i=1,\dots,n $$
-```{block echo FALSE}
+```{block2 echo=FALSE}
 With $Y_i$ representing location, $x_i$ representing the time, and $\varepsilon_i$ accounting for measurement error. This is a linear model because it is a linear combination of known quantities (the $x$'s) referred to as predictors or covariates and unknown parameters (the $\beta$'s).
 ```
 &emsp;&emsp;其中，$Y_i$代表球的位置，$x_i$代表观察的时间，$\varepsilon_i$表示测量的误差。这是一个线性的模型，因为这是已知数据的线性组合，被成为预测器或者叫做参数位置的协变量($\beta$'s)。
 #### Father & son heights
-```{block echo FALSE}
+```{block2 echo=FALSE}
 Now imagine you are Francis Galton in the 19th century and you collect paired height data from fathers and sons. You suspect that height is inherited. Your data:
 ```
 &emsp;&emsp;现在假设你是19世纪的弗朗西斯，你收集了一些父亲和儿子之间的身高数据。你猜想，身高是可遗传的，你的数据如下所示:
@@ -52,24 +53,24 @@ data(father.son,package="UsingR")
 x=father.son$fheight
 y=father.son$sheight
 ```
-```{block echo FALSE}
+```{block2 echo=FALSE}
 looks like this:
 ```
 &emsp;&emsp;看起来像这样：
 ```{r galton_data, fig.cap="Galton's data. Son heights versus father heights."}
 plot(x,y,xlab="Father's height",ylab="Son's height")
 ```
-```{block echo FALSE}
+```{block2 echo=FALSE}
 The sons' heights do seem to increase linearly with the fathers' heights. In this case, a model that describes the data is as follows:
 ```
 &emsp;&emsp;儿子的身高似乎随着父亲的身高而线性的升高。在这种情况下，可以用一个模型来描述这些数据，如下所示:
 $$ Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i, i=1,\dots,N $$
-```{block echo FALSE}
+```{block2 echo=FALSE}
 This is also a linear model with $x_i$ and $Y_i$, the father and son heights respectively, for the $i$-th pair and $\varepsilon_i$ a term to account for the extra variability. Here we think of the fathers' heights as the predictor and being fixed (not random) so we use lower case. Measurement error alone can't explain all the variability seen in $\varepsilon_i$. This makes sense as there are other variables not in the model, for example, mothers' heights, genetic randomness, and environmental factors.
 ```
 &emsp;&emsp;这也是一个关于父亲的身高$x_i$ 和儿子的身高$Y_i$的线性模型，对于数据对$i$-th和$\varepsilon_i$用来解释额外的变量。这里，我们想利用父亲的身高作为一个预测器并且被固定（不是随机的），因此我们使用小写字母。单独的测量误差不能解释在$\varepsilon_i$所有的变量。这就表明了这里还存在其他的误差，但是不在所推测的模型中，例如，母亲的身高、遗传的随机性和环境因素
 #### Random samples from multiple populations
-```{block echo FALSE}
+```{block2 echo=FALSE}
 Here we read-in mouse body weight data from mice that were fed two different diets: high fat and control (chow). We have a random sample of 12 mice for each. We are interested in determining if the diet has an effect on weight. Here is the data:
 ```
 &emsp;&emsp;在这里我们从两组不同喂养方式一个是喂养高脂肪数据另一个是喂养正常食物的小鼠中记录老鼠的体重。我们在每一组中随机选择12个小鼠。我们对两组喂养方式是否对小鼠的体重有一定的影响感兴趣。下面是具体的数据。
@@ -85,7 +86,7 @@ dat <- read.csv("femaleMiceWeights.csv")
 mypar(1,1)
 stripchart(Bodyweight~Diet,data=dat,vertical=TRUE,method="jitter",pch=1,main="Mice weights")
 ```
-```{block echo FALSE}
+```{block2 echo=FALSE}
 We want to estimate the difference in average weight between populations. We demonstrated how to do this using t-tests and confidence intervals, based on the difference in sample averages. We can obtain the same exact results using a linear model:
 ```
 &emsp;&emsp;我们想要评估在群体之间体重的差异

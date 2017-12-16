@@ -89,42 +89,60 @@ stripchart(Bodyweight~Diet,data=dat,vertical=TRUE,method="jitter",pch=1,main="Mi
 ```{block2 echo=FALSE}
 We want to estimate the difference in average weight between populations. We demonstrated how to do this using t-tests and confidence intervals, based on the difference in sample averages. We can obtain the same exact results using a linear model:
 ```
-&emsp;&emsp;我们想要评估在群体之间体重的差异
+&emsp;&emsp;我们想要评估在群体之间体重的差异。我们展示如何基于样本平均值之间的差异来使用t-tests和置信区间。我们可以利用线性模型得到准确的结果。
+
 $$ Y_i = \beta_0 + \beta_1 x_{i} + \varepsilon_i$$
-
+```{block2 echo=FALSE}
 with $\beta_0$ the chow diet average weight, $\beta_1$ the difference between averages, $x_i = 1$ when mouse $i$ gets the high fat (hf) diet, $x_i = 0$ when it gets the chow diet, and $\varepsilon_i$ explains the differences between mice of the same population. 
- 
-
+ ```
+ &emsp;&emsp;$\beta_0$是饮食的平均重量，$\beta_1$是平均值之间的差异，当小鼠$i$吃的是高脂肪的食物时$x_i = 1$，当小鼠吃的是普通饲料时$x_i = 0$，$\varepsilon_i$解释了相同样本中不同小鼠之间的差异。
+```{block2 echo=FALSE}
 #### Linear models in general
-
+ ```
+ ####一般线性模型
+ ```{block2 echo=FALSE}
 We have seen three very different examples in which linear models can be used. A general model that encompasses all of the above examples is the following:
-
+```
+&emsp;&emsp;上面我们看了三个非常不同例子都可以使用线性模型来进行分析。一个通用的模型可以包含以上所有的例子，如下所示：
 $$ Y_i = \beta_0 + \beta_1 x_{i,1} + \beta_2 x_{i,2} + \dots +  \beta_2 x_{i,p} + \varepsilon_i, i=1,\dots,n $$
 
  
 $$ Y_i = \beta_0 + \sum_{j=1}^p \beta_j x_{i,j} + \varepsilon_i, i=1,\dots,n $$
-
+```{block2 echo=FALSE}
 Note that we have a general number of predictors $p$. Matrix algebra provides a compact language and mathematical framework to compute and make derivations with any linear model that fits into the above framework.
-
+```
+&emsp;&emsp;注意，我们的预测因子有一个一般是数值$p$。矩阵代数提供了一个严式语言和数学框架来计算并且能够派生出任何能够使用以上框架的线性模型。
 <a name="estimates"></a>
-
+```{block2 echo=FALSE}
 #### Estimating parameters
-
+```
+####参数估计
+```{block2 echo=FALSE}
 For the models above to be useful we have to estimate the unknown $\beta$ s. In the first example, we want to describe a physical process for which we can't have unknown parameters. In the second example, we better understand inheritance by estimating how much, on average, the father's height affects the son's height. In the final example, we want to determine if there is in fact a difference: if $\beta_1 \neq 0$. 
-
+```
+&emsp;&emsp;以上的模型对于我们必须评估不知道的$\beta$值时能够非常适用。在第一个例子中，我们想要描述一个我们不能有的未知参数的物理过程。在第二个例子中，我们通过在平均水平上评估了父亲的身高能够多少遗传给儿子的对遗传有了更好的认识。在最后的例子中，我们想要确定当$\beta_1 \neq 0$时是否有一个本质的不同。
+```{block2 echo=FALSE}
 The standard approach in science is to find the values that minimize the distance of the fitted model to the data. The following is called the least squares (LS) equation and we will see it often in this chapter:
-
+```
+&emsp;&emsp;科学的标准方法是需找值能够减少适用模型和真实数据之间的差异。下面的例子是叫做最小二乘方程，这个方法将会在这个章节中经常看到。
 $$ \sum_{i=1}^n \left\{  Y_i - \left(\beta_0 + \sum_{j=1}^p \beta_j x_{i,j}\right)\right\}^2 $$
-
+```{block2 echo=FALSE}
 Once we find the minimum, we will call the values the least squares estimates (LSE) and denote them with $\hat{\beta}$. The quantity obtained when evaluating the least squares equation at the estimates is called the residual sum of squares (RSS). Since all these quantities depend on $Y$, *they are random variables*. The $\hat{\beta}$ s are random variables and we will eventually perform inference on them.
-
+```
+&emsp;&emsp;一旦找到最小值，我们称之为最小二乘估计（LSE）并用$\hat{\beta}$表示。当我们利用最小二乘估计评估获得的数值，也叫做残差平方和。由于所有的数值都是基于$Y$，*他们都是随机变量*。$\hat{\beta}$是一个随机变量，因此最终我们会对它们进行推理。
+```{block2 echo=FALSE}
 #### Falling object example revisited
+```
+####下落物体例子的重新审视
+```{block2 echo=FALSE}
 Thanks to my high school physics teacher, I know that the equation for the trajectory of a falling object is: 
-
+```
+&emsp;&emsp;感谢我的高中物理老师，我知道一个下落物体的轨迹的方程是：
 $$d = h_0 + v_0 t -  0.5 \times 9.8 t^2$$
-
+```{block2 echo=FALSE}
 with $h_0$ and $v_0$ the starting height and velocity respectively. The data we simulated above followed this equation and added measurement error to simulate `n` observations for dropping the ball $(v_0=0)$ from the tower of Pisa $(h_0=56.67)$. This is why we used this code to simulate data:
-
+```
+&emsp;&emsp;$h_0$和$v_0$分别是开始的高度和速度。
 ```{r simulate_drop_data}
 g <- 9.8 ##meters per second
 n <- 25

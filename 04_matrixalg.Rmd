@@ -326,17 +326,23 @@ $$
 This section explains the notation used above. It turns out that we can borrow this notation for linear models in statistics as well.
 ```
 &emsp;&emsp;本节解释了上面所使用的符号。这证明了我们也可以用这个符号来表示统计中的线性模型。
+```{block2 echo=FALSE}
 ## Vectors, Matrices, and Scalars
-
+```
+## 向量、矩阵和标量
+```{block2 echo=FALSE}
 In the falling object, father-son heights, and mouse weight examples, the random variables associated with the data were represented by $Y_1,\dots,Y_n$. We can think of this as a vector. In fact, in R we are already doing this:
-
+```
+&emsp;&emsp;在下落物体、父亲和儿子升高以及老鼠体重的例子中，与这些数据相关的随机变量我们用$Y_1,\dots,Y_n$来表示。我们可以认为这些数据为一个向量。实际上，在R语言中我们已经做了相关的工作。
 ```{r,message=FALSE}
 data(father.son,package="UsingR")
 y=father.son$fheight
 head(y)
 ```
+```{block2 echo=FALSE}
 In math we can also use just one symbol. We usually use bold to distinguish it from the individual entries:
-
+```
+&emsp;&emsp;在数学中，我们也可以只用一个符号来表示.我们通常使用粗体来区分它与单个条目。
 $$ \mathbf{Y} = \begin{pmatrix}
 Y_1\\\
 Y_2\\\
@@ -345,13 +351,14 @@ Y_N
 \end{pmatrix}
 $$
 
-
+```{block2 echo=FALSE}
 For reasons that will soon become clear, default representation of data vectors have dimension $N\times 1$ as opposed to $1 \times N$ .
 
 Here we don't always use bold because normally one can tell what is a matrix from the context.
 
 Similarly, we can use math notation to represent the covariates or predictors. In a case with two predictors we can represent them like this:
-
+```
+&emsp;&emsp;原因很快就会清晰，数据向量的默认表示方法是具有维度的$N\times 1$而不是$1 \times N$。这里我们并不总是使用粗体，因为通常我们可以从上下文中看出什么是矩阵。类似的，我们可以用数学符号来表示协变量或预测因子。在一个有两个预测因子的情况下，我们可以这样表示它们：
 $$ 
 \mathbf{X}_1 = \begin{pmatrix}
 x_{1,1}\\
@@ -364,11 +371,12 @@ x_{1,2}\\
 x_{N,2}
 \end{pmatrix}
 $$
-
+```{block2 echo=FALSE}
 Note that for the falling object example $x_{1,1}= t_i$ and $x_{i,1}=t_i^2$ with $t_i$ the time of the i-th observation. Also, keep in mind that vectors can be thought of as $N\times 1$ matrices.
 
 For reasons that will soon become apparent, it is convenient to represent these in matrices:
-
+```
+&emsp;&emsp;请注意在下降物体的例子中$x_{1,1}= t_i$ and $x_{i,1}=t_i^2$和观测i-th的时间$t_i$。同样，请记住向量可以被认为是$N\times 1$的矩阵。在矩阵中表示这些是很方便的，因此原因很快就会显现出来，。
 $$ 
 \mathbf{X} = [ \mathbf{X}_1 \mathbf{X}_2 ] = \begin{pmatrix}
 x_{1,1}&x_{1,2}\\
@@ -376,9 +384,10 @@ x_{1,1}&x_{1,2}\\
 x_{N,1}&x_{N,2}
 \end{pmatrix}
 $$
-
+```{block2 echo=FALSE}
 This matrix has dimension $N \times 2$. We can create this matrix in R this way:
-
+```
+&emsp;&emsp;这个矩阵的维度是$N \times 2$。我们可以用R语言的方式来创建这个矩阵：
 ```{r}
 n <- 25
 tt <- seq(0,3.4,len=n) ##time in secs, t is a base function
@@ -386,9 +395,10 @@ X <- cbind(X1=tt,X2=tt^2)
 head(X)
 dim(X)
 ```
-
+```{block2 echo=FALSE}
 We can also use this notation to denote an arbitrary number of covariates with the following $N\times p$ matrix:
-
+```
+&emsp;&emsp;我们也通过利用$N\times p$这个矩阵符号来表示任意数量的协变量：
 $$
 \mathbf{X} = \begin{pmatrix}
   x_{1,1}&\dots & x_{1,p} \\
@@ -397,26 +407,29 @@ $$
   x_{N,1}&\dots & x_{N,p} 
   \end{pmatrix}
 $$
-
+```{block2 echo=FALSE}
 Just as an example, we show you how to make one in R now using `matrix` instead of `cbind`:
-
+```
+&emsp;&emsp;举个例子，我们将展示在R语言中如何使用`matrix` 而不是 `cbind`来创建矩阵：
 ```{r}
 N <- 100; p <- 5
 X <- matrix(1:(N*p),N,p)
 head(X)
 dim(X)
 ```
-
+```{block2 echo=FALSE}
 By default, the matrices are filled column by column. The `byrow=TRUE` argument lets us change that to row by row:
-
+```
+&emsp;&emsp;默认的，在R语言中矩阵是按列填充的。参数`byrow=TRUE`能够让我们以按行填充的方式来创建矩阵。
 ```{r}
 N <- 100; p <- 5
 X <- matrix(1:(N*p),N,p,byrow=TRUE)
 head(X)
 ```
-
+```{block2 echo=FALSE}
 Finally, we define a scalar. A scalar is just a number, which we call a scalar because we want to distinguish it from vectors and matrices. We usually use lower case and don't bold. In the next section, we will understand why we make this distinction.
-
+```
+&emsp;&emsp;最后，我们定义一个标量。标量就是一个数字，之所以称之为标量是因为我们想要把它和向量以及矩阵区分开。我们通常用小写，不加粗的方式来表示。在下一节中，我们将明白我们为什么要做出这样的一个区分。
 ## Matrix Operations
 
 In a previous section, we motivated the use of matrix algebra with this system of equations:

@@ -116,7 +116,7 @@ Note that we have a general number of predictors $p$. Matrix algebra provides a 
 ```{block2 echo=FALSE}
 #### Estimating parameters
 ```
-####参数估计
+#### 参数估计
 ```{block2 echo=FALSE}
 For the models above to be useful we have to estimate the unknown $\beta$ s. In the first example, we want to describe a physical process for which we can't have unknown parameters. In the second example, we better understand inheritance by estimating how much, on average, the father's height affects the son's height. In the final example, we want to determine if there is in fact a difference: if $\beta_1 \neq 0$. 
 ```
@@ -133,7 +133,7 @@ Once we find the minimum, we will call the values the least squares estimates (L
 ```{block2 echo=FALSE}
 #### Falling object example revisited
 ```
-####下落物体例子的重新审视
+#### 下落物体例子的重新审视
 ```{block2 echo=FALSE}
 Thanks to my high school physics teacher, I know that the equation for the trajectory of a falling object is: 
 ```
@@ -141,8 +141,8 @@ Thanks to my high school physics teacher, I know that the equation for the traje
 $$d = h_0 + v_0 t -  0.5 \times 9.8 t^2$$
 ```{block2 echo=FALSE}
 with $h_0$ and $v_0$ the starting height and velocity respectively. The data we simulated above followed this equation and added measurement error to simulate `n` observations for dropping the ball $(v_0=0)$ from the tower of Pisa $(h_0=56.67)$. This is why we used this code to simulate data:
-```
-&emsp;&emsp;$h_0$和$v_0$分别是开始的高度和速度。
+``` 
+&emsp;&emsp;$h_0$和$v_0$分别是开始的高度和速度。以上我们模拟的数据符合这个等式并且当球从比萨斜塔$(h_0=56.67)$下降$(v_0=0)$的时候，我们为观测值增加了测量误差`n`。这就是为什么我们使用以下代码来实现数据模拟。
 ```{r simulate_drop_data}
 g <- 9.8 ##meters per second
 n <- 25
@@ -150,46 +150,62 @@ tt <- seq(0,3.4,len=n) ##time in secs, t is a base function
 f <- 56.67  - 0.5*g*tt^2
 y <-  f + rnorm(n,sd=1)
 ```
-
+```{block2 echo=FALSE}
 Here is what the data looks like with the solid line representing the true trajectory:
-
+```
+&emsp;&emsp;这些看起来像实线的数据代表着球下落的真实轨迹。
 ```{r simulate_drop_data_with_fit, fig.cap="Fitted model for simulated data for distance travelled versus time of falling object measured with error."}
 plot(tt,y,ylab="Distance in meters",xlab="Time in seconds")
 lines(tt,f,col=2)
 ```
-
+```{block2 echo=FALSE}
 But we were pretending to be Galileo and so we don't know the parameters in the model. The data does suggest it is a parabola, so we model it as such:
-
+```
+&emsp;&emsp;但我们假装是伽利略,因此我们不知道在这个模型中的参数。这些数据表明它是一个抛物线，因此我们将其建模为这样：
 $$ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \varepsilon_i, i=1,\dots,n $$
-
+```{block2 echo=FALSE}
 How do we find the LSE?
-
+```
+&emsp;&emsp;我们如何得到最小二乘估计？
+```{block2 echo=FALSE}
 #### The `lm` function
-
+```
+#### `lm`函数
+```{block2 echo=FALSE}
 In R we can fit this model by simply using the `lm` function. We will describe this function in detail later, but here is a preview:
-
+```
+&emsp;&emsp;在R语言中，我们可以通过`lm`函数来符合这个模型。我们将在接下来详细的描述这个函数，但是这里给出了一个预览：
 ```{r}
 tt2 <-tt^2
 fit <- lm(y~tt+tt2)
 summary(fit)$coef
 ```
-
+```{block2 echo=FALSE}
 It gives us the LSE, as well as standard errors and p-values. 
-
+ ```
+ &emsp;&emsp;通过`lm`函数我们可以得到最小二乘估计以及标准误差及p-values。
+ ```{block2 echo=FALSE}
 Part of what we do in this section is to explain the mathematics behind this function. 
-
+```
+&emsp;&emsp;我们在这一节中所做的部分是用来解释这个函数背后的数学原理。
+```{block2 echo=FALSE}
 #### The least squares estimate (LSE)
-
+```
+#### 最小二乘估计 
+```{block2 echo=FALSE}
 Let's write a function that computes the RSS for any vector $\beta$:
+```
+&emsp;&emsp;让我写一个函数来计算任何向量$\beta$的和的平方根。
 ```{r}
 rss <- function(Beta0,Beta1,Beta2){
   r <- y - (Beta0+Beta1*tt+Beta2*tt^2)
   return(sum(r^2))
 }
 ```
-
+```{block2 echo=FALSE}
 So for any three dimensional vector we get an RSS. Here is a plot of the RSS as a function of $\beta_2$ when we keep the other two fixed:
-
+```
+&emsp;&emsp;任何的三维向量我们都可以计算其和的平方根。下面是当我们把另外两个向量固定的时候根据$\beta_2$绘制的和的平方根的图。
 ```{r rss_versus_estimate, fig.cap="Residual sum of squares obtained for several values of the parameters."}
 Beta2s<- seq(-10,0,len=100)
 plot(Beta2s,sapply(Beta2s,rss,Beta0=55,Beta1=0),
@@ -198,18 +214,23 @@ plot(Beta2s,sapply(Beta2s,rss,Beta0=55,Beta1=0),
 Beta2s<- seq(-10,0,len=100)
 lines(Beta2s,sapply(Beta2s,rss,Beta0=65,Beta1=0),col=2)
 ```
-
+```{block2 echo=FALSE}
 Trial and error here is not going to work. Instead, we can use calculus: take the partial derivatives, set them to 0 and solve. Of course, if we have many parameters, these equations can get rather complex. Linear algebra provides a compact and general way of solving this problem. 
-
-
+```
+&emsp;&emsp;这里的尝试和误差都不起作用。相反的，我们可以用微积分：取偏导数，把它们设为0并求解。当然，如果我们有许多的参数，这些方程可能变得相当复杂。线性代数提供了一种简洁而通用的方法来解决这一问题。
+```{block2 echo=FALSE}
 #### More on Galton (Advanced)
-
+```
+#### 更多关于高尔顿 （高级）
+```{block2 echo=FALSE}
 When studying the father-son data, Galton made a fascinating discovery using exploratory analysis.
-
+```
+&emsp;&emsp;当我们研究父子遗传的数据时，高尔顿通过探索性分析创造了一个有趣的发现。
 ![Galton's plot.](http://upload.wikimedia.org/wikipedia/commons/b/b2/Galton's_correlation_diagram_1875.jpg) 
-
+```{block2 echo=FALSE}
 He noted that if he tabulated the number of father-son height pairs and followed all the x,y values having the same totals in the table, they formed an ellipse. In the plot above, made by Galton, you see the ellipse formed by the pairs having 3 cases. This then led to modeling this data as correlated bivariate normal which we described earlier: 
-
+```
+&emsp;&emsp;他指出，如果将父亲与儿子的身高对制成表格，并且所有的x,y值在表格中都有相同的总数，它们可以形成一个椭圆形。在上面由高尔顿制作的图中，你可以看到由两对组成的椭圆由三种情况。然后可以通过将此数据建模为我们之前描述的二元正态相关。
 $$ 
 Pr(X<a,Y<b) =
 $$
@@ -226,24 +247,36 @@ $$
 \right\}
 }
 $$
-
+```{block2 echo=FALSE}
 We described how we can use math to show that if you keep $X$ fixed (condition to be $x$) the distribution of $Y$ is normally distributed with mean: $\mu_x +\sigma_y \rho \left(\frac{x-\mu_x}{\sigma_x}\right)$ and standard deviation $\sigma_y \sqrt{1-\rho^2}$. Note that $\rho$ is the correlation between $Y$ and $X$, which implies that if we fix $X=x$, $Y$ does in fact follow a linear model. The $\beta_0$ and $\beta_1$ parameters in our simple linear model can be expressed in terms of $\mu_x,\mu_y,\sigma_x,\sigma_y$, and $\rho$.
-
-
+```
+&emsp;&emsp;我们描述了如何利用公式来展示如果我们保持$X$固定，那么$Y$的分布和其均值$\mu_x +\sigma_y \rho \left(\frac{x-\mu_x}{\sigma_x}\right)$以及标准偏差是正态分布的。请注意，$\rho$是$Y$和$X$系数，它意味着如果我们固定$X=x$，那么$Y$实际上是遵循线性模型的。在我们简单的线性模型中的参数$\beta_0$ and $\beta_1$，可以用$\mu_x,\mu_y,\sigma_x,\sigma_y$, and $\rho$来表示。
+```{block2 echo=FALSE}
 ## Matrix Notation
-
+```
+## 矩阵符号
+```{block2 echo=FALSE}
 Here we introduce the basics of matrix notation. Initially this may seem over-complicated, but once we discuss examples, you will appreciate the power of using this notation to both explain and derive solutions, as well as implement them as R code. 
-
+```
+&emsp;&emsp;在这一章中我们将介绍矩阵符号的基本知识。起初这看起来似乎过于复杂，但是一旦我们讨论例子，你将会领会利用这个符号来解释和推导出解决方案的能力，并且将它们作为R代码来实现。
+```{block2 echo=FALSE}
 #### The language of linear models
-
+```
+#### 线性模型的语言
+```{block2 echo=FALSE}
 Linear algebra notation actually simplifies the mathematical descriptions and manipulations of linear models, as well as coding in R. We will discuss the basics of this notation and then show some examples in R.
 
 The main point of this entire exercise is to show how we can write the models above using matrix notation, and then explain how this is useful for solving the least squares equation. We start by simply defining notation and matrix multiplication, but bear with us since we eventually get back to the practical application.
-
+```
+&emsp;&emsp;线性代数符号实际上是数学描述和操作线性模型的简化形式，就像R语言的代码。我们将讨论这个符号的基本知识并且使用R语言来展示一些例子。整个练习的要点是展示如何使用矩阵符号写出上面的几个模型，并且解释它是如何有效来解最小二乘方程的。我们从简单定义符号和矩阵乘法开始，但是请忍受我们，因为我们最终还是回到了实际应用。
+```{block2 echo=FALSE}
 ## Solving Systems of Equations
-
+```
+## 求解系统方程
+```{block2 echo=FALSE}
 Linear algebra was created by mathematicians to solve systems of linear equations such as this:
-
+```
+&emsp;&emsp;线性代数是由数学家创造的用来求解线性方程方程式组，就像下面的例子：
 $$
 \begin{align*}
 a + b + c &= 6\\
@@ -251,9 +284,10 @@ a + b + c &= 6\\
 2a + b  - c &= 1
 \end{align*}
 $$
-
+```{block2 echo=FALSE}
 It provides very useful machinery to solve these problems generally. We will learn how we can write and solve this system using matrix algebra notation:
-
+```
+&emsp;&emsp;它为解决这些问题提供了非常有用的机制。我们将学习如何用矩阵代数符号来书写和求解这个方程组。
 $$ 
 \,
 \begin{pmatrix}
@@ -288,9 +322,10 @@ c
 1
 \end{pmatrix}
 $$
-
+```{block2 echo=FALSE}
 This section explains the notation used above. It turns out that we can borrow this notation for linear models in statistics as well.
-
+```
+&emsp;&emsp;本节解释了上面所使用的符号。这证明了我们也可以用这个符号来表示统计中的线性模型。
 ## Vectors, Matrices, and Scalars
 
 In the falling object, father-son heights, and mouse weight examples, the random variables associated with the data were represented by $Y_1,\dots,Y_n$. We can think of this as a vector. In fact, in R we are already doing this:

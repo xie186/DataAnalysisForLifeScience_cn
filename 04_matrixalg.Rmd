@@ -430,10 +430,14 @@ head(X)
 Finally, we define a scalar. A scalar is just a number, which we call a scalar because we want to distinguish it from vectors and matrices. We usually use lower case and don't bold. In the next section, we will understand why we make this distinction.
 ```
 &emsp;&emsp;最后，我们定义一个标量。标量就是一个数字，之所以称之为标量是因为我们想要把它和向量以及矩阵区分开。我们通常用小写，不加粗的方式来表示。在下一节中，我们将明白我们为什么要做出这样的一个区分。
+```{block2 echo=FALSE}
 ## Matrix Operations
-
+```
+## 矩阵运算
+```{block2 echo=FALSE}
 In a previous section, we motivated the use of matrix algebra with this system of equations:
-
+```
+&emsp;&emsp;在前一章节中，我们用下面的这个系统方程来激发了对矩阵代数的使用：
 
 $$
 \begin{align*}
@@ -442,9 +446,10 @@ a + b + c &= 6\\
 2a + b  - c &= 1
 \end{align*}
 $$
-
+```{block2 echo=FALSE}
 We described how this system can be rewritten and solved using matrix algebra:
-
+```
+我们描述了如何使用矩阵代数来重写和求解这个系统：
 $$
 \,
 \begin{pmatrix}
@@ -479,14 +484,18 @@ c
 1
 \end{pmatrix}
 $$
-
+```{block2 echo=FALSE}
 Having described matrix notation, we will explain the operation we perform with them. For example, above we have matrix multiplication and we also have a symbol representing the inverse of a matrix. The importance of these operations and others will become clear once we present specific examples related to data analysis.
- 
-
+ ```
+ &emsp;&emsp;之前已经对矩阵有了相关的描述，接下来，我们将解释如何来操纵它们。例如：上面我们已经构建的矩阵乘法和我们也有了一个表示逆矩阵的符号。一旦我们提供了与数据分析相关的具体例子，这些以及其他的重要操作将会变得清晰起来。
+```{block2 echo=FALSE}
 #### Multiplying by a scalar
-
+```
+#### 标量的乘法
+```{block2 echo=FALSE}
 We start with one of the simplest operations: scalar multiplication. If $a$ is scalar and $\mathbf{X}$ is a matrix, then:
-
+```
+&emsp;&emsp;我们从最简单的一个操作开始：标量乘法。如果$a$是一个标量， $\mathbf{X}$ 是一个矩阵，那么：
 
 $$
 \mathbf{X} = \begin{pmatrix}
@@ -503,9 +512,10 @@ a \mathbf{X} =
   a x_{N,1} & \dots & a  x_{N,p}
 \end{pmatrix}
 $$
-
+```{block2 echo=FALSE}
 R automatically follows this rule when we multiply a number by a matrix using `*`:
-
+```
+当我们用`*`来表示一个数字乘以一个矩阵时，R会自动遵循这个规则：
 ```{r}
 X <- matrix(1:12,4,3)
 print(X)
@@ -513,12 +523,14 @@ a <- 2
 print(a*X)
 ```
 
-
+```{block2 echo=FALSE}
 #### The transpose
-
+```
+#### 转置
+```{block2 echo=FALSE}
 The transpose is an operation that simply changes columns to rows. We use a $\top$ to denote a transpose. The technical definition is as follows: if X is as we defined it above, here is the transpose which will be $p\times N$:
-
-
+```
+&emsp;&emsp;转置是一个简单地将列更改为行的操作。我们利用$\top$来声明一个转置。技术上的定义如下所示：如果X是和我们上面定义的矩阵一样，在这里我们用$p\times N$来表示其转置矩阵：
 $$
 \mathbf{X} = \begin{pmatrix}
   x_{1,1}&\dots & x_{1,p} \\
@@ -533,19 +545,23 @@ $$
   x_{1,N}&\dots & x_{p,N} 
   \end{pmatrix}
 $$
-
+```{block2 echo=FALSE}
 In R we simply use `t`:
-
+```
+在R语言中我们只需简单是使用`t`就可以完成：
 ```{r}
 X <- matrix(1:12,4,3)
 X
 t(X)
 ```
-
+```{block2 echo=FALSE}
 #### Matrix multiplication
-
+```
+#### 矩阵乘法
+```{block2 echo=FALSE}
 We start by describing the matrix multiplication shown in the original system of equations example:
-
+```
+&emsp;&emsp;我们首先从描述原始系统方程实例中所示的矩阵乘法开始：
 $$
 \begin{align*}
 a + b + c &=6\\
@@ -553,7 +569,7 @@ a + b + c &=6\\
 2a + b  - c &= 1
 \end{align*}
 $$
-
+```{block2 echo=FALSE}
 What we are doing is multiplying the rows of the first matrix by the columns of the second. Since the second matrix only has one column, we perform this multiplication by doing the following:
 
 $$
@@ -574,7 +590,7 @@ a + b + c \\
 2a + b  - c 
 \end{pmatrix}
 $$
-
+```{block2 echo=FALSE}
 Here is a simple example. We can check to see if `abc=c(3,2,1)` is a solution:
 
 ```{r}

@@ -174,7 +174,7 @@ How do we find the LSE?
 ```{block2 echo=FALSE}
 In R we can fit this model by simply using the `lm` function. We will describe this function in detail later, but here is a preview:
 ```
-&emsp;&emsp;在R语言中，我们可以通过`lm`函数来符合这个模型。我们将在接下来详细的描述这个函数，但是这里给出了一个预览：
+&emsp;&emsp;在R中，我们可以通过`lm`函数来符合这个模型。我们将在接下来详细的描述这个函数，但是这里给出了一个预览：
 ```{r}
 tt2 <-tt^2
 fit <- lm(y~tt+tt2)
@@ -268,7 +268,7 @@ Linear algebra notation actually simplifies the mathematical descriptions and ma
 
 The main point of this entire exercise is to show how we can write the models above using matrix notation, and then explain how this is useful for solving the least squares equation. We start by simply defining notation and matrix multiplication, but bear with us since we eventually get back to the practical application.
 ```
-&emsp;&emsp;线性代数符号实际上是数学描述和操作线性模型的简化形式，就像R语言的代码。我们将讨论这个符号的基本知识并且使用R语言来展示一些例子。整个练习的要点是展示如何使用矩阵符号写出上面的几个模型，并且解释它是如何有效来解最小二乘方程的。我们从简单定义符号和矩阵乘法开始，但是请忍受我们，因为我们最终还是回到了实际应用。
+&emsp;&emsp;线性代数符号实际上是数学描述和操作线性模型的简化形式，就像R的代码。我们将讨论这个符号的基本知识并且使用R来展示一些例子。整个练习的要点是展示如何使用矩阵符号写出上面的几个模型，并且解释它是如何有效来解最小二乘方程的。我们从简单定义符号和矩阵乘法开始，但是请忍受我们，因为我们最终还是回到了实际应用。
 ```{block2 echo=FALSE}
 ## Solving Systems of Equations
 ```
@@ -333,7 +333,7 @@ This section explains the notation used above. It turns out that we can borrow t
 ```{block2 echo=FALSE}
 In the falling object, father-son heights, and mouse weight examples, the random variables associated with the data were represented by $Y_1,\dots,Y_n$. We can think of this as a vector. In fact, in R we are already doing this:
 ```
-&emsp;&emsp;在下落物体、父亲和儿子升高以及老鼠体重的例子中，与这些数据相关的随机变量我们用$Y_1,\dots,Y_n$来表示。我们可以认为这些数据为一个向量。实际上，在R语言中我们已经做了相关的工作。
+&emsp;&emsp;在下落物体、父亲和儿子升高以及老鼠体重的例子中，与这些数据相关的随机变量我们用$Y_1,\dots,Y_n$来表示。我们可以认为这些数据为一个向量。实际上，在R中我们已经做了相关的工作。
 ```{r,message=FALSE}
 data(father.son,package="UsingR")
 y=father.son$fheight
@@ -387,7 +387,7 @@ $$
 ```{block2 echo=FALSE}
 This matrix has dimension $N \times 2$. We can create this matrix in R this way:
 ```
-&emsp;&emsp;这个矩阵的维度是$N \times 2$。我们可以用R语言的方式来创建这个矩阵：
+&emsp;&emsp;这个矩阵的维度是$N \times 2$。我们可以用R的方式来创建这个矩阵：
 ```{r}
 n <- 25
 tt <- seq(0,3.4,len=n) ##time in secs, t is a base function
@@ -410,7 +410,7 @@ $$
 ```{block2 echo=FALSE}
 Just as an example, we show you how to make one in R now using `matrix` instead of `cbind`:
 ```
-&emsp;&emsp;举个例子，我们将展示在R语言中如何使用`matrix` 而不是 `cbind`来创建矩阵：
+&emsp;&emsp;举个例子，我们将展示在R中如何使用`matrix` 而不是 `cbind`来创建矩阵：
 ```{r}
 N <- 100; p <- 5
 X <- matrix(1:(N*p),N,p)
@@ -420,7 +420,7 @@ dim(X)
 ```{block2 echo=FALSE}
 By default, the matrices are filled column by column. The `byrow=TRUE` argument lets us change that to row by row:
 ```
-&emsp;&emsp;默认的，在R语言中矩阵是按列填充的。参数`byrow=TRUE`能够让我们以按行填充的方式来创建矩阵。
+&emsp;&emsp;默认的，在R中矩阵是按列填充的。参数`byrow=TRUE`能够让我们以按行填充的方式来创建矩阵。
 ```{r}
 N <- 100; p <- 5
 X <- matrix(1:(N*p),N,p,byrow=TRUE)
@@ -548,7 +548,7 @@ $$
 ```{block2 echo=FALSE}
 In R we simply use `t`:
 ```
-在R语言中我们只需简单是使用`t`就可以完成：
+在R中我们只需简单是使用`t`就可以完成：
 ```{r}
 X <- matrix(1:12,4,3)
 X
@@ -692,7 +692,7 @@ $$
 ```{block2 echo=FALSE}
 In R you can form an identity matrix this way:
 ```
-在R语言中你可以这样来创建一个单位矩阵：
+在R中你可以这样来创建一个单位矩阵：
 ```{r}
 n <- 5 #pick dimensions
 diag(n)
@@ -706,7 +706,7 @@ The inverse of matrix $X$, denoted with $X^{-1}$, has the property that, when mu
 
 As we will see when we get to the section on applications to linear models, being able to compute the inverse of a matrix is quite useful. A very convenient aspect of R is that it includes a predefined function `solve` to do this. Here is how we would use it to solve the linear of equations:
 ```
-&emsp;&emsp;矩阵$X$的逆矩阵用$X^{-1}$来表示，当相乘的时候，它有$X^{-1}X=I$相同的属性。当然，不是所有的矩阵都有逆矩阵。例如，当一个$2\times 2$ 的矩阵与一个数相乘时得到的所有的条目都没有逆矩阵。正如我们将看到的，我们到了关于线性模型的应用部分，能够计算矩阵的逆矩阵是非常有用的。R语言的一个非常便利的方面是它包含了一个预定义的函数`solve`来解决这个问题。下面我们就将演示如何用它来解线性方程。
+&emsp;&emsp;矩阵$X$的逆矩阵用$X^{-1}$来表示，当相乘的时候，它有$X^{-1}X=I$相同的属性。当然，不是所有的矩阵都有逆矩阵。例如，当一个$2\times 2$ 的矩阵与一个数相乘时得到的所有的条目都没有逆矩阵。正如我们将看到的，我们到了关于线性模型的应用部分，能够计算矩阵的逆矩阵是非常有用的。R的一个非常便利的方面是它包含了一个预定义的函数`solve`来解决这个问题。下面我们就将演示如何用它来解线性方程。
 ```{r}
 X <- matrix(c(1,3,2,1,-2,1,1,1,-1),3,3)
 y <- matrix(c(6,2,1),3,1)
@@ -716,16 +716,24 @@ solve(X)%*%y #equivalent to solve(X,y)
 Please note that `solve` is a function that should be used with caution as it is not generally numerically stable. We explain this in much more detail in the QR factorization section. 
 ```
 请注意，`solve` 是一个应该谨慎使用的函数，因为它一般不是数值稳定的。我们在将在QR因子分解部分更详细地解释了这一点。
-
+```{block2 echo=FALSE}
 ## Examples 
-
+```
+## 例子
+```{block2 echo=FALSE}
 Now we are ready to see how matrix algebra can be useful when analyzing data. We start with some simple examples and eventually arrive at the main one: how to write linear models with matrix algebra notation and solve the least squares problem.
+```
+&emsp;&emsp;现在我们已经准备好了，看看矩阵代数在分析数据时是如何使用的。我们从一些简单的例子开始，然后最终达到主要的目的：如何用矩阵代数的符号写出线性模型并能够解决最小二乘问题。
 
-
+```{block2 echo=FALSE}
 #### The average
+```
+#### 平均数
 
+```{block2 echo=FALSE}
 To compute the sample average and variance of our data, we use these formulas $\bar{Y}=\frac{1}{N} Y_i$ and $\mbox{var}(Y)=\frac{1}{N} \sum_{i=1}^N (Y_i - \bar{Y})^2$. We can represent these with matrix multiplication. First, define this $N \times 1$ matrix made just of 1s:
-
+```
+&emsp;&emsp;为了计算样本的平均值和方差，我们可以使用以下公式：$\bar{Y}=\frac{1}{N} Y_i$和$\mbox{var}(Y)=\frac{1}{N} \sum_{i=1}^N (Y_i - \bar{Y})^2$。我们可以用矩阵乘法来表示。首先，我们定义$N \times 1$的矩阵为1s：
 $$
 A=\begin{pmatrix}
 1\\
@@ -734,9 +742,10 @@ A=\begin{pmatrix}
 1
 \end{pmatrix}
 $$
-
+```{block2 echo=FALSE}
 This implies that:
-
+```
+这意味着：
 $$
 \frac{1}{N}
 \mathbf{A}^\top Y = \frac{1}{N}
@@ -750,9 +759,10 @@ Y_N
 \frac{1}{N} \sum_{i=1}^N Y_i
 = \bar{Y}
 $$
-
+```{block2 echo=FALSE}
 Note that we are multiplying by the scalar $1/N$. In R, we multiply matrix using `%*%`:
-
+```
+请注意，我们要乘以标量$1/N$。在R中，我们用`%*%`来计算矩阵的乘法。
 ```{r,message=FALSE}
 data(father.son,package="UsingR")
 y <- father.son$sheight
@@ -765,16 +775,19 @@ barY=t(A)%*%Y / N
 
 print(barY)
 ```
-
+```{block2 echo=FALSE}
 #### The variance
-
+```
+#### 方差
+```{block2 echo=FALSE}
 As we will see later, multiplying the transpose of a matrix with another is very common in statistics. In fact, it is so common that there is a function in R:
-
+```
+&emsp;&emsp;我们稍后将会看到，矩阵的转置乘以另一个矩阵在统计学中是很常见的。事实上，这是在R中很常见的一个函数。
 ```{r}
 barY=crossprod(A,Y) / N
 print(barY)
 ```
-
+```{block2 echo=FALSE}
 For the variance, we note that if:
 
 $$
@@ -786,24 +799,28 @@ Y_N - \bar{Y}
 \frac{1}{N} \mathbf{r}^\top\mathbf{r} = 
 \frac{1}{N}\sum_{i=1}^N (Y_i - \bar{Y})^2
 $$
-
+```{block2 echo=FALSE}
 In R, if you only send one matrix into `crossprod`, it computes: $r^\top r$ so we can simply type:
-
+```
+在R中，你只需将一个矩阵代入函数`crossprod`中，它将会执行：$r^\top r$，因此我们只需简单地输入：
 ```{r}
 r <- y - barY
 crossprod(r)/N
 ```
-
+```{block2 echo=FALSE}
 Which is almost equivalent to:
 ```{r}
 library(rafalib)
 popvar(y) 
 ```
-
+```{block2 echo=FALSE}
 #### Linear models
-
+```
+#### 线性模型
+```{block2 echo=FALSE}
 Now we are ready to put all this to use. Let's start with Galton's example. If we define these matrices:
- 
+ ```
+&emsp;&emsp;现在我们准备把之前的所学的知识都用上。让我们从高尔顿的例子开始。如果我们定义这些矩阵为：
 $$
 \mathbf{Y} = \begin{pmatrix}
 Y_1\\
@@ -832,9 +849,10 @@ Y_N
 $$
 
 
-
+```{block2 echo=FALSE}
 Then we can write the model:
-
+```
+然后我们可以写出以下模型：
 $$ 
 Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i, i=1,\dots,N 
 $$
@@ -867,27 +885,33 @@ Y_N
 \varepsilon_N
 \end{pmatrix}
 $$
-
+```{block2 echo=FALSE}
 or simply: 
-
+```
+或者简单地输入：
 $$
 \mathbf{Y}=\mathbf{X}\boldsymbol{\beta}+\boldsymbol{\varepsilon}
 $$
-
+```{block2 echo=FALSE}
 which is a much simpler way to write it. 
-
-
+```
+这是一种更简单的写法。
+```{block2 echo=FALSE}
 The least squares equation becomes simpler as well since it is the following cross-product:
-
+```
+由于它符合向量叉积的定义，因此最小二乘方程同样也变得更简单：
 $$
 (\mathbf{Y}-\mathbf{X}\boldsymbol{\beta})^\top
 (\mathbf{Y}-\mathbf{X}\boldsymbol{\beta})
 $$
-
+```{block2 echo=FALSE}
 So now we are ready to determine which values of $\beta$ minimize the above, which we  can do  using calculus to find the minimum. 
-
+```
+因此，现在我们已经准备好来确定哪一个值是$/beta$的最小值，我们可以通过使用微积分的方法来求最小值。
+```{block2 echo=FALSE}
 #### Advanced: Finding the minimum using calculus
-
+```
+#### 
 There are a series of rules that permit us to compute partial derivative equations in matrix notation. By equating the derivative to 0 and solving for the $\beta$, we will have our solution. The only one we need here tells us that the derivative of the above equation is:
 
 $$

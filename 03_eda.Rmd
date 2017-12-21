@@ -1,11 +1,14 @@
 ```{r,include=FALSE}
 set.seed(1)
 ```
-
+```{block2 echo=FALSE}
 # Exploratory Data Analysis
-
+```
+# 探索性数据分析
+```{block2 echo=FALSE}
 "The greatest value of a picture is when it forces us to notice what we never expected to see." -John W. Tukey
-
+·```
+&emsp;&emsp;“一个图片的最大价值在于它迫使我们注意到我们从未预料到的东西”  -John W. Tukey
 Biases, systematic errors and unexpected variability are common in
 data from the life sciences. Failure to discover these problems often
 leads to flawed analyses and false discoveries. As an example,

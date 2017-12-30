@@ -4,7 +4,7 @@
 # 入门指南
 In this book we will be using the [R programming language](https://cran.r-project.org/) for all our analysis. You will learn R and statistics simultaneously. However, we assume you have some basic programming skills and knowledge of R syntax. If you don't, your first homework, listed below, is to complete a tutorial. Here we give step-by-step instructions on how to get set up to follow along. 
 
-&emsp;&emsp;
+&emsp;&emsp;本书中我们的所有数据分析将基于R语言（https://cran.r-project.org/）。你在学习R语言的同时也将学习统计学。但是我们假设你已经具有一定的编程基础并且了解R语言基本语法。如果你尚不具备这些知识，我们建议你完成下面的教程。我们将手把手一步一步的教你建立和熟悉R环境。
 
 ```{{block2 echo = FALSE}}
 ## Installing R

@@ -2,7 +2,10 @@
 # Getting Started
 ```
 # 入门指南
+
+```{{block2 echo = FALSE}}
 In this book we will be using the [R programming language](https://cran.r-project.org/) for all our analysis. You will learn R and statistics simultaneously. However, we assume you have some basic programming skills and knowledge of R syntax. If you don't, your first homework, listed below, is to complete a tutorial. Here we give step-by-step instructions on how to get set up to follow along. 
+```
 
 &emsp;&emsp;本书中我们的所有数据分析将基于R语言（https://cran.r-project.org/）。你在学习R语言的同时也将学习统计学。但是我们假设你已经具有一定的编程基础并且了解R语言基本语法。如果你尚不具备这些知识，我们建议你完成下面的教程。我们将手把手一步一步的教你建立和熟悉R环境。
 
@@ -11,7 +14,7 @@ In this book we will be using the [R programming language](https://cran.r-projec
 ```
 
 ## 安装R
-
+```{{block2 echo = FALSE}}
 The first step is to install R. You can download and install R from
 the [Comprehensive R Archive Network](https://cran.r-project.org/)
 (CRAN). It is relatively straightforward, but if you need further help
@@ -20,6 +23,13 @@ you can try the following resources:
 * [Installing R on Windows](https://github.com/genomicsclass/windows#installing-r) 
 * [Installing R on Mac](http://youtu.be/Icawuhf0Yqo)
 * [Installing R on Ubuntu](http://cran.r-project.org/bin/linux/ubuntu/README)
+```
+
+第一步是R的安装。你可以从CRAN[Comprehensive R Archive Network]（https://cran.r-project.org/ ）免费下载和安装R。
+
+
+
+
 
 ## Installing RStudio
 
@@ -32,12 +42,17 @@ Windows we have special
 [instructions](https://github.com/genomicsclass/windows). 
 
 ## Learn R Basics
-
+```{{block2 echo = FALSE}}
 The first homework assignment is to complete an R tutorial to
 familiarize yourself with the basics of programming and R syntax. 
 To follow this book you should be familiar with the difference between lists (including data frames) and numeric vectors, for-loops, how to create functions, and how to use the `sapply` and `replicate` functions. 
+```
 
+
+```{{block2 echo = FALSE}}
 If you are already familiar with R, you can skip to the next section. Otherwise, you should go through the [swirl](http://swirlstats.com/) tutorial, which teaches you R programming and data science interactively, at your own pace and in the R console. Once you have R installed, you can install `swirl` and run it the following way: 
+```
+
 
 ```{r, eval=FALSE}
 install.packages("swirl")

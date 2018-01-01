@@ -7,7 +7,7 @@
 In this book we will be using the [R programming language](https://cran.r-project.org/) for all our analysis. You will learn R and statistics simultaneously. However, we assume you have some basic programming skills and knowledge of R syntax. If you don't, your first homework, listed below, is to complete a tutorial. Here we give step-by-step instructions on how to get set up to follow along. 
 ```
 
-&emsp;&emsp;本书中我们的所有数据分析将基于R语言（https://cran.r-project.org/）。你在学习R语言的同时也将学习统计学。但是我们假设你已经具有一定的编程基础并且了解R语言基本语法。如果你尚不具备这些知识，我们建议你完成下面的教程。我们将手把手一步一步的教你建立和熟悉R环境。
+&emsp;&emsp;本书中我们的所有数据分析将基于[R语言](https://cran.r-project.org/)。 你在学习R语言的同时也将学习统计学。但是我们假设你已经具有一定的编程基础并且了解R语言基本语法。如果你尚不具备这些知识，我们建议你完成下面的教程。我们将手把手一步一步的教你建立和熟悉R环境。
 
 ```{{block2 echo = FALSE}}
 ## Installing R
@@ -25,14 +25,16 @@ you can try the following resources:
 * [Installing R on Ubuntu](http://cran.r-project.org/bin/linux/ubuntu/README)
 ```
 
-第一步是R的安装。你可以从CRAN[Comprehensive R Archive Network]（https://cran.r-project.org/ ）免费下载和安装R。
+&emsp;&emsp;第一步是R的安装。你可以从[Comprehensive R Archive Network](https://cran.r-project.org/)（CRAN）免费下载和安装R。R的安装很简单，如果你需要帮助，请参考以下的安装说明：
+* [Windows环境下R的安装](https://github.com/genomicsclass/windows#installing-r)
+* [Mac环境下R的安装](http://youtu.be/Icawuhf0Yqo)
+* [Ubuntu环境下R的安装](http://cran.r-project.org/bin/linux/ubuntu/README)
 
-
-
-
-
+```{{block2 echo = FALSE}}
 ## Installing RStudio
-
+```
+## 安装RStudio
+```{{block2 echo = FALSE}}
 The next step is to install RStudio, a program for viewing and running
 R scripts. Technically you can run all the code shown here without
 installing RStudio, but we highly recommend this integrated
@@ -40,6 +42,11 @@ development environment (IDE). Instructions are
 [here](http://www.rstudio.com/products/rstudio/download/) and for
 Windows we have special
 [instructions](https://github.com/genomicsclass/windows). 
+```
+&emsp;&emsp;下一步是RStudio的安装。RStudio是目前R语言最好的集成开发环境（Integrated
+Development Environment，IDE），可以用来编辑和运行代码。你无需安装RStudio就可以运行本书中所有的代码，但是我们强烈推荐你安装Rstudio。RStudio的安装程序可以在[此处](http://www.rstudio.com/products/rstudio/download/)下载。windows用户可以参考我们的详细[安装说明](https://github.com/genomicsclass/windows)。
+
+
 
 ## Learn R Basics
 ```{{block2 echo = FALSE}}

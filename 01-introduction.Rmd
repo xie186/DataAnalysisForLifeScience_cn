@@ -47,19 +47,22 @@ Windows we have special
 Development Environment，IDE），可以用来编辑和运行代码。你无需安装RStudio就可以运行本书中所有的代码，但是我们强烈推荐你安装Rstudio。RStudio的安装程序可以在[此处](http://www.rstudio.com/products/rstudio/download/)下载。windows用户可以参考我们的详细[安装说明](https://github.com/genomicsclass/windows)。
 
 
-
+```{{block2 echo = FALSE}}
 ## Learn R Basics
+```
+## R语言基础入门
 ```{{block2 echo = FALSE}}
 The first homework assignment is to complete an R tutorial to
 familiarize yourself with the basics of programming and R syntax. 
 To follow this book you should be familiar with the difference between lists (including data frames) and numeric vectors, for-loops, how to create functions, and how to use the `sapply` and `replicate` functions. 
 ```
+&emsp;&emsp;第一个作业是通过完成一个R教程来熟悉编程基础和R语言的基本语法。你应该熟悉列表（包括数据框）和数字向量之间的不同，for循环，如何创建函数，以及如何使用‘sapply’和‘replicate’函数。
 
 
 ```{{block2 echo = FALSE}}
 If you are already familiar with R, you can skip to the next section. Otherwise, you should go through the [swirl](http://swirlstats.com/) tutorial, which teaches you R programming and data science interactively, at your own pace and in the R console. Once you have R installed, you can install `swirl` and run it the following way: 
 ```
-
+&emsp;&emsp;如果你已经熟悉R语言，你可以直接跳到下一节。否则，你应该以自己的步调在R控制台中完成[swirl](http://swirlstats.com/)教程，它通过交互方式教你R编程和数据科学。一旦你安装了R，你就可以按以下方式安装和运行‘swirl’：
 
 ```{r, eval=FALSE}
 install.packages("swirl")
@@ -67,22 +70,34 @@ library(swirl)
 swirl()
 ```
 
-Alternatively you can take the [try R](http://tryr.codeschool.com/) interactive class from Code School. 
-
+```{{block2 echo = FALSE}}
+Alternatively you can take the [try R](http://tryr.codeschool.com/) interactive class from Code School.
 There are also many open and free resources and reference
 guides for R. Two examples are:
 
 * [Quick-R](http://www.statmethods.net/): a quick online reference for data input, basic statistics and plots
 * R reference card (PDF)[https://cran.r-project.org/doc/contrib/Short-refcard.pdf] by Tom Short 
+```
+&emsp;&emsp;或者，你可以参加Code School的[尝试R](http://tryr.codeschool.com/)互动课程。除此之外，还有许多开放和免费的资源和参考资料。
+比如下面的两个例子：
+* [Quick-R](http://www.statmethods.net/)：R数据输入，基本统计和图表的快速在线参考
+* [R参考卡片(PDF)][https://cran.r-project.org/doc/contrib/Short-refcard.pdf] Tom Short 著
 
+```{{block2 echo = FALSE}}
 Two key things you need to know about R is that you can get help for a function using `help` or `?`, like this:
+```
+&emsp;&emsp;
+
 ```{r,eval=FALSE}
 ?install.packages
 help("install.packages")
 ```
 
+```{{block2 echo = FALSE}}
 and the hash character represents comments, so text following these
 characters is not interpreted:
+```
+&emsp;&emsp;
 
 ```{r}
 ##This is just a comment

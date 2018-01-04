@@ -86,7 +86,7 @@ guides for R. Two examples are:
 ```{{block2 echo = FALSE}}
 Two key things you need to know about R is that you can get help for a function using `help` or `?`, like this:
 ```
-&emsp;&emsp;
+&emsp;&emsp;你需要知道的关于R的两个关键的事情是你可以使用‘help’或‘?’来获得函数的帮助，如下所示：
 
 ```{r,eval=FALSE}
 ?install.packages
@@ -97,14 +97,17 @@ help("install.packages")
 and the hash character represents comments, so text following these
 characters is not interpreted:
 ```
-&emsp;&emsp;
+&emsp;&emsp;而‘#’字符代表注释，所以‘#’字符以后的文字将不被执行：
 
 ```{r}
 ##This is just a comment
 ```
 
+```{{block2 echo = FALSE}}
 ## Installing Packages
-
+```
+## 包的安装
+```{{block2 echo = FALSE}}
 The first R command we will run is `install.packages`. If you took the
 `swirl` tutorial you should have already done this. R only includes a basic set of
 functions. It can do much more than this, but not everybody needs
@@ -115,10 +118,13 @@ a dedicated maintainer. You can easily install packages from within R if you kno
 the name of the packages. As an example, we are going to install the
 package `rafalib` which we use in our first data
 analysis examples: 
+```
+&emsp;&emsp;我们要运行的第一个R命令是‘install.packages’。如果你完成了‘swirl’教程，你应该已经学习了这个命令。由于不是每个人都需要所有的包，R默认仅安装基本的包。用户可以根据自己的需要，选择和安装不同功能的包来扩展R的功能。这些包通常都存储在[CRAN](https://cran.r-project.org/)，而且已经被审查过是否有常见的错误，是否有一个专门的维护者。如果你知道你要安装的包的名字，那么安装将非常简单。你只需要在R里运行‘install.packages’命令即可。比如‘rafalib’包的安装，这个包
 
 ```{r,eval=FALSE}
 install.packages("rafalib")
 ```
+
 
 We can then load the package into our R sessions using the `library` function:
 

@@ -125,9 +125,10 @@ analysis examples:
 install.packages("rafalib")
 ```
 
-
+```{{block2 echo = FALSE}}
 We can then load the package into our R sessions using the `library` function:
-
+```
+&emsp;&emsp;
 ```{r}
 library(rafalib)
 ```

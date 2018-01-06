@@ -128,16 +128,21 @@ install.packages("rafalib")
 ```{{block2 echo = FALSE}}
 We can then load the package into our R sessions using the `library` function:
 ```
-&emsp;&emsp;
+&emsp;&emsp;然后我们就可以使用‘library’函数将这个包加载到当前的R会话中使用。
 ```{r}
 library(rafalib)
 ```
 
+```{{block2 echo = FALSE}}
 From now on you will see that we sometimes load packages without
 installing them. This is because once you install the package, it
 remains in place and only needs to be loaded with `library`. If you
 try to load a package and get an error, it probably means you need to
 install it first.
+```
+
+&emsp;&emsp;从现在开始，你会发现我们有时直接加载包而不需要安装它们。这是因为一旦你安装了包，
+
 
 ## Importing Data into R
 

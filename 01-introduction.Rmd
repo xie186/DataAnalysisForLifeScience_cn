@@ -169,27 +169,49 @@ working with the data.
 We will start with a simple example dataset containing
 [female mouse weights](https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv).
 ```
-&emsp;&emsp;
+&emsp;&emsp;我们将从一个简单的数据开始。这是一个含有[母老鼠体重](https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv)的数据集。
 
-
+```{{block2 echo = FALSE}}
 The first step is to find the file containing your data and know its *path*. 
+```
+&emsp;&emsp;第一步是找到你要分析的数据文件和它在你电脑上的存储*路径*。
 
-
+```{{block2 echo = FALSE}}
 #### Paths and the Working Directory
+```
 
+#### 路径和工作目录
+
+```{{block2 echo = FALSE}}
 When you are working in R it is useful to know your _working directory_. This is the directory or folder in which R will save or look for files by default. You can see your working directory by typing:
+```
+&emsp;&emsp;当你用R分析数据时，知道你的_工作目录_是很有用的。R默认将文件保存在此目录或者从该目录查找文件。你可以通过输入如下的命令来获取你的工作目录：
 
 ```{r, eval=FALSE}
 getwd()
 ```
-
+```{{block2 echo = FALSE}}
 You can also change your working directory using the function `setwd`. Or you can change it through RStudio by clicking on "Session". 
+```
 
+&emsp;&emsp;改变工作目录，你需要使用‘setwd’函数或者通过RStudio里的‘会话’菜单来更改。
+
+```{{block2 echo = FALSE}}
 The functions that read and write files (there are several in R) assume you mean to look for files or write files in the working directory. Our recommended approach for beginners will have you reading and writing to the working directory. However, you can also type the [full path](http://www.computerhope.com/jargon/a/absopath.htm), which will work independently of the working directory.
+```
+&emsp;&emsp;
 
+
+```{{block2 echo = FALSE}}
 #### Projects in RStudio
+```
 
+#### RStudio中的项目
+
+```{{block2 echo = FALSE}}
 We find that the simplest way to organize yourself is to start a Project in RStudio (Click on "File" and "New Project"). When creating the project, you will select a folder to be associated with it. You can then download all your data into this folder. Your working directory will be this folder.
+```
+
 
 #### Option 1: Read file over the Internet
 You can navigate to the `femaleMiceWeights.csv` file by visiting the

@@ -199,7 +199,7 @@ You can also change your working directory using the function `setwd`. Or you ca
 ```{{block2 echo = FALSE}}
 The functions that read and write files (there are several in R) assume you mean to look for files or write files in the working directory. Our recommended approach for beginners will have you reading and writing to the working directory. However, you can also type the [full path](http://www.computerhope.com/jargon/a/absopath.htm), which will work independently of the working directory.
 ```
-&emsp;&emsp;R语言中有几个在当前工作目录中查找和写入文件的函数。尽管你可以通过输入[完整路径](http://www.computerhope.com/jargon/a/absopath.htm)来取和写入文件，我们推荐初学者在当前工作目录下操作。
+&emsp;&emsp;R语言中有几个在当前工作目录中查找和写入文件的函数。尽管你可以通过输入[完整路径](http://www.computerhope.com/jargon/a/absopath.htm)来读取和写入文件，我们推荐初学者在当前工作目录下操作。
 
 ```{{block2 echo = FALSE}}
 #### Projects in RStudio

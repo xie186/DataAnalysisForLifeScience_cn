@@ -210,16 +210,28 @@ The functions that read and write files (there are several in R) assume you mean
 ```{{block2 echo = FALSE}}
 We find that the simplest way to organize yourself is to start a Project in RStudio (Click on "File" and "New Project"). When creating the project, you will select a folder to be associated with it. You can then download all your data into this folder. Your working directory will be this folder.
 ```
-&emsp;&emsp;
+&emsp;&emsp;在RStudio中新建一个项目是最简单的管理文件的方法（点击“文件”菜单，然后选择“新建项目”）。创建项目时，您将选择一个与之关联的文件夹。然后你就可以将所有数据下载到该文件夹中，而这个文件夹就是你的工作目录。
 
+```{{block2 echo = FALSE}}
 #### Option 1: Read file over the Internet
+```
+
+#### 选项1：通过互联网读取数据
+```{{block2 echo = FALSE}}
 You can navigate to the `femaleMiceWeights.csv` file by visiting the
 data directory of dagdata on
 [GitHub](https://github.com/genomicsclass/dagdata/tree/master/inst/extdata). If you navigate to the file, you need to click on *Raw* on the
 upper right hand corner of the page. 
+```
 
+&emsp;&emsp;“femaleMiceWeights.csv”这个文件保存在[GitHub](https://github.com/genomicsclass/dagdata/tree/master/inst/extdata)上的“dagdata”目录下。打开这个文件，然后点击页面you上角的“Raw”获取该文件的URL地址。
+
+```{{block2 echo = FALSE}}
 ![GitHub page screenshot.](images/handmade/screenshot1.png)
+```
+[GitHub页面截图](images/handmade/screenshot1.png)
 
+```{{block2 echo = FALSE}}
 Now you can copy and paste the URL and use this as the argument to `read.csv`.
 Here we break the URL into a base directory and a filename and then combine
 with `paste0` because the URL would otherwise be too long for the page.
@@ -227,6 +239,8 @@ We use `paste0` because we want to put the strings together as is, if you were
 specifying a file on your machine you should use the smarter function, `file.path`,
 which knows the difference between Windows and Mac file path connectors.
 You can specify the URL using a single string to avoid this extra step.
+```
+&emsp;&emsp;现在你可以复制并粘贴这个文件的URL，并将其作为‘read.csv’的参数。由于这个路径太长，这里我们首先将它分成两部分：基本路径和文件名，然后用‘pasre0’函数合并。如果你要读取你电脑上的一个文件，你应该用更智能的‘file.path’函数去构建文件路径。它知道Windows和Mac文件路径连接器的区别，可以使用单个字符串指定URL，从而避免这一额外的步骤。
 
 ```{r,message=FALSE}
 dir <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/"

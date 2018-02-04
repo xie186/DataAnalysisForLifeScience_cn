@@ -247,24 +247,37 @@ dir <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extd
 url <- paste0(dir, "femaleMiceWeights.csv")
 dat <- read.csv(url)
 ```
-
+```{{block2 echo = FALSE}}
 #### Option 2: Download file with your browser to your working directory
-
+```
+### 选项2：通过浏览器下载文件到当前工作目录
+```{{block2 echo = FALSE}}
 There are reasons for wanting to keep a local copy of the file. For example, you may want to run the analysis while not connected to the Internet or you may want to ensure reproducibility regardless of the file being available on the original site. To download the file, as in option 1, you can navigate to the `femaleMiceWeights.csv`. In this option we use your browser's "Save
 As" function to ensure that the downloaded file is in a CSV
 format. Some browsers add an extra suffix to your filename by
 default. You do not want this. You want your file to be named
 `femaleMiceWeights.csv`. Once you have this file in your working directory, then you can simply read it in like this:
+```
+&emsp;&emsp;有时候数据备份是很有必要的。比如，您可能希望在未连接到互联网的情况下进行分析，或者需要确保分析结果的可重复性。要下载文件，你需要如选项1所示那样，先导航到‘femaleMiceWeights.csv’这个文件，然后使用浏览器的“另存为”功能下载。下载完毕后，你需要确定文件格式和文件名是否正确。一些浏览器默认会添加额外的后缀到你的文件名。然后你可以用下面的简单命令读取它：
 
 ```{r,eval=FALSE}
 dat <- read.csv("femaleMiceWeights.csv")
 ```
-
+```{{block2 echo = FALSE}}
 If you did not receive any message, then you probably read in the file successfully.
+```
+&emsp;&emsp;如果你没有收到任何提示，那么您你可能已成功读入文件。
 
+```{{block2 echo = FALSE}}
 #### Option 3: Download the file from within R
-
+```
+### 选项3：通过R下载文件
+```{{block2 echo = FALSE}}
 We store many of the datasets used here on [GitHub](https://github.com/genomicsclass/). You can save these files directly from the Internet to your computer using R. In this example, we are using the `download.file` function in the `downloader` package to download the file to a specific location and then read it in. We can assign it a random name and a random directory using the function `tempfile`, but you can also save it in directory with the name of your choosing.
+```
+&emsp;&emsp;
+
+
 
 ```{r,message=FALSE}
 library(downloader) ##use install.packages to install

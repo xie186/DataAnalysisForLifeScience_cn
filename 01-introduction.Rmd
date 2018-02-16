@@ -266,7 +266,7 @@ dat <- read.csv("femaleMiceWeights.csv")
 ```{{block2 echo = FALSE}}
 If you did not receive any message, then you probably read in the file successfully.
 ```
-&emsp;&emsp;如果你没有收到任何提示，那么您你可能已成功读入文件。
+&emsp;&emsp;如果你没有收到任何提示，那么您可能已成功读入文件。
 
 ```{{block2 echo = FALSE}}
 #### Option 3: Download the file from within R
@@ -275,9 +275,7 @@ If you did not receive any message, then you probably read in the file successfu
 ```{{block2 echo = FALSE}}
 We store many of the datasets used here on [GitHub](https://github.com/genomicsclass/). You can save these files directly from the Internet to your computer using R. In this example, we are using the `download.file` function in the `downloader` package to download the file to a specific location and then read it in. We can assign it a random name and a random directory using the function `tempfile`, but you can also save it in directory with the name of your choosing.
 ```
-&emsp;&emsp;
-
-
+&emsp;&emsp;许多本书中用到的数据集保存在[GitHub](https://github.com/genomicsclass/)。你可以使用R直接将它们下载到你的电脑上。在接下来的例子中，我们使用‘downloader’包中的‘download.file’功能将文件下载到特定位置，然后将其读入。我们可以使用‘tempfile’功能为它随机分配一个名字和一个目录，但是你也可以用你选择的名字将它保存在文件夹中。
 
 ```{r,message=FALSE}
 library(downloader) ##use install.packages to install

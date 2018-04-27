@@ -19,6 +19,10 @@ Attribution-NoDerivs 2.0 Generic (CC BY-ND 2.0)
 
 ##  Introduction  {-}
 
+## 简介
+
+在二十世纪的下半叶，数字技术的革新带来了测量技术的革新，从而也大大的改变了科研领域。在生命科学领域，数据分析已经是科研项目中的家常便饭了。尤其是基因组学，新的技术使得我们们能够观察到我们过去没有办法观察到的特定的。显微镜的发明使得我们能够鉴定新的微生物，而近些年的新技术技术引领我们发现更多生命科学的奥秘，而这些发现不亚于之前显微镜发明帮助我们
+
 The unprecedented advance in digital technology during the second half
 of the 20th century has produced a measurement revolution that is
 transforming science. In the life sciences, data analysis is now part

@@ -25,7 +25,7 @@
 <meta name="author" content="作者：Rafael A. Irizarry; Mike I. Love 翻译：张三 李四 麻子">
 
 
-<meta name="date" content="2018-04-27">
+<meta name="date" content="2018-04-30">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -109,7 +109,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="0.1" data-path="acknowledgments.html"><a href="acknowledgments.html#section-0.1"><i class="fa fa-check"></i><b>0.1</b> 简介</a></li>
 <li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#who-will-find-this-book-useful"><i class="fa fa-check"></i>Who Will Find This Book Useful?</a></li>
 <li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#what-does-this-book-cover"><i class="fa fa-check"></i>What Does This Book Cover?</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#e8bf99e69cace4b9a6e58c85e590abe4bb80e4b988e58685e5aeb9efbc9f"><i class="fa fa-check"></i>这本书包含什么内容？</a></li>
 <li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#how-is-this-book-different"><i class="fa fa-check"></i>How Is This Book Different?</a></li>
+<li class="chapter" data-level="0.2" data-path="acknowledgments.html"><a href="acknowledgments.html#section-0.2"><i class="fa fa-check"></i><b>0.2</b> 这本书有什么不同？</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
 <li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#installing-r"><i class="fa fa-check"></i><b>1.1</b> Installing R</a></li>
@@ -260,20 +262,29 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="section-0.1" class="section level2">
 <h2><span class="header-section-number">0.1</span> 简介</h2>
-<p>在二十世纪的下半叶，数字技术的革新带来了测量技术的革新，从而也大大的改变了科研领域。在生命科学领域，数据分析已经是科研项目中的家常便饭了。尤其是基因组学，新的技术使得我们们能够观察到我们过去没有办法观察到的特定的。显微镜的发明使得我们能够鉴定新的微生物，而近些年的新技术技术引领我们发现更多生命科学的奥秘，而这些发现不亚于之前显微镜发明帮助我们</p>
 <p>The unprecedented advance in digital technology during the second half of the 20th century has produced a measurement revolution that is transforming science. In the life sciences, data analysis is now part of practically every research project. Genomics, in particular, is being driven by new measurement technologies that permit us to observe certain molecular entities for the first time. These observations are leading to discoveries analogous to identifying microorganisms and other breakthroughs permitted by the invention of the microscope. Choice examples of these technologies are microarrays and next generation sequencing.</p>
+<p>在二十世纪的下半叶，数字技术的革新带来了测量技术的革新，从而也大大的改变了科研领域。在生命科学领域，数据分析已经是科研项目中的家常便饭了。尤其是基因组学，新的技术使得我们们能够观察到我们过去没有办法观察到的特定的。历史上显微镜的发明使得我们能够鉴定新的微生物，而近些年的新技术技术引领我们发现更多生命科学的奥秘，而这些发现不亚于之前显微镜发明带给我们的帮助。这些技术中的代表就是芯片技术和下一代测序技术。</p>
 <p>Scientific fields that have traditionally relied upon simple data analysis techniques have been turned on their heads by these technologies. In the past, for example, researchers would measure the transcription levels of a single gene of interest. Today, it is possible to measure all 20,000+ human genes at once. Advances such as these have brought about a shift from hypothesis to discovery-driven research. However, interpreting information extracted from these massive and complex datasets requires sophisticated statistical skills as one can easily be fooled by patterns arising by chance. This has greatly elevated the importance of statistics and data analysis in the life sciences.</p>
+<p>这些技术使得一些传统的依赖简单的数据分析的科研领域发生了翻天覆地的变化。例如，过去科学家如果对某一个基因感兴趣。，可能会测量其表达量。今天，利用新的技术我们可以一次性测量超过2万个人类基因的表达量。以前我们的研究是受假设驱动的，技术进步使得科研领域从</p>
 </div>
 <div id="who-will-find-this-book-useful" class="section level2 unnumbered">
 <h2>Who Will Find This Book Useful?</h2>
 <p>This book was written with the many life science researchers who are becoming data analysts due to the increased reliance on data described above. If you are performing your own analysis you have probably computed p-values, applied Bonferroni corrections, performed principal component analysis, made a heatmap, or used one or more of the techniques listed in the next section. If you don’t quite understand what these techniques are actually doing or if you are not sure if you are using them appropriately, this book is for you.</p>
+<p>由于越来越多的研究开始依赖于上面我们提到的数据，许多生命科学领域的科研工作者开始转变成数据分析专家。这本书就是由这样的一批科研工作者写的。如果你自己分析自己的数据，那么你很可能会计算P值，应用Bonferroni矫正，进行主成分分析，产生一个热图等等。如果你发现你并不是十分理解这些技术，或者你不确定你应用这些技术时是否恰当，那么这本书就是为你写的。</p>
 <p>Although the content of the book is mostly focused on advanced statistical concepts we start by covering the basics to make sure all readers have a strong grounding on the fundamental statistical concepts required for all data analysis. I find that many introductory statistics courses are taught in a way that makes it hard to relate the concepts to data analysis. Our approach ensures that you learn the connection between practice and theory. For this reason, the first two chapters, Inference and Exploratory Data Analysis, are appropriate for an introductory undergraduate statistics or data science course. After these two chapters the level of statistical sophistication ramps up relatively fast.</p>
+<p>尽管这本书大部分是着重于高级的统计概念，但是我们是从最基本的知识开始的，从而确保所有的读者能够有一个扎实的数据分析的统计基础。我们发现许多基础统计课程的方式是读者很难讲概念性的东西和真正的数据分析联系起来。我们的方法会确保你能学习到实践和理论的结合。所以，前两章的内容（推断与探索性数据分析）适用于本科阶段的统计或者数据科学的入门课程。接着，统计的难度就会慢慢的增加。</p>
 <p>Although the typical reader of this book will have a masters or PhD, we try to keep the mathematical content at undergraduate introductory level. You do not need calculus to use this book. However, we do introduce and use linear algebra which is considered more advanced than calculus. By explaining linear algebra in context of data analysis we believe you will be able to learn the basics without knowing calculus. The harder part may be getting used to the symbols and notation. More on this below.</p>
+<p>尽管本书的读者通常会有硕士或者博士学位，我们会尽量将数学的内容保持在本科入门水平。这本书中你不需要用到微积分。然而，我们会介绍和使用线性代数，而线性代数通常被认为比微积分难的一门学科。但是我们会在数据分析的背景下来理解线性代数，我们相信在这种情况下，你可以在不懂微积分的情况下理解基础的线性代数知识。比较难的部分可能是你需要适应符号和公式。——–</p>
 </div>
 <div id="what-does-this-book-cover" class="section level2 unnumbered">
 <h2>What Does This Book Cover?</h2>
+</div>
+<div id="e8bf99e69cace4b9a6e58c85e590abe4bb80e4b988e58685e5aeb9efbc9f" class="section level2 unnumbered">
+<h2>这本书包含什么内容？</h2>
 <p>This book will cover several of the statistical concepts and data analytic skills needed to succeed in data-driven life science research. We go from relatively basic concepts related to computing p-values to advanced topics related to analyzing high-throughput data.</p>
+<p>这本书包含以数据为主的生命科学研究中的一些统计概念和数据分析的技巧。我们从简单的P值计算开始，一步步到分析高通量数据的高级内容。</p>
 <p>We start with one of the most important topics in statistics and in the life sciences: statistical inference. Inference is the use of probability to learn population characteristics from data. A typical example is deciphering if two groups (for example, cases versus controls) are different on average. Specific topics covered include the t-test, confidence intervals, association tests, Monte Carlo methods, permutation tests and statistical power. We make use of approximations made possible by mathematical theory, such as the Central Limit Theorem, as well as techniques made possible by modern computing. We will learn how to compute p-values and confidence intervals and implement basic data analyses. Throughout the book we will describe visualization techniques in the statistical computer language <em>R</em> that are useful for exploring new datasets. For example, we will use these to learn when to apply robust statistical techniques.</p>
+<p>我们首先会介绍统计和生命科学领域中的一个最重要的内容：统计推断。统计推断是利用概率来掌握数据的群体特征。一个经典的例子是判断两组数据的均值是否有差异。其他的内容包括t检验，置信区间，联想测验（association test），蒙特卡洛方法，置换检验和统计效力。数学理论使得我们可以利用样本的近似值，</p>
 <p>We will then move on to an introduction to linear models and matrix algebra. We will explain why it is beneficial to use linear models to analyze differences across groups, and why matrices are useful to represent and implement linear models. We continue with a review of matrix algebra, including matrix notation and how to multiply matrices (both on paper and in R). We will then apply what we covered on matrix algebra to linear models. We will learn how to fit linear models in R, how to test the significance of differences, and how the standard errors for differences are estimated. Furthermore, we will review some practical issues with fitting linear models, including collinearity and confounding. Finally, we will learn how to fit complex models, including interaction terms, how to contrast multiple terms in R, and the powerful technique which the functions in R actually use to stably fit linear models: the QR decomposition.</p>
 <p>In the third part of the book we cover topics related to high-dimensional data. Specifically, we describe multiple testing, error rate controlling procedures, exploratory data analysis for high-throughput data, p-value corrections and the false discovery rate. From here we move on to covering statistical modeling. In particular, we will discuss parametric distributions, including binomial and gamma distributions. Next, we will cover maximum likelihood estimation. Finally, we will discuss hierarchical models and empirical Bayes techniques and how they are applied in genomics.</p>
 <p>We then cover the concepts of distance and dimension reduction. We will introduce the mathematical definition of distance and use this to motivate the singular value decomposition (SVD) for dimension reduction and multi-dimensional scaling. Once we learn this, we will be ready to cover hierarchical and k-means clustering. We will follow this with a basic introduction to machine learning.</p>
@@ -281,7 +292,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="how-is-this-book-different" class="section level2 unnumbered">
 <h2>How Is This Book Different?</h2>
+</div>
+<div id="section-0.2" class="section level2">
+<h2><span class="header-section-number">0.2</span> 这本书有什么不同？</h2>
 <p>While statistics textbooks focus on mathematics, this book focuses on using a computer to perform data analysis. This book follows the approach of <a href="https://www.stat.berkeley.edu/~statlabs/">Stat Labs</a>, by Deborah Nolan and Terry Speed. Instead of explaining the mathematics and theory, and then showing examples, we start by stating a practical data-related challenge. This book also includes the computer code that provides a solution to the problem and helps illustrate the concepts behind the solution. By running the code yourself, and seeing data generation and analysis happen live, you will get a better intuition for the concepts, the mathematics, and the theory.</p>
+<p>通常统计相关的课本重点放在数学公式上，这本书重点是利用计算机来进行数据分析。这本书所遵循的方法与Deborah Nolan和Terry Speed所著的<a href="https://www.stat.berkeley.edu/~statlabs/">Stat Labs</a>是一样的。通常统计课本是先解释数学和理论知识，然后展示例子，我们是从一个具体的实践中会遇到的数据分析问题开始。这本书也包含解决这些问题的具体的R代码，这些代码可以帮助读者理解解决方法。</p>
 <p>We focus on the practical challenges faced by data analysts in the life sciences and introduce mathematics as a tool that can help us achieve scientific goals. Furthermore, throughout the book we show the R code that performs this analysis and connect the lines of code to the statistical and mathematical concepts we explain. All sections of this book are reproducible as they were made using <em>R markdown</em> documents that include R code used to produce the figures, tables and results shown in the book. In order to distinguish it, the code is shown in the following font:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">2</span> 
 y &lt;-<span class="st"> </span><span class="dv">3</span> 

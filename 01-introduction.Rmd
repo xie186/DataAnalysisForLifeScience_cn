@@ -37,11 +37,23 @@ The first step is to install R. You can download and install R from the [Compreh
 
 ## 安装Rstudio
 
+```{block2 echo = FALSE}
 The next step is to install RStudio, a program for viewing and running R scripts. Technically you can run all the code shown here without installing RStudio, but we highly recommend this integrated development environment (IDE). Instructions are [here](http://www.rstudio.com/products/rstudio/download/) and for Windows we have special [instructions](https://github.com/genomicsclass/windows). 
+```
 
+下面的一步是安装Rstudio。Rstudio。在不安装Rstudio的情况下，你可以运行本书中所有的R代码，但是我们强烈推荐使用Rstudio这款集成开发环境软件。具体的下载链接见[这里](http://www.rstudio.com/products/rstudio/download/)(http://www.rstudio.com/products/rstudio/download/)。对于Windows系统，我们也有一个对应的[安装手册](https://github.com/genomicsclass/windows)：https://github.com/genomicsclass/windows.
+
+
+```{block2 echo = FALSE}
 ## Learn R Basics
+```
 
+## R基础知识
+
+```{block2 echo = FALSE}
 The first homework assignment is to complete an R tutorial to familiarize yourself with the basics of programming and R syntax. To follow this book you should be familiar with the difference between lists (including data frames) and numeric vectors, for-loops, how to create functions, and how to use the `sapply` and `replicate` functions. 
+```
+
 
 
 
@@ -107,24 +119,29 @@ install it first.
 
 The first step when preparing to analyze data is to read in the data into R. There are several ways to do this and we will discuss three of them. But you only need to learn one to follow along. 
 
-In the life sciences, small datasets such as the one used as an
-example in the next sections are typically stored as Excel files. Although there
-are R packages designed to read Excel (xls) format, you generally want
-to avoid this and save files as comma delimited (Comma-Separated
-Value/CSV) or tab delimited (Tab-Separated Value/TSV/TXT) files.
-These plain-text formats are often easier for sharing data with
-collaborators, as commercial software is not required for viewing or
-working with the data.
-We will start with a simple example dataset containing
-[female mouse weights](https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv).
+In the life sciences, small datasets such as the one used as an example in the next sections are typically stored as Excel files. Although there are R packages designed to read Excel (xls) format, you generally want to avoid this and save files as comma delimited (Comma-Separated Value/CSV) or tab delimited (Tab-Separated Value/TSV/TXT) files. These plain-text formats are often easier for sharing data with collaborators, as commercial software is not required for viewing or working with the data.
+We will start with a simple example dataset containing [female mouse weights](https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv).
 
+```{block2 echo = FALSE}
 The first step is to find the file containing your data and know its *path*. 
+```
+
+第一步是找到对应的文件并且弄清楚这个文件的*路径*。
 
 
+```{block2 echo = FALSE}
 #### Paths and the Working Directory
+```
 
+#### 路径和工作目录
+
+```{block2 echo = FALSE}
 When you are working in R it is useful to know your _working directory_. This is the directory or folder in which R will save or look for files by default. You can see your working directory by typing:
+```
 
+当你在
+
+  
 ```{r, eval=FALSE}
 getwd()
 ```
@@ -426,12 +443,4 @@ sum( areaofbars )
 ```
 
 The smaller we make `width`, the closer the sum gets to the integral, which is equal to the area.
-
-
-
-
-
-
-
-
 

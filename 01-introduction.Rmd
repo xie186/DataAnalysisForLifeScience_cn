@@ -7,7 +7,7 @@
 In this book we will be using the [R programming language](https://cran.r-project.org/) for all our analysis. You will learn R and statistics simultaneously. However, we assume you have some basic programming skills and knowledge of R syntax. If you don't, your first homework, listed below, is to complete a tutorial. Here we give step-by-step instructions on how to get set up to follow along. 
 ```
 
-本书中所有的数据分析我们都使用[R语言](https://cran.r-project.org/)。我们假设你有基础的编程能力和R语言语法的知识。如果你没有这些基础知识，你第一个要做的就是学习R的基础知识。这里我们会从安装R开始一步一步的教你如何使用R。
+&emsp;&emsp;本书中所有的数据分析我们都使用[R语言](https://cran.r-project.org/)。我们假设你有基础的编程能力和R语言语法的知识。如果你没有这些基础知识，你第一个要做的就是学习R的基础知识。这里我们会从安装R开始一步一步的教你如何使用R。
 
 ```{block2 echo = FALSE}
 ## Installing R
@@ -19,7 +19,7 @@ In this book we will be using the [R programming language](https://cran.r-projec
 The first step is to install R. You can download and install R from the [Comprehensive R Archive Network](https://cran.r-project.org/) (CRAN). It is relatively straightforward, but if you need further help you can try the following resources: 
 ```
 
-第一步是安装R。你可以从R的官网上下载R。安装的过程非常简单，但是如果你需要更多的帮助，你可以下载下面对应的资源。
+&emsp;&emsp;第一步是安装R。你可以从R的官网上下载R。安装的过程非常简单，但是如果你需要更多的帮助，你可以下载下面对应的资源。
 
 ```{block2 echo = FALSE}
 * [Installing R on Windows](https://github.com/genomicsclass/windows#installing-r)
@@ -41,7 +41,7 @@ The first step is to install R. You can download and install R from the [Compreh
 The next step is to install RStudio, a program for viewing and running R scripts. Technically you can run all the code shown here without installing RStudio, but we highly recommend this integrated development environment (IDE). Instructions are [here](http://www.rstudio.com/products/rstudio/download/) and for Windows we have special [instructions](https://github.com/genomicsclass/windows). 
 ```
 
-下面的一步是安装Rstudio。Rstudio。在不安装Rstudio的情况下，你可以运行本书中所有的R代码，但是我们强烈推荐使用Rstudio这款集成开发环境软件。具体的下载链接见[这里](http://www.rstudio.com/products/rstudio/download/)(http://www.rstudio.com/products/rstudio/download/)。对于Windows系统，我们也有一个对应的[安装手册](https://github.com/genomicsclass/windows)：https://github.com/genomicsclass/windows.
+&emsp;&emsp;下面的一步是安装Rstudio。Rstudio。在不安装Rstudio的情况下，你可以运行本书中所有的R代码，但是我们强烈推荐使用Rstudio这款集成开发环境软件。具体的下载链接见[这里](http://www.rstudio.com/products/rstudio/download/)(http://www.rstudio.com/products/rstudio/download/)。对于Windows系统，我们也有一个对应的[安装手册](https://github.com/genomicsclass/windows)：https://github.com/genomicsclass/windows.
 
 
 ```{block2 echo = FALSE}
@@ -54,10 +54,13 @@ The next step is to install RStudio, a program for viewing and running R scripts
 The first homework assignment is to complete an R tutorial to familiarize yourself with the basics of programming and R syntax. To follow this book you should be familiar with the difference between lists (including data frames) and numeric vectors, for-loops, how to create functions, and how to use the `sapply` and `replicate` functions. 
 ```
 
+&emsp;&emsp;你首先要做的是让你自己对R编程和R的语法熟悉起来，你可以通过完成一个R的基本教程来实现这个目的。为了能够理解本书，你需要理解列表（list），数值向量（numeric vectors），能够写函数，以及理解如何使用`sapply`和`replicate`这两个函数。
 
-
-
+```{block2 echo = FALSE}
 If you are already familiar with R, you can skip to the next section. Otherwise, you should go through the [swirl](http://swirlstats.com/) tutorial, which teaches you R programming and data science interactively, at your own pace and in the R console. Once you have R installed, you can install `swirl` and run it the following way: 
+```
+
+&emsp;&emsp;如果你已经对R非常熟悉，你可以跳过下一节。如果你不熟悉，我们建议你完成[swirl](http://swirlstats.com/)教程，这个教程会以交互的方式教你R编程和数字科学。在你安装R后，你可以安装`swirl`，然后以下面的方式运行它：
 
 ```{r, eval=FALSE}
 install.packages("swirl")

@@ -68,15 +68,31 @@ library(swirl)
 swirl()
 ```
 
+```{block2 echo = FALSE}
 Alternatively you can take the [try R](http://tryr.codeschool.com/) interactive class from Code School. 
+```
 
+&emsp;&emsp;你也可以尝试Code School的[try R](http://tryr.codeschool.com/)课程。
+
+```{block2 echo = FALSE}
 There are also many open and free resources and reference
 guides for R. Two examples are:
 
 * [Quick-R](http://www.statmethods.net/): a quick online reference for data input, basic statistics and plots
 * R reference card (PDF)[https://cran.r-project.org/doc/contrib/Short-refcard.pdf] by Tom Short 
+```
 
+&emsp&emsp同时，你也可以找到许多学习R的开源的资源和手册。这里我们给出两个例子：
+
+* [R快速入门（Quick-R）](http://www.statmethods.net/): a quick online reference for data input, basic statistics and plots
+* R参考卡（R reference card） (PDF)[https://cran.r-project.org/doc/contrib/Short-refcard.pdf] by Tom Short 
+
+```{block2 echo = FALSE}
 Two key things you need to know about R is that you can get help for a function using `help` or `?`, like this:
+```
+
+&emsp&emsp关于R有两个关键的内容：一是你能够使用 `help``?`
+
 ```{r,eval=FALSE}
 ?install.packages
 help("install.packages")

@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>生物信息R数据分析</title>
+  <meta name="description" content="生物信息R数据分析">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="生物信息R数据分析" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="images/cover.jpg" />
+  <meta property="og:description" content="生物信息R数据分析" />
+  <meta name="github-repo" content="xie186/HarvardDataScienceForLifeScience_cn" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="生物信息R数据分析" />
+  
+  <meta name="twitter:description" content="生物信息R数据分析" />
+  <meta name="twitter:image" content="images/cover.jpg" />
+
+<meta name="author" content="作者：Rafael A. Irizarry; Mike I. Love 翻译：张三 李四 麻子">
+
+
+<meta name="date" content="2018-05-04">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="inference-for-high-dimensional-data.html">
+<link rel="next" href="section-7.html">
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">生物信息R数据分析</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Cover picture</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a><ul>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="0.1" data-path="acknowledgments.html"><a href="acknowledgments.html#section-0.1"><i class="fa fa-check"></i><b>0.1</b> 简介</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#who-will-find-this-book-useful"><i class="fa fa-check"></i>Who Will Find This Book Useful?</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#what-does-this-book-cover"><i class="fa fa-check"></i>What Does This Book Cover?</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#e8bf99e69cace4b9a6e58c85e590abe4bb80e4b988e58685e5aeb9efbc9f"><i class="fa fa-check"></i>这本书包含什么内容？</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html#how-is-this-book-different"><i class="fa fa-check"></i>How Is This Book Different?</a></li>
+<li class="chapter" data-level="0.2" data-path="acknowledgments.html"><a href="acknowledgments.html#section-0.2"><i class="fa fa-check"></i><b>0.2</b> 这本书有什么不同？</a></li>
+<li class="chapter" data-level="0.3" data-path="acknowledgments.html"><a href="acknowledgments.html#r"><i class="fa fa-check"></i><b>0.3</b> 安装R</a></li>
+<li class="chapter" data-level="0.4" data-path="acknowledgments.html"><a href="acknowledgments.html#r"><i class="fa fa-check"></i><b>0.4</b> R基础知识</a></li>
+<li class="chapter" data-level="0.5" data-path="acknowledgments.html"><a href="acknowledgments.html#installing-packages"><i class="fa fa-check"></i><b>0.5</b> Installing Packages</a></li>
+<li class="chapter" data-level="0.6" data-path="acknowledgments.html"><a href="acknowledgments.html#importing-data-into-r"><i class="fa fa-check"></i><b>0.6</b> Importing Data into R</a><ul>
+<li class="chapter" data-level="0.6.1" data-path="acknowledgments.html"><a href="acknowledgments.html#getting-started-exercises"><i class="fa fa-check"></i><b>0.6.1</b> Getting Started Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="0.7" data-path="acknowledgments.html"><a href="acknowledgments.html#brief-introduction-to-dplyr"><i class="fa fa-check"></i><b>0.7</b> Brief Introduction to <code>dplyr</code></a><ul>
+<li class="chapter" data-level="0.7.1" data-path="acknowledgments.html"><a href="acknowledgments.html#dplyr-exercises"><i class="fa fa-check"></i><b>0.7.1</b> <code>dplyr</code> exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="0.8" data-path="acknowledgments.html"><a href="acknowledgments.html#mathematical-notation"><i class="fa fa-check"></i><b>0.8</b> Mathematical Notation</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="inference.html"><a href="inference.html"><i class="fa fa-check"></i><b>1</b> Inference</a><ul>
+<li class="chapter" data-level="1.1" data-path="inference.html"><a href="inference.html#introduction-1"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
+<li class="chapter" data-level="1.2" data-path="inference.html"><a href="inference.html#random-variables"><i class="fa fa-check"></i><b>1.2</b> Random Variables</a></li>
+<li class="chapter" data-level="1.3" data-path="inference.html"><a href="inference.html#the-null-hypothesis"><i class="fa fa-check"></i><b>1.3</b> The Null Hypothesis</a></li>
+<li class="chapter" data-level="1.4" data-path="inference.html"><a href="inference.html#distributions"><i class="fa fa-check"></i><b>1.4</b> Distributions</a></li>
+<li class="chapter" data-level="1.5" data-path="inference.html"><a href="inference.html#probability-distribution"><i class="fa fa-check"></i><b>1.5</b> Probability Distribution</a></li>
+<li class="chapter" data-level="1.6" data-path="inference.html"><a href="inference.html#normal-distribution"><i class="fa fa-check"></i><b>1.6</b> Normal Distribution</a></li>
+<li class="chapter" data-level="1.7" data-path="inference.html"><a href="inference.html#populations-samples-and-estimates"><i class="fa fa-check"></i><b>1.7</b> Populations, Samples and Estimates</a><ul>
+<li class="chapter" data-level="1.7.1" data-path="inference.html"><a href="inference.html#population-samples-and-estimates-exercises"><i class="fa fa-check"></i><b>1.7.1</b> Population, Samples, and Estimates Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="inference.html"><a href="inference.html#central-limit-theorem-and-t-distribution"><i class="fa fa-check"></i><b>1.8</b> Central Limit Theorem and t-distribution</a></li>
+<li class="chapter" data-level="1.9" data-path="inference.html"><a href="inference.html#central-limit-theorem-in-practice"><i class="fa fa-check"></i><b>1.9</b> Central Limit Theorem in Practice</a></li>
+<li class="chapter" data-level="1.10" data-path="inference.html"><a href="inference.html#t-tests-in-practice"><i class="fa fa-check"></i><b>1.10</b> t-tests in Practice</a></li>
+<li class="chapter" data-level="1.11" data-path="inference.html"><a href="inference.html#the-t-distribution-in-practice"><i class="fa fa-check"></i><b>1.11</b> The t-distribution in Practice</a></li>
+<li class="chapter" data-level="1.12" data-path="inference.html"><a href="inference.html#confidence-intervals"><i class="fa fa-check"></i><b>1.12</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="1.13" data-path="inference.html"><a href="inference.html#power-calculations"><i class="fa fa-check"></i><b>1.13</b> Power Calculations</a></li>
+<li class="chapter" data-level="1.14" data-path="inference.html"><a href="inference.html#monte-carlo-simulation"><i class="fa fa-check"></i><b>1.14</b> Monte Carlo Simulation</a></li>
+<li class="chapter" data-level="1.15" data-path="inference.html"><a href="inference.html#parametric-simulations-for-the-observations"><i class="fa fa-check"></i><b>1.15</b> Parametric Simulations for the Observations</a></li>
+<li class="chapter" data-level="1.16" data-path="inference.html"><a href="inference.html#permutation-tests"><i class="fa fa-check"></i><b>1.16</b> Permutation Tests</a></li>
+<li class="chapter" data-level="1.17" data-path="inference.html"><a href="inference.html#association-tests"><i class="fa fa-check"></i><b>1.17</b> Association Tests</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>2</b> Exploratory Data Analysis</a><ul>
+<li class="chapter" data-level="2.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#quantile-quantile-plots"><i class="fa fa-check"></i><b>2.1</b> Quantile Quantile Plots</a></li>
+<li class="chapter" data-level="2.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#boxplots"><i class="fa fa-check"></i><b>2.2</b> Boxplots</a></li>
+<li class="chapter" data-level="2.3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#scatterplots-and-correlation"><i class="fa fa-check"></i><b>2.3</b> Scatterplots and Correlation</a></li>
+<li class="chapter" data-level="2.4" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#stratification"><i class="fa fa-check"></i><b>2.4</b> Stratification</a></li>
+<li class="chapter" data-level="2.5" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#bivariate-normal-distribution"><i class="fa fa-check"></i><b>2.5</b> Bivariate Normal Distribution</a></li>
+<li class="chapter" data-level="2.6" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#plots-to-avoid"><i class="fa fa-check"></i><b>2.6</b> Plots to Avoid</a></li>
+<li class="chapter" data-level="2.7" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#misunderstanding-correlation-advanced"><i class="fa fa-check"></i><b>2.7</b> Misunderstanding Correlation (Advanced)</a></li>
+<li class="chapter" data-level="2.8" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#robust-summaries"><i class="fa fa-check"></i><b>2.8</b> Robust Summaries</a></li>
+<li class="chapter" data-level="2.9" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#wilcoxon-rank-sum-test"><i class="fa fa-check"></i><b>2.9</b> Wilcoxon Rank Sum Test</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="matrix-algebra.html"><a href="matrix-algebra.html"><i class="fa fa-check"></i><b>3</b> Matrix Algebra</a><ul>
+<li class="chapter" data-level="3.1" data-path="matrix-algebra.html"><a href="matrix-algebra.html#motivating-examples"><i class="fa fa-check"></i><b>3.1</b> Motivating Examples</a></li>
+<li class="chapter" data-level="3.2" data-path="matrix-algebra.html"><a href="matrix-algebra.html#matrix-notation"><i class="fa fa-check"></i><b>3.2</b> Matrix Notation</a></li>
+<li class="chapter" data-level="3.3" data-path="matrix-algebra.html"><a href="matrix-algebra.html#solving-systems-of-equations"><i class="fa fa-check"></i><b>3.3</b> Solving Systems of Equations</a></li>
+<li class="chapter" data-level="3.4" data-path="matrix-algebra.html"><a href="matrix-algebra.html#vectors-matrices-and-scalars"><i class="fa fa-check"></i><b>3.4</b> Vectors, Matrices, and Scalars</a></li>
+<li class="chapter" data-level="3.5" data-path="matrix-algebra.html"><a href="matrix-algebra.html#matrix-operations"><i class="fa fa-check"></i><b>3.5</b> Matrix Operations</a></li>
+<li class="chapter" data-level="3.6" data-path="matrix-algebra.html"><a href="matrix-algebra.html#examples"><i class="fa fa-check"></i><b>3.6</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="linear-models-1.html"><a href="linear-models-1.html"><i class="fa fa-check"></i><b>4</b> Linear Models</a><ul>
+<li class="chapter" data-level="4.1" data-path="linear-models-1.html"><a href="linear-models-1.html#the-design-matrix"><i class="fa fa-check"></i><b>4.1</b> The Design Matrix</a></li>
+<li class="chapter" data-level="4.2" data-path="linear-models-1.html"><a href="linear-models-1.html#the-mathematics-behind-lm"><i class="fa fa-check"></i><b>4.2</b> The Mathematics Behind lm()</a></li>
+<li class="chapter" data-level="4.3" data-path="linear-models-1.html"><a href="linear-models-1.html#standard-errors"><i class="fa fa-check"></i><b>4.3</b> Standard Errors</a></li>
+<li class="chapter" data-level="4.4" data-path="linear-models-1.html"><a href="linear-models-1.html#interactions-and-contrasts"><i class="fa fa-check"></i><b>4.4</b> Interactions and Contrasts</a></li>
+<li class="chapter" data-level="4.5" data-path="linear-models-1.html"><a href="linear-models-1.html#linear-model-with-interactions"><i class="fa fa-check"></i><b>4.5</b> Linear Model with Interactions</a></li>
+<li class="chapter" data-level="4.6" data-path="linear-models-1.html"><a href="linear-models-1.html#analysis-of-variance"><i class="fa fa-check"></i><b>4.6</b> Analysis of Variance</a></li>
+<li class="chapter" data-level="4.7" data-path="linear-models-1.html"><a href="linear-models-1.html#collinearity"><i class="fa fa-check"></i><b>4.7</b> Collinearity</a></li>
+<li class="chapter" data-level="4.8" data-path="linear-models-1.html"><a href="linear-models-1.html#rank"><i class="fa fa-check"></i><b>4.8</b> Rank</a></li>
+<li class="chapter" data-level="4.9" data-path="linear-models-1.html"><a href="linear-models-1.html#removing-confounding"><i class="fa fa-check"></i><b>4.9</b> Removing Confounding</a></li>
+<li class="chapter" data-level="4.10" data-path="linear-models-1.html"><a href="linear-models-1.html#the-qr-factorization-advanced"><i class="fa fa-check"></i><b>4.10</b> The QR Factorization (Advanced)</a></li>
+<li class="chapter" data-level="4.11" data-path="linear-models-1.html"><a href="linear-models-1.html#going-further"><i class="fa fa-check"></i><b>4.11</b> Going Further</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html"><i class="fa fa-check"></i><b>5</b> Inference for High Dimensional Data</a><ul>
+<li class="chapter" data-level="5.1" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#introduction-4"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#inference-in-practice"><i class="fa fa-check"></i><b>5.2</b> Inference in Practice</a></li>
+<li class="chapter" data-level="5.3" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#procedures"><i class="fa fa-check"></i><b>5.3</b> Procedures</a></li>
+<li class="chapter" data-level="5.4" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#error-rates"><i class="fa fa-check"></i><b>5.4</b> Error Rates</a></li>
+<li class="chapter" data-level="5.5" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#the-bonferroni-correction"><i class="fa fa-check"></i><b>5.5</b> The Bonferroni Correction</a></li>
+<li class="chapter" data-level="5.6" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#false-discovery-rate"><i class="fa fa-check"></i><b>5.6</b> False Discovery Rate</a></li>
+<li class="chapter" data-level="5.7" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#direct-approach-to-fdr-and-q-values-advanced"><i class="fa fa-check"></i><b>5.7</b> Direct Approach to FDR and q-values (Advanced)</a></li>
+<li class="chapter" data-level="5.8" data-path="inference-for-high-dimensional-data.html"><a href="inference-for-high-dimensional-data.html#basic-exploratory-data-analysis"><i class="fa fa-check"></i><b>5.8</b> Basic Exploratory Data Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="section-6.html"><a href="section-6.html"><i class="fa fa-check"></i><b>6</b> 统计模型</a><ul>
+<li class="chapter" data-level="6.1" data-path="section-6.html"><a href="section-6.html#-the-binomial-distribution"><i class="fa fa-check"></i><b>6.1</b> 二项分布 (The Binomial Distribution)</a></li>
+<li class="chapter" data-level="6.2" data-path="section-6.html"><a href="section-6.html#-the-poisson-distribution"><i class="fa fa-check"></i><b>6.2</b> 泊松分布 (The Poisson Distribution)</a></li>
+<li class="chapter" data-level="6.3" data-path="section-6.html"><a href="section-6.html#section-6.3"><i class="fa fa-check"></i><b>6.3</b> 最大似然估计</a></li>
+<li class="chapter" data-level="6.4" data-path="section-6.html"><a href="section-6.html#section-6.4"><i class="fa fa-check"></i><b>6.4</b> 连续变量的分布</a></li>
+<li class="chapter" data-level="6.5" data-path="section-6.html"><a href="section-6.html#section-6.5"><i class="fa fa-check"></i><b>6.5</b> 贝叶斯统计</a></li>
+<li class="chapter" data-level="6.6" data-path="section-6.html"><a href="section-6.html#hierarchical-models"><i class="fa fa-check"></i><b>6.6</b> Hierarchical Models</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="section-7.html"><a href="section-7.html"><i class="fa fa-check"></i><b>7</b> 距离和维度降低   </a><ul>
+<li class="chapter" data-level="7.1" data-path="section-7.html"><a href="section-7.html#-1"><i class="fa fa-check"></i><b>7.1</b> 简介   </a></li>
+<li class="chapter" data-level="7.2" data-path="section-7.html"><a href="section-7.html#euclidean-distance"><i class="fa fa-check"></i><b>7.2</b> Euclidean Distance</a></li>
+<li class="chapter" data-level="7.3" data-path="section-7.html"><a href="section-7.html#section-7.3"><i class="fa fa-check"></i><b>7.3</b> 高维数据的距离   </a></li>
+<li class="chapter" data-level="7.4" data-path="section-7.html"><a href="section-7.html#distance-exercises"><i class="fa fa-check"></i><b>7.4</b> Distance exercises</a></li>
+<li class="chapter" data-level="7.5" data-path="section-7.html"><a href="section-7.html#dimension-reduction-motivation"><i class="fa fa-check"></i><b>7.5</b> Dimension Reduction Motivation</a></li>
+<li class="chapter" data-level="7.6" data-path="section-7.html"><a href="section-7.html#singular-value-decomposition"><i class="fa fa-check"></i><b>7.6</b> Singular Value Decomposition</a></li>
+<li class="chapter" data-level="7.7" data-path="section-7.html"><a href="section-7.html#projections"><i class="fa fa-check"></i><b>7.7</b> Projections</a></li>
+<li class="chapter" data-level="7.8" data-path="section-7.html"><a href="section-7.html#rotations-1"><i class="fa fa-check"></i><b>7.8</b> Rotations</a></li>
+<li class="chapter" data-level="7.9" data-path="section-7.html"><a href="section-7.html#multi-dimensional-scaling-plots"><i class="fa fa-check"></i><b>7.9</b> Multi-Dimensional Scaling Plots</a></li>
+<li class="chapter" data-level="7.10" data-path="section-7.html"><a href="section-7.html#mds-exercises"><i class="fa fa-check"></i><b>7.10</b> MDS exercises</a></li>
+<li class="chapter" data-level="7.11" data-path="section-7.html"><a href="section-7.html#principal-component-analysis"><i class="fa fa-check"></i><b>7.11</b> Principal Component Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html"><i class="fa fa-check"></i><b>8</b> Basic Machine Learning</a><ul>
+<li class="chapter" data-level="8.1" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#clustering"><i class="fa fa-check"></i><b>8.1</b> Clustering</a></li>
+<li class="chapter" data-level="8.2" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#conditional-probabilities-and-expectations"><i class="fa fa-check"></i><b>8.2</b> Conditional Probabilities and Expectations</a></li>
+<li class="chapter" data-level="8.3" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#smoothing"><i class="fa fa-check"></i><b>8.3</b> Smoothing</a></li>
+<li class="chapter" data-level="8.4" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#bin-smoothing"><i class="fa fa-check"></i><b>8.4</b> Bin Smoothing</a></li>
+<li class="chapter" data-level="8.5" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#loess"><i class="fa fa-check"></i><b>8.5</b> Loess</a></li>
+<li class="chapter" data-level="8.6" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#class-prediction"><i class="fa fa-check"></i><b>8.6</b> Class Prediction</a></li>
+<li class="chapter" data-level="8.7" data-path="basic-machine-learning.html"><a href="basic-machine-learning.html#cross-validation"><i class="fa fa-check"></i><b>8.7</b> Cross-validation</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="batch-effects.html"><a href="batch-effects.html"><i class="fa fa-check"></i><b>9</b> Batch Effects</a><ul>
+<li class="chapter" data-level="9.1" data-path="batch-effects.html"><a href="batch-effects.html#confounding"><i class="fa fa-check"></i><b>9.1</b> Confounding</a></li>
+<li class="chapter" data-level="9.2" data-path="batch-effects.html"><a href="batch-effects.html#confounding-high-throughput-example"><i class="fa fa-check"></i><b>9.2</b> Confounding: High-Throughput Example</a></li>
+<li class="chapter" data-level="9.3" data-path="batch-effects.html"><a href="batch-effects.html#discovering-batch-effects-with-eda"><i class="fa fa-check"></i><b>9.3</b> Discovering Batch Effects with EDA</a></li>
+<li class="chapter" data-level="9.4" data-path="batch-effects.html"><a href="batch-effects.html#gene-expression-data"><i class="fa fa-check"></i><b>9.4</b> Gene Expression Data</a></li>
+<li class="chapter" data-level="9.5" data-path="batch-effects.html"><a href="batch-effects.html#motivation-for-statistical-approaches"><i class="fa fa-check"></i><b>9.5</b> Motivation for Statistical Approaches</a></li>
+<li class="chapter" data-level="9.6" data-path="batch-effects.html"><a href="batch-effects.html#adjusting-for-batch-effects-with-linear-models"><i class="fa fa-check"></i><b>9.6</b> Adjusting for Batch Effects with Linear Models</a></li>
+<li class="chapter" data-level="9.7" data-path="batch-effects.html"><a href="batch-effects.html#factor-analysis"><i class="fa fa-check"></i><b>9.7</b> Factor Analysis</a></li>
+<li class="chapter" data-level="9.8" data-path="batch-effects.html"><a href="batch-effects.html#modeling-batch-effects-with-factor-analysis"><i class="fa fa-check"></i><b>9.8</b> Modeling Batch Effects with Factor Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">生物信息R数据分析</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="section-6" class="section level1">
+<h1><span class="header-section-number">第 6 章</span> 统计模型</h1>
+<blockquote>
+<p>All models are wrong, but some are useful. -George E. P. Box</p>
+</blockquote>
+<p>  当我们在文献里面看见P值时, 这意味着作者采用了某种概率分布来对零假设建模。 很多时候,使用哪种概率分布是相对比较简单的。例如,在茶品鉴中我们可以使用简单的概率计算来确定零假设。大多数的P值或者是样本均值或者是从线性模型的最小平方。??????</p>
+<p>  中心极限定理(CLT)的理论基础保证了近似(approximation)的准确性。但是我们并不能总是使用这种近似,比如当样本太小的时候。前面我们讲到了当总体符合正太分布时,样本均值可以近似成t分布。但是,这种假设并没有理论基础。现在我们开始建模。我们从经验中知道身高是一个很好的例子用来建模。</p>
+<p>  但是这并不代表我们调查的每一个数据集都服从正态分布。比如一些不符合正态分布的例子有:掷硬币,中奖人数以及美国人的收入.正态分布并不是唯一的可以用来建模的参数分布。这里我们会简单的解少一些常见的参数分布以及它们在生命科学领域的应用。我们主要集中在模型。因此,我们也需要介绍贝叶斯统计的基本知识。如果你想获得对概率模型和参数分布更深入的描述,请参考教科书<a href="https://www.stat.berkeley.edu/~rice/Book3ed/index.html">数据(<strong><em>Mathematical Statistics and Data Analysis</em></strong>)</a>。</p>
+<div id="-the-binomial-distribution" class="section level2">
+<h2><span class="header-section-number">6.1</span> 二项分布 (The Binomial Distribution)</h2>
+<p>  第一个我们要介绍的分布是二项分布。二项分布给出的是在<span class="math inline">\(N\)</span>次试验中观测到<span class="math inline">\(S=k\)</span>成功的概率。</p>
+<p><span class="math display">\[
+\mbox{Pr}(S=k) = {N \choose k}p^k (1-p)^{N-k}
+\]</span></p>
+<p>  其中<span class="math inline">\(p\)</span>是成功事件的概率。最经典的例子是掷<span class="math inline">\(N\)</span>次硬币。掷硬币的例子中,<span class="math inline">\(N\)</span>是掷硬币的次数,而<span class="math inline">\(p=0.5\)</span>,表示观测到正面的概率。</p>
+<p>  [XXneedattention]需要指出的是<span class="math inline">\(S/N\)</span>是独立随机变量的均值,因此中心极限定律告诉我们在<span class="math inline">\(N\)</span>很大时<span class="math inline">\(S\)</span>近似正太分布。最近,二项分布被用于下代测序技术中的变异鉴定和基因型分型中。该分布的一个特殊性是泊松分布可近似为二项分布,接下来我们来介绍泊松分布。</p>
+</div>
+<div id="-the-poisson-distribution" class="section level2">
+<h2><span class="header-section-number">6.2</span> 泊松分布 (The Poisson Distribution)</h2>
+<p>  彩票中奖人数服从二项分布(我们假设每个人只买一张彩票)。试验的次数<span class="math inline">\(N\)</span>是买彩票的人数,通常这个数会比较大。但是,彩票中奖人数却是在0至3之间,因此正态分布近似并不成立。为什么中心极限定律并不成立呢?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p=<span class="dv">10</span><span class="op">^-</span><span class="dv">7</span> ##1 in 10,000,0000 chances of winning
+N=<span class="dv">5</span><span class="op">*</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span> ##5,000,000 tickets bought
+winners=<span class="kw">rbinom</span>(<span class="dv">1000</span>,N,p) ##1000 is the number of different lotto draws
+tab=<span class="kw">table</span>(winners)
+<span class="kw">plot</span>(tab)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/lottery_winners_outcomes-1.png" alt="Number of people that win the lottery obtained from Monte Carlo simulation." width="672" />
+<p class="caption">
+(#fig:lottery_winners_outcomes)Number of people that win the lottery obtained from Monte Carlo simulation.
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">prop.table</span>(tab)</code></pre></div>
+<pre><code>## winners
+##     0     1     2     3     4 
+## 0.604 0.316 0.067 0.012 0.001</code></pre>
+<p>  在这种情况下,<span class="math inline">\(N\)</span>非常大,而<span class="math inline">\(p\)</span>又足够小从而使<span class="math inline">\(N \times p\)</span>(这里称它为<span class="math inline">\(\lambda\)</span>)成为一个从0到某个值(例如10)的数。 这个时候<span class="math inline">\(S\)</span>可被看成是服从泊松分布.泊松分布可以用一个简单的公式来表示:</p>
+<p><span class="math display">\[
+\mbox{Pr}(S=k)=\frac{\lambda^k e^{-\lambda}}{k!}
+\]</span></p>
+<p>  泊松分布在RNA-seq数据的分析中被广泛的使用。因为在RNA-seq数据中我们有成千上万个基因,而大多数的基因的表达量只占总表达量的一小部分。泊松分布比较适合这种情况。</p>
+<p>  为什么泊松分布能帮助我们呢？ 其中一个作用是泊松分布为我们提供了在实践中经常会用到的统计属性。例如，在在一对处理和对照组的RNA-seq数据中，我们想鉴定倍数变化最明显的基因。泊松分布模型中的一种情况是，在零假设为没有差异的时候，倍数变化的变异程度取决于基因的表达丰度。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N=<span class="dv">10000</span>##number of genes
+lambdas=<span class="dv">2</span><span class="op">^</span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">16</span>,<span class="dt">len=</span>N) ##these are the true abundances of genes
+y=<span class="kw">rpois</span>(N,lambdas)##note that the null hypothesis is true for all genes
+x=<span class="kw">rpois</span>(N,lambdas) 
+ind=<span class="kw">which</span>(y<span class="op">&gt;</span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>x<span class="op">&gt;</span><span class="dv">0</span>)##make sure no 0s due to ratio and log
+
+<span class="kw">library</span>(rafalib)
+<span class="kw">splot</span>(<span class="kw">log2</span>(lambdas),<span class="kw">log2</span>(y<span class="op">/</span>x),<span class="dt">subset=</span>ind)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/rna_seq_simulation-1.png" alt="MA plot of simulated RNA-seq data. Replicated measurements follow a Poisson distribution." width="672" />
+<p class="caption">
+(#fig:rna_seq_simulation)MA plot of simulated RNA-seq data. Replicated measurements follow a Poisson distribution.
+</p>
+</div>
+<p>  比较小的<code>lambda</code>有更大的变异。如果我们认为倍数变化大于或者等于2的基因是差异表达基因的话,那么对于低丰度的基因,假阳性的数目将会相当的高。</p>
+<p>  在这一节，我们将使用下面的数据：</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(parathyroidSE) ##available from Bioconductor
+<span class="kw">data</span>(parathyroidGenesSE)
+se &lt;-<span class="st"> </span>parathyroidGenesSE</code></pre></div>
+<p>  这个数据保存在一个<code>SummarizedExperiment</code>对象中，这里我们不对其进项详述。你只需要知道<code>SummarizedExperiment</code>对象中包含一个矩阵数据，这个矩阵中每一列是一个基因，每一行是一个样本。我们可以使用函数<code>assay</code>来提取这个矩阵。在这个矩阵中，每一个单元格是对应的样本中比对到对应基因的短序列的个数（read count）。利用这个数据我们得到了一个和模拟数据相似的一个图，这表明泊松模型预测的结果和我们真实实验数据得到的结果一致。</p>
+<blockquote>
+<p>  在R代码中，<code>ind=which(y&gt;0 &amp; x&gt;0)</code>的作用是将x和y中均大于零的索引值（index）提出来。在使用<code>splot</code>时只对这些数据进行作图，因为这些<code>0</code>的行会在进行除法和对数运算时会导致报错。因为这里我们没有<span class="math inline">\(\lambda\)</span>，我们使用<code>(log2(x)+log2(y))/2</code>作为对<span class="math inline">\(\lambda\)</span>的估算。</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">assay</span>(se)[,<span class="dv">23</span>]
+y &lt;-<span class="st"> </span><span class="kw">assay</span>(se)[,<span class="dv">24</span>]
+ind=<span class="kw">which</span>(y<span class="op">&gt;</span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>x<span class="op">&gt;</span><span class="dv">0</span>)##make sure no 0s due to ratio and log 
+<span class="kw">splot</span>((<span class="kw">log2</span>(x)<span class="op">+</span><span class="kw">log2</span>(y))<span class="op">/</span><span class="dv">2</span>,<span class="kw">log</span>(x<span class="op">/</span>y),<span class="dt">subset=</span>ind)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/RNA-seq_MAplot-1.png" alt="MA plot of replicated RNA-seq data." width="672" />
+<p class="caption">
+(#fig:RNA-seq_MAplot)MA plot of replicated RNA-seq data.
+</p>
+</div>
+<p>  如果我们选取其中四个样本中计算其方差。从图中我们可以看到这些方差与泊松分布中预测的值相比高很多（在泊松分布模型中变量的均值和方差相等，均为<span class="math inline">\(\lambda\)</span>）。假设大多数的基因在不同的样本中是差异表达的，那么如果泊松分布模型是合适的话，我们应该在图中看到横坐标均值和纵坐标方差与图中的实线拟合。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rafalib)
+<span class="kw">library</span>(matrixStats)
+
+vars=<span class="kw">rowVars</span>(<span class="kw">assay</span>(se)[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">16</span>,<span class="dv">21</span>)]) ##we know these are four
+means=<span class="kw">rowMeans</span>(<span class="kw">assay</span>(se)[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">16</span>,<span class="dv">21</span>)]) ##different individuals
+
+<span class="kw">splot</span>(means,vars,<span class="dt">log=</span><span class="st">&quot;xy&quot;</span>,<span class="dt">subset=</span><span class="kw">which</span>(means<span class="op">&gt;</span><span class="dv">0</span><span class="op">&amp;</span>vars<span class="op">&gt;</span><span class="dv">0</span>)) ##plot a subset of data
+<span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dt">col=</span><span class="dv">2</span>,<span class="dt">lwd=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/var_vs_mean-1.png" alt="Variance versus mean plot. Summaries were obtained from the RNA-seq data." width="672" />
+<p class="caption">
+(#fig:var_vs_mean)Variance versus mean plot. Summaries were obtained from the RNA-seq data.
+</p>
+</div>
+<p>  横坐标均值和纵坐标方差与图中的实线并不拟合是因为图中的变异中包含了生物学变异，而泊松分布模型并不能包含这些生物学变异。负二项分布可以结合泊松分布变异和生物学变异，因此更适合这种生物学数据。负二项分布有两个参数从而可以更灵活的处理短序列计数的数据。如果你想了解跟多的关于使用负二项分布来对RNA-seq数据建模的内容，可以参考<a href="http://www.ncbi.nlm.nih.gov/pubmed/20979621">这篇文献</a>。泊松分布是负二项分布的一个特例。</p>
+</div>
+<div id="section-6.3" class="section level2">
+<h2><span class="header-section-number">6.3</span> 最大似然估计</h2>
+<p>  为了能解释最大似然估计的概念，这里我们使用一个相对比较简单的数据。该数据中包含了HMCV（人巨细胞病毒：human cytomegalovirus）基因组中的回文序列。我们读取这些回文序列的位置，然后计算每4k区段内的回文序列数目。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datadir=<span class="st">&quot;http://www.biostat.jhsph.edu/bstcourse/bio751/data&quot;</span>
+x=<span class="kw">read.csv</span>(<span class="kw">file.path</span>(datadir,<span class="st">&quot;hcmv.csv&quot;</span>))[,<span class="dv">2</span>]
+
+breaks=<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">4000</span><span class="op">*</span><span class="kw">round</span>(<span class="kw">max</span>(x)<span class="op">/</span><span class="dv">4000</span>),<span class="dv">4000</span>)
+tmp=<span class="kw">cut</span>(x,breaks)
+counts=<span class="kw">table</span>(tmp)
+
+<span class="kw">library</span>(rafalib)
+<span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">1</span>)
+<span class="kw">hist</span>(counts)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/palindrome_count_histogram-1.png" alt="Palindrome count histogram." width="672" />
+<p class="caption">
+(#fig:palindrome_count_histogram)Palindrome count histogram.
+</p>
+</div>
+<p>  这些回文序列的个数看起来确实服从泊松分布。但是，在这个数据中的<span class="math inline">\(\lambda\)</span>是多少呢？最常用的一种方法是最大似然估计。为了找到最大似然估计，我们假设这些数据是独立的，我们观测到这些个数的概率是：</p>
+<p><span class="math display">\[
+\Pr(X_1=k_1,\dots,X_n=k_n;\lambda) = \prod_{i=1}^n \lambda^{k_i} / k_i! \exp ( -\lambda)
+\]</span></p>
+<p>  最大似然估计就是找到能够使上面的公式最大的<span class="math inline">\(\lambda\)</span>值。</p>
+<p><span class="math display">\[
+\mbox{L}(\lambda; X_1=k_1,\dots,X_n=k_1)=\exp\left\{\sum_{i=1}^n \log \Pr(X_i=k_i;\lambda)\right\}
+\]</span></p>
+<p>  在实践中，计算</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l&lt;-<span class="cf">function</span>(lambda) <span class="kw">sum</span>(<span class="kw">dpois</span>(counts,lambda,<span class="dt">log=</span><span class="ot">TRUE</span>)) 
+
+lambdas&lt;-<span class="kw">seq</span>(<span class="dv">3</span>,<span class="dv">7</span>,<span class="dt">len=</span><span class="dv">100</span>)
+ls &lt;-<span class="st"> </span><span class="kw">exp</span>(<span class="kw">sapply</span>(lambdas,l))
+
+<span class="kw">plot</span>(lambdas,ls,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>)
+
+mle=<span class="kw">optimize</span>(l,<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">10</span>),<span class="dt">maximum=</span><span class="ot">TRUE</span>)
+<span class="kw">abline</span>(<span class="dt">v=</span>mle<span class="op">$</span>maximum)</code></pre></div>
+<div class="figure"><span id="fig:mle"></span>
+<img src="bookdown_files/figure-html/mle-1.png" alt="Likelihood versus lambda." width="672" />
+<p class="caption">
+图 6.1: Likelihood versus lambda.
+</p>
+</div>
+<p>  通过数学运算和一点微分运算，你会意识到在这个例子中最大似然估计是其均值。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>( <span class="kw">c</span>(mle<span class="op">$</span>maximum, <span class="kw">mean</span>(counts) ) )</code></pre></div>
+<pre><code>## [1] 5.158 5.158</code></pre>
+<p>  需要指出的是，图中观测值和泊松分布模型的预测值一致性很高，说明泊松分布模型很适合在这个例子。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">theoretical&lt;-<span class="kw">qpois</span>((<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">99</span>)<span class="op">+</span><span class="fl">0.5</span>)<span class="op">/</span><span class="dv">100</span>,<span class="kw">mean</span>(counts))
+
+<span class="kw">qqplot</span>(theoretical,counts)
+<span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/obs_versus_theoretical_Poisson_count-1.png" alt="Observed counts versus theoretical Poisson counts." width="672" />
+<p class="caption">
+(#fig:obs_versus_theoretical_Poisson_count)Observed counts versus theoretical Poisson counts.
+</p>
+</div>
+<p>  因此，我们可以使用泊松分布来对回文序列的个数建模，该模型中<span class="math inline">\(\lambda=5.16\)</span>。</p>
+</div>
+<div id="section-6.4" class="section level2">
+<h2><span class="header-section-number">6.4</span> 连续变量的分布</h2>
+<p>在不同的生物学重复中，不同的基因差异有着不同的变化。稍后，在介绍贝叶斯层次模型的章节中，我们将介绍在基因组学数据中<a href="http://www.ncbi.nlm.nih.gov/pubmed/16646809">最具影响力的统计模型</a>。在鉴定差异表达基因时，这种方法相对朴素的方法有着巨大的优势。这种优势是通过对方差进行建模实现的。这里我们将介绍这种方法中的参数模型。</p>
+<p>  我们想对基因特异的标准差的分布进行建模。这种分布符合正太分布的？记住我们是在对总体的标准差进行建模，所以即使我们有成千上万个基因，中心极限定理在这里并不适用。</p>
+<p>  我们使用一个小鼠中包含有技术重复和生物学重复的基因表达数据作为例子。我们将读入数据并计算技术重复和生物学重复中基因特异的样本标准差。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Biobase) ##available from Bioconductor
+<span class="kw">library</span>(maPooling) ##available from course github repo
+
+<span class="kw">data</span>(maPooling)
+pd=<span class="kw">pData</span>(maPooling)
+
+##determine which samples are bio reps and which are tech reps
+strain=<span class="kw">factor</span>(<span class="kw">as.numeric</span>(<span class="kw">grepl</span>(<span class="st">&quot;b&quot;</span>,<span class="kw">rownames</span>(pd))))
+pooled=<span class="kw">which</span>(<span class="kw">rowSums</span>(pd)<span class="op">==</span><span class="dv">12</span> <span class="op">&amp;</span><span class="st"> </span>strain<span class="op">==</span><span class="dv">1</span>)
+techreps=<span class="kw">exprs</span>(maPooling[,pooled])
+individuals=<span class="kw">which</span>(<span class="kw">rowSums</span>(pd)<span class="op">==</span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>strain<span class="op">==</span><span class="dv">1</span>)
+
+##remove replicates
+individuals=individuals[<span class="op">-</span><span class="kw">grep</span>(<span class="st">&quot;tr&quot;</span>,<span class="kw">names</span>(individuals))]
+bioreps=<span class="kw">exprs</span>(maPooling)[,individuals]
+
+###now compute the gene specific standard deviations
+<span class="kw">library</span>(matrixStats)
+techsds=<span class="kw">rowSds</span>(techreps)
+biosds=<span class="kw">rowSds</span>(bioreps)</code></pre></div>
+<p>  现在我们现在可以来探索一下样本的标准差：</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">###now plot
+<span class="kw">library</span>(rafalib)
+<span class="kw">mypar</span>()
+<span class="kw">shist</span>(biosds,<span class="dt">unit=</span><span class="fl">0.1</span>,<span class="dt">col=</span><span class="dv">1</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">1.5</span>))
+<span class="kw">shist</span>(techsds,<span class="dt">unit=</span><span class="fl">0.1</span>,<span class="dt">col=</span><span class="dv">2</span>,<span class="dt">add=</span><span class="ot">TRUE</span>)
+<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;Biological&quot;</span>,<span class="st">&quot;Technical&quot;</span>), <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/bio_sd_versus_tech_sd-1.png" alt="Histograms of biological variance and technical variance." width="672" />
+<p class="caption">
+(#fig:bio_sd_versus_tech_sd)Histograms of biological variance and technical variance.
+</p>
+</div>
+<p>  从图中我们可以看到，生物学重复的变异显著的比技术重复之间的变异高。这表明，基因特异的生物学差异确实是存在的。</p>
+<p>  如果我们想对这种变异建模，正态分布首先是不合适的，因为图中分布右尾相当明显。同时，因为标准差总是正数，所以其分布是无法对称的。</p>
+<p>  QQ图可以很直观的表达这一点：</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qqnorm</span>(biosds)
+<span class="kw">qqline</span>(biosds)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/sd_qqplot-1.png" alt="Normal qq-plot for sample standard deviations." width="672" />
+<p class="caption">
+(#fig:sd_qqplot)Normal qq-plot for sample standard deviations.
+</p>
+</div>
+<p>  有一些参数分布可以对正数和重右尾的数据建模，例如_gamma_和_F_分布。其中_gamma_分布的密度函数是：</p>
+<p><span class="math display">\[
+f(x;\alpha,\beta)=\frac{\beta^\alpha x^{\alpha-1}\exp{-\beta x}}{\Gamma(\alpha)}
+\]</span></p>
+<p>  公式中的<span class="math inline">\(\alpha\)</span>和<span class="math inline">\(\beta\)</span>可以间接的控制分布的位置和重尾（heavy tail）的程度，进而控制了分布的形状。如果你想了解更多关于这个分布的内容，请参考<a href="https://www.stat.berkeley.edu/~rice/Book3ed/index.html">这本书</a>.</p>
+<p>  伽玛分布的两个特列是卡平方分布和指数分布分布。前面我们已经用到卡平方来分析一个2x2的列表数据。对于卡平方，<span class="math inline">\(\alpha=\nu/2\)</span>，<span class="math inline">\(\beta=2\)</span>，同时自由度为<span class="math inline">\(\nu\)</span>。对于指数分布，<span class="math inline">\(\alpha=1\)</span>，同时<span class="math inline">\(\beta=\lambda\)</span>。</p>
+<p>  F分布会在方差分析（ANOVA）中讲到。F分布，变量总是正值同时在右侧有重尾。该分布中，两个参数决定其形状：</p>
+<p><span class="math display">\[
+f(x,d_1,d_2)=\frac{1}{B\left( \frac{d_1}{2},\frac{d_2}{2}\right)}
+  \left(\frac{d_1}{d_2}\right)^{\frac{d_1}{2}}  
+  x^{\frac{d_1}{2}-1}\left(1+\frac{d1}{d2}x\right)^{-\frac{d_1+d_2}{2}}
+\]</span></p>
+<div id="section-6.4.0.1" class="section level4">
+<h4><span class="header-section-number">6.4.0.1</span> 方差建模</h4>
+<p>  在稍后的章节中，我们会介绍通过层次模型会提高方差估计。</p>
+<p><span class="math display">\[
+s^2 \sim s_0^2 F_{d,d_0}
+\]</span></p>
+<p>with <span class="math inline">\(d\)</span> the degrees of freedom involved in computing <span class="math inline">\(s^2\)</span>. For example, in a case comparing 3 versus 3, the degrees of freedom would be 4. This leaves two free parameters to adjust to the data. Here <span class="math inline">\(d\)</span> will control the location and <span class="math inline">\(s_0\)</span> will control the scale. Below are some examples of <span class="math inline">\(F\)</span> distribution plotted on top of the histogram from the sample variances:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rafalib)
+<span class="kw">mypar</span>(<span class="dv">3</span>,<span class="dv">3</span>)
+sds=<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dt">len=</span><span class="dv">100</span>)
+<span class="cf">for</span>(d <span class="cf">in</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">10</span>)){
+  <span class="cf">for</span>(s0 <span class="cf">in</span> <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>)){
+    tmp=<span class="kw">hist</span>(biosds,<span class="dt">main=</span><span class="kw">paste</span>(<span class="st">&quot;s_0 =&quot;</span>,s0,<span class="st">&quot;d =&quot;</span>,d),
+      <span class="dt">xlab=</span><span class="st">&quot;sd&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;density&quot;</span>,<span class="dt">freq=</span><span class="ot">FALSE</span>,<span class="dt">nc=</span><span class="dv">100</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))
+    dd=<span class="kw">df</span>(sds<span class="op">^</span><span class="dv">2</span><span class="op">/</span>s0<span class="op">^</span><span class="dv">2</span>,<span class="dv">11</span>,d)
+    ##multiply by normalizing constant to assure same range on plot
+    k=<span class="kw">sum</span>(tmp<span class="op">$</span>density)<span class="op">/</span><span class="kw">sum</span>(dd) 
+    <span class="kw">lines</span>(sds,dd<span class="op">*</span>k,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,<span class="dt">col=</span><span class="dv">2</span>,<span class="dt">lwd=</span><span class="dv">2</span>)
+    }
+}</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/modeling_variance-1.png" alt="Histograms of sample standard deviations and densities of estimated distributions." width="984" />
+<p class="caption">
+(#fig:modeling_variance)Histograms of sample standard deviations and densities of estimated distributions.
+</p>
+</div>
+<p>Now which <span class="math inline">\(s_0\)</span> and <span class="math inline">\(d\)</span> fit our data best? This is a rather advanced topic as the MLE does not perform well for this particular distribution (we refer to Smyth (2004)). The Bioconductor <code>limma</code> package provides a function to estimate these parameters:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(limma)
+estimates=<span class="kw">fitFDist</span>(biosds<span class="op">^</span><span class="dv">2</span>,<span class="dv">11</span>)
+
+theoretical&lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">qf</span>((<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">999</span>)<span class="op">+</span><span class="fl">0.5</span>)<span class="op">/</span><span class="dv">1000</span>, <span class="dv">11</span>, estimates<span class="op">$</span>df2)<span class="op">*</span>estimates<span class="op">$</span>scale)
+observed &lt;-<span class="st"> </span>biosds</code></pre></div>
+<p>The fitted models do appear to provide a reasonable approximation, as demonstrated by the qq-plot and histogram:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
+<span class="kw">qqplot</span>(theoretical,observed)
+<span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>)
+tmp=<span class="kw">hist</span>(biosds,<span class="dt">main=</span><span class="kw">paste</span>(<span class="st">&quot;s_0 =&quot;</span>, <span class="kw">signif</span>(estimates[[<span class="dv">1</span>]],<span class="dv">2</span>),
+                  <span class="st">&quot;d =&quot;</span>, <span class="kw">signif</span>(estimates[[<span class="dv">2</span>]],<span class="dv">2</span>)),
+  <span class="dt">xlab=</span><span class="st">&quot;sd&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;density&quot;</span>, <span class="dt">freq=</span><span class="ot">FALSE</span>, <span class="dt">nc=</span><span class="dv">100</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">9</span>))
+dd=<span class="kw">df</span>(sds<span class="op">^</span><span class="dv">2</span><span class="op">/</span>estimates<span class="op">$</span>scale,<span class="dv">11</span>,estimates<span class="op">$</span>df2)
+k=<span class="kw">sum</span>(tmp<span class="op">$</span>density)<span class="op">/</span><span class="kw">sum</span>(dd) ##a normalizing constant to assure same area in plot
+<span class="kw">lines</span>(sds, dd<span class="op">*</span>k, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">col=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/variance_model_fit-1.png" alt="qq-plot (left) and density (right) demonstrate that model fits data well." width="1008" />
+<p class="caption">
+(#fig:variance_model_fit)qq-plot (left) and density (right) demonstrate that model fits data well.
+</p>
+</div>
+</div>
+</div>
+<div id="section-6.5" class="section level2">
+<h2><span class="header-section-number">6.5</span> 贝叶斯统计</h2>
+<p>  高通量数据的一个突出特点是尽管我们想要研究一些特殊的特征值，但是通常我们也观察多许多相关的其他内容。例如，通过RNA-seq我们能够衡量成千上万个基因的表达量，利用ChIP-seq我们可以计算成千上万个峰的高度（象征蛋白结合强度），利用BS-seq我们可以计算几个CpG位点的甲基化水平。然而，前面我们介绍的大多数的统计推断方法将每一个特征值看成是独立的，因此并没有考虑其他特征值。</p>
+<div id="section-6.5.0.1" class="section level4">
+<h4><span class="header-section-number">6.5.0.1</span> 贝叶斯定理</h4>
+<p>  首先，我们来回顾一下贝叶斯定理。我们利用一个假设的囊性纤维化检测试验作为一个例子。假设，该测试试验的准确性是99%。我们将会有下面的公式：</p>
+<p><span class="math display">\[
+\mbox{Prob}(+ \mid D=1)=0.99, \mbox{Prob}(- \mid D=0)=0.99 
+\]</span></p>
+<p>  <span class="math inline">\(+\)</span>表示检测结果为阳性，<span class="math inline">\(D\)</span>表示受试者实际患病（1）或者未患病（0）。</p>
+<p>  假设我们随机选取一个人测试，该受试者测试结果为阳性，那么他患病的概率是多少？</p>
+<p><span class="math display">\[
+\mbox{Pr}(A \mid B)  =  \frac{\mbox{Pr}(B \mid A)\mbox{Pr}(A)}{\mbox{Pr}(B)} 
+\]</span></p>
+<p>  这个公式应用到我们的问题中，我们得到:</p>
+<p><span class="math display">\[
+\begin{align*}
+\mbox{Prob}(D=1 \mid +) &amp; =  \frac{ P(+ \mid D=1) \cdot P(D=1)} {\mbox{Prob}(+)} \\
+&amp; =  \frac{\mbox{Prob}(+ \mid D=1)\cdot P(D=1)} {\mbox{Prob}(+ \mid D=1) \cdot P(D=1) + \mbox{Prob}(+ \mid D=0) \mbox{Prob}( D=0)} 
+\end{align*}
+\]</span></p>
+<p>  代入具体的数据，我们得到下面的结果:</p>
+<p><span class="math display">\[
+\frac{0.99 \cdot 0.00025}{0.99 \cdot 0.00025 + 0.01 \cdot (.99975)}  =  0.02 
+\]</span></p>
+<p>  这个结果表明，尽管检测准确性很高，能够达到0.99。但是在检测结果为阳性的情况下，受试者患病的概率却只有0.02。这看起来和我们的直觉是是相反的。得到这个结果的原因是在我们随机选取的这个受试者患病的概率极低。为了更直观的解释这个结果，我们使用蒙特·卡罗方法模拟一个数据。</p>
+</div>
+<div id="section-6.5.0.2" class="section level4">
+<h4><span class="header-section-number">6.5.0.2</span> 模拟</h4>
+<p>  下面的模拟是为了帮助你更直观的理解贝叶斯定理。首先，我们从一个患病率为5%的群体中随机选取1500个人。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">3</span>)
+prev &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">20</span>
+##Later, we are arranging 1000 people in 80 rows and 20 columns
+M &lt;-<span class="st"> </span><span class="dv">50</span> ; N &lt;-<span class="st"> </span><span class="dv">30</span>
+##do they have the disease?
+d&lt;-<span class="kw">rbinom</span>(N<span class="op">*</span>M,<span class="dv">1</span>,<span class="dt">p=</span>prev)</code></pre></div>
+<p>  接着我们队每一个人进行测试，测试的准确性是99%。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">accuracy &lt;-<span class="st"> </span><span class="fl">0.9</span>
+test &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>,N<span class="op">*</span>M)
+##do controls test positive?
+test[d<span class="op">==</span><span class="dv">1</span>]  &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="kw">sum</span>(d<span class="op">==</span><span class="dv">1</span>), <span class="dv">1</span>, <span class="dt">p=</span>accuracy)
+##do cases test positive?
+test[d<span class="op">==</span><span class="dv">0</span>]  &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="kw">sum</span>(d<span class="op">==</span><span class="dv">0</span>), <span class="dv">1</span>, <span class="dt">p=</span><span class="dv">1</span><span class="op">-</span>accuracy)</code></pre></div>
+<p>   因为对照的个数远远大于病例的个数，所以即使假阳性率比较低的情况下，我们在检测结果为阳性的这一组中依然看到对照的个数大于患病的个数（此处图对应的代码没有显示）。</p>
+<div class="figure"><span id="fig:simulation"></span>
+<img src="bookdown_files/figure-html/simulation-1.png" alt="Simulation demonstrating Bayes theorem. Top plot shows every individual with red denoting cases. Each one takes a test and with 90% gives correct answer. Those called positive (either correctly or incorrectly) are put in the bottom left pane. Those called negative in the bottom right." width="1008" />
+<p class="caption">
+图 6.2: Simulation demonstrating Bayes theorem. Top plot shows every individual with red denoting cases. Each one takes a test and with 90% gives correct answer. Those called positive (either correctly or incorrectly) are put in the bottom left pane. Those called negative in the bottom right.
+</p>
+</div>
+<p>  在上图中，上半部分红色比例代表<span class="math inline">\(\mbox{Pr}(D=1)\)</span>。左下图代表<span class="math inline">\(\mbox{Pr}(D=1 \mid +)\)</span>。左下图代表<span class="math inline">\(\mbox{Pr}(D=0 \mid +)\)</span>。</p>
+<!-- ![iglesias](http://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg/902px-Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg) -->
+<p>  José Iglesias是一个职业的棒球运动员。2013年4月是他职业生涯的第一个月，他的表现非常棒:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Month</th>
+<th>At Bats</th>
+<th>H</th>
+<th>AVG</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>April</td>
+<td>20</td>
+<td>9</td>
+<td>.450</td>
+</tr>
+</tbody>
+</table>
+<p>  棒球的击球率（<code>AVG</code>：the batting average）是衡量一个棒球员表现的一个指标。通常来讲，<code>AVG</code>表示击球成功的概率。0.450的<code>AVG</code>是非常好的一个表现。例如，1941年传奇棒球球员Ted Williams的<code>AVG</code>为0.406，从那以后没有一个球员能够取得这么好的成绩。为了解释分层模型是非常有效的，我们将试着利用José的超过500次的急求数据来预测其整个赛季的<code>AVG</code>。</p>
+<p>  截止现在，我们所学到的内容都属于频率学派统计学，我们能做到的是提供一个置信区间。我们讲击球事件看做一个成功率为<span class="math inline">\(p\)</span>的二项分布。所以如果<span class="math inline">\(p\)</span>是0.450，20次击球的标准差是：</p>
+<p><span class="math display">\[
+\sqrt{\frac{.450 (1-.450)}{20}}=.111
+\]</span></p>
+<p>  这说明我们的执行区间是0.228（.450-.222）到0.672（.450+.222）。</p>
+<p>  这个预测有两个问题。首先，置信区间太大，所以没有实际意义。另外，该预测的中心是0.450（即我们的最佳预测），表明我们的最佳预测是这名新球员的<code>AVG</code>可能会打破Ted Williams在1941年创下的记录。如果你关注棒球，你会认为这个预测是有很大问题的。这是因为你已经在使用层次模型了，你将你几年来关注棒球得到的信息以一种直觉的形式来判断这一问题了。接下来我们将介绍我们如果以数学的形式来量化这种直觉。</p>
+<p>  首先，让我们先来看看在前三个赛季中击球数超过500次的球员的平均<code>AVG</code>：</p>
+<div class="figure">
+<img src="bookdown_files/figure-html/batting_averages-1.png" alt="Batting average histograms for 2010, 2011, and 2012." width="1008" />
+<p class="caption">
+(#fig:batting_averages)Batting average histograms for 2010, 2011, and 2012.
+</p>
+</div>
+<p>  我们会发现，棒球球员的<code>AVG</code>均值是0.275，标准差是0.027。所以我们已经可以看出0.450的<code>AVG</code>是非常异常的，这个值偏离均值超过6个标准差。所以José有0.450这个成绩是碰巧的还是说他确实是自1941年以来最好的球员呢？这可能两者的因素都有。但是碰巧的因素和他确实有这么好的概率有多少呢?这样的判断会对球员交易产生影响。如果，经过分析我们认为他只是碰巧取得了这个成绩，他并没有那么好，那么你作为球队老板可能就会选择将他交易到其他球队，也许其他球队会根据0.450这个数据尔高估他，认为他确实非常优秀。</p>
+</div>
+<div id="section-6.5.0.3" class="section level4">
+<h4><span class="header-section-number">6.5.0.3</span> 层次模型</h4>
+<p>  层次模型提供了一种让方法让我们能够用数学的语言来描述这一例子。首先，我们随机选取了一个优秀的球员，这个选择是基于<span class="math inline">\(\theta\)</span>。<span class="math inline">\(\theta\)</span>是根据20次随机事件得出的一个成功概率。</p>
+<p><span class="math display">\[
+\begin{align*}
+\theta &amp;\sim N(\mu, \tau^2) \mbox{ describes randomness in picking a player}\\
+Y \mid \theta &amp;\sim N(\theta, \sigma^2) \mbox{ describes randomness in the performance of this particular player}
+\end{align*}
+\]</span></p>
+<p>```   这里有两个层次的意思：1）球员和球员之间的差异；2）击球时运气因素引起的变异。在贝叶斯模型中，第一层次称之为_先验概率_，第二层次为_样本分布_。</p>
+<p>  现在，让我们用层次模型来对José的数据进行建模。假设我们的目的是预测他__真实__的击球率来评估他的天赋。下面展示的是这一数据的层次模型：</p>
+<p><span class="math display">\[
+\begin{align*}
+\theta &amp;\sim N(.275, .027^2) \\
+Y \mid \theta &amp;\sim N(\theta, .111^2) 
+\end{align*}
+\]</span></p>
+<p>  现在我们可以计算后验概率分布来预测<span class="math inline">\(\theta\)</span>。贝叶斯法则的连续版本可以被用来推断_后验概率_，这也是从观测数据中的参数 <span class="math inline">\(\theta\)</span>的缝补。</p>
+<p><span class="math display">\[
+\begin{align*}
+f_{ \theta \mid Y} (\theta\mid Y) &amp;=
+\frac{f_{Y\mid \theta}(Y\mid \theta) f_{\theta}(\theta)
+}{f_Y(Y)}\\
+&amp;= \frac{f_{Y\mid \theta}(Y\mid \theta) f_{\theta}(\theta)}
+{\int_{\theta}f_{Y\mid \theta}(Y\mid \theta)f_{\theta}(\theta)}
+\end{align*}
+\]</span></p>
+<p>  我们尤其对能够使后验概率<span class="math inline">\(f_{\theta\mid Y}(\theta\mid Y)\)</span>取得最大值的<span class="math inline">\(\theta\)</span>。在我们的数据中，我们可以看到后验概率的分布符合正态分布，我们也可以计算均值<span class="math inline">\(\mbox{E}(\theta\mid y)\)</span>和方差<span class="math inline">\(\mbox{var}(\theta\mid y)\)</span>。我们可以具体一下面的形式展示该分布的均值。</p>
+<p><span class="math display">\[
+\begin{align*}
+\mbox{E}(\theta\mid y) &amp;= B \mu + (1-B) Y\\
+&amp;= \mu + (1-B)(Y-\mu)\\
+B &amp;= \frac{\sigma^2}{\sigma^2+\tau^2}
+\end{align*}
+\]</span></p>
+<p>It is a weighted average of the population average <span class="math inline">\(\mu\)</span> and the observed data <span class="math inline">\(Y\)</span>. The weight depends on the SD of the population <span class="math inline">\(\tau\)</span> and the SD of our observed data <span class="math inline">\(\sigma\)</span>. This weighted average is sometimes referred to as <em>shrinking</em> because it <em>shrinks</em> estimates towards a prior mean. In the case of José Iglesias, we have:</p>
+<p><span class="math display">\[
+\begin{align*}
+\mbox{E}(\theta \mid Y=.450) &amp;= B \times .275 + (1 - B) \times .450 \\
+&amp;= .275 + (1 - B)(.450 - .275) \\
+B &amp;=\frac{.111^2}{.111^2 + .027^2} = 0.944\\
+\mbox{E}(\theta \mid Y=450) &amp;\approx .285
+\end{align*}
+\]</span></p>
+<p>The variance can be shown to be:</p>
+<p><span class="math display">\[
+\mbox{var}(\theta\mid y) = \frac{1}{1/\sigma^2+1/\tau^2}
+= \frac{1}{1/.111^2 + 1/.027^2} = 0.00069
+\]</span> and the standard deviation is therefore <span class="math inline">\(0.026\)</span>. So we started with a frequentist 95% confidence interval that ignored data from other players and summarized just José’s data: .450 <span class="math inline">\(\pm\)</span> 0.220. Then we used a Bayesian approach that incorporated data from other players and other years to obtain a posterior probability. This is actually referred to as an empirical Bayes approach because we used data to construct the prior. From the posterior we can report what is called a 95% credible interval by reporting a region, centered at the mean, with a 95% chance of occurring. In our case, this turns out to be: .285 <span class="math inline">\(\pm\)</span> 0.052.</p>
+<p>The Bayesian credible interval suggests that if another team is impressed by the .450 observation, we should consider trading José as we are predicting he will be just slightly above average. Interestingly, the Red Sox traded José to the Detroit Tigers in July. Here are the José Iglesias batting averages for the next five months.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Month</th>
+<th>At Bat</th>
+<th>Hits</th>
+<th>AVG</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>April</td>
+<td>20</td>
+<td>9</td>
+<td>.450</td>
+</tr>
+<tr class="even">
+<td>May</td>
+<td>26</td>
+<td>11</td>
+<td>.423</td>
+</tr>
+<tr class="odd">
+<td>June</td>
+<td>86</td>
+<td>34</td>
+<td>.395</td>
+</tr>
+<tr class="even">
+<td>July</td>
+<td>83</td>
+<td>17</td>
+<td>.205</td>
+</tr>
+<tr class="odd">
+<td>August</td>
+<td>85</td>
+<td>25</td>
+<td>.294</td>
+</tr>
+<tr class="even">
+<td>September</td>
+<td>50</td>
+<td>10</td>
+<td>.200</td>
+</tr>
+<tr class="odd">
+<td>Total w/o April</td>
+<td>330</td>
+<td>97</td>
+<td>.293</td>
+</tr>
+</tbody>
+</table>
+<p>Although both intervals included the final batting average, the Bayesian credible interval provided a much more precise prediction. In particular, it predicted that he would not be as good the remainder of the season.</p>
+</div>
+</div>
+<div id="hierarchical-models" class="section level2">
+<h2><span class="header-section-number">6.6</span> Hierarchical Models</h2>
+<p>In this section, we use the mathematical theory which describes an approach that has become widely applied in the analysis of high-throughput data. The general idea is to build a <em>hierachichal model</em> with two levels. One level describes variability across samples/units, and the other describes variability across features. This is similar to the baseball example in which the first level described variability across players and the second described the randomness for the success of one player. The first level of variation is accounted for by all the models and approaches we have described here, for example the model that leads to the t-test. The second level provides power by permitting us to “borrow” information from all features to inform the inference performed on each one.</p>
+<p>Here we describe one specific case that is currently the most widely used approach to inference with gene expression data. It is the model implemented by the <code>limma</code> Bioconductor package. This idea has been adapted to develop methods for other data types such as RNAseq by, for example, <a href="http://www.ncbi.nlm.nih.gov/pubmed/19910308">edgeR</a> and <a href="http://www.ncbi.nlm.nih.gov/pubmed/25516281">DESeq2</a>. This package provides an alternative to the t-test that greatly improves power by modeling the variance. While in the baseball example we modeled averages, here we model variances. Modelling variances requires more advanced math, but the concepts are practically the same. We motivate and demonstrate the approach with an example.</p>
+<p>Here is a volcano showing effect sizes and p-value from applying a t-test to data from an experiment running six replicated samples with 16 genes artificially made to be different in two groups of three samples each. These 16 genes are the only genes for which the alternative hypothesis is true. In the plot they are shown in blue.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(SpikeInSubset) ##Available from Bioconductor
+<span class="kw">data</span>(rma95)
+<span class="kw">library</span>(genefilter)
+fac &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,<span class="dt">each=</span><span class="dv">3</span>))
+tt &lt;-<span class="st"> </span><span class="kw">rowttests</span>(<span class="kw">exprs</span>(rma95),fac)
+smallp &lt;-<span class="st"> </span><span class="kw">with</span>(tt, p.value <span class="op">&lt;</span><span class="st"> </span>.<span class="dv">01</span>)
+spike &lt;-<span class="st"> </span><span class="kw">rownames</span>(rma95) <span class="op">%in%</span><span class="st"> </span><span class="kw">colnames</span>(<span class="kw">pData</span>(rma95))
+cols &lt;-<span class="st"> </span><span class="kw">ifelse</span>(spike,<span class="st">&quot;dodgerblue&quot;</span>,<span class="kw">ifelse</span>(smallp,<span class="st">&quot;red&quot;</span>,<span class="st">&quot;black&quot;</span>))
+
+<span class="kw">with</span>(tt, <span class="kw">plot</span>(<span class="op">-</span>dm, <span class="op">-</span><span class="kw">log10</span>(p.value), <span class="dt">cex=</span>.<span class="dv">8</span>, <span class="dt">pch=</span><span class="dv">16</span>,
+     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">4.5</span>),
+     <span class="dt">xlab=</span><span class="st">&quot;difference in means&quot;</span>,
+     <span class="dt">col=</span>cols))
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">2</span>,<span class="dt">v=</span><span class="kw">c</span>(<span class="op">-</span>.<span class="dv">2</span>,.<span class="dv">2</span>), <span class="dt">lty=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure"><span id="fig:volcano-plot"></span>
+<img src="bookdown_files/figure-html/volcano-plot-1.png" alt="Volcano plot for t-test comparing two groups. Spiked-in genes are denoted with blue. Among the rest of the genes, those with p-value &lt; 0.01 are denoted with red." width="672" />
+<p class="caption">
+图 6.3: Volcano plot for t-test comparing two groups. Spiked-in genes are denoted with blue. Among the rest of the genes, those with p-value &lt; 0.01 are denoted with red.
+</p>
+</div>
+<p>We cut-off the range of the y-axis at 4.5, but there is one blue point with a p-value smaller than <span class="math inline">\(10^{-6}\)</span>. Two findings stand out from this plot. The first is that only one of the positives would be found to be significant with a standard 5% FDR cutoff:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>( <span class="kw">p.adjust</span>(tt<span class="op">$</span>p.value,<span class="dt">method =</span> <span class="st">&quot;BH&quot;</span>)[spike] <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.05</span>)</code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>This of course has to do with the low power associated with a sample size of three in each group. The second finding is that if we forget about inference and simply rank the genes based on the size of the t-statistic, we obtain many false positives in any rank list of size larger than 1. For example, six of the top 10 genes ranked by t-statistic are false positives.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>( <span class="dt">top50=</span><span class="kw">rank</span>(tt<span class="op">$</span>p.value)<span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>, spike) <span class="co">#t-stat and p-val rank is the same</span></code></pre></div>
+<pre><code>##        spike
+## top50   FALSE  TRUE
+##   FALSE 12604    12
+##   TRUE      6     4</code></pre>
+<p>In the plot we notice that these are mostly genes for which the effect size is relatively small, implying that the estimated standard error is small. We can confirm this with a plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tt<span class="op">$</span>s &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="kw">exprs</span>(rma95), <span class="dv">1</span>, <span class="cf">function</span>(row) 
+  <span class="kw">sqrt</span>(.<span class="dv">5</span> <span class="op">*</span><span class="st"> </span>(<span class="kw">var</span>(row[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]) <span class="op">+</span><span class="st"> </span><span class="kw">var</span>(row[<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>]) ) ) )
+<span class="kw">with</span>(tt, <span class="kw">plot</span>(s, <span class="op">-</span><span class="kw">log10</span>(p.value), <span class="dt">cex=</span>.<span class="dv">8</span>, <span class="dt">pch=</span><span class="dv">16</span>,
+              <span class="dt">log=</span><span class="st">&quot;x&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;estimate of standard deviation&quot;</span>,
+              <span class="dt">col=</span>cols))</code></pre></div>
+<div class="figure">
+<img src="bookdown_files/figure-html/pval_versus_sd-1.png" alt="p-values versus standard deviation estimates." width="672" />
+<p class="caption">
+(#fig:pval_versus_sd)p-values versus standard deviation estimates.
+</p>
+</div>
+<p>Here is where a hierarchical model can be useful. If we can make an assumption about the distribution of these variances across genes, then we can improve estimates by “adjusting” estimates that are “too small” according to this distribution. In a previous section we described how the F-distribution approximates the distribution of the observed variances.</p>
+<p><span class="math display">\[
+s^2 \sim s_0^2 F_{d,d_0}
+\]</span></p>
+<p>Because we have thousands of data points, we can actually check this assumption and also estimate the parameters <span class="math inline">\(s_0\)</span> and <span class="math inline">\(d_0\)</span>. This particular approach is referred to as empirical Bayes because it can be described as using data (empirical) to build the prior distribution (Bayesian approach).</p>
+<p>Now we apply what we learned with the baseball example to the standard error estimates. As before we have an observed value for each gene <span class="math inline">\(s_g\)</span>, a sampling distribution as a prior distribution. We can therefore compute a posterior distribution for the variance <span class="math inline">\(\sigma^2_g\)</span> and obtain the posterior mean. You can see the details of the derivation in <a href="http://www.ncbi.nlm.nih.gov/pubmed/16646809">this paper</a>.</p>
+<p><span class="math display">\[
+\mbox{E}[\sigma^2_g \mid s_g] = \frac{d_0 s_0^2 + d s^2_g}{d_0 + d}
+\]</span></p>
+<p>As in the baseball example, the posterior mean <em>shrinks</em> the observed variance <span class="math inline">\(s_g^2\)</span> towards the global variance <span class="math inline">\(s_0^2\)</span> and the weights depend on the sample size through the degrees of freedom <span class="math inline">\(d\)</span> and, in this case, the shape of the prior distribution through <span class="math inline">\(d_0\)</span>.</p>
+<p>In the plot above we can see how the variance estimates <em>shrink</em> for 40 genes (code not shown):</p>
+<div class="figure"><span id="fig:shrinkage"></span>
+<img src="bookdown_files/figure-html/shrinkage-1.png" alt="Illustration of how estimates shrink towards the prior expectation. Forty genes spanning the range of values were selected." width="672" />
+<p class="caption">
+图 6.4: Illustration of how estimates shrink towards the prior expectation. Forty genes spanning the range of values were selected.
+</p>
+</div>
+<p>An important aspect of this adjustment is that genes having a sample standard deviation close to 0 are no longer close to 0 (they shrink towards <span class="math inline">\(s_0\)</span>). We can now create a version of the t-test that instead of the sample standard deviation uses this posterior mean or “shrunken” estimate of the variance. We refer to these as <em>moderated</em> t-tests. Once we do this, the improvements can be seen clearly in the volcano plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(limma)
+fit &lt;-<span class="st"> </span><span class="kw">lmFit</span>(rma95, <span class="kw">model.matrix</span>(<span class="op">~</span><span class="st"> </span>fac))
+ebfit &lt;-<span class="st"> </span><span class="kw">ebayes</span>(fit)
+limmares &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">dm=</span><span class="kw">coef</span>(fit)[,<span class="st">&quot;fac2&quot;</span>], <span class="dt">p.value=</span>ebfit<span class="op">$</span>p.value[,<span class="st">&quot;fac2&quot;</span>])
+<span class="kw">with</span>(limmares, <span class="kw">plot</span>(dm, <span class="op">-</span><span class="kw">log10</span>(p.value),<span class="dt">cex=</span>.<span class="dv">8</span>, <span class="dt">pch=</span><span class="dv">16</span>,
+     <span class="dt">col=</span>cols,<span class="dt">xlab=</span><span class="st">&quot;difference in means&quot;</span>,
+     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">5</span>)))
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">2</span>,<span class="dt">v=</span><span class="kw">c</span>(<span class="op">-</span>.<span class="dv">2</span>,.<span class="dv">2</span>), <span class="dt">lty=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure"><span id="fig:volcano-plot2"></span>
+<img src="bookdown_files/figure-html/volcano-plot2-1.png" alt="Volcano plot for moderated t-test comparing two groups. Spiked-in genes are denoted with blue. Among the rest of the genes, those with p-value &lt; 0.01 are denoted with red." width="672" />
+<p class="caption">
+图 6.5: Volcano plot for moderated t-test comparing two groups. Spiked-in genes are denoted with blue. Among the rest of the genes, those with p-value &lt; 0.01 are denoted with red.
+</p>
+</div>
+<p>The number of false positives in the top 10 is now reduced to 2.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>( <span class="dt">top50=</span><span class="kw">rank</span>(limmares<span class="op">$</span>p.value)<span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>, spike) </code></pre></div>
+<pre><code>##        spike
+## top50   FALSE  TRUE
+##   FALSE 12608     8
+##   TRUE      2     8</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="inference-for-high-dimensional-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-7.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/xie186/DataAnalysisForLifeScience_cn/edit/master/07_modeling.Rmd",
+"text": "编辑"
+},
+"download": ["bookdown.pdf", "bookdown.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

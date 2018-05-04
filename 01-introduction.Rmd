@@ -98,8 +98,13 @@ Two key things you need to know about R is that you can get help for a function 
 help("install.packages")
 ```
 
+```{block2 echo = FALSE}
 and the hash character represents comments, so text following these
 characters is not interpreted:
+```
+
+&emsp&emsp另一个就是#号表示注释，#号后面的内容是不会执行的。注释对编程代码的可读性是非常重要的。良好的注释是优秀代码的主要组成部分。
+
 
 ```{r}
 ##This is just a comment

@@ -26,17 +26,19 @@ Graphing data is a powerful approach to detecting these problems. We refer to th
 We have already introduced some EDA approaches for _univariate_ data, namely the histograms and qq-plot. Here we describe the qq-plot in more detail and some EDA and summary statistics for paired data. We also give a demonstration of commonly used figures that we recommend against. 
 ```
 
-
-&emsp&emsp我们已经介绍了一些用于单变量的数据的EDA方法，即直方图和QQ图。这里我们进一步介绍QQ图和一些其他的EDA，以及用于成对数据的汇总统计。我们也会推荐一些常用的图片类型。
+&emsp&emsp我们已经介绍了一些用于单变量的数据的EDA方法，即直方图和QQ图。这里我们进一步介绍QQ图和一些其他的EDA，以及用于成对数据的汇总统计。我们也会推荐一些常用的作图类型。
 
 ```{block2 echo = FALSE}
 ## Quantile Quantile Plots
 ```
 
+## QQ图
+
 ```{block2 echo = FALSE}
 To corroborate that a theoretical distribution, for example the normal distribution, is in fact a good approximation, we can use quantile-quantile plots (qq-plots). Quantiles are best understood by considering the special case of percentiles. The p-th percentile of a list of a distribution is defined as the number q that is bigger than p% of numbers (so the inverse of the cumulative distribution function we defined earlier). For example, the median 50-th percentile is the median. We can compute the percentiles for our list of heights:
 ```
 
+&emsp&emsp我们可以利用QQ图来来观察我们的数据是否符合某一个分布（例如是否符合正态分布）。分位值是百分位值的特殊
 
 
 ```{r definingHeights1, message=FALSE}
@@ -56,18 +58,24 @@ plot(normalqs,qs,xlab="Normal percentiles",ylab="Height percentiles")
 abline(0,1) ##identity line
 ```
 
+```{block2 echo = FALSE}
 Note how close these values are. Also, note that we can see these
 qq-plots with less code (this plot has more points than the one we
 constructed manually, and so tail-behavior can be seen more clearly).
+```
 
 ```{r qqplot_example2, fig.cap="Second example of qqplot. Here we use the function qqnorm which computes the theoretical normal quantiles automatically."}
 qqnorm(x)
 qqline(x) 
 ```
 
+```{block2 echo = FALSE}
 However, the `qqnorm` function plots against a standard normal distribution. This is why the line has slope `popsd(x)` and intercept `mean(x)`.
+```
 
+```{block2 echo = FALSE}
 In the example above, the points match the line very well. In fact, we can run Monte Carlo simulations to see plots like this for data known to be normally distributed.
+```
 
 
 ```{r qqnorm_example, fig.cap="Example of the qqnorm function. Here we apply it to numbers generated to follow a normal distribution."}
@@ -77,16 +85,9 @@ qqnorm(x)
 qqline(x)
 ```
 
-We can also get a sense for how non-normally distributed data will
-look in a qq-plot. Here we generate data from the t-distribution with
-different degrees of freedom. Notice that the smaller the degrees of
-freedom, the fatter the tails. We call these "fat tails" because if we
-plotted an empirical density or histogram, the density at the extremes would be
-higher than the theoretical curve. In the qq-plot, this can be seen in
-that the curve is lower than the identity line on the left
-side and higher on the right side. This means that there are more
-extreme values than predicted by the theoretical density plotted on
-the x-axis.
+```{block2 echo = FALSE}
+We can also get a sense for how non-normally distributed data will look in a qq-plot. Here we generate data from the t-distribution with different degrees of freedom. Notice that the smaller the degrees of freedom, the fatter the tails. We call these "fat tails" because if we plotted an empirical density or histogram, the density at the extremes would be higher than the theoretical curve. In the qq-plot, this can be seen in that the curve is lower than the identity line on the left side and higher on the right side. This means that there are more extreme values than predicted by the theoretical density plotted on the x-axis.
+```
 
 ```{r qqnorm_of_t, fig.cap="We generate t-distributed data for four degrees of freedom and make qqplots against normal theoretical quantiles.",fig.width=7.5,fig.height=7.5}
 dfs <- c(3,6,12,30)
@@ -347,20 +348,11 @@ The reason is that by removing the center, we remove one of the visual cues for 
 
 ####  Barplots as data summaries
 
-While barplots are useful for showing percentages, they are
-incorrectly used to display data from two groups being
-compared. Specifically, barplots are created with height equal to the
-group means; an antenna is added at the top to represent standard
-errors. This plot is simply showing two numbers per group and the
-plot adds nothing: 
+While barplots are useful for showing percentages, they are incorrectly used to display data from two groups being compared. Specifically, barplots are created with height equal to the group means; an antenna is added at the top to represent standard errors. This plot is simply showing two numbers per group and the plot adds nothing: 
 
 ![Bad bar plots.](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig1c.png)
 
-Much more informative is to summarize with a boxplot. If the number of
-points is small enough, we might as well add them to the plot. When
-the number of points is too large for us to see them, just showing a
-boxplot is preferable. We can even set `range=0` in `boxplot` to avoid
-drawing many outliers when the data is in the range of millions.
+Much more informative is to summarize with a boxplot. If the number of points is small enough, we might as well add them to the plot. When the number of points is too large for us to see them, just showing a boxplot is preferable. We can even set `range=0` in `boxplot` to avoid drawing many outliers when the data is in the range of millions.
 
 Let's recreate these barplots as boxplots. First let's download the data:
 

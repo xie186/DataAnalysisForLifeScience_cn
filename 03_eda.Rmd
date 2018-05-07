@@ -59,10 +59,10 @@ abline(0,1) ##identity line
 ```
 
 ```{block2 echo = FALSE}
-Note how close these values are. Also, note that we can see these
-qq-plots with less code (this plot has more points than the one we
-constructed manually, and so tail-behavior can be seen more clearly).
+Note how close these values are. Also, note that we can see these qq-plots with less code (this plot has more points than the one we constructed manually, and so tail-behavior can be seen more clearly).
 ```
+
+注意看这些这两组数值是非常接近的。
 
 ```{r qqplot_example2, fig.cap="Second example of qqplot. Here we use the function qqnorm which computes the theoretical normal quantiles automatically."}
 qqnorm(x)

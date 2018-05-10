@@ -309,15 +309,37 @@ set.seed(1)
 library(rafalib)
 ```
 
-## Plots to Avoid 
+```{block2 echo = FALSE}
+## Plots to Avoid
+```
 
+## 这些图需要避免使用！
+
+```{block2 echo = FALSE}
 This section is based on a talk by [Karl W. Broman](http://kbroman.org/) titled "How to Display Data Badly," in which he described how the default plots offered by Microsoft Excel "obscure your data and annoy your readers" ([here](http://kbroman.org/pages/talks.html) is a link to a collection of Karl Broman's talks). His lecture was inspired by the 1984 paper by H. Wainer: How to display data badly. American Statistician 38(2): 137--147. Dr. Wainer was the first to elucidate the principles of the bad display of data. However, according to Karl Broman, "The now widespread use of Microsoft Excel has resulted in remarkable advances in the field." Here we show examples of "bad plots" and how to improve them in R.
+```
 
+
+```{block2 echo = FALSE}
 #### General principles
+```
 
+```{block2 echo = FALSE}
 The aim of good data graphics is to display data accurately and clearly. According to Karl Broman, some rules for displaying data *badly* are:
+```
 
+&emsp;&emsp;好的数据图形化展示的目的是准确清晰的展示数据。根据的Karl Broman的讲座，下面的准则总是会导致比较差的数据展示效果：
+
+```{block2 echo = FALSE}
 *  Display as little information as possible.
+*  Obscure what you do show (with chart junk).
+*  Use pseudo-3D and color gratuitously.
+*  Make a pie chart (preferably in color and 3D).
+*  Use a poorly chosen scale.
+*  Ignore significant figures.
+```
+
+* 
 *  Obscure what you do show (with chart junk).
 *  Use pseudo-3D and color gratuitously.
 *  Make a pie chart (preferably in color and 3D).

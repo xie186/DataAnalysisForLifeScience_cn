@@ -150,7 +150,7 @@ Here we show just one boxplot. However, one of the great benefits of boxplots is
 The methods described above relate to _univariate_ variables. In the biomedical sciences, it is common to be interested in the relationship between two or more variables. A classic example is the father/son height data used by [Francis Galton](https://en.wikipedia.org/wiki/Francis_Galton) to understand heredity. If we were to summarize these data, we could use the two averages and two standard deviations since both distributions are well approximated by the normal distribution. This summary, however, fails to describe an important characteristic of the data. 
 ```
 
-
+&emsp;&emsp;上面介绍的方法都是单因子变量相关的分析。在生物医学领域，研究两个或两个以上变量的关系是很常见的。一个很经典的例子是 [Francis Galton](https://en.wikipedia.org/wiki/Francis_Galton)使用的研究遗传学的父子身高数据。如果我们想总结这些数据，我们可以使用两个均值和两个标准差，因为这两个数据均服从正态分布。但是这个总结并不能展示一个很重要的特征。
 
 
 ```{r scatterplot, fig.cap="Heights of father and son pairs plotted against each other."}

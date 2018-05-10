@@ -184,18 +184,31 @@ Suppose we are asked to guess the height of randomly selected sons. The average 
 The father is taller than average. Specifically, he is 1.75 standard deviations taller than the average father. So should we predict that the son is also 1.75 standard deviations taller? It turns out that this would be an overestimate. To see this, we look at all the sons with fathers who are about 72 inches. We do this by _stratifying_ the father heights. 
 ```
 
-&emsp;&emsp;
+&emsp;&emsp;父亲的身高是72英寸比均值要高。严格的说，这位父亲的身高比所有父亲身高均值还要高出1.75个标准差，所以我们是否应该预测这位父亲的儿子的身高也要比均值高出1.75个标准差呢？结果表明，如果这样的预测过高的估计了其儿子的身高。为了说明这一点，我们来看看所有身高为72英寸的父亲的儿子的身高。我们通过对父亲身高_分层_(Stratification)来达到这个目的。
 
 ```{r boxplot, fig.cap="Boxplot of son heights stratified by father heights.", fig.width=10.5, fig.height=5.25}
 groups <- split(y,round(x)) 
 boxplot(groups)
 print(mean(y[ round(x) == 72]))
 ```
+```{block2 echo = FALSE}
 Stratification followed by boxplots lets us see the distribution of each group. The average height of sons with fathers that are 72 inches tall is 70.7 inches. We also see that the *medians* of the strata appear to follow a straight line (remember the middle line in the boxplot shows the median, not the mean). This line is similar to the *regression line*, with a slope that is related to the correlation, as we will learn below. 
+```
 
+&emsp;&emsp;分层后我们对每一组作箱线图。72英寸这一组中儿子的身高均值为70.7英寸。我们同时也看到每一组数据的*中位值*看起来形成一条直线（记住箱线图中间的一条线是中位值而不是均值）。这条线和*回归线*（*regression line*）相似，这条线的斜率与相关性有关，接下来我们会介绍这些内容。
+
+```{block2 echo = FALSE}
 ## Bivariate Normal Distribution
+```
 
+## 二维正态分布
+
+
+```{block2 echo = FALSE}
 Correlation is a widely used summary statistic in the life sciences. However, it is often misused or misinterpreted. To properly interpret correlation we actually have to understand the bivariate normal distribution.
+```
+
+
 
 A pair of random variables $(X,Y)$ is considered to be approximated by
 bivariate normal when the proportion of values below, for example $a$

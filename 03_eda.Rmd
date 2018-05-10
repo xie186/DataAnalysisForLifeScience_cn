@@ -208,11 +208,14 @@ Stratification followed by boxplots lets us see the distribution of each group. 
 Correlation is a widely used summary statistic in the life sciences. However, it is often misused or misinterpreted. To properly interpret correlation we actually have to understand the bivariate normal distribution.
 ```
 
+&emsp;&emsp;在生命科学领域中，相关性是一个广泛使用的汇总统计值。然而，很多人却错误的使用，或者错误的理解相关性。为了正确的解释和理解相关性，我们首先要理解二维正态分布。
 
 
-A pair of random variables $(X,Y)$ is considered to be approximated by
-bivariate normal when the proportion of values below, for example $a$
-and $b$, is approximated by this expression: 
+```{block2 echo = FALSE}
+A pair of random variables $(X,Y)$ is considered to be approximated by bivariate normal when the proportion of values below, for example $a$ and $b$, is approximated by this expression: 
+```
+
+&emsp;&emsp;假设我们有一对随机变量$(X,Y)$，如果这对变量中$X$小于a并且$Y$小于b的比例满足下面的公式，那么这对变量就可以近似为二维正态分布。
 
 $$ 
 \mbox{Pr}(X<a,Y<b) = 
@@ -230,7 +233,11 @@ $$
 }
 $$
 
+```{block2 echo = FALSE}
 This may seem like a rather complicated equation, but the concept behind it is rather intuitive. An alternative definition is the following: fix a value $x$ and look at all the pairs $(X,Y)$ for which $X=x$. Generally, in statistics we call this exercise _conditioning_. We are conditioning $Y$ on $X$. If a pair of random variables is approximated by a bivariate normal distribution, then the distribution of $Y$ conditioned on $X=x$ is approximated with a normal distribution, no matter what $x$ we choose. Let's see if this holds with our height data. We show 4 different strata: 
+```
+
+&emsp;&emsp;这个公式看起来很复杂，但是背后的概念是很直观的。我们给定一个值$x$，然后查看$(X,Y)$中$X=x$的数据。通常我们称这种操作为_条件作用_(_conditioning_)。我们在给定$X$的条件下取出$Y$。如果一对随机变量服从二维正态分布，那么在$X=x$条件下，不管$x$是多少，$Y$服从正态分布。我们来看看身高数据是否满足这些条件。这里我们展示四组数据。
 
 ```{r qqnorm_of_strata, fig.cap="qqplots of son heights for four strata defined by father heights.",fig.width=7.5,fig.height=7.5}
 groups <- split(y,round(x)) 

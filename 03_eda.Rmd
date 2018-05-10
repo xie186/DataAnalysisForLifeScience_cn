@@ -14,7 +14,7 @@ set.seed(1)
 Biases, systematic errors and unexpected variability are common in data from the life sciences. Failure to discover these problems often leads to flawed analyses and false discoveries. As an example, consider that experiments sometimes fail and not all data processing pipelines, such as the `t.test` function in R, are designed to detect these. Yet, these pipelines still give you an answer. Furthermore, it may be hard or impossible to notice an error was made just from the reported results. 
 ```
 
-&emsp&emsp在生命科学领域，偏差，系统误差和未知的变异是非常常见的。这些问题常常会导致有问题的数据分析以及错误的结论。数据处理的方法，例如`t.test`函数，不会去检查实验是否失败。当你将失败实验的结果作为输入信息提供给这些数据处理方法时，你依然会得到一个结果。这个结果可能会导致你得到错误的结论。同时，只从输出的结果是非常难甚至不可能发现错误的。
+&emsp;&emsp;在生命科学领域，偏差，系统误差和未知的变异是非常常见的。这些问题常常会导致有问题的数据分析以及错误的结论。数据处理的方法，例如`t.test`函数，不会去检查实验是否失败。当你将失败实验的结果作为输入信息提供给这些数据处理方法时，你依然会得到一个结果。这个结果可能会导致你得到错误的结论。同时，只从输出的结果是非常难甚至不可能发现错误的。
 
 ```{block2 echo = FALSE}
 Graphing data is a powerful approach to detecting these problems. We refer to this as _exploratory data analysis_ (EDA). Many important methodological contributions to existing techniques in data analysis were initiated by discoveries made via EDA. In addition, EDA can lead to interesting biological discoveries which would otherwise be missed through simply subjecting the data to a battery of hypothesis tests. Through this book, we make use of exploratory plots to motivate the analyses we choose. Here we present a general introduction to EDA using height data.
@@ -26,7 +26,7 @@ Graphing data is a powerful approach to detecting these problems. We refer to th
 We have already introduced some EDA approaches for _univariate_ data, namely the histograms and qq-plot. Here we describe the qq-plot in more detail and some EDA and summary statistics for paired data. We also give a demonstration of commonly used figures that we recommend against. 
 ```
 
-&emsp&emsp我们已经介绍了一些用于单变量的数据的EDA方法，即直方图和QQ图。这里我们进一步介绍QQ图和一些其他的EDA，以及用于成对数据的汇总统计。我们也会推荐一些常用的作图类型。
+&emsp;&emsp;我们已经介绍了一些用于单变量的数据的EDA方法，即直方图和QQ图。这里我们进一步介绍QQ图和一些其他的EDA，以及用于成对数据的汇总统计。我们也会推荐一些常用的作图类型。
 
 ```{block2 echo = FALSE}
 ## Quantile Quantile Plots
@@ -38,7 +38,7 @@ We have already introduced some EDA approaches for _univariate_ data, namely the
 To corroborate that a theoretical distribution, for example the normal distribution, is in fact a good approximation, we can use quantile-quantile plots (qq-plots). Quantiles are best understood by considering the special case of percentiles. The p-th percentile of a list of a distribution is defined as the number q that is bigger than p% of numbers (so the inverse of the cumulative distribution function we defined earlier). For example, the median 50-th percentile is the median. We can compute the percentiles for our list of heights:
 ```
 
-&emsp&emsp我们可以利用QQ图来来观察我们的数据是否符合某一个分布（例如是否符合正态分布）。分位值是百分位值的特殊......................
+&emsp;&emsp;我们可以利用QQ图来来观察我们的数据是否符合某一个分布（例如是否符合正态分布）。分位值是百分位值的特殊......................
 
 
 ```{r definingHeights1, message=FALSE}
@@ -250,8 +250,13 @@ for(i in c(5,8,11,14)){
 ```
 
 
+```{block2 echo = FALSE}
 Now we come back to defining correlation. Mathematical statistics tells us that when two variables follow a bivariate normal distribution, then for any given value of $x$, the average of the $Y$ in pairs for which $X=x$ is:
+```
 
+&emsp;&emsp;现在让我们回到相关性的定义上来。从数学统计学上来讲，如果连个随机变量符合二维正态分布，那么对于任意$x$，对应的$Y$的均值公式为：
+
+  
 $$ 
 \mu_Y +  \rho \frac{X-\mu_X}{\sigma_X}\sigma_Y
 $$

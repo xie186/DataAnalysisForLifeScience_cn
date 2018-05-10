@@ -162,37 +162,36 @@ plot(x,y, xlab="Father's height in inches",
      main=paste("correlation =",signif(cor(x,y),2)))
 ```
 
-The scatter plot shows a general trend: the taller the father, the
-taller the son. A summary of this trend is the correlation coefficient,
-which in this case is 0.5. We will motivate this statistic by trying to
-predict the son's height using the father's height.
+```{block2 echo = FALSE}
+The scatter plot shows a general trend: the taller the father, the taller the son. A summary of this trend is the correlation coefficient, which in this case is 0.5. We will motivate this statistic by trying to predict the son's height using the father's height.
+```
 
+&emsp;&emsp;散点图中我们可以看到一个很明显的趋势：父亲的身高越高，儿子的身高就越高。描述这种趋势我们通常使用相关系数，这个例子中相关系数为0.5。这个数...............
+
+```{block2 echo = FALSE}
 ## Stratification
+```
 
-Suppose we are asked to guess the height of randomly selected sons. The
-average height, 68.7 inches, is the value with the highest proportion
-(see histogram) and would be our prediction. But what if we are told
-that the father is 72 inches tall, do we still guess 68.7? 
+## 数据分层
 
-The father is taller than average. Specifically, he is 1.75
-standard deviations taller than the average father. So should we
-predict that the son is also 1.75 standard deviations taller? It turns
-out that this would be an overestimate. To see this, we look at all the sons
-with fathers who are about 72 inches. We do this by _stratifying_ the
-father heights. 
+```{block2 echo = FALSE}
+Suppose we are asked to guess the height of randomly selected sons. The average height, 68.7 inches, is the value with the highest proportion (see histogram) and would be our prediction. But what if we are told that the father is 72 inches tall, do we still guess 68.7? 
+```
+
+&emsp;&emsp;假设有人问一个随机选择的儿子的身高。我们知道身高的均值（68.7英寸，大约174.50厘米），这些值差不多大小的值在我们的数据中占了很大的比例（见箱线图），所以我们很有可能猜这个值。但是如果有人告诉你他的父亲的身高是72英寸（182.88cm），你还会猜儿子的身高是68.7英寸吗？
+
+```{block2 echo = FALSE}
+The father is taller than average. Specifically, he is 1.75 standard deviations taller than the average father. So should we predict that the son is also 1.75 standard deviations taller? It turns out that this would be an overestimate. To see this, we look at all the sons with fathers who are about 72 inches. We do this by _stratifying_ the father heights. 
+```
+
+&emsp;&emsp;
 
 ```{r boxplot, fig.cap="Boxplot of son heights stratified by father heights.", fig.width=10.5, fig.height=5.25}
 groups <- split(y,round(x)) 
 boxplot(groups)
 print(mean(y[ round(x) == 72]))
 ```
-Stratification followed by boxplots lets us see the distribution of
-each group. The average height of sons with fathers that are 72 inches
-tall is 70.7 inches. We also see that the *medians* of the strata appear
-to follow a straight line (remember the middle line in the boxplot
-shows the median, not the mean). This line is similar to the *regression
-line*, with a slope that is related to the correlation, as we will learn
-below. 
+Stratification followed by boxplots lets us see the distribution of each group. The average height of sons with fathers that are 72 inches tall is 70.7 inches. We also see that the *medians* of the strata appear to follow a straight line (remember the middle line in the boxplot shows the median, not the mean). This line is similar to the *regression line*, with a slope that is related to the correlation, as we will learn below. 
 
 ## Bivariate Normal Distribution
 

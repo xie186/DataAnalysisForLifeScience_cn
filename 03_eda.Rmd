@@ -894,8 +894,11 @@ Robust Statistics: The Approach Based on Influence Functions, Frank R. Hampel, E
 ```
 -->
 
-
+```{block2 echo=FALSE}
 ## Wilcoxon Rank Sum Test
+```
+
+## 非参检验方法之Wilcoxon Rank Sum Test
 
 ```{block2 echo=FALSE}
 We learned how the sample mean and SD are susceptible to outliers. The t-test is based on these measures and is susceptible as well. The Wilcoxon rank test (equivalent to the Mann-Whitney test) provides an alternative. In the code below, we perform a t-test on data for which the null is true. However, we change one sum observation by mistake in each sample and the values incorrectly entered are different. Here we see that the t-test results in a small p-value, while the Wilcoxon test does not: 

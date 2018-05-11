@@ -248,12 +248,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="section-3" class="section level1">
 <h1><span class="header-section-number">第 3 章</span> 探索性数据分析</h1>
 <p>“The greatest value of a picture is when it forces us to notice what we never expected to see.” -John W. Tukey</p>
-<p>&amp;emsp&amp;emsp在生命科学领域，偏差，系统误差和未知的变异是非常常见的。这些问题常常会导致有问题的数据分析以及错误的结论。数据处理的方法，例如<code>t.test</code>函数，不会去检查实验是否失败。当你将失败实验的结果作为输入信息提供给这些数据处理方法时，你依然会得到一个结果。这个结果可能会导致你得到错误的结论。同时，只从输出的结果是非常难甚至不可能发现错误的。</p>
+<p>  在生命科学领域，偏差，系统误差和未知的变异是非常常见的。这些问题常常会导致有问题的数据分析以及错误的结论。数据处理的方法，例如<code>t.test</code>函数，不会去检查实验是否失败。当你将失败实验的结果作为输入信息提供给这些数据处理方法时，你依然会得到一个结果。这个结果可能会导致你得到错误的结论。同时，只从输出的结果是非常难甚至不可能发现错误的。</p>
 <p>图形化展示数据是检测这些问题的一个非常有效的方法。这里我们称之为_探索性数据分析_(Exploratory data analysis：EDA)。数据分析中许多重要的方法最初都是从EDA的结果中得到启发而产生的。此外，EDA可以帮助你得到许多重要的生物学观点和结论，而这些发现并不是你通过一连串的假设检验能够得到的。贯穿本书，我们会通过图形化展示来帮助我们进行数据分析。这里我们使用身高的数据来介绍EDA。</p>
-<p>&amp;emsp&amp;emsp我们已经介绍了一些用于单变量的数据的EDA方法，即直方图和QQ图。这里我们进一步介绍QQ图和一些其他的EDA，以及用于成对数据的汇总统计。我们也会推荐一些常用的作图类型。</p>
+<p>  我们已经介绍了一些用于单变量的数据的EDA方法，即直方图和QQ图。这里我们进一步介绍QQ图和一些其他的EDA，以及用于成对数据的汇总统计。我们也会推荐一些常用的作图类型。</p>
 <div id="qq" class="section level2">
 <h2><span class="header-section-number">3.1</span> QQ图</h2>
-<p>&amp;emsp&amp;emsp我们可以利用QQ图来来观察我们的数据是否符合某一个分布（例如是否符合正态分布）。分位值是百分位值的特殊………………….</p>
+<p>  我们可以利用QQ图来来观察我们的数据是否符合某一个分布（例如是否符合正态分布）。分位值是百分位值的特殊………………….</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### This comment line is added by xie186. definingHeights1 was &quot;definingHeights&quot;
 <span class="kw">library</span>(rafalib)
 <span class="kw">data</span>(father.son,<span class="dt">package=</span><span class="st">&quot;UsingR&quot;</span>) ##available from CRAN
@@ -393,7 +393,7 @@ y=father.son<span class="op">$</span>sheight
 (#fig:qqnorm_of_strata)qqplots of son heights for four strata defined by father heights.
 </p>
 </div>
-<p>Now we come back to defining correlation. Mathematical statistics tells us that when two variables follow a bivariate normal distribution, then for any given value of <span class="math inline">\(x\)</span>, the average of the <span class="math inline">\(Y\)</span> in pairs for which <span class="math inline">\(X=x\)</span> is:</p>
+<p>  现在让我们回到相关性的定义上来。从数学统计学上来讲，如果连个随机变量符合二维正态分布，那么对于任意<span class="math inline">\(x\)</span>，对应的<span class="math inline">\(Y\)</span>的均值公式为：</p>
 <p><span class="math display">\[ 
 \mu_Y +  \rho \frac{X-\mu_X}{\sigma_X}\sigma_Y
 \]</span></p>
@@ -501,8 +501,8 @@ url &lt;-<span class="st"> &quot;https://github.com/kbroman/Talk_Graphs/raw/mast
 dat &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">Treatment=</span>x,<span class="dt">Control=</span>y)
 <span class="kw">boxplot</span>(dat,<span class="dt">xlab=</span><span class="st">&quot;Group&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Response&quot;</span>,<span class="dt">cex=</span><span class="dv">0</span>)
 <span class="kw">stripchart</span>(dat,<span class="dt">vertical=</span><span class="ot">TRUE</span>,<span class="dt">method=</span><span class="st">&quot;jitter&quot;</span>,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">col=</span><span class="dv">1</span>)</code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-185"></span>
-<img src="bookdown_files/figure-html/unnamed-chunk-185-1.png" alt="Treatment data and control data shown with a boxplot." width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-186"></span>
+<img src="bookdown_files/figure-html/unnamed-chunk-186-1.png" alt="Treatment data and control data shown with a boxplot." width="672" />
 <p class="caption">
 图 3.8: Treatment data and control data shown with a boxplot.
 </p>

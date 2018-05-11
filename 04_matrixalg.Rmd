@@ -1,9 +1,16 @@
+
+```{block2 echo=FALSE}
 # Matrix Algebra
+```
+
+# 矩阵代数
 
 ```{block2 echo=FALSE}
 In this book we try to minimize mathematical notation as much as possible. Furthermore, we avoid using calculus to motivate statistical concepts. However, Matrix Algebra (also referred to as Linear Algebra) and its mathematical notation greatly facilitates the exposition of the advanced data analysis techniques covered in the remainder of this book. We therefore dedicate a chapter of this book to introducing Matrix Algebra. We do this in the context of data analysis and using one of the main applications: Linear Models.
 ```
+
 &emsp;&emsp;本书中，我们尝试尽可能的使用较少的数学上的符号。因此，我们避免使用微积分来推导统计学概念。然而，在这本书的其余部分，矩阵代数（也被称为线性代数）的数学符号能够极大的促进对数据分析技术的阐述。因此，我们在本章节中来介绍矩阵代数。我们在数据分析过程中这样做，并且使用其主要的应用：线性代数。
+
 ```{block2 echo=FALSE}
 We will describe three examples from the life sciences: one from physics, one related to genetics, and one from a mouse experiment. They are very different, yet we end up using the same statistical technique: fitting linear models. Linear models are typically taught and described in the language of matrix algebra. 
 ```

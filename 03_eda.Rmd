@@ -355,7 +355,12 @@ The aim of good data graphics is to display data accurately and clearly. Accordi
 browsers <- c(Opera=1,Safari=9,Firefox=20,IE=26,Chrome=44)
 ```
 
+```{block2 echo = FALSE}
 Let's say we want to report the results from a poll asking about browser preference (taken in August 2013). The standard way of displaying these is with a pie chart:
+```
+
+这里我们以浏览器的喜好数据
+
 
 ```{r piechart, fig.cap="Pie chart of browser usage."}
 pie(browsers,main="Browser Usage (August 2013)")
@@ -806,25 +811,27 @@ abline(0,1)
 ```
 
 ```{block2 echo=FALSE}
-So if these statistics are robust to outliers, why would we ever use
-the non-robust version? In general, if we know there are outliers,
-then median and MAD are recommended over the mean and standard
-deviation counterparts. However, there are examples in which robust
-statistics are less powerful than the non-robust versions.
+So if these statistics are robust to outliers, why would we ever use the non-robust version? In general, if we know there are outliers, then median and MAD are recommended over the mean and standard deviation counterparts. However, there are examples in which robust statistics are less powerful than the non-robust versions.
 ```
 &emsp;&emsp;因此，如果这些统计方法能够很好的避免离群值的影响，我们为什么要用那些受离群值影响的版本呢？通常来说，如果我们知道数据集中有一些离群值，那么我们推荐使用中位数和绝对中位差来代替平均数和标准偏差来进行相关性计算。但是，也有一些例子表明，强健的统计方法较不强健的统计方法结果不是那么的有效。
+
 ```{block2 echo=FALSE}
-We also note that there is a large statistical literature on
-robust statistics that go far beyond the median and the MAD.
+We also note that there is a large statistical literature on robust statistics that go far beyond the median and the MAD.
 ```
+
 &emsp;&emsp;我们也注意到，关于强健的统计方法有大量的统计学文献进行表述，这些方法有些要远远的超过了中位数和绝对中位差统计方法。
-#### Symmetry of log ratios
+
 ```{block2 echo=FALSE}
-Ratios are not symmetric. To see this, we will start by simulating the
-ratio of two positive random numbers, which will represent the
-expression of genes in two samples:
+#### Symmetry of log ratios
+```
+
+#### 比率对数的对称性
+
+```{block2 echo=FALSE}
+Ratios are not symmetric. To see this, we will start by simulating the ratio of two positive random numbers, which will represent the expression of genes in two samples:
 ```
 &emsp;&emsp;比率是不对称的。为了验证这个，我们首先通过使用两个正相关的随机数据集的比率来进行模拟，这两个数据集代表了两个样本中基因的表达量。
+
 ```{r}
 x <- 2^(rnorm(100))
 y <- 2^(rnorm(100)) 
@@ -832,15 +839,10 @@ ratios <- x / y
 ```
 
 ```{block2 echo=FALSE}
-Reporting ratios or fold changes are common in the life
-sciences. Suppose you are studying ratio data showing, say, gene
-expression before and after treatment. You are given ratio data so
-values larger than 1 imply gene expression was higher after the
-treatment. If the treatment has no effect, we should see as many
-values below 1 as above 1. A histogram seems to suggest that the
-treatment does in fact have an effect: 
+Reporting ratios or fold changes are common in the life sciences. Suppose you are studying ratio data showing, say, gene expression before and after treatment. You are given ratio data so values larger than 1 imply gene expression was higher after the treatment. If the treatment has no effect, we should see as many values below 1 as above 1. A histogram seems to suggest that the treatment does in fact have an effect: 
 ```
-&emsp;&emsp;在生命科学领域中通常使用比率或者变化倍数来进行报告。假设你正在研究基因在处理前后表达量的比率。你将得到基因表达量的比率，如果比率的值大于1表明基因在处理后表达量是升高的。如果处理样本没有影响，那么我们将会得到一些比率小于1或者等于1数据。柱状图似乎可以表明处理是否对样本产生了实际的影响。
+&emsp;&emsp;在生命科学领域中通常使用比率或者变化倍数。假设你正在研究基因在处理前后表达量的比率。你将得到基因表达量的比率，如果比率的值大于1表明基因在处理后表达量是升高的。如果处理样本没有影响，那么我们将会得到一些比率小于1或者等于1数据。柱状图似乎可以表明处理是否对样本产生了实际的影响。
+
 ```{r why-log-ratios, fig.cap="Histogram of original (left) and log (right) ratios.", fig.width=10.5, fig.height=5.25}
 mypar(1,2)
 hist(ratios)
@@ -852,6 +854,7 @@ hist(logratios)
 The problem here is that ratios are not symmetrical around 1. For example, 1/32 is much closer to 1 than 32/1. Using the log takes care of this problem. The log of ratios are of course symmetric around 0 because:
 ```
 &emsp;&emsp;在这里存在一个问题，就是比率不是在1左右相互对称的。例如，1/32比32/1更加的靠近1。使用对数可以解决这个问题。对数的比率一定是在0左右相互对称的。因为：
+
 $$\log(x/y) = \log(x)-\log(y) = -(\log(y)-\log(x)) = \log(y/x)$$
 ```{block2 echo=FALSE}
 As demonstrated by these simple plots:
@@ -879,6 +882,7 @@ interest. Note that a fold change of 100 can be a ratio of 100/1 or
 ratios are not symmetric about 1. 
 ```
 &emsp;&emsp;在生命科学领域，也经常使用将数据进行对数转换，因为在定量感兴趣的数据时（乘法）变化倍数是使用最多的方法。注意，变化倍数为100可能是100/1或1/100。但是，如果不使用变化倍数，1/100比100/1更加的靠近1，这就说明了数据不是在1左右相互对称的。
+
 <!-- 
 #### Footnotes <a name="foot"></a>
 
@@ -892,16 +896,11 @@ Robust Statistics: The Approach Based on Influence Functions, Frank R. Hampel, E
 
 
 ## Wilcoxon Rank Sum Test
+
 ```{block2 echo=FALSE}
-We learned how the sample mean and SD are susceptible to outliers. The
-t-test is based on these measures and is susceptible as well. The
-Wilcoxon rank test (equivalent to the Mann-Whitney test) provides an
-alternative. In the code below, we perform a t-test on data for which
-the null is true. However, we change one sum observation by mistake
-in each sample and the values incorrectly entered are different. Here
-we see that the t-test results in a small p-value, while the Wilcoxon
-test does not: 
+We learned how the sample mean and SD are susceptible to outliers. The t-test is based on these measures and is susceptible as well. The Wilcoxon rank test (equivalent to the Mann-Whitney test) provides an alternative. In the code below, we perform a t-test on data for which the null is true. However, we change one sum observation by mistake in each sample and the values incorrectly entered are different. Here we see that the t-test results in a small p-value, while the Wilcoxon test does not: 
 ```
+
 &emsp;&emsp;我们知道样本的平均值和标准偏差是如何受离群值影响的。基于平均值和标准偏差的T-test同样也受离群值的影响。威尔科克森秩检验（曼-惠特尼检验）提供了另外的一个方法。在下面的代码中，我们完成了对一个非空数据集的t-test。但是，当我们在每一个样本中错误的改变一个和的观察值，我们发现得到的每一个错误的值也是不同的。因此，我们发现t-test会产生一个小的p-value值，而威尔科克森检验却不会。
 ```{r}
 set.seed(779) ##779 picked for illustration purposes
@@ -923,6 +922,7 @@ cat("Wilcox test pval:",wilcox.test(x,y)$p.value)
 The basic idea is to 1) combine all the data, 2) turn the values into ranks, 3) separate them back into their groups, and 4) compute the sum or average rank and perform a test.
 ```
 &emsp;&emsp;数据处理的基本思想是：1)整合所有的数据。2）将数据转化成秩。3）再把数据分回到它们的组中。4）计算数据的和或者平均秩，然后再进行统计检验。
+
 ```{r rank-test-illustration, fig.cap="Data from two populations with two outliers. The left plot shows the original data and the right plot shows their ranks. The numbers are the w values ",fig.width=10.5,fig.height=5.25}
 library(rafalib)
 mypar(1,2)
@@ -940,23 +940,21 @@ text( rep(1.05,length(ws)), xrank, ws, cex=0.8)
 W <-sum(ws) 
 ```
 ```{block2 echo=FALSE}
-`W` is the sum of the ranks for the first group relative to the second
-group. We can compute an exact p-value for $W$ based on
-combinatorics. We can also use the CLT since
-statistical theory tells us that this `W` is approximated by the
-normal distribution. We can construct a z-score as follows: 
+`W` is the sum of the ranks for the first group relative to the second group. We can compute an exact p-value for $W$ based on combinatorics. We can also use the CLT since statistical theory tells us that this `W` is approximated by the normal distribution. We can construct a z-score as follows: 
 ```
+
 &emsp;&emsp;其中，w是相对于第二组数据的第一组数据秩的和。我们可以基于组合学对$W$计算出一个准确的p-value值。由于之前的统计学理论告诉我们W是趋于正态分布的，因此我门也可以利用CLT的方法来进行计算。我们可以按照如下的方法计算z-score：
+
 ```{r}
 n1<-length(x);n2<-length(y)
 Z <- (mean(ws)-n2/2)/ sqrt(n2*(n1+n2+1)/12/n1)
 print(Z)
 ```
+
 ```{block2 echo=FALSE}
-Here the `Z` is not large enough to give us a p-value less
-than 0.05. These are part of the calculations performed by the R function
-`wilcox.test`. 
+Here the `Z` is not large enough to give us a p-value less than 0.05. These are part of the calculations performed by the R function `wilcox.test`. 
 ```
+
 &emsp;&emsp;因为这里的Z值不足够的大，因此我们不能计算得到一个小于0.05的p-value值。这里有一部分的数据是通过R语言里面的wilcox.test功能计算得到的.
 
 

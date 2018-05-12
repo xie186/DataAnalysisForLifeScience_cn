@@ -25,7 +25,7 @@
 <meta name="author" content="作者：Rafael A. Irizarry; Mike I. Love 翻译：张三 李四 麻子">
 
 
-<meta name="date" content="2018-05-10">
+<meta name="date" content="2018-05-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -144,14 +144,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="3" data-path="section-3.html"><a href="section-3.html"><i class="fa fa-check"></i><b>3</b> 探索性数据分析</a><ul>
 <li class="chapter" data-level="3.1" data-path="section-3.html"><a href="section-3.html#qq"><i class="fa fa-check"></i><b>3.1</b> QQ图</a></li>
-<li class="chapter" data-level="3.2" data-path="section-3.html"><a href="section-3.html#boxplots"><i class="fa fa-check"></i><b>3.2</b> Boxplots</a></li>
+<li class="chapter" data-level="3.2" data-path="section-3.html"><a href="section-3.html#section-3.2"><i class="fa fa-check"></i><b>3.2</b> 箱线图</a></li>
 <li class="chapter" data-level="3.3" data-path="section-3.html"><a href="section-3.html#section-3.3"><i class="fa fa-check"></i><b>3.3</b> 散点图和相关性</a></li>
 <li class="chapter" data-level="3.4" data-path="section-3.html"><a href="section-3.html#section-3.4"><i class="fa fa-check"></i><b>3.4</b> 数据分层</a></li>
 <li class="chapter" data-level="3.5" data-path="section-3.html"><a href="section-3.html#section-3.5"><i class="fa fa-check"></i><b>3.5</b> 二维正态分布</a></li>
-<li class="chapter" data-level="3.6" data-path="section-3.html"><a href="section-3.html#plots-to-avoid"><i class="fa fa-check"></i><b>3.6</b> Plots to Avoid</a></li>
+<li class="chapter" data-level="3.6" data-path="section-3.html"><a href="section-3.html#section-3.6"><i class="fa fa-check"></i><b>3.6</b> 这些图需要避免使用！</a></li>
 <li class="chapter" data-level="3.7" data-path="section-3.html"><a href="section-3.html#misunderstanding-correlation-advanced"><i class="fa fa-check"></i><b>3.7</b> Misunderstanding Correlation (Advanced)</a></li>
 <li class="chapter" data-level="3.8" data-path="section-3.html"><a href="section-3.html#robust-summaries"><i class="fa fa-check"></i><b>3.8</b> Robust Summaries</a></li>
-<li class="chapter" data-level="3.9" data-path="section-3.html"><a href="section-3.html#wilcoxon-rank-sum-test"><i class="fa fa-check"></i><b>3.9</b> Wilcoxon Rank Sum Test</a></li>
+<li class="chapter" data-level="3.9" data-path="section-3.html"><a href="section-3.html#wilcoxon-rank-sum-test"><i class="fa fa-check"></i><b>3.9</b> 非参检验方法之Wilcoxon Rank Sum Test</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="matrix-algebra.html"><a href="matrix-algebra.html"><i class="fa fa-check"></i><b>4</b> Matrix Algebra</a><ul>
 <li class="chapter" data-level="4.1" data-path="matrix-algebra.html"><a href="matrix-algebra.html#motivating-examples"><i class="fa fa-check"></i><b>4.1</b> Motivating Examples</a></li>
@@ -304,8 +304,8 @@ x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n)
 </div>
 <p><a name="boxplots"></a></p>
 </div>
-<div id="boxplots" class="section level2">
-<h2><span class="header-section-number">3.2</span> Boxplots</h2>
+<div id="section-3.2" class="section level2">
+<h2><span class="header-section-number">3.2</span> 箱线图</h2>
 <p>  数据并不是总是服从正态分布的。收入是一个常见的例子。在这些例子中，均值和标准差并不一定有意义，因为你不能仅从这两个数值来判断数据的分布。上面讲到的属性是正态分布特有的。比如，199个美国CEO在2000年的直接薪酬并不符合正态分布。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(exec.pay,<span class="dt">package=</span><span class="st">&quot;UsingR&quot;</span>)
 <span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
@@ -320,8 +320,8 @@ x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n)
 </div>
 <p>  除了qq图之外，另一个实践中比较常用的方法是计算三个百分位值：25%，50%（中位值）和75%。箱线图中会展示这三个百分位值，箱线图中阈值范围是中位值$$1.5倍的75%与25%百分位值的差值。在这个范围之外的值由点表示，有时这些值也被称为_异常值_。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(exec.pay, <span class="dt">ylab=</span><span class="st">&quot;10,000s of dollars&quot;</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">400</span>))</code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-168"></span>
-<img src="bookdown_files/figure-html/unnamed-chunk-168-1.png" alt="Simple boxplot of executive pay." width="576" />
+<div class="figure"><span id="fig:unnamed-chunk-169"></span>
+<img src="bookdown_files/figure-html/unnamed-chunk-169-1.png" alt="Simple boxplot of executive pay." width="576" />
 <p class="caption">
 图 3.2: Simple boxplot of executive pay.
 </p>
@@ -426,24 +426,21 @@ fatherheights=<span class="kw">as.numeric</span>(<span class="kw">names</span>(m
 <p>This is where statements like <span class="math inline">\(X\)</span> explains <span class="math inline">\(\rho^2 \times 100\)</span> % of the variation in <span class="math inline">\(Y\)</span>: the variance of <span class="math inline">\(Y\)</span> is <span class="math inline">\(\sigma^2\)</span> and, once we condition, it goes down to <span class="math inline">\((1-\rho^2) \sigma^2_Y\)</span> . It is important to remember that the “variance explained” statement only makes sense when the data is approximated by a bivariate normal distribution.</p>
 </div>
 </div>
-<div id="plots-to-avoid" class="section level2">
-<h2><span class="header-section-number">3.6</span> Plots to Avoid</h2>
-<p>This section is based on a talk by <a href="http://kbroman.org/">Karl W. Broman</a> titled “How to Display Data Badly,” in which he described how the default plots offered by Microsoft Excel “obscure your data and annoy your readers” (<a href="http://kbroman.org/pages/talks.html">here</a> is a link to a collection of Karl Broman’s talks). His lecture was inspired by the 1984 paper by H. Wainer: How to display data badly. American Statistician 38(2): 137–147. Dr. Wainer was the first to elucidate the principles of the bad display of data. However, according to Karl Broman, “The now widespread use of Microsoft Excel has resulted in remarkable advances in the field.” Here we show examples of “bad plots” and how to improve them in R.</p>
-<div id="general-principles" class="section level4">
-<h4><span class="header-section-number">3.6.0.1</span> General principles</h4>
-<p>The aim of good data graphics is to display data accurately and clearly. According to Karl Broman, some rules for displaying data <em>badly</em> are:</p>
+<div id="section-3.6" class="section level2">
+<h2><span class="header-section-number">3.6</span> 这些图需要避免使用！</h2>
+<p>  </p>
+<p>  好的数据图形化展示的目的是准确清晰的展示数据。根据的Karl Broman的讲座，下面的准则总是会导致比较差的数据展示效果：</p>
 <ul>
-<li>Display as little information as possible.</li>
+<li></li>
 <li>Obscure what you do show (with chart junk).</li>
 <li>Use pseudo-3D and color gratuitously.</li>
 <li>Make a pie chart (preferably in color and 3D).</li>
 <li>Use a poorly chosen scale.</li>
 <li>Ignore significant figures.</li>
 </ul>
-</div>
 <div id="pie-charts" class="section level4">
-<h4><span class="header-section-number">3.6.0.2</span> Pie charts</h4>
-<p>Let’s say we want to report the results from a poll asking about browser preference (taken in August 2013). The standard way of displaying these is with a pie chart:</p>
+<h4><span class="header-section-number">3.6.0.1</span> Pie charts</h4>
+<p>这里我们以浏览器的喜好数据</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pie</span>(browsers,<span class="dt">main=</span><span class="st">&quot;Browser Usage (August 2013)&quot;</span>)</code></pre></div>
 <div class="figure"><span id="fig:piechart"></span>
 <img src="bookdown_files/figure-html/piechart-1.png" alt="Pie chart of browser usage." width="672" />
@@ -482,7 +479,7 @@ fatherheights=<span class="kw">as.numeric</span>(<span class="kw">names</span>(m
 <p>The reason is that by removing the center, we remove one of the visual cues for determining the different areas: the angles. There is no reason to ever use a donut plot to display data.</p>
 </div>
 <div id="barplots-as-data-summaries" class="section level4">
-<h4><span class="header-section-number">3.6.0.3</span> Barplots as data summaries</h4>
+<h4><span class="header-section-number">3.6.0.2</span> Barplots as data summaries</h4>
 <p>While barplots are useful for showing percentages, they are incorrectly used to display data from two groups being compared. Specifically, barplots are created with height equal to the group means; an antenna is added at the top to represent standard errors. This plot is simply showing two numbers per group and the plot adds nothing:</p>
 <div class="figure">
 <img src="https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig1c.png" alt="Bad bar plots." />
@@ -501,8 +498,8 @@ url &lt;-<span class="st"> &quot;https://github.com/kbroman/Talk_Graphs/raw/mast
 dat &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">Treatment=</span>x,<span class="dt">Control=</span>y)
 <span class="kw">boxplot</span>(dat,<span class="dt">xlab=</span><span class="st">&quot;Group&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Response&quot;</span>,<span class="dt">cex=</span><span class="dv">0</span>)
 <span class="kw">stripchart</span>(dat,<span class="dt">vertical=</span><span class="ot">TRUE</span>,<span class="dt">method=</span><span class="st">&quot;jitter&quot;</span>,<span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">col=</span><span class="dv">1</span>)</code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-186"></span>
-<img src="bookdown_files/figure-html/unnamed-chunk-186-1.png" alt="Treatment data and control data shown with a boxplot." width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-193"></span>
+<img src="bookdown_files/figure-html/unnamed-chunk-193-1.png" alt="Treatment data and control data shown with a boxplot." width="672" />
 <p class="caption">
 图 3.8: Treatment data and control data shown with a boxplot.
 </p>
@@ -538,7 +535,7 @@ dat &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">
 </div>
 </div>
 <div id="show-the-scatter-plot" class="section level4">
-<h4><span class="header-section-number">3.6.0.4</span> Show the scatter plot</h4>
+<h4><span class="header-section-number">3.6.0.3</span> Show the scatter plot</h4>
 <p>The purpose of many statistical analyses is to determine relationships between two variables. Sample correlations are typically reported and sometimes plots are displayed to show this. However, showing just the regression line is one way to display your data badly since it hides the scatter. Surprisingly, plots such as the following are commonly seen.</p>
 <p>Again start by loading data:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">url &lt;-<span class="st"> &quot;https://github.com/kbroman/Talk_Graphs/raw/master/R/fig4.RData&quot;</span>
@@ -566,7 +563,7 @@ fit &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~
 <p>When there are large amounts of points, the scatter can be shown by binning in two dimensions and coloring the bins by the number of points in the bin. An example of this is the <code>hexbin</code> function in the <a href="https://cran.r-project.org/package=hexbin">hexbin package</a>.</p>
 </div>
 <div id="high-correlation-does-not-imply-replication" class="section level4">
-<h4><span class="header-section-number">3.6.0.5</span> High correlation does not imply replication</h4>
+<h4><span class="header-section-number">3.6.0.4</span> High correlation does not imply replication</h4>
 <p>When new technologies or laboratory techniques are introduced, we are often shown scatter plots and correlations from replicated samples. High correlations are used to demonstrate that the new technique is reproducible. Correlation, however, can be very misleading. Below is a scatter plot showing data from replicated samples run on a high throughput technology. This technology outputs 12,626 simultaneous measurements.</p>
 <p>In the plot on the left, we see the original data which shows very high correlation. Yet the data follows a distribution with very fat tails. Furthermore, 95% of the data is below the green line. The plot on the right is in the log scale:</p>
 <div class="figure"><span id="fig:correlation-not-replication"></span>
@@ -586,7 +583,7 @@ fit &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~
 <p>These are referred to as Bland-Altman plots, or <em>MA plots</em> in the genomics literature, and we will talk more about them later. “MA” stands for “minus” and “average” because in this plot, the y-axis is the difference between two samples on the log scale (the log ratio is the difference of the logs), and the x-axis is the average of the samples on the log scale. In this plot, we see that the typical difference in the log (base 2) scale between two replicated measures is about 1. This means that when measurements should be the same, we will, on average, observe 2 fold difference. We can now compare this variability to the differences we want to detect and decide if this technology is precise enough for our purposes.</p>
 </div>
 <div id="barplots-for-paired-data" class="section level4">
-<h4><span class="header-section-number">3.6.0.6</span> Barplots for paired data</h4>
+<h4><span class="header-section-number">3.6.0.5</span> Barplots for paired data</h4>
 <p>A common task in data analysis is the comparison of two groups. When the dataset is small and data are paired, such as the outcomes before and after a treatment, two-color barplots are unfortunately often used to display the results.</p>
 <div class="figure">
 <img src="https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig6r_e.png" alt="Barplot for two variables." />
@@ -631,7 +628,7 @@ ymx &lt;-<span class="st"> </span><span class="kw">max</span>(<span class="kw">a
 </div>
 </div>
 <div id="gratuitous-3d" class="section level4">
-<h4><span class="header-section-number">3.6.0.7</span> Gratuitous 3D</h4>
+<h4><span class="header-section-number">3.6.0.6</span> Gratuitous 3D</h4>
 <p>The figure below shows three curves. Pseudo 3D is used, but it is not clear why. Maybe to separate the three curves? Notice how difficult it is to determine the values of the curves at any given point:</p>
 <div class="figure">
 <img src="https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig8b.png" alt="Gratuitous 3-D." />
@@ -656,7 +653,7 @@ x &lt;-<span class="st"> </span><span class="kw">read.csv</span>(url)
 </div>
 </div>
 <div id="ignoring-important-factors" class="section level4">
-<h4><span class="header-section-number">3.6.0.8</span> Ignoring important factors</h4>
+<h4><span class="header-section-number">3.6.0.7</span> Ignoring important factors</h4>
 <p>In this example, we generate data with a simulation. We are studying a dose-response relationship between two groups: treatment and control. We have three groups of measurements for both control and treatment. Comparing treatment and control using the common barplot.</p>
 <div class="figure">
 <img src="https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig9d.png" alt="Ignoring important factors." />
@@ -677,7 +674,7 @@ x &lt;-<span class="st"> </span><span class="kw">read.csv</span>(url)
 </div>
 </div>
 <div id="too-many-significant-digits" class="section level4">
-<h4><span class="header-section-number">3.6.0.9</span> Too many significant digits</h4>
+<h4><span class="header-section-number">3.6.0.8</span> Too many significant digits</h4>
 <p>By default, statistical software like R returns many significant digits. This does not mean we should report them. Cutting and pasting directly from R is a bad idea since you might end up showing a table, such as the one below, comparing the heights of basketball players:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">heights &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">rnorm</span>(<span class="dv">8</span>,<span class="dv">73</span>,<span class="dv">3</span>),<span class="kw">rnorm</span>(<span class="dv">8</span>,<span class="dv">73</span>,<span class="dv">3</span>),<span class="kw">rnorm</span>(<span class="dv">8</span>,<span class="dv">80</span>,<span class="dv">3</span>),
                  <span class="kw">rnorm</span>(<span class="dv">8</span>,<span class="dv">78</span>,<span class="dv">3</span>),<span class="kw">rnorm</span>(<span class="dv">8</span>,<span class="dv">78</span>,<span class="dv">3</span>))
@@ -706,7 +703,7 @@ heights</code></pre></div>
 ## team 8 73.8 75.6 83.0 75.6 87.7</code></pre>
 </div>
 <div id="displaying-data-well" class="section level4">
-<h4><span class="header-section-number">3.6.0.10</span> Displaying data well</h4>
+<h4><span class="header-section-number">3.6.0.9</span> Displaying data well</h4>
 <p>In general, you should follow these principles:</p>
 <ul>
 <li>Be accurate and clear.</li>
@@ -815,12 +812,15 @@ y[<span class="dv">23</span>] &lt;-<span class="st"> </span><span class="dv">84<
 </p>
 </div>
 <p>  因此，如果这些统计方法能够很好的避免离群值的影响，我们为什么要用那些受离群值影响的版本呢？通常来说，如果我们知道数据集中有一些离群值，那么我们推荐使用中位数和绝对中位差来代替平均数和标准偏差来进行相关性计算。但是，也有一些例子表明，强健的统计方法较不强健的统计方法结果不是那么的有效。</p>
-<p>  我们也注意到，关于强健的统计方法有大量的统计学文献进行表述，这些方法有些要远远的超过了中位数和绝对中位差统计方法。 #### Symmetry of log ratios</p>
+<p>  我们也注意到，关于强健的统计方法有大量的统计学文献进行表述，这些方法有些要远远的超过了中位数和绝对中位差统计方法。</p>
+</div>
+<div id="section-3.8.0.4" class="section level4">
+<h4><span class="header-section-number">3.8.0.4</span> 比率对数的对称性</h4>
 <p>  比率是不对称的。为了验证这个，我们首先通过使用两个正相关的随机数据集的比率来进行模拟，这两个数据集代表了两个样本中基因的表达量。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">^</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))
 y &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">^</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)) 
 ratios &lt;-<span class="st"> </span>x <span class="op">/</span><span class="st"> </span>y </code></pre></div>
-<p>  在生命科学领域中通常使用比率或者变化倍数来进行报告。假设你正在研究基因在处理前后表达量的比率。你将得到基因表达量的比率，如果比率的值大于1表明基因在处理后表达量是升高的。如果处理样本没有影响，那么我们将会得到一些比率小于1或者等于1数据。柱状图似乎可以表明处理是否对样本产生了实际的影响。</p>
+<p>  在生命科学领域中通常使用比率或者变化倍数。假设你正在研究基因在处理前后表达量的比率。你将得到基因表达量的比率，如果比率的值大于1表明基因在处理后表达量是升高的。如果处理样本没有影响，那么我们将会得到一些比率小于1或者等于1数据。柱状图似乎可以表明处理是否对样本产生了实际的影响。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mypar</span>(<span class="dv">1</span>,<span class="dv">2</span>)
 <span class="kw">hist</span>(ratios)
 
@@ -832,7 +832,8 @@ logratios &lt;-<span class="st"> </span><span class="kw">log2</span>(ratios)
 图 3.16: Histogram of original (left) and log (right) ratios.
 </p>
 </div>
-<p>  在这里存在一个问题，就是比率不是在1左右相互对称的。例如，1/32比32/1更加的靠近1。使用对数可以解决这个问题。对数的比率一定是在0左右相互对称的。因为： <span class="math display">\[\log(x/y) = \log(x)-\log(y) = -(\log(y)-\log(x)) = \log(y/x)\]</span></p>
+<p>  在这里存在一个问题，就是比率不是在1左右相互对称的。例如，1/32比32/1更加的靠近1。使用对数可以解决这个问题。对数的比率一定是在0左右相互对称的。因为：</p>
+<p><span class="math display">\[\log(x/y) = \log(x)-\log(y) = -(\log(y)-\log(x)) = \log(y/x)\]</span></p>
   正如这个简单的图
 <div class="figure"><span id="fig:why-log-ratios2"></span>
 <img src="bookdown_files/figure-html/why-log-ratios2-1.png" alt="Histogram of original (left) and log (right) powers of 2 seen as ratios." width="1008" />
@@ -840,16 +841,17 @@ logratios &lt;-<span class="st"> </span><span class="kw">log2</span>(ratios)
 图 3.17: Histogram of original (left) and log (right) powers of 2 seen as ratios.
 </p>
 </div>
-<p>  在生命科学领域，也经常使用将数据进行对数转换，因为在定量感兴趣的数据时（乘法）变化倍数是使用最多的方法。注意，变化倍数为100可能是100/1或1/100。但是，如果不使用变化倍数，1/100比100/1更加的靠近1，这就说明了数据不是在1左右相互对称的。 <!-- 
+<p>  在生命科学领域，也经常使用将数据进行对数转换，因为在定量感兴趣的数据时（乘法）变化倍数是使用最多的方法。注意，变化倍数为100可能是100/1或1/100。但是，如果不使用变化倍数，1/100比100/1更加的靠近1，这就说明了数据不是在1左右相互对称的。</p>
+<!-- 
 #### Footnotes <a name="foot"></a>
 
 #### Robust Statistics
 
---></p>
+-->
 </div>
 </div>
 <div id="wilcoxon-rank-sum-test" class="section level2">
-<h2><span class="header-section-number">3.9</span> Wilcoxon Rank Sum Test</h2>
+<h2><span class="header-section-number">3.9</span> 非参检验方法之Wilcoxon Rank Sum Test</h2>
 <p>  我们知道样本的平均值和标准偏差是如何受离群值影响的。基于平均值和标准偏差的T-test同样也受离群值的影响。威尔科克森秩检验（曼-惠特尼检验）提供了另外的一个方法。在下面的代码中，我们完成了对一个非空数据集的t-test。但是，当我们在每一个样本中错误的改变一个和的观察值，我们发现得到的每一个错误的值也是不同的。因此，我们发现t-test会产生一个小的p-value值，而威尔科克森检验却不会。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">779</span>) ##779 picked for illustration purposes
 N=<span class="dv">25</span>

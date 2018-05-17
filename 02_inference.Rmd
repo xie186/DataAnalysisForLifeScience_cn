@@ -1,18 +1,43 @@
+```{block2 echo=FALSE}
 # Inference
+```
 
+# 统计推断
+
+```{block2 echo=FALSE}
 ## Introduction 
+```
+
+## 简介
 
 ```{r,results=FALSE,echo=FALSE}
 set.seed(1) #so that we get same results
 ```
 
+```{block2 echo=FALSE}
 This chapter introduces the statistical concepts necessary to understand p-values and confidence intervals. These terms are ubiquitous in the life science literature. Let's use [this paper](http://diabetes.diabetesjournals.org/content/53/suppl_3/S215.full) as an example. 
+```
 
+&emsp;&emsp;这一章主要介绍基本的统计概念，这些统计概念是我们理解P值和置信区间的前提。这些统计知识在生命科学文献中是无处不在的。下面我们以[这篇文章](http://diabetes.diabetesjournals.org/content/53/suppl_3/S215.full)作为例子：
+
+```{block2 echo=FALSE}
 Note that the abstract has this statement: 
+```
 
+&emsp;&emsp;注意这篇文章的摘要里面有如下的陈述：
+
+```{block2 echo=FALSE}
 > "Body weight was higher in mice fed the high-fat diet already after the first week, due to higher dietary intake in combination with lower metabolic efficiency." 
+```
 
+
+&emsp;&emsp;在一周后，喂高脂饲料的老鼠的体重已经比较高了，这主要是由于高膳食摄入量和低代谢效率造成的。
+
+```{block2 echo=FALSE}
 To support this claim they provide the following in the results section:
+```
+
+&emsp;&emsp;
 
 > "Already during the first week after introduction of high-fat diet, body weight increased significantly more in the high-fat diet-fed mice ($+$ 1.6 $\pm$ 0.1 g) than in the normal diet-fed mice ($+$ 0.2 $\pm$ 0.1 g; P < 0.001)."
 

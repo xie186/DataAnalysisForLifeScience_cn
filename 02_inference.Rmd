@@ -31,23 +31,26 @@ Note that the abstract has this statement:
 ```
 
 
-&emsp;&emsp;在一周后，喂高脂饲料的老鼠的体重已经比较高了，这主要是由于高膳食摄入量和低代谢效率造成的。
+>&emsp;&emsp;"喂高脂饲料的老鼠在一周后其体重已经比较高了，这主要是由于高膳食摄入量和低代谢效率造成的。"
 
 ```{block2 echo=FALSE}
 To support this claim they provide the following in the results section:
 ```
 
-&emsp;&emsp;
+&emsp;&emsp;为了支持这一个结论，作者在结果部分提供了下面的结果：
 
+
+```{block2 echo=FALSE}
 > "Already during the first week after introduction of high-fat diet, body weight increased significantly more in the high-fat diet-fed mice ($+$ 1.6 $\pm$ 0.1 g) than in the normal diet-fed mice ($+$ 0.2 $\pm$ 0.1 g; P < 0.001)."
+```
 
-What does P < 0.001 mean? What are the $\pm$ included?
-We will learn what this means and learn to compute these values in
-R. The first step is to understand random variables. To do
-this, we will use data from a mouse database (provided by Karen
-Svenson via Gary Churchill and Dan Gatti and partially funded by P50
-GM070683). We will import the data into R and explain random variables
-and null distributions using R programming. 
+>&emsp;&emsp; “相对正常喂养的老鼠（$+$ 0.2 $\pm$ 0.1 g; P < 0.001），喂养高脂饲料老鼠（$+$ 1.6 $\pm$ 0.1 g）的体重在一周后表现出体重的增加明显更多（P < 0.001）。”
+
+```{block2 echo=FALSE}
+What does P < 0.001 mean? What are the $\pm$ included? We will learn what this means and learn to compute these values in R. The first step is to understand random variables. To do this, we will use data from a mouse database (provided by Karen Svenson via Gary Churchill and Dan Gatti and partially funded by P50 GM070683). We will import the data into R and explain random variables and null distributions using R programming. 
+```
+
+&emsp;&emsp; P < 0.001的含义是什么？ $\pm$包含了什么内容？接下来你会学习这些内容，同时你也会学到如何在R中计算这些值。首先你要了解随机变量。
 
 If you already downloaded the `femaleMiceWeights` file into your working directory, you can read it into R with just one line:
 
@@ -72,14 +75,19 @@ url <- paste0(dir, filename)
 dat <- read.csv(url)
 ```
 
+```{block2 echo=FALSE}
 #### Our first look at data
+```
 
-We are interested in determining if following a given diet makes mice
-heavier after several weeks. This data was produced by ordering 24
-mice from The Jackson Lab and randomly assigning either chow or high
-fat (hf) diet. After several weeks, the scientists weighed each mouse
-and obtained this data (`head` just shows us the first 6 rows):
+#### 认识数据
 
+```{block2 echo=FALSE}
+We are interested in determining if following a given diet makes mice heavier after several weeks. This data was produced by ordering 24 mice from The Jackson Lab and randomly assigning either chow or high fat (hf) diet. After several weeks, the scientists weighed each mouse and obtained this data (`head` just shows us the first 6 rows):
+```
+
+&emsp;&emsp;利用这个数据，我们可以判断在
+
+  
 ```{r}
 head(dat) 
 ``` 

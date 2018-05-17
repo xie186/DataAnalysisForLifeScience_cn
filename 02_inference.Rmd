@@ -98,11 +98,8 @@ In RStudio, you can view the entire dataset with:
 View(dat)
 ```
 
-So are the hf mice heavier? Mouse 24 at 20.73 grams is one of the
-lightest mice, while Mouse 21 at 34.02 grams is one of the heaviest. Both are on
-the hf diet. Just from looking at the data, we see there is
-*variability*. Claims such as the one above usually refer to the
-averages. So let's look at the average of each group: 
+So are the hf mice heavier? Mouse 24 at 20.73 grams is one of the lightest mice, while Mouse 21 at 34.02 grams is one of the heaviest. Both are on the hf diet. Just from looking at the data, we see there is *variability*. Claims such as the one above usually refer to the averages. So let's look at the average of each group: 
+
 
 ```{r,message=FALSE}
 library(dplyr)

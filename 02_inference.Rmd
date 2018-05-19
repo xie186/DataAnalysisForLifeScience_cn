@@ -44,15 +44,20 @@ To support this claim they provide the following in the results section:
 > "Already during the first week after introduction of high-fat diet, body weight increased significantly more in the high-fat diet-fed mice ($+$ 1.6 $\pm$ 0.1 g) than in the normal diet-fed mice ($+$ 0.2 $\pm$ 0.1 g; P < 0.001)."
 ```
 
->&emsp;&emsp; “相对正常喂养的老鼠（$+$ 0.2 $\pm$ 0.1 g; P < 0.001），喂养高脂饲料老鼠（$+$ 1.6 $\pm$ 0.1 g）的体重在一周后表现出体重的增加明显更多（P < 0.001）。”
+>&emsp;&emsp; “相对正常喂养的老鼠（$+$ 0.2 $\pm$ 0.1 g），喂养高脂饲料老鼠（$+$ 1.6 $\pm$ 0.1 g）的体重在一周后表现出体重的增加明显更多（P < 0.001）。”
 
 ```{block2 echo=FALSE}
 What does P < 0.001 mean? What are the $\pm$ included? We will learn what this means and learn to compute these values in R. The first step is to understand random variables. To do this, we will use data from a mouse database (provided by Karen Svenson via Gary Churchill and Dan Gatti and partially funded by P50 GM070683). We will import the data into R and explain random variables and null distributions using R programming. 
 ```
 
-&emsp;&emsp; P < 0.001的含义是什么？ $\pm$包含了什么内容？接下来你会学习这些内容，同时你也会学到如何在R中计算这些值。首先你要了解随机变量。
+&emsp;&emsp; P < 0.001的含义是什么？ $\pm$包含了什么内容？接下来你会学习这些内容，同时你也会学到如何在R中计算这些值。首先你要了解随机变量。这里我们使用一个小鼠的数据（这个数据是由Karen Svenson，Gary Churchill和Dan Gatti提供的，这个项目的部分经费来自于P50 GM070683）。我们将会把这个数据导入R，然后通过这个数据来讲解随机变量和.........
 
+```{block2 echo=FALSE}
 If you already downloaded the `femaleMiceWeights` file into your working directory, you can read it into R with just one line:
+```
+
+&emsp;&emsp; 如果你已经下载了`femaleMiceWeights`这个数据，并存放在了你的当前工作目录中，你可以用一行R代码来读取这个数据：
+
 
 ```{r echo=FALSE, results="hide"}
 library(downloader) ##use install.packages to install
@@ -66,7 +71,11 @@ if (!file.exists(filename)) download(url, destfile=filename)
 dat <- read.csv("femaleMiceWeights.csv")
 ```
 
+```{block2 echo=FALSE}
 Remember that a quick way to read the data, without downloading it is by using the url:
+```
+
+你也可以不用下载，直接通过数据对应的网址来读取数据：
 
 ```{r,eval=FALSE}
 dir <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/"
@@ -92,13 +101,22 @@ We are interested in determining if following a given diet makes mice heavier af
 head(dat) 
 ``` 
 
+```{block2 echo=FALSE}
 In RStudio, you can view the entire dataset with:
+```
+
+
+&emsp;&emsp; 在RStudio中，你可以用`View()`函数来查看整个数据集:
 
 ```{r,eval=FALSE}
 View(dat)
 ```
 
+```{block2 echo=FALSE}
 So are the hf mice heavier? Mouse 24 at 20.73 grams is one of the lightest mice, while Mouse 21 at 34.02 grams is one of the heaviest. Both are on the hf diet. Just from looking at the data, we see there is *variability*. Claims such as the one above usually refer to the averages. So let's look at the average of each group: 
+```
+
+&emsp;&emsp; 那么喂高脂饲料的小鼠（HF小鼠）是不是更重一些呢？第24只小鼠和第21只小鼠都属于HF小鼠。而第24只小鼠的体重是最轻的，为20.73克；第21只小鼠最重，为34.02克。仅从数值来看，即使在同一组小鼠中，我们能够看到*变异（variability）*的存在。如果结论是一组比另一组高，通常我们讲的是均值。
 
 
 ```{r,message=FALSE}
@@ -111,7 +129,10 @@ obsdiff <- mean(treatment) - mean(control)
 print(obsdiff)
 ```
 
+```{block2 echo=FALSE}
 So the hf diet mice are about 10% heavier. Are we done? Why do we need p-values and confidence intervals? The reason is that these averages are random variables. They can take many values. 
+```
+
 
 If we repeat the experiment, we obtain 24 new mice from The Jackson Laboratory and, after randomly assigning them to each diet, we get a different mean. Every time we repeat this experiment, we get a different value. We call this type of quantity a *random variable*. 
 

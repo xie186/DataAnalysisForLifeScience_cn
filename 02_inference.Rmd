@@ -142,9 +142,18 @@ If we repeat the experiment, we obtain 24 new mice from The Jackson Laboratory a
 
 &emsp;&emsp; 如果我们重复这个实验。重新再订24只小鼠然后随机分成两组进行饲养，这组数据我们会得到一组不一样的均值。每次我们重复这个实验，我们会得到不同的值。我们成这样的数据类型：*随机变量*。
 
+```{block2 echo=FALSE}
 ## Random Variables
+```
 
+## 随机变量
+
+```{block2 echo=FALSE}
 Let's explore random variables further. Imagine that we actually have the weight of all control female mice and can upload them to R. In Statistics, we refer to this as *the population*. These are all the control mice available from which we sampled 24. Note that in practice we do not have access to the population. We have a special dataset that we are using here to illustrate concepts. 
+```
+
+
+
 
 ```{r, echo=FALSE}
 library(downloader)
@@ -178,17 +187,11 @@ mean(control)
 
 Note how the average varies. We can continue to do this repeatedly and start learning something about the distribution of this random variable.
 
-<a name="null_distribution"></a>
 
 ## The Null Hypothesis
 
-Now let's go back to our average difference of `obsdiff`. As
-scientists we need to be skeptics. How do we know that this `obsdiff`
-is due to the diet? What happens if we give all 24 mice the same diet? Will
-we see a difference this big? Statisticians refer to this scenario as
-the *null hypothesis*. The name "null" is used to remind us that we
-are acting as skeptics: we give credence to the possibility that there
-is no difference.
+
+Now let's go back to our average difference of `obsdiff`. As scientists we need to be skeptics. How do we know that this `obsdiff` is due to the diet? What happens if we give all 24 mice the same diet? Will we see a difference this big? Statisticians refer to this scenario as the *null hypothesis*. The name "null" is used to remind us that we are acting as skeptics: we give credence to the possibility that there is no difference.
 
 Because we have access to the population, we can actually observe as
 many values as we want of the difference of the averages when the diet

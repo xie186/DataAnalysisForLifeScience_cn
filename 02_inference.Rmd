@@ -88,7 +88,7 @@ dat <- read.csv(url)
 #### Our first look at data
 ```
 
-#### 认识数据
+### 认识数据
 
 ```{block2 echo=FALSE}
 We are interested in determining if following a given diet makes mice heavier after several weeks. This data was produced by ordering 24 mice from The Jackson Lab and randomly assigning either chow or high fat (hf) diet. After several weeks, the scientists weighed each mouse and obtained this data (`head` just shows us the first 6 rows):

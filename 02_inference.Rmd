@@ -193,12 +193,7 @@ Note how the average varies. We can continue to do this repeatedly and start lea
 
 Now let's go back to our average difference of `obsdiff`. As scientists we need to be skeptics. How do we know that this `obsdiff` is due to the diet? What happens if we give all 24 mice the same diet? Will we see a difference this big? Statisticians refer to this scenario as the *null hypothesis*. The name "null" is used to remind us that we are acting as skeptics: we give credence to the possibility that there is no difference.
 
-Because we have access to the population, we can actually observe as
-many values as we want of the difference of the averages when the diet
-has no effect. We can do this by randomly sampling 24 control mice,
-giving them the same diet, and then recording the difference in mean
-between two randomly split groups of 12 and 12. Here is this process
-written in R code:
+Because we have access to the population, we can actually observe as many values as we want of the difference of the averages when the diet has no effect. We can do this by randomly sampling 24 control mice, giving them the same diet, and then recording the difference in mean between two randomly split groups of 12 and 12. Here is this process written in R code:
 
 ```{r}
 ##12 control mice
@@ -229,12 +224,8 @@ So what percent of the 10,000 are bigger than `obsdiff`?
 mean(null >= obsdiff)
 ```
 
-Only a small percent of the 10,000 simulations. As skeptics what do
-we conclude? When there is no diet effect, we see a difference as big
-as the one we observed only 1.5% of the time. This is what is known as
-a p-value, which we will define more formally later in the book. 
+Only a small percent of the 10,000 simulations. As skeptics what do we conclude? When there is no diet effect, we see a difference as big as the one we observed only 1.5% of the time. This is what is known as a p-value, which we will define more formally later in the book. 
 
-<a name="distributions"></a>
 
 ## Distributions
 
@@ -1920,19 +1911,10 @@ chisq.test(tab)$p.value
 
 #### Confidence Intervals for the Odds Ratio
 
-Computing confidence intervals for the OR is not mathematically
-straightforward. Unlike other statistics, for which we can derive
-useful approximations of their distributions, the OR is not only a
-ratio, but a ratio of ratios. Therefore, there is no simple way of
-using, for example, the CLT. 
+Computing confidence intervals for the OR is not mathematically straightforward. Unlike other statistics, for which we can derive useful approximations of their distributions, the OR is not only a ratio, but a ratio of ratios. Therefore, there is no simple way of using, for example, the CLT. 
+
   
-One approach is to use the theory of *generalized linear models* which
-provides estimates of the log odds ratio, rather than the OR itself,
-that can be shown to be asymptotically normal. Here we provide R code
-without presenting the theoretical details (for further details please
-see a reference on generalized linear models such as
-[Wikipedia](https://en.wikipedia.org/wiki/Generalized_linear_model) or
-[McCullagh and Nelder, 1989](https://books.google.com/books?hl=en&lr=&id=h9kFH2_FfBkC)): 
+One approach is to use the theory of *generalized linear models* which provides estimates of the log odds ratio, rather than the OR itself, that can be shown to be asymptotically normal. Here we provide R code without presenting the theoretical details (for further details please see a reference on generalized linear models such as [Wikipedia](https://en.wikipedia.org/wiki/Generalized_linear_model) or [McCullagh and Nelder, 1989](https://books.google.com/books?hl=en&lr=&id=h9kFH2_FfBkC)): 
 
 ```{r}
 fit <- glm(disease~genotype,family="binomial",data=dat)

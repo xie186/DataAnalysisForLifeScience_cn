@@ -94,7 +94,7 @@ dat <- read.csv(url)
 We are interested in determining if following a given diet makes mice heavier after several weeks. This data was produced by ordering 24 mice from The Jackson Lab and randomly assigning either chow or high fat (hf) diet. After several weeks, the scientists weighed each mouse and obtained this data (`head` just shows us the first 6 rows):
 ```
 
-&emsp;&emsp;利用这个数据，我们可以判断在
+&emsp;&emsp;在这个数据中，我们感兴趣的是通过给小鼠提供高脂饲料几周后小鼠的体重是否增加的更多。24只从Jackson实验室订购的小鼠随机分成两组：对照组合高脂饲料组（HF:high fat）。在几周后，科学家会测量每个小数的体重。这里`head`向我们展示了数据的前六行。
 
   
 ```{r}
@@ -133,9 +133,14 @@ print(obsdiff)
 So the hf diet mice are about 10% heavier. Are we done? Why do we need p-values and confidence intervals? The reason is that these averages are random variables. They can take many values. 
 ```
 
+&emsp;&emsp; 从上面的R代码运行的结果，我们看到HF小鼠的体重均值为`mean(treatment)`，而对照组的均值为`mean(control)`。两均值之间的差值为`obsdiff`。HF小鼠的体重相对对照组要重10%。这样我们的分析就这结束了，可以下结论了吗？为什么我们需要P值和置信区间呢？原因是这些均值是随机变量。它们可以是很多值。
 
+
+```{block2 echo=FALSE}
 If we repeat the experiment, we obtain 24 new mice from The Jackson Laboratory and, after randomly assigning them to each diet, we get a different mean. Every time we repeat this experiment, we get a different value. We call this type of quantity a *random variable*. 
+```
 
+&emsp;&emsp; 如果我们重复这个实验。重新再订24只小鼠然后随机分成两组进行饲养，这组数据我们会得到一组不一样的均值。每次我们重复这个实验，我们会得到不同的值。我们成这样的数据类型：*随机变量*。
 
 ## Random Variables
 

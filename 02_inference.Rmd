@@ -85,7 +85,7 @@ dat <- read.csv(url)
 ```
 
 ```{block2 echo=FALSE}
-#### Our first look at data
+### Our first look at data
 ```
 
 ### 认识数据

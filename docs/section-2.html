@@ -25,7 +25,7 @@
 <meta name="author" content="作者：Rafael A. Irizarry; Mike I. Love 翻译：张三 李四 麻子">
 
 
-<meta name="date" content="2018-05-17">
+<meta name="date" content="2018-05-20">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -122,9 +122,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.6" data-path="section-1.html"><a href="section-1.html#mathematical-notation"><i class="fa fa-check"></i><b>1.6</b> Mathematical Notation</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="section-2.html"><a href="section-2.html"><i class="fa fa-check"></i><b>2</b> 统计推断</a><ul>
-<li class="chapter" data-level="2.1" data-path="section-2.html"><a href="section-2.html#-1"><i class="fa fa-check"></i><b>2.1</b> 简介</a></li>
-<li class="chapter" data-level="2.2" data-path="section-2.html"><a href="section-2.html#random-variables"><i class="fa fa-check"></i><b>2.2</b> Random Variables</a></li>
-<li class="chapter" data-level="2.3" data-path="section-2.html"><a href="section-2.html#the-null-hypothesis"><i class="fa fa-check"></i><b>2.3</b> The Null Hypothesis</a></li>
+<li class="chapter" data-level="2.1" data-path="section-2.html"><a href="section-2.html#-1"><i class="fa fa-check"></i><b>2.1</b> 简介</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="section-2.html"><a href="section-2.html#section-2.1.1"><i class="fa fa-check"></i><b>2.1.1</b> 认识数据</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="section-2.html"><a href="section-2.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> 随机变量</a></li>
+<li class="chapter" data-level="2.3" data-path="section-2.html"><a href="section-2.html#section-2.3"><i class="fa fa-check"></i><b>2.3</b> 零假设</a></li>
 <li class="chapter" data-level="2.4" data-path="section-2.html"><a href="section-2.html#distributions"><i class="fa fa-check"></i><b>2.4</b> Distributions</a></li>
 <li class="chapter" data-level="2.5" data-path="section-2.html"><a href="section-2.html#probability-distribution"><i class="fa fa-check"></i><b>2.5</b> Probability Distribution</a></li>
 <li class="chapter" data-level="2.6" data-path="section-2.html"><a href="section-2.html#normal-distribution"><i class="fa fa-check"></i><b>2.6</b> Normal Distribution</a></li>
@@ -256,19 +258,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </blockquote>
 <p>  为了支持这一个结论，作者在结果部分提供了下面的结果：</p>
 <blockquote>
-<p>   “相对正常喂养的老鼠（<span class="math inline">\(+\)</span> 0.2 <span class="math inline">\(\pm\)</span> 0.1 g; P &lt; 0.001），喂养高脂饲料老鼠（<span class="math inline">\(+\)</span> 1.6 <span class="math inline">\(\pm\)</span> 0.1 g）的体重在一周后表现出体重的增加明显更多（P &lt; 0.001）。”</p>
+<p>   “相对正常喂养的老鼠（<span class="math inline">\(+\)</span> 0.2 <span class="math inline">\(\pm\)</span> 0.1 g），喂养高脂饲料老鼠（<span class="math inline">\(+\)</span> 1.6 <span class="math inline">\(\pm\)</span> 0.1 g）的体重在一周后表现出体重的增加明显更多（P &lt; 0.001）。”</p>
 </blockquote>
-<p>   P &lt; 0.001的含义是什么？ <span class="math inline">\(\pm\)</span>包含了什么内容？接下来你会学习这些内容，同时你也会学到如何在R中计算这些值。首先你要了解随机变量。</p>
-<p>If you already downloaded the <code>femaleMiceWeights</code> file into your working directory, you can read it into R with just one line:</p>
+<p>   P &lt; 0.001的含义是什么？ <span class="math inline">\(\pm\)</span>包含了什么内容？接下来你会学习这些内容，同时你也会学到如何在R中计算这些值。首先你要了解随机变量。这里我们使用一个小鼠的数据（这个数据是由Karen Svenson，Gary Churchill和Dan Gatti提供的，这个项目的部分经费来自于P50 GM070683）。我们将会把这个数据导入R，然后通过这个数据来讲解随机变量和………</p>
+<p>   如果你已经下载了<code>femaleMiceWeights</code>这个数据，并存放在了你的当前工作目录中，你可以用一行R代码来读取这个数据：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;femaleMiceWeights.csv&quot;</span>)</code></pre></div>
-<p>Remember that a quick way to read the data, without downloading it is by using the url:</p>
+<p>你也可以不用下载，直接通过数据对应的网址来读取数据：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dir &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/&quot;</span>
 filename &lt;-<span class="st"> &quot;femaleMiceWeights.csv&quot;</span>
 url &lt;-<span class="st"> </span><span class="kw">paste0</span>(dir, filename)
 dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(url)</code></pre></div>
-<div id="section-2.1.0.1" class="section level4">
-<h4><span class="header-section-number">2.1.0.1</span> 认识数据</h4>
-<p>  利用这个数据，我们可以判断在</p>
+<div id="section-2.1.1" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> 认识数据</h3>
+<p>  在这个数据中，我们感兴趣的是通过给小鼠提供高脂饲料几周后小鼠的体重是否增加的更多。24只从Jackson实验室订购的小鼠随机分成两组：对照组合高脂饲料组（HF:high fat）。在几周后，科学家会测量每个小数的体重。这里<code>head</code>向我们展示了数据的前六行。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(dat) </code></pre></div>
 <pre><code>##   Diet Bodyweight
 ## 1 chow      21.51
@@ -277,9 +279,9 @@ dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(url)</code></
 ## 4 chow      23.45
 ## 5 chow      23.68
 ## 6 chow      19.79</code></pre>
-<p>In RStudio, you can view the entire dataset with:</p>
+<p>   在RStudio中，你可以用<code>View()</code>函数来查看整个数据集:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(dat)</code></pre></div>
-<p>So are the hf mice heavier? Mouse 24 at 20.73 grams is one of the lightest mice, while Mouse 21 at 34.02 grams is one of the heaviest. Both are on the hf diet. Just from looking at the data, we see there is <em>variability</em>. Claims such as the one above usually refer to the averages. So let’s look at the average of each group:</p>
+<p>   那么喂高脂饲料的小鼠（HF小鼠）是不是更重一些呢？第24只小鼠和第21只小鼠都属于HF小鼠。而第24只小鼠的体重是最轻的，为20.73克；第21只小鼠最重，为34.02克。仅从数值来看，即使在同一组小鼠中，我们能够看到<em>变异（variability）</em>的存在。如果结论是一组比另一组高，通常我们讲的是均值。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
 control &lt;-<span class="st"> </span><span class="kw">filter</span>(dat,Diet<span class="op">==</span><span class="st">&quot;chow&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Bodyweight) <span class="op">%&gt;%</span><span class="st"> </span>unlist
 treatment &lt;-<span class="st"> </span><span class="kw">filter</span>(dat,Diet<span class="op">==</span><span class="st">&quot;hf&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Bodyweight) <span class="op">%&gt;%</span><span class="st"> </span>unlist
@@ -290,18 +292,19 @@ treatment &lt;-<span class="st"> </span><span class="kw">filter</span>(dat,Diet<
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">obsdiff &lt;-<span class="st"> </span><span class="kw">mean</span>(treatment) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(control)
 <span class="kw">print</span>(obsdiff)</code></pre></div>
 <pre><code>## [1] 3.021</code></pre>
-<p>So the hf diet mice are about 10% heavier. Are we done? Why do we need p-values and confidence intervals? The reason is that these averages are random variables. They can take many values.</p>
-<p>If we repeat the experiment, we obtain 24 new mice from The Jackson Laboratory and, after randomly assigning them to each diet, we get a different mean. Every time we repeat this experiment, we get a different value. We call this type of quantity a <em>random variable</em>.</p>
+<p>   从上面的R代码运行的结果，我们看到HF小鼠的体重均值为<code>mean(treatment)</code>，而对照组的均值为<code>mean(control)</code>。两均值之间的差值为<code>obsdiff</code>。HF小鼠的体重相对对照组要重10%。这样我们的分析就这结束了，可以下结论了吗？为什么我们需要P值和置信区间呢？原因是这些均值是随机变量。它们可以是很多值。</p>
+<p>   如果我们重复这个实验。重新再订24只小鼠然后随机分成两组进行饲养，这组数据我们会得到一组不一样的均值。每次我们重复这个实验，我们会得到不同的值。我们成这样的数据类型：<em>随机变量</em>。</p>
 </div>
 </div>
-<div id="random-variables" class="section level2">
-<h2><span class="header-section-number">2.2</span> Random Variables</h2>
-<p>Let’s explore random variables further. Imagine that we actually have the weight of all control female mice and can upload them to R. In Statistics, we refer to this as <em>the population</em>. These are all the control mice available from which we sampled 24. Note that in practice we do not have access to the population. We have a special dataset that we are using here to illustrate concepts.</p>
-<p>The first step is to download the data from <a href="https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleControlsPopulation.csv">here</a> into your working directory and then read it into R:</p>
+<div id="section-2.2" class="section level2">
+<h2><span class="header-section-number">2.2</span> 随机变量</h2>
+<p>  让我们进一步的来认识随机变量。假设我们有所有对照组雌性小鼠的体重数据。在统计中，我们称这个数据为<em>总体样本</em>。试验中的24只小鼠是这个总体样本中抽取的样本。需要记住的是在实践中我们是没有办法得到总体样本数据的。这里我们有一个数据来说明这个概念。</p>
+<p>  第一步是从这里的连接中下载数据到对应的工作目录中，然后将数据读入R：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">population &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;femaleControlsPopulation.csv&quot;</span>)
 ##use unlist to turn it into a numeric vector
 population &lt;-<span class="st"> </span><span class="kw">unlist</span>(population) </code></pre></div>
 <p>Now let’s sample 12 mice three times and see how the average changes.</p>
+<p>  现在让我们从这个数据中进行三次抽样，每次抽取12只小鼠，并计算每次抽样的均值：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">control &lt;-<span class="st"> </span><span class="kw">sample</span>(population,<span class="dv">12</span>)
 <span class="kw">mean</span>(control)</code></pre></div>
 <pre><code>## [1] 23.81</code></pre>
@@ -311,12 +314,11 @@ population &lt;-<span class="st"> </span><span class="kw">unlist</span>(populati
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">control &lt;-<span class="st"> </span><span class="kw">sample</span>(population,<span class="dv">12</span>)
 <span class="kw">mean</span>(control)</code></pre></div>
 <pre><code>## [1] 24.19</code></pre>
-<p>Note how the average varies. We can continue to do this repeatedly and start learning something about the distribution of this random variable.</p>
-<p><a name="null_distribution"></a></p>
+<p>  我们可以注意到这里的均值的变化。我们可以重复这个操作很多次，然后来学习随机变量的分布。</p>
 </div>
-<div id="the-null-hypothesis" class="section level2">
-<h2><span class="header-section-number">2.3</span> The Null Hypothesis</h2>
-<p>Now let’s go back to our average difference of <code>obsdiff</code>. As scientists we need to be skeptics. How do we know that this <code>obsdiff</code> is due to the diet? What happens if we give all 24 mice the same diet? Will we see a difference this big? Statisticians refer to this scenario as the <em>null hypothesis</em>. The name “null” is used to remind us that we are acting as skeptics: we give credence to the possibility that there is no difference.</p>
+<div id="section-2.3" class="section level2">
+<h2><span class="header-section-number">2.3</span> 零假设</h2>
+<p>  我们冲洗回到我们之前计算的均值差（<code>obsdiff</code>）。作为一个科研工作者，我们需要有怀疑精神。我们如何知道<code>obsdiff</code>是由于饲料差异引起的。如果我们给24只小鼠一样的饲料，结果会怎样呢？我们会看到这么大的差异吗？统计学家将这样的假设称为<em>零假设</em>。这里的“零”（英文为Null）是在提醒我们这里我们是怀疑论者：我们相信存在饲料差异不引起体重差异的可能性。</p>
 <p>Because we have access to the population, we can actually observe as many values as we want of the difference of the averages when the diet has no effect. We can do this by randomly sampling 24 control mice, giving them the same diet, and then recording the difference in mean between two randomly split groups of 12 and 12. Here is this process written in R code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##12 control mice
 control &lt;-<span class="st"> </span><span class="kw">sample</span>(population,<span class="dv">12</span>)
@@ -337,7 +339,6 @@ null &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="s
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(null <span class="op">&gt;=</span><span class="st"> </span>obsdiff)</code></pre></div>
 <pre><code>## [1] 0.0151</code></pre>
 <p>Only a small percent of the 10,000 simulations. As skeptics what do we conclude? When there is no diet effect, we see a difference as big as the one we observed only 1.5% of the time. This is what is known as a p-value, which we will define more formally later in the book.</p>
-<p><a name="distributions"></a></p>
 </div>
 <div id="distributions" class="section level2">
 <h2><span class="header-section-number">2.4</span> Distributions</h2>

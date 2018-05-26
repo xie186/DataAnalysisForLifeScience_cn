@@ -266,14 +266,17 @@ mean(null >= obsdiff)
 ```{block2 echo=FALSE}
 Only a small percent of the 10,000 simulations. As skeptics what do we conclude? When there is no diet effect, we see a difference as big as the one we observed only 1.5% of the time. This is what is known as a p-value, which we will define more formally later in the book. 
 ```
+&emsp;&emsp;我们发现在这 10,000次随机取样中只有很小的百分比小鼠的体重均值差异大于`obsdiff`。作为怀疑论者，我们的结论是什么呢？当没有饲料差异时，随机取样情况下只有1.5%的可能性我们能观察到的均值差异大于我们的试验中的均值差异。这就是我们所知道的P值，我们在后面会有更正式的定义。
 
-
-
-
+```{block2 echo=FALSE}
 ## Distributions
+```
 
-We have explained what we mean by *null* in the context of null hypothesis, but what exactly is a distribution?
-The simplest way to think of a *distribution* is as a compact description of many numbers. For example, suppose you have measured the heights of all men in a population. Imagine you need to describe these numbers to someone that has no idea what these heights are, such as an alien that has never visited Earth. Suppose all these heights are contained in the following dataset:
+```{block2 echo=FALSE}
+We have explained what we mean by *null* in the context of null hypothesis, but what exactly is a distribution? The simplest way to think of a *distribution* is as a compact description of many numbers. For example, suppose you have measured the heights of all men in a population. Imagine you need to describe these numbers to someone that has no idea what these heights are, such as an alien that has never visited Earth. Suppose all these heights are contained in the following dataset:
+```
+&emsp;&emsp;我们已经解释了零假设中的*零*（*null*）的意思，但是究竟分布指什么呢？最简单的方法是你可以将*分布*（*distribution* ）想成许多数字的一个描述。比如，假设你测量一个样本中的所有男性的身高。设想你要对其他人描述这些身高数值，而这些人对你的数据完全一无所知，比如从来没有到过地球的外星人。假设所有的数据都包含在下面的数据中了：
+
 
 ```{r definingHeights, message=FALSE}
 data(father.son,package="UsingR")

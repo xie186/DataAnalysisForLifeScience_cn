@@ -295,9 +295,18 @@ One approach to summarizing these numbers is to simply list them all out for the
 round(sample(x,10),1)
 ```
 
+```{block2 echo=FALSE}
 #### Cumulative Distribution Function
+```
 
+### 累积分布函数
+
+```{block2 echo=FALSE}
 Scanning through these numbers, we start to get a rough idea of what the entire list looks like, but it is certainly inefficient. We can quickly improve on this approach by defining and visualizing a _distribution_. To define a distribution we compute, for all possible values of $a$, the proportion of numbers in our list that are below $a$. We use the following notation:
+```
+
+&emsp;&emsp;浏览这些数据，我们大概知道整个数据是什么情况，但是这显然是不够的。我们可以通过展示这个数据的分布来进一步的理解数据。对于所有的可能
+
 
 $$ F(a) \equiv \mbox{Pr}(x \leq a) $$
 

@@ -152,7 +152,7 @@ If we repeat the experiment, we obtain 24 new mice from The Jackson Laboratory a
 Let's explore random variables further. Imagine that we actually have the weight of all control female mice and can upload them to R. In Statistics, we refer to this as *the population*. These are all the control mice available from which we sampled 24. Note that in practice we do not have access to the population. We have a special dataset that we are using here to illustrate concepts. 
 ```
 
-&emsp;&emsp;让我们进一步的来认识随机变量。假设我们有所有对照组雌性小鼠的体重数据。在统计中，我们称这个数据为*总体样本*。试验中的24只小鼠是这个总体样本中抽取的样本。需要记住的是在实践中我们是没有办法得到总体样本数据的。这里我们有一个数据来说明这个概念。
+&emsp;&emsp;让我们进一步的来认识随机变量。假设我们有所有对照组雌性小鼠的体重数据。在统计中，我们称这个数据为*总体样本*。试验中的24只小鼠是这个总体样本中抽取的样本。需要记住的是在实践中我们是没有办法得到总体样本数据的。这里我们有一个特殊的数据来说明这个概念。
 
 ```{r, echo=FALSE}
 library(downloader)
@@ -209,9 +209,15 @@ Note how the average varies. We can continue to do this repeatedly and start lea
 Now let's go back to our average difference of `obsdiff`. As scientists we need to be skeptics. How do we know that this `obsdiff` is due to the diet? What happens if we give all 24 mice the same diet? Will we see a difference this big? Statisticians refer to this scenario as the *null hypothesis*. The name "null" is used to remind us that we are acting as skeptics: we give credence to the possibility that there is no difference.
 ```
 
-&emsp;&emsp;我们冲洗回到我们之前计算的均值差（`obsdiff`）。作为一个科研工作者，我们需要有怀疑精神。我们如何知道`obsdiff`是由于饲料差异引起的。如果我们给24只小鼠一样的饲料，结果会怎样呢？我们会看到这么大的差异吗？统计学家将这样的假设称为*零假设*。这里的“零”（英文为Null）是在提醒我们这里我们是怀疑论者：我们相信存在饲料差异不引起体重差异的可能性。
+&emsp;&emsp;我们回到我们之前计算的均值差（`obsdiff`）。作为一个科研工作者，我们需要有怀疑精神。我们如何知道`obsdiff`是由于饲料差异引起的。如果我们给24只小鼠一样的饲料，结果会怎样呢？我们会看到这么大的差异吗？统计学家将这样的假设称为*零假设*。这里的“零”（英文为Null）是在提醒我们这里我们是怀疑论者：我们相信存在饲料差异不引起体重差异的可能性。
 
+```{block2 echo=FALSE}
 Because we have access to the population, we can actually observe as many values as we want of the difference of the averages when the diet has no effect. We can do this by randomly sampling 24 control mice, giving them the same diet, and then recording the difference in mean between two randomly split groups of 12 and 12. Here is this process written in R code:
+```
+
+&emsp;&emsp;我们可以从对照组雌性小鼠的体重数据随机取24只小鼠，然后提供相同的饲料。接着我们将这24只小鼠随机分成2组，每组12只，同时计算每组的均值。下面是完成这样系列操作的R代码：
+
+
 
 ```{r}
 ##12 control mice

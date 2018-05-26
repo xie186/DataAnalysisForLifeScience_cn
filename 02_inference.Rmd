@@ -275,6 +275,7 @@ Only a small percent of the 10,000 simulations. As skeptics what do we conclude?
 ```{block2 echo=FALSE}
 We have explained what we mean by *null* in the context of null hypothesis, but what exactly is a distribution? The simplest way to think of a *distribution* is as a compact description of many numbers. For example, suppose you have measured the heights of all men in a population. Imagine you need to describe these numbers to someone that has no idea what these heights are, such as an alien that has never visited Earth. Suppose all these heights are contained in the following dataset:
 ```
+
 &emsp;&emsp;我们已经解释了零假设中的*零*（*null*）的意思，但是究竟分布指什么呢？最简单的方法是你可以将*分布*（*distribution* ）想成许多数字的一个描述。比如，假设你测量一个样本中的所有男性的身高。设想你要对其他人描述这些身高数值，而这些人对你的数据完全一无所知，比如从来没有到过地球的外星人。假设所有的数据都包含在下面的数据中了：
 
 
@@ -283,7 +284,12 @@ data(father.son,package="UsingR")
 x <- father.son$fheight
 ```
 
+```{block2 echo=FALSE}
 One approach to summarizing these numbers is to simply list them all out for the alien to see. Here are 10 randomly selected heights of 1,078:
+```
+
+&emsp;&emsp;一个方法是直接将所有的身高数值展示给外星人看。下面是我们从这1,078个数据中随机选取的10个：
+
 
 ```{r}
 round(sample(x,10),1)

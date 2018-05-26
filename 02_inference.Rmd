@@ -232,7 +232,7 @@ Now let's do it 10,000 times. We will use a "for-loop", an operation
 that lets us automate this (a simpler approach that, we will learn later, is to use `replicate`).
 ```
 
-&emsp;&emsp;我们接着重复1000次上面的操作。这里我们将用到`for`循环，这个操作可以使得重复1000次的操作自动完成（后面我们会介绍一种更简单的函数`replicate`）。
+&emsp;&emsp;我们接着重复10,000次上面的操作。这里我们将用到`for`循环，这个操作可以使得重复10,000次的操作自动完成（后面我们会介绍一种更简单的函数`replicate`）。
 
 
 ```{r}
@@ -249,13 +249,25 @@ for (i in 1:n) {
 The values in `null` form what we call the *null distribution*. We will define this more formally below.
 ```
 
+&emsp;&emsp;我们称`null`中的数值分布为*零分布*(*null distribution*)。我们在接下来的部分会更详细的定义这个分布。
+
+```{block2 echo=FALSE}
 So what percent of the 10,000 are bigger than `obsdiff`?
+```
+
+&emsp;&emsp;那么在这10,000次随机取样中，小鼠体重的均值差异大于`obsdiff`的百分比是多少呢？
+
+
 
 ```{r}
 mean(null >= obsdiff)
 ```
 
+```{block2 echo=FALSE}
 Only a small percent of the 10,000 simulations. As skeptics what do we conclude? When there is no diet effect, we see a difference as big as the one we observed only 1.5% of the time. This is what is known as a p-value, which we will define more formally later in the book. 
+```
+
+
 
 
 ## Distributions

@@ -290,26 +290,43 @@ We can then proceed as in option 2:
 dat <- read.csv(filename)
 ```
 
+```{{block2 echo = FALSE}}
 #### Option 4: Download the data package (Advanced)
-
+```
+### 选项4：下载数据包（高级）
+```{{block2 echo = FALSE}}
 Many of the datasets we include in this book are available in custom-built packages from GitHub. The reason we use GitHub, rather than CRAN, is that on GitHub we do not have to vet packages, which gives us much more flexibility. 
 
 To install packages from GitHub you will need to install the `devtools` package:
+```
+本书中的许多数据集都可以从GitHub的定制软件包中获得。我们使用GitHub而不是CRAN的原因在于：在GitHub上我们不需要审核包，这给我们带来了更多的灵活性。
+
+要从GitHub安装软件包，你需要需要安装devtools软件包：
 
 ```{r,eval=FALSE}
 install.packages("devtools")
 ```
 
+```{{block2 echo = FALSE}}
 Note to Windows users: to use devtools you will have to also install `Rtools`. In general you will need to install packages as administrator. One way to do this is to start R as administrator. If you do not have permission to do this, then it is a bit [more complicated](http://www.magesblog.com/2012/04/installing-r-packages-without-admin.html). 
+```
 
+Windows用户注意事项：要使用devtool，你还需要安装Rtools。一般来说，你需要以管理员身份安装软件包。一种方法是以管理员身份启动R。如果你没有权限执行此操作，则会更复杂一些。
+
+
+```{r,eval=FALSE}
 Now you are ready to install a package from GitHub. For this we use a different function:
-
+```
+然后你就可以利用devtools包的install_github函数来安装GitHub上的软件包了：
 ```{r,message=FALSE,eval=FALSE}
 library(devtools)
 install_github("genomicsclass/dagdata")
 ```
 
+```{{block2 echo = FALSE}}
 The file we are working with is actually included in this package. Once you install the package, the file is on your computer. However, finding it requires advanced knowledge. Here are the lines of code:
+```
+我们正在使用的文件就在这个包中。一旦你安装了它，这个文件就被保存在了你的电脑上。要读取这个文件，我们首先需要找到它。以下是代码行：
 
 ```{r}
 dir <- system.file(package="dagdata") #extracts the location of package
@@ -317,18 +334,30 @@ list.files(dir)
 list.files(file.path(dir,"extdata")) #external data is in this directory
 ```
 
+```{{block2 echo = FALSE}}
 And now we are ready to read in the file:
-
+```
+现在我们就可以读入文件数据了：
 ```{r}
 filename <- file.path(dir,"extdata/femaleMiceWeights.csv")
 dat <- read.csv(filename)
 ```
 
+```{{block2 echo = FALSE}}
 ### Getting Started Exercises
-
+```
+### 入门练习
+```{{block2 echo = FALSE}}
 __Exercises__
+```
+练习
 
+```{{block2 echo = FALSE}}
 Here we will test some of the basics of R data manipulation which you should know or should have learned by following the tutorials above. You will need to have the file `femaleMiceWeights.csv` in your working directory. As we showed above, one way to do this is by using the `downloader` package:
+```
+在这里我们将测试一些你已经知道或者通过以上教程学习到的R数据操作的基础知识。
+你需要选用以上我们介绍的下载方法，比如用downloader包，将femaleMiceWeights.csv文件保存到目前工作文件夹中。
+
 
 ```
 library(downloader) 
@@ -337,6 +366,7 @@ filename <- "femaleMiceWeights.csv"
 download(url, destfile=filename)
 ```
 
+```{{block2 echo = FALSE}}
 1. Read in the `file femaleMiceWeights.csv` and report the body weight of the mouse in the exact name of the column containing the weights.
 
 2. The `[` and `]` symbols can be used to extract specific rows and specific columns of the table. What is the entry in the 12th row and second column?
@@ -351,22 +381,39 @@ download(url, destfile=filename)
 
 6. One of the functions we will be using often is sample. Read the help file for sample using ?sample. Now take a random sample of size 1 from the numbers 13 to 24 and report back the weight of the mouse represented by that row. Make sure to type set.seed(1) to ensure that everybody gets the same answer.
 
+```
+1. 读入femaleMiceWeights.csv文件，并。
+2. [和]符号可用于提取表格的特定行和特定列。第12行的第2列是什么？
+3. 你应该已经学会了如何使用$字符从表格中提取一列并将其保存为一个向量。使用$提取重量列，并报告位于第11行的老鼠的重量。
+4. length函数返回向量中元素的数量。我们的数据集中包含了多少只老鼠？
+5. 
+6. sample是我们经常使用的一个功能。请使用?sample命令阅读sample功能的帮助文件。然后使用这个功能从数字13到24中随机抽取一个大小为1的样本，并报告这个样本中老鼠的体重。请务必先运行set.seed(1)， 以保证每个人都获得相同的答案。
 
 
-
-
+```{{block2 echo = FALSE}}
 ## Brief Introduction to `dplyr`
+```
 
+## dplyr简介
+
+```{{block2 echo = FALSE}}
 The learning curve for R syntax is slow. One of the more difficult aspects that requires some getting used to is subsetting data tables. The `dplyr` package brings these tasks closer to English and we are therefore going to introduce two simple functions: one is used to subset and the other to select columns.
 
 Take a look at the dataset we read in:
+```
+R语法的学习是一个缓慢积累的过程。其中一个比较困难的方面是逐步习惯对数据表进行子集化。dplyr包使这些操作更加简单和人性化。这里我们将介绍两个简单的功能：一个（filter）用于选择子数据集，另一个（select）用于选择列。下面我们首先来看看导入的数据集：
+
+
 ```{r}
 filename <- "femaleMiceWeights.csv"
 dat <- read.csv(filename)
 head(dat) #In R Studio use View(dat)
 ```
 
+```{{block2 echo = FALSE}}
 There are two types of diets, which are denoted in the first column. If we want just the weights, we only need the second column. So if we want the weights for mice on the `chow` diet, we subset and filter like this:
+```
+该数据表的第一列给出了喂养老鼠的两种饲料。如果我们只想得到老鼠的体重，我们只需要这个表的第二列。进而，如果我们想得到被chow饲料喂养的老鼠的体重，我们需要如下操作：
 
 ```{r,message=FALSE}
 library(dplyr) 
@@ -374,50 +421,77 @@ chow <- filter(dat, Diet=="chow") #keep only the ones with chow diet
 head(chow)
 ```
 
+```{{block2 echo = FALSE}}
 And now we can select only the column with the values:
+```
+
+现在我们可以使用select功能来选择含有体重的列：
+
 
 ```{r}
 chowVals <- select(chow,Bodyweight)
 head(chowVals)
 ```
 
+```{{block2 echo = FALSE}}
 A nice feature of the `dplyr` package is that you can perform consecutive tasks by using what is called a "pipe". In `dplyr` we use `%>%` to denote a pipe. This symbol tells the program to first do one thing and then do something else to the result of the first. Hence, we can perform several data manipulations in one line. For example:
+```
+dplyr包的一个很好的功能是你可以使用管道函数来执行连续的任务。在dplyr中，符号％>％表示一个管道。它首先运行符号左边的操作，然后将结果传递给右边的函数或表达式。因此，我们可以在一行中对数据进行多步操作。比如：
 
 ```{r}
 chowVals <- filter(dat, Diet=="chow") %>% select(Bodyweight)
 ```
-
+```{{block2 echo = FALSE}}
 In the second task, we no longer have to specify the object we are editing since it is whatever comes from the previous call. 
 
 Also, note that if `dplyr` receives a `data.frame` it will return a `data.frame`. 
+```
+在管道操作的第二个任务中，我们不需要特意制定我们正在编辑的对象，因为该操作将直接作用于从上一个操作传递过来的数据或表达式。
+
+另外，值得注意的一点是：如果dplyr收到一个data.frame，它将返回一个data.frame。
+
 ```{r}
 class(dat)
 class(chowVals)
 ```
 
+```{{block2 echo = FALSE}}
 For pedagogical reasons, we will often want the final result to be a simple `numeric` vector. To obtain such a vector with `dplyr`, we can apply the `unlist` function which turns `lists`, such as `data.frames`, into `numeric` vectors:
+```
+出于教学的目的，我们通常希望最终结果是一个简单的数字向量。我们可以应用unlist函数将dplyr的结果，比如data.frames，转换为数值向量：
 
 ```{r}
 chowVals <- filter(dat, Diet=="chow") %>% select(Bodyweight) %>% unlist
 class( chowVals )
 ```
 
-
+```{{block2 echo = FALSE}}
 To do this in R without `dplyr` the code is the following:
+```
+在没有dplyr包的情况下，你可以用如下代码进行转换：
 
 ```{r}
 chowVals <- dat[ dat$Diet=="chow", colnames(dat)=="Bodyweight"]
 ```
 
-
+```{{block2 echo = FALSE}}
 ### `dplyr` exercises
 
 __Exercises__
+```
+### dplyr练习
+练习
 
+```{{block2 echo = FALSE}}
 For these exercises, we will use a new dataset related to mammalian sleep. This data is described [here](http://ggplot2.tidyverse.org/reference/msleep.html). Download the CSV file from this location:
 
 We are going to read in this data, then test your knowledge of they key `dplyr` functions `select` and `filter`. We are also going to review two different classes: data frames and vectors.
+```
+本练习中，我们将使用与哺乳动物睡眠相关的新数据集。对于该数据集的详细描述可以参见这里[http://ggplot2.tidyverse.org/reference/msleep.html]。CSV文件下载地址：
 
+我们将读入这个数据集，然后测试您对dplyr的关键函数select和filter的了解。我们也将回顾两个不同的数据类型：数据框和向量。
+
+```{{block2 echo = FALSE}}
 1. Read in the `msleep_ggplot2.csv` file with the function `read.csv` and use the function `class` to determine what type of object is returned.
 
 2. Now use the `filter` function to select only the primates. How many animals in the table are primates? Hint: the nrow function gives you the number of rows of a data frame or matrix.
@@ -429,12 +503,24 @@ We are going to read in this data, then test your knowledge of they key `dplyr` 
 5. Now we want to calculate the average amount of sleep for primates (the average of the numbers computed above). One challenge is that the `mean` function requires a vector so, if we simply apply it to the output above, we get an error. Look at the help file for `unlist` and use it to compute the desired average.
 
 6. For the last exercise, we could also use the dplyr `summarize` function. We have not introduced this function, but you can read the help file and repeat exercise 5, this time using just `filter` and `summarize` to get the answer.
+```
+1. 使用read.csv函数读入msleep_ggplot2.csv数据集，然后用class函数来查看返回对象的类属性。
+2. 现在使用filter函数选择灵长类动物（primates），并统计灵长类动物的个数。提示：nrow函数返回数据框或矩阵的行数。
+3. 对表进行子集化（选择灵长类动物）之后，返回的对象是什么类型？
+4. 现在使用select函数来提取灵长类动物的睡眠时间（列sleep_total）。这个对象是什么类型？提示：使用％>％管道将filter函数的结果传递给select函数使用。
+5. 现在我们需要计算灵长类动物的平均睡眠时间（第四题得到的睡眠时间的平均值）。R中计算平均值的mean函数需要一个向量，所以第四题的输出结果不能直接使用，否则我们会得到一个错误提示。查看unlist函数的帮助文件，然后使用它转换数据类型，进而使用mean函数计算平均值。
+6. 我们也可以使用dplyr包中的summarize函数来计算上一题的结果。我们没有介绍这个函数，但是你可以首先查看该功能的帮助文件，然后使用它计算第五题。你只需要使用filter和summarize函数就可以得到结果。
 
 
+```{{block2 echo = FALSE}}
 ## Mathematical Notation
+```
+数学符号
 
+```{{block2 echo = FALSE}}
 This book focuses on teaching statistical concepts and data analysis programming skills. We avoid mathematical notation as much as possible, but we do use it.  We do not want readers to be intimidated by the notation though. Mathematics is actually the easier part of learning statistics. Unfortunately, many text books use mathematical notation in what we believe to be an over-complicated way. For this reason, we do try to keep the notation as simple as possible. However, we do not want to water down the material, and some mathematical notation facilitates a deeper understanding of the concepts. Here we describe a few specific symbols that we use often. If they appear intimidating to you, please take some time to read this section carefully as they are actually simpler than they seem. Because by now you should be somewhat familiar with R, we will make the connection between mathematical notation and R code.
-
+```
+本书主要讲授统计概念和数据分析编程技巧。所以，我们尽可能避免使用数学符号，以免读者被这些符号吓倒。数学实际上是学习统计学中较为容易的部分。但是，在我们看来，许多教科书过于复杂的使用数学符号。因此，我们将尽量简化对它的使用，但是我们也不会忽略那些有助于深入理解这些概念的符号。接下来我们将描述一些经常使用的特定符号。如果你对它们感到恐惧，请花一些时间仔细阅读本节，因为它们实际上比看上去容易理解。现在你应该对R有一定程度的理解，我们将在数学符号和R代码之间建立联系。
 
 #### Indexing
 

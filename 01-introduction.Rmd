@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ```{{block2 echo = FALSE}}
 # Getting Started
 ```
@@ -19,11 +20,38 @@ The first step is to install R. You can download and install R from
 the [Comprehensive R Archive Network](https://cran.r-project.org/)
 (CRAN). It is relatively straightforward, but if you need further help
 you can try the following resources: 
+=======
+```{block2 echo = FALSE}
+# Getting Started
+```
 
-* [Installing R on Windows](https://github.com/genomicsclass/windows#installing-r) 
+# 入门介绍
+
+```{block2 echo = FALSE}
+In this book we will be using the [R programming language](https://cran.r-project.org/) for all our analysis. You will learn R and statistics simultaneously. However, we assume you have some basic programming skills and knowledge of R syntax. If you don't, your first homework, listed below, is to complete a tutorial. Here we give step-by-step instructions on how to get set up to follow along. 
+```
+
+&emsp;&emsp;本书中所有的数据分析我们都使用[R语言](https://cran.r-project.org/)。我们假设你有基础的编程能力和R语言语法的知识。如果你没有这些基础知识，你第一个要做的就是学习R的基础知识。这里我们会从安装R开始一步一步的教你如何使用R。
+
+```{block2 echo = FALSE}
+## Installing R
+```
+
+## 安装R
+
+```{block2 echo = FALSE}
+The first step is to install R. You can download and install R from the [Comprehensive R Archive Network](https://cran.r-project.org/) (CRAN). It is relatively straightforward, but if you need further help you can try the following resources: 
+```
+>>>>>>> upstream/master
+
+&emsp;&emsp;第一步是安装R。你可以从R的官网上下载R。安装的过程非常简单，但是如果你需要更多的帮助，你可以下载下面对应的资源。
+
+```{block2 echo = FALSE}
+* [Installing R on Windows](https://github.com/genomicsclass/windows#installing-r)
 * [Installing R on Mac](http://youtu.be/Icawuhf0Yqo)
 * [Installing R on Ubuntu](http://cran.r-project.org/bin/linux/ubuntu/README)
 ```
+<<<<<<< HEAD
 
 &emsp;&emsp;第一步是R的安装。你可以从[Comprehensive R Archive Network](https://cran.r-project.org/)（CRAN）免费下载和安装R。R的安装很简单，如果你需要帮助，请参考以下的安装说明：
 * [Windows环境下R的安装](https://github.com/genomicsclass/windows#installing-r)
@@ -63,6 +91,43 @@ To follow this book you should be familiar with the difference between lists (in
 If you are already familiar with R, you can skip to the next section. Otherwise, you should go through the [swirl](http://swirlstats.com/) tutorial, which teaches you R programming and data science interactively, at your own pace and in the R console. Once you have R installed, you can install `swirl` and run it the following way: 
 ```
 &emsp;&emsp;如果你已经熟悉R语言，你可以直接跳到下一节。否则，你应该以自己的步调在R控制台中完成[swirl](http://swirlstats.com/)教程，它通过交互方式教你R编程和数据科学。一旦你安装了R，你就可以按以下方式安装和运行‘swirl’：
+=======
+
+* [Windows系统R安装教程](https://github.com/genomicsclass/windows#installing-r)
+* [Mac系统R安装教程](http://youtu.be/Icawuhf0Yqo)
+* [Ubuntu系统R安装教程](http://cran.r-project.org/bin/linux/ubuntu/README)
+
+```{block2 echo = FALSE}
+## Installing RStudio
+```{block2 echo = FALSE}
+
+## 安装Rstudio
+
+```{block2 echo = FALSE}
+The next step is to install RStudio, a program for viewing and running R scripts. Technically you can run all the code shown here without installing RStudio, but we highly recommend this integrated development environment (IDE). Instructions are [here](http://www.rstudio.com/products/rstudio/download/) and for Windows we have special [instructions](https://github.com/genomicsclass/windows). 
+```
+
+&emsp;&emsp;下面的一步是安装Rstudio。Rstudio。在不安装Rstudio的情况下，你可以运行本书中所有的R代码，但是我们强烈推荐使用Rstudio这款集成开发环境软件。具体的下载链接见[这里](http://www.rstudio.com/products/rstudio/download/)(http://www.rstudio.com/products/rstudio/download/)。对于Windows系统，我们也有一个对应的[安装手册](https://github.com/genomicsclass/windows)：https://github.com/genomicsclass/windows.
+
+
+```{block2 echo = FALSE}
+## Learn R Basics
+```
+
+## R基础知识
+
+```{block2 echo = FALSE}
+The first homework assignment is to complete an R tutorial to familiarize yourself with the basics of programming and R syntax. To follow this book you should be familiar with the difference between lists (including data frames) and numeric vectors, for-loops, how to create functions, and how to use the `sapply` and `replicate` functions. 
+```
+
+&emsp;&emsp;你首先要做的是让你自己对R编程和R的语法熟悉起来，你可以通过完成一个R的基本教程来实现这个目的。为了能够理解本书，你需要理解列表（list），数值向量（numeric vectors），能够写函数，以及理解如何使用`sapply`和`replicate`这两个函数。
+
+```{block2 echo = FALSE}
+If you are already familiar with R, you can skip to the next section. Otherwise, you should go through the [swirl](http://swirlstats.com/) tutorial, which teaches you R programming and data science interactively, at your own pace and in the R console. Once you have R installed, you can install `swirl` and run it the following way: 
+```
+
+&emsp;&emsp;如果你已经对R非常熟悉，你可以跳过下一节。如果你不熟悉，我们建议你完成[swirl](http://swirlstats.com/)教程，这个教程会以交互的方式教你R编程和数字科学。在你安装R后，你可以安装`swirl`，然后以下面的方式运行它：
+>>>>>>> upstream/master
 
 ```{r, eval=FALSE}
 install.packages("swirl")
@@ -70,14 +135,25 @@ library(swirl)
 swirl()
 ```
 
+<<<<<<< HEAD
 ```{{block2 echo = FALSE}}
 Alternatively you can take the [try R](http://tryr.codeschool.com/) interactive class from Code School.
+=======
+```{block2 echo = FALSE}
+Alternatively you can take the [try R](http://tryr.codeschool.com/) interactive class from Code School. 
+```
+
+&emsp;&emsp;你也可以尝试Code School的[try R](http://tryr.codeschool.com/)课程。
+
+```{block2 echo = FALSE}
+>>>>>>> upstream/master
 There are also many open and free resources and reference
 guides for R. Two examples are:
 
 * [Quick-R](http://www.statmethods.net/): a quick online reference for data input, basic statistics and plots
 * R reference card (PDF)[https://cran.r-project.org/doc/contrib/Short-refcard.pdf] by Tom Short 
 ```
+<<<<<<< HEAD
 &emsp;&emsp;或者，你可以参加Code School的[尝试R](http://tryr.codeschool.com/)互动课程。除此之外，还有许多开放和免费的资源和参考资料。
 比如下面的两个例子：
 * [Quick-R](http://www.statmethods.net/)：R数据输入，基本统计和图表的快速在线参考
@@ -87,17 +163,40 @@ guides for R. Two examples are:
 Two key things you need to know about R is that you can get help for a function using `help` or `?`, like this:
 ```
 &emsp;&emsp;你需要知道的关于R的两个关键的事情是你可以使用‘help’或‘?’来获得函数的帮助，如下所示：
+=======
+
+&emsp&emsp同时，你也可以找到许多学习R的开源的资源和手册。这里我们给出两个例子：
+
+* [R快速入门（Quick-R）](http://www.statmethods.net/): a quick online reference for data input, basic statistics and plots
+* R参考卡（R reference card） (PDF)[https://cran.r-project.org/doc/contrib/Short-refcard.pdf] by Tom Short 
+
+```{block2 echo = FALSE}
+Two key things you need to know about R is that you can get help for a function using `help` or `?`, like this:
+```
+
+&emsp&emsp关于R有两个关键的内容：一是你能够使用 `help``?`
+>>>>>>> upstream/master
 
 ```{r,eval=FALSE}
 ?install.packages
 help("install.packages")
 ```
 
+<<<<<<< HEAD
 ```{{block2 echo = FALSE}}
 and the hash character represents comments, so text following these
 characters is not interpreted:
 ```
 &emsp;&emsp;而‘#’字符代表注释，所以‘#’字符以后的文字将不被执行：
+=======
+```{block2 echo = FALSE}
+and the hash character represents comments, so text following these
+characters is not interpreted:
+```
+
+&emsp&emsp另一个就是#号表示注释，#号后面的内容是不会执行的。注释对编程代码的可读性是非常重要的。良好的注释是优秀代码的主要组成部分。
+
+>>>>>>> upstream/master
 
 ```{r}
 ##This is just a comment
@@ -153,6 +252,7 @@ The first step when preparing to analyze data is to read in the data into R. The
 ```
 &emsp;&emsp;数据分析的第一步是将数据导入R。数据导入的方法有很多，这里我们将介绍其中的三种。但是学会其中一个就可以跟随本书学习。
 
+<<<<<<< HEAD
 ```{{block2 echo = FALSE}}
 In the life sciences, small datasets such as the one used as an
 example in the next sections are typically stored as Excel files. Although there
@@ -186,7 +286,31 @@ The first step is to find the file containing your data and know its *path*.
 When you are working in R it is useful to know your _working directory_. This is the directory or folder in which R will save or look for files by default. You can see your working directory by typing:
 ```
 &emsp;&emsp;当你用R分析数据时，知道你的_工作目录_是很有用的。R默认将文件保存在此目录或者从该目录查找文件。你可以通过输入如下的命令来获取你的工作目录：
+=======
+In the life sciences, small datasets such as the one used as an example in the next sections are typically stored as Excel files. Although there are R packages designed to read Excel (xls) format, you generally want to avoid this and save files as comma delimited (Comma-Separated Value/CSV) or tab delimited (Tab-Separated Value/TSV/TXT) files. These plain-text formats are often easier for sharing data with collaborators, as commercial software is not required for viewing or working with the data.
+We will start with a simple example dataset containing [female mouse weights](https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv).
 
+```{block2 echo = FALSE}
+The first step is to find the file containing your data and know its *path*. 
+```
+
+第一步是找到对应的文件并且弄清楚这个文件的*路径*。
+
+
+```{block2 echo = FALSE}
+#### Paths and the Working Directory
+```
+
+#### 路径和工作目录
+
+```{block2 echo = FALSE}
+When you are working in R it is useful to know your _working directory_. This is the directory or folder in which R will save or look for files by default. You can see your working directory by typing:
+```
+
+当你在
+>>>>>>> upstream/master
+
+  
 ```{r, eval=FALSE}
 getwd()
 ```
@@ -612,12 +736,4 @@ sum( areaofbars )
 ```
 
 The smaller we make `width`, the closer the sum gets to the integral, which is equal to the area.
-
-
-
-
-
-
-
-
 

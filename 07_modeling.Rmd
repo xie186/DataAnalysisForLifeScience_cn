@@ -11,7 +11,7 @@
 When we see a p-value in the literature, it means a probability distribution of some sort was used to quantify the null hypothesis. Many times deciding which probability distribution to use is relatively straightforward. For example, in the tea tasting challenge we can use simple probability calculations to determine the null distribution. Most  p-values in the scientific literature are based on sample averages or least squares estimates from a linear model and make use of the CLT to approximate the null distribution of their statistic as normal.
 ```
 
-&emsp;&emsp;当我们在文献里面看见P值时, 这意味着作者采用了某种概率分布来对零假设建模。 很多时候,使用哪种概率分布是相对比较简单的。例如,在茶品鉴中我们可以使用简单的概率计算来确定零假设。大多数的P值或者是从样本均值或者是从线性模型的最小平方。
+&emsp;&emsp;当我们在文献里面看见P值时, 这意味着作者采用了某种概率分布来对零假设建模。 很多时候,使用哪种概率分布是相对比较简单的。例如,在茶品鉴中我们可以使用简单的概率计算来确定零假设。大多数的P值或者是样本均值或者是从线性模型的最小平方。??????
 
 ```{block2 echo = FALSE}
 The CLT is backed by theoretical results that guarantee that the approximation is accurate. However, we cannot always use this approximation, such as when our sample size is too small. Previously, we described how the sample average can be approximated as t-distributed when the population data is approximately normal. However, there is no theoretical backing for this assumption. We are now *modeling*. In the case of height, we know from experience that this turns out to be a very good model. 
@@ -372,9 +372,17 @@ It is defined by two parameters $\alpha$ and $\beta$ that can, indirectly, contr
 
 &emsp;&emsp;公式中的$\alpha$和$\beta$可以间接的控制分布的位置和重尾（heavy tail）的程度，进而控制了分布的形状。如果你想了解更多关于这个分布的内容，请参考[这本书](https://www.stat.berkeley.edu/~rice/Book3ed/index.html).
 
+```{block2 echo=FALSE}
 Two special cases of the gamma distribution are the chi-squared and exponential distribution. We used the chi-squared earlier to analyze a 2x2 table data. For chi-square, we have $\alpha=\nu/2$ and $\beta=2$ with $\nu$ the degrees of freedom. For exponential, we have $\alpha=1$ and $\beta=\lambda$ the rate.
+```
 
+&emsp;&emsp;伽玛分布的两个特列是卡平方分布和指数分布分布。前面我们已经用到卡平方来分析一个2x2的列表数据。对于卡平方，$\alpha=\nu/2$，$\beta=2$，同时自由度为$\nu$。对于指数分布，$\alpha=1$，同时$\beta=\lambda$。
+
+```{block2 echo=FALSE}
 The F-distribution comes up in analysis of variance (ANOVA). It is also always positive and has large right tails. Two parameters control its shape:
+```
+
+&emsp;&emsp;F分布会在方差分析（ANOVA）中讲到。F分布，变量总是正值同时在右侧有重尾。该分布中，两个参数决定其形状：
 
 $$
 f(x,d_1,d_2)=\frac{1}{B\left( \frac{d_1}{2},\frac{d_2}{2}\right)}
@@ -382,11 +390,22 @@ f(x,d_1,d_2)=\frac{1}{B\left( \frac{d_1}{2},\frac{d_2}{2}\right)}
   x^{\frac{d_1}{2}-1}\left(1+\frac{d1}{d2}x\right)^{-\frac{d_1+d_2}{2}}
 $$  
 
+```{block2 echo=FALSE}
 with $B$ the _beta function_ and $d_1$ and $d_2$ are called the degrees of freedom for reasons having to do with how it arises in ANOVA. A third parameter is sometimes used with the F-distribution, which is a scale parameter.
+```
 
+
+```{block2 echo=FALSE}
 #### Modeling the variance
+```
 
+#### 方差建模
+
+```{block2 echo=FALSE}
 In a later section we will learn about a hierarchical model approach to improve estimates of variance. In these cases it is mathematically convenient to model the distribution of the variance $\sigma^2$. The hierarchical model used [here](http://www.ncbi.nlm.nih.gov/pubmed/16646809) implies that the sample standard deviation of genes follows scaled F-statistics:
+```
+
+&emsp;&emsp;在稍后的章节中，我们会介绍通过层次模型会提高方差估计。
 
 $$
 s^2 \sim s_0^2 F_{d,d_0}
@@ -434,28 +453,54 @@ k=sum(tmp$density)/sum(dd) ##a normalizing constant to assure same area in plot
 lines(sds, dd*k, type="l", col=2, lwd=2)
 ```
 
-
+```{block2 echo=FALSE}
 ## Bayesian Statistics
+```
 
+## 贝叶斯统计
+
+```{block2 echo=FALSE}
 One distinguishing characteristic of high-throughput data is that although we want to report on specific features, we observe many related outcomes. For example, we measure the expression of thousands of genes, or the height of thousands of peaks representing protein binding, or the methylation levels across several CpGs. However, most of the statistical inference approaches we have shown here treat each feature independently and pretty much ignores data from other features. We will learn how using statistical models provides power by modeling features jointly. The most successful of these approaches are what we refer to as hierarchical models, which we explain below in the context of Bayesian statistics.
+```
 
+&emsp;&emsp;高通量数据的一个突出特点是尽管我们想要研究一些特殊的特征值，但是通常我们也观察多许多相关的其他内容。例如，通过RNA-seq我们能够衡量成千上万个基因的表达量，利用ChIP-seq我们可以计算成千上万个峰的高度（象征蛋白结合强度），利用BS-seq我们可以计算几个CpG位点的甲基化水平。然而，前面我们介绍的大多数的统计推断方法将每一个特征值看成是独立的，因此并没有考虑其他特征值。
+
+```{block2 echo=FALSE}
 #### Bayes theorem
+```
+#### 贝叶斯定理
 
+```{block2 echo=FALSE}
 We start by reviewing Bayes theorem. We do this using a hypothetical cystic fibrosis test as an example. Suppose a test for cystic fibrosis has an accuracy of 99%. We will use the following notation:
+```
+
+&emsp;&emsp;首先，我们来回顾一下贝叶斯定理。我们利用一个假设的囊性纤维化检测试验作为一个例子。假设，该测试试验的准确性是99%。我们将会有下面的公式：
 
 $$
 \mbox{Prob}(+ \mid D=1)=0.99, \mbox{Prob}(- \mid D=0)=0.99 
 $$
 
+```{block2 echo=FALSE}
 with $+$ meaning a positive test and $D$ representing if you actually have the disease (1) or not (0).
+```
 
+&emsp;&emsp;$+$表示检测结果为阳性，$D$表示受试者实际患病（1）或者未患病（0）。
+
+```{block2 echo=FALSE}
 Suppose we select a random person and they test positive, what is the probability that they have the disease?  We write this as $\mbox{Prob}(D=1 \mid +)?$ The cystic fibrosis rate is 1 in 3,900 which implies that  $\mbox{Prob}(D=1)=0.00025$. To answer this question we will use Bayes Theorem, which in general tells us that:
+```
 
+&emsp;&emsp;假设我们随机选取一个人测试，该受试者测试结果为阳性，那么他患病的概率是多少？
+  
 $$
 \mbox{Pr}(A \mid B)  =  \frac{\mbox{Pr}(B \mid A)\mbox{Pr}(A)}{\mbox{Pr}(B)} 
 $$
 
+```{block2 echo=FALSE}
 This equation applied to our problem becomes:
+```
+
+&emsp;&emsp;这个公式应用到我们的问题中，我们得到:
 
 $$
 \begin{align*}
@@ -463,18 +508,33 @@ $$
 & =  \frac{\mbox{Prob}(+ \mid D=1)\cdot P(D=1)} {\mbox{Prob}(+ \mid D=1) \cdot P(D=1) + \mbox{Prob}(+ \mid D=0) \mbox{Prob}( D=0)} 
 \end{align*}
 $$
-
+```{block2 echo=FALSE}
 Plugging in the numbers we get:
+```
+
+&emsp;&emsp;代入具体的数据，我们得到下面的结果:
 
 $$
 \frac{0.99 \cdot 0.00025}{0.99 \cdot 0.00025 + 0.01 \cdot (.99975)}  =  0.02 
 $$
 
+```{block2 echo=FALSE}
 This says that despite the test having 0.99 accuracy, the probability of having the disease given a positive test is only 0.02. This may appear counterintuitive to some. The reason this is the case is because we have to factor in the very rare probability that a person, chosen at random, has the disease. To illustrate this we run a Monte Carlo simulation.
+```
 
+&emsp;&emsp;这个结果表明，尽管检测准确性很高，能够达到0.99。但是在检测结果为阳性的情况下，受试者患病的概率却只有0.02。这看起来和我们的直觉是是相反的。得到这个结果的原因是在我们随机选取的这个受试者患病的概率极低。为了更直观的解释这个结果，我们使用蒙特·卡罗方法模拟一个数据。
+
+```{block2 echo=FALSE}
 #### Simulation
+```
 
+#### 模拟
+
+```{block2 echo=FALSE}
 The following simulation is meant to help you visualize Bayes Theorem. We start by randomly selecting 1500 people from a population in which the disease in question has a 5% prevalence.
+```
+
+&emsp;&emsp;下面的模拟是为了帮助你更直观的理解贝叶斯定理。首先，我们从一个患病率为5%的群体中随机选取1500个人。
 
 ```{r}
 set.seed(3)
@@ -485,7 +545,12 @@ M <- 50 ; N <- 30
 d<-rbinom(N*M,1,p=prev)
 ```
 
+```{block2 echo=FALSE}
 Now each person gets the test which is correct 90% of the time.
+```
+
+&emsp;&emsp;接着我们队每一个人进行测试，测试的准确性是99%。
+
 ```{r}
 accuracy <- 0.9
 test <- rep(NA,N*M)
@@ -495,7 +560,11 @@ test[d==1]  <- rbinom(sum(d==1), 1, p=accuracy)
 test[d==0]  <- rbinom(sum(d==0), 1, p=1-accuracy)
 ```
 
+```{block2 echo=FALSE}
 Because there are so many more controls than cases, even with a low false positive rate, we get more controls than cases in the group that tested positive (code not shown):
+```
+&emsp;&emsp; 因为对照的个数远远大于病例的个数，所以即使假阳性率比较低的情况下，我们在检测结果为阳性的这一组中依然看到对照的个数大于患病的个数（此处图对应的代码没有显示）。
+
 
 ```{r simulation, fig.cap="Simulation demonstrating Bayes theorem. Top plot shows every individual with red denoting cases. Each one takes a test and with 90% gives correct answer. Those called positive (either correctly or incorrectly) are put in the bottom left pane. Those called negative in the bottom right.", fig.width=10.5, fig.height=7.5,echo=FALSE}
 cols <- c("grey","red")
@@ -522,34 +591,64 @@ plot(people,col=negativecols,pch=16,xaxt="n",yaxt="n",xlab="",ylab="",
      main=paste("Tested Negative:",round(mean(d[test==0])*100,1),"% are red"))
 ```
 
+```{block2 echo=FALSE}
 The proportions of red in the top plot shows $\mbox{Pr}(D=1)$. The bottom left shows $\mbox{Pr}(D=1 \mid +)$ and the bottom right shows $\mbox{Pr}(D=0 \mid +)$.
+```
 
+&emsp;&emsp;在上图中，上半部分红色比例代表$\mbox{Pr}(D=1)$。左下图代表$\mbox{Pr}(D=1 \mid +)$。左下图代表$\mbox{Pr}(D=0 \mid +)$。
 
+```{block2 echo=FALSE}
 #### Bayes in practice
+```
 
 
 <!-- ![iglesias](http://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg/902px-Jos%C3%A9_Iglesias_on_September_28%2C_2012.jpg) -->
 
-
+```{block2 echo=FALSE}
 José Iglesias is a professional baseball player. In April 2013, when he was starting his career, he was performing rather well:
+```
+
+&emsp;&emsp;José Iglesias是一个职业的棒球运动员。2013年4月是他职业生涯的第一个月，他的表现非常棒:
+
 
 | Month | At Bats | H | AVG |
 |-------|---------|---|-----|
 | April | 20      | 9 | .450   |
 
+```{block2 echo=FALSE}
 The batting average (`AVG`) statistic is one way of measuring success. Roughly speaking, it tells us the success rate when batting. An `AVG` of .450 means José has been successful 45% of the times he has batted (`At Bats`) which is rather high as we will see. Note, for example, that no one has finished a season with an `AVG` of .400 since Ted Williams did it in 1941! To illustrate the way hierarchical models are powerful, we will try to predict José's batting average at the end of the season, after he has gone to bat over 500 times. 
+```
 
+&emsp;&emsp;棒球的击球率（`AVG`：the batting average）是衡量一个棒球员表现的一个指标。通常来讲，`AVG`表示击球成功的概率。0.450的`AVG`是非常好的一个表现。例如，1941年传奇棒球球员Ted Williams的`AVG`为0.406，从那以后没有一个球员能够取得这么好的成绩。为了解释分层模型是非常有效的，我们将试着利用José的超过500次的急求数据来预测其整个赛季的`AVG`。
+
+```{block2 echo=FALSE}
 With the techniques we have learned up to now, referred to as _frequentist techniques_, the best we can do is provide a confidence interval. We can think of outcomes from hitting as a binomial with a success rate of $p$. So if the success rate is indeed .450, the standard error of just 20 at bats is:
+```
+
+&emsp;&emsp;截止现在，我们所学到的内容都属于频率学派统计学，我们能做到的是提供一个置信区间。我们讲击球事件看做一个成功率为$p$的二项分布。所以如果$p$是0.450，20次击球的标准差是：
 
 $$
 \sqrt{\frac{.450 (1-.450)}{20}}=.111
 $$
 
+```{block2 echo=FALSE}
 This means that our confidence interval is .450-.222 to .450+.222 or .228 to .672.
+```
 
+&emsp;&emsp;这说明我们的执行区间是0.228（.450-.222）到0.672（.450+.222）。
+
+```{block2 echo=FALSE}
 This prediction has two problems. First, it is very large so not very useful. Also, it is centered at .450 which implies that our best guess is that this new player will break Ted Williams' record. If you follow baseball, this last statement will seem wrong and this is because you are implicitly using a hierarchical model that factors in information from years of following baseball. Here we show how we can quantify this intuition.
+```
 
+&emsp;&emsp;这个预测有两个问题。首先，置信区间太大，所以没有实际意义。另外，该预测的中心是0.450（即我们的最佳预测），表明我们的最佳预测是这名新球员的`AVG`可能会打破Ted Williams在1941年创下的记录。如果你关注棒球，你会认为这个预测是有很大问题的。这是因为你已经在使用层次模型了，你将你几年来关注棒球得到的信息以一种直觉的形式来判断这一问题了。接下来我们将介绍我们如果以数学的形式来量化这种直觉。
+
+
+```{block2 echo=FALSE}
 First, let's explore the distribution of batting averages for all players with more than 500 at bats during the previous three seasons:
+```
+
+&emsp;&emsp;首先，让我们先来看看在前三个赛季中击球数超过500次的球员的平均`AVG`：
 
 ```{r,include=FALSE, cache=TRUE}
 tmpfile <- tempfile()
@@ -573,12 +672,22 @@ for(y in 2010:2012){
 }
 ```
 
+```{block2 echo=FALSE}
 We note that the average player had an `AVG` of .275 and the standard deviation of the population of players was 0.027. So we can see already that .450 would be quite an anomaly since it is over six SDs away from the mean. So is José lucky or the best batter seen in the last 50 years? Perhaps it's a combination of both. But how lucky and how good is he? If we become convinced that he is lucky, we should trade him to a team that trusts the .450 observation and is maybe overestimating his potential.
+```
 
+&emsp;&emsp;我们会发现，棒球球员的`AVG`均值是0.275，标准差是0.027。所以我们已经可以看出0.450的`AVG`是非常异常的，这个值偏离均值超过6个标准差。所以José有0.450这个成绩是碰巧的还是说他确实是自1941年以来最好的球员呢？这可能两者的因素都有。但是碰巧的因素和他确实有这么好的概率有多少呢?这样的判断会对球员交易产生影响。如果，经过分析我们认为他只是碰巧取得了这个成绩，他并没有那么好，那么你作为球队老板可能就会选择将他交易到其他球队，也许其他球队会根据0.450这个数据尔高估他，认为他确实非常优秀。
 
+```{block2 echo=FALSE}
 #### The hierarchical model
+```
 
+#### 层次模型
+```{block2 echo=FALSE}
 The hierarchical model provides a mathematical description of how we came to see the observation of .450. First, we pick a player at random with an intrinsic ability summarized by, for example, $\theta$, then we see 20 random outcomes with success probability $\theta$.
+```
+
+&emsp;&emsp;层次模型提供了一种让方法让我们能够用数学的语言来描述这一例子。首先，我们随机选取了一个优秀的球员，这个选择是基于$\theta$。$\theta$是根据20次随机事件得出的一个成功概率。
 
 $$
 \begin{align*}
@@ -587,9 +696,18 @@ Y \mid \theta &\sim N(\theta, \sigma^2) \mbox{ describes randomness in the perfo
 \end{align*}
 $$
 
+```{block2 echo=FALSE}
 Note the two levels (this is why we call them hierarchical): 1) Player to player variability and 2) variability due to luck when batting. In a Bayesian framework, the first level is called a _prior distribution_ and the second the _sampling distribution_.
+```
+```
+&emsp;&emsp;这里有两个层次的意思：1）球员和球员之间的差异；2）击球时运气因素引起的变异。在贝叶斯模型中，第一层次称之为_先验概率_，第二层次为_样本分布_。
 
+
+```{block2 echo=FALSE}
 Now, let's use this model for José's data. Suppose we want to predict his innate ability in the form of his _true_ batting average $\theta$. This would be the hierarchical model for our data:
+```
+
+&emsp;&emsp;现在，让我们用层次模型来对José的数据进行建模。假设我们的目的是预测他__真实__的击球率来评估他的天赋。下面展示的是这一数据的层次模型：
 
 $$
 \begin{align*}
@@ -598,7 +716,12 @@ Y \mid \theta &\sim N(\theta, .111^2)
 \end{align*}
 $$
 
+```{block2 echo=FALSE}
 We now are ready to compute a posterior distribution to summarize our prediction of $\theta$. The continuous version of Bayes rule can be used here to derive the _posterior probability_, which is the distribution of the parameter $\theta$ given the observed data:
+```
+
+&emsp;&emsp;现在我们可以计算后验概率分布来预测$\theta$。贝叶斯法则的连续版本可以被用来推断_后验概率_，这也是从观测数据中的参数 $\theta$的缝补。
+
 
 $$
 \begin{align*}
@@ -610,7 +733,12 @@ f_{ \theta \mid Y} (\theta\mid Y) &=
 \end{align*}
 $$
 
+```{block2 echo = FALSE}
 We are particularly interested in the $\theta$ that maximizes the posterior probability $f_{\theta\mid Y}(\theta\mid Y)$. In our case, we can show that the posterior is normal and we can compute the mean $\mbox{E}(\theta\mid y)$ and variance $\mbox{var}(\theta\mid y)$. Specifically, we can show the average of this distribution is the following:
+```
+
+&emsp;&emsp;我们尤其对能够使后验概率$f_{\theta\mid Y}(\theta\mid Y)$取得最大值的$\theta$。在我们的数据中，我们可以看到后验概率的分布符合正态分布，我们也可以计算均值$\mbox{E}(\theta\mid y)$和方差$\mbox{var}(\theta\mid y)$。我们可以具体一下面的形式展示该分布的均值。
+
 
 $$
 \begin{align*}
@@ -757,6 +885,7 @@ with(limmares, plot(dm, -log10(p.value),cex=.8, pch=16,
      xlim=c(-1,1), ylim=c(0,5)))
 abline(h=2,v=c(-.2,.2), lty=2)
 ```
+
 
 The number of false positives in the top 10 is now reduced to 2. 
 

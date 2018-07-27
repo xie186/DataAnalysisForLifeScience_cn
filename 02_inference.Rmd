@@ -1,30 +1,63 @@
+```{block2 echo=FALSE}
 # Inference
+```
 
+# 统计推断
+
+```{block2 echo=FALSE}
 ## Introduction 
+```
+
+## 简介
 
 ```{r,results=FALSE,echo=FALSE}
 set.seed(1) #so that we get same results
 ```
 
+```{block2 echo=FALSE}
 This chapter introduces the statistical concepts necessary to understand p-values and confidence intervals. These terms are ubiquitous in the life science literature. Let's use [this paper](http://diabetes.diabetesjournals.org/content/53/suppl_3/S215.full) as an example. 
+```
 
+&emsp;&emsp;这一章主要介绍基本的统计概念，这些统计概念是我们理解P值和置信区间的前提。这些统计知识在生命科学文献中是无处不在的。下面我们以[这篇文章](http://diabetes.diabetesjournals.org/content/53/suppl_3/S215.full)作为例子：
+
+```{block2 echo=FALSE}
 Note that the abstract has this statement: 
+```
 
+&emsp;&emsp;注意这篇文章的摘要里面有如下的陈述：
+
+```{block2 echo=FALSE}
 > "Body weight was higher in mice fed the high-fat diet already after the first week, due to higher dietary intake in combination with lower metabolic efficiency." 
+```
 
+
+>&emsp;&emsp;"喂高脂饲料的老鼠在一周后其体重已经比较高了，这主要是由于高膳食摄入量和低代谢效率造成的。"
+
+```{block2 echo=FALSE}
 To support this claim they provide the following in the results section:
+```
 
+&emsp;&emsp;为了支持这一个结论，作者在结果部分提供了下面的结果：
+
+
+```{block2 echo=FALSE}
 > "Already during the first week after introduction of high-fat diet, body weight increased significantly more in the high-fat diet-fed mice ($+$ 1.6 $\pm$ 0.1 g) than in the normal diet-fed mice ($+$ 0.2 $\pm$ 0.1 g; P < 0.001)."
+```
 
-What does P < 0.001 mean? What are the $\pm$ included?
-We will learn what this means and learn to compute these values in
-R. The first step is to understand random variables. To do
-this, we will use data from a mouse database (provided by Karen
-Svenson via Gary Churchill and Dan Gatti and partially funded by P50
-GM070683). We will import the data into R and explain random variables
-and null distributions using R programming. 
+>&emsp;&emsp; “相对正常喂养的老鼠（$+$ 0.2 $\pm$ 0.1 g），喂养高脂饲料老鼠（$+$ 1.6 $\pm$ 0.1 g）的体重在一周后表现出体重的增加明显更多（P < 0.001）。”
 
+```{block2 echo=FALSE}
+What does P < 0.001 mean? What are the $\pm$ included? We will learn what this means and learn to compute these values in R. The first step is to understand random variables. To do this, we will use data from a mouse database (provided by Karen Svenson via Gary Churchill and Dan Gatti and partially funded by P50 GM070683). We will import the data into R and explain random variables and null distributions using R programming. 
+```
+
+&emsp;&emsp; P < 0.001的含义是什么？ $\pm$包含了什么内容？接下来你会学习这些内容，同时你也会学到如何在R中计算这些值。首先你要了解随机变量。这里我们使用一个小鼠的数据（这个数据是由Karen Svenson，Gary Churchill和Dan Gatti提供的，这个项目的部分经费来自于P50 GM070683）。我们将会把这个数据导入R，然后通过这个数据来讲解随机变量和.........
+
+```{block2 echo=FALSE}
 If you already downloaded the `femaleMiceWeights` file into your working directory, you can read it into R with just one line:
+```
+
+&emsp;&emsp; 如果你已经下载了`femaleMiceWeights`这个数据，并存放在了你的当前工作目录中，你可以用一行R代码来读取这个数据：
+
 
 ```{r echo=FALSE, results="hide"}
 library(downloader) ##use install.packages to install
@@ -38,7 +71,11 @@ if (!file.exists(filename)) download(url, destfile=filename)
 dat <- read.csv("femaleMiceWeights.csv")
 ```
 
+```{block2 echo=FALSE}
 Remember that a quick way to read the data, without downloading it is by using the url:
+```
+
+你也可以不用下载，直接通过数据对应的网址来读取数据：
 
 ```{r,eval=FALSE}
 dir <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/"
@@ -47,29 +84,40 @@ url <- paste0(dir, filename)
 dat <- read.csv(url)
 ```
 
-#### Our first look at data
+```{block2 echo=FALSE}
+### Our first look at data
+```
 
-We are interested in determining if following a given diet makes mice
-heavier after several weeks. This data was produced by ordering 24
-mice from The Jackson Lab and randomly assigning either chow or high
-fat (hf) diet. After several weeks, the scientists weighed each mouse
-and obtained this data (`head` just shows us the first 6 rows):
+### 认识数据
 
+```{block2 echo=FALSE}
+We are interested in determining if following a given diet makes mice heavier after several weeks. This data was produced by ordering 24 mice from The Jackson Lab and randomly assigning either chow or high fat (hf) diet. After several weeks, the scientists weighed each mouse and obtained this data (`head` just shows us the first 6 rows):
+```
+
+&emsp;&emsp;在这个数据中，我们感兴趣的是通过给小鼠提供高脂饲料几周后小鼠的体重是否增加的更多。24只从Jackson实验室订购的小鼠随机分成两组：对照组合高脂饲料组（HF:high fat）。在几周后，科学家会测量每个小数的体重。这里`head`向我们展示了数据的前六行。
+
+  
 ```{r}
 head(dat) 
 ``` 
 
+```{block2 echo=FALSE}
 In RStudio, you can view the entire dataset with:
+```
+
+
+&emsp;&emsp; 在RStudio中，你可以用`View()`函数来查看整个数据集:
 
 ```{r,eval=FALSE}
 View(dat)
 ```
 
-So are the hf mice heavier? Mouse 24 at 20.73 grams is one of the
-lightest mice, while Mouse 21 at 34.02 grams is one of the heaviest. Both are on
-the hf diet. Just from looking at the data, we see there is
-*variability*. Claims such as the one above usually refer to the
-averages. So let's look at the average of each group: 
+```{block2 echo=FALSE}
+So are the hf mice heavier? Mouse 24 at 20.73 grams is one of the lightest mice, while Mouse 21 at 34.02 grams is one of the heaviest. Both are on the hf diet. Just from looking at the data, we see there is *variability*. Claims such as the one above usually refer to the averages. So let's look at the average of each group: 
+```
+
+&emsp;&emsp; 那么喂高脂饲料的小鼠（HF小鼠）是不是更重一些呢？第24只小鼠和第21只小鼠都属于HF小鼠。而第24只小鼠的体重是最轻的，为20.73克；第21只小鼠最重，为34.02克。仅从数值来看，即使在同一组小鼠中，我们能够看到*变异（variability）*的存在。如果结论是一组比另一组高，通常我们讲的是均值。
+
 
 ```{r,message=FALSE}
 library(dplyr)
@@ -81,14 +129,30 @@ obsdiff <- mean(treatment) - mean(control)
 print(obsdiff)
 ```
 
+```{block2 echo=FALSE}
 So the hf diet mice are about 10% heavier. Are we done? Why do we need p-values and confidence intervals? The reason is that these averages are random variables. They can take many values. 
+```
 
+&emsp;&emsp; 从上面的R代码运行的结果，我们看到HF小鼠的体重均值为`mean(treatment)`，而对照组的均值为`mean(control)`。两均值之间的差值为`obsdiff`。HF小鼠的体重相对对照组要重10%。这样我们的分析就这结束了，可以下结论了吗？为什么我们需要P值和置信区间呢？原因是这些均值是随机变量。它们可以是很多值。
+
+
+```{block2 echo=FALSE}
 If we repeat the experiment, we obtain 24 new mice from The Jackson Laboratory and, after randomly assigning them to each diet, we get a different mean. Every time we repeat this experiment, we get a different value. We call this type of quantity a *random variable*. 
+```
 
+&emsp;&emsp; 如果我们重复这个实验。重新再订24只小鼠然后随机分成两组进行饲养，这组数据我们会得到一组不一样的均值。每次我们重复这个实验，我们会得到不同的值。我们成这样的数据类型：*随机变量*。
 
+```{block2 echo=FALSE}
 ## Random Variables
+```
 
+## 随机变量
+
+```{block2 echo=FALSE}
 Let's explore random variables further. Imagine that we actually have the weight of all control female mice and can upload them to R. In Statistics, we refer to this as *the population*. These are all the control mice available from which we sampled 24. Note that in practice we do not have access to the population. We have a special dataset that we are using here to illustrate concepts. 
+```
+
+&emsp;&emsp;让我们进一步的来认识随机变量。假设我们有所有对照组雌性小鼠的体重数据。在统计中，我们称这个数据为*总体样本*。试验中的24只小鼠是这个总体样本中抽取的样本。需要记住的是在实践中我们是没有办法得到总体样本数据的。这里我们有一个特殊的数据来说明这个概念。
 
 ```{r, echo=FALSE}
 library(downloader)
@@ -99,7 +163,12 @@ url <- paste0(dir, filename)
 if (!file.exists(filename)) download(url,destfile=filename)
 ```
 
+```{block2 echo=FALSE}
 The first step is to download the data from [here](https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleControlsPopulation.csv) into your working directory and then read it into R: 
+```
+
+&emsp;&emsp;第一步是从这里的连接中下载数据到对应的工作目录中，然后将数据读入R：
+
 
 ```{r}
 population <- read.csv("femaleControlsPopulation.csv")
@@ -109,6 +178,10 @@ population <- unlist(population)
 
 Now let's sample 12 mice three times and see how the average changes.
 
+
+&emsp;&emsp;现在让我们从这个数据中进行三次抽样，每次抽取12只小鼠，并计算每次抽样的均值：
+
+
 ```{r}
 control <- sample(population,12)
 mean(control)
@@ -120,26 +193,31 @@ control <- sample(population,12)
 mean(control)
 ```
 
+```{block2 echo=FALSE}
 Note how the average varies. We can continue to do this repeatedly and start learning something about the distribution of this random variable.
+```
 
-<a name="null_distribution"></a>
+&emsp;&emsp;我们可以注意到这里的均值的变化。我们可以重复这个操作很多次，然后来学习随机变量的分布。
 
+```{block2 echo=FALSE}
 ## The Null Hypothesis
+```
 
-Now let's go back to our average difference of `obsdiff`. As
-scientists we need to be skeptics. How do we know that this `obsdiff`
-is due to the diet? What happens if we give all 24 mice the same diet? Will
-we see a difference this big? Statisticians refer to this scenario as
-the *null hypothesis*. The name "null" is used to remind us that we
-are acting as skeptics: we give credence to the possibility that there
-is no difference.
+## 零假设
 
-Because we have access to the population, we can actually observe as
-many values as we want of the difference of the averages when the diet
-has no effect. We can do this by randomly sampling 24 control mice,
-giving them the same diet, and then recording the difference in mean
-between two randomly split groups of 12 and 12. Here is this process
-written in R code:
+```{block2 echo=FALSE}
+Now let's go back to our average difference of `obsdiff`. As scientists we need to be skeptics. How do we know that this `obsdiff` is due to the diet? What happens if we give all 24 mice the same diet? Will we see a difference this big? Statisticians refer to this scenario as the *null hypothesis*. The name "null" is used to remind us that we are acting as skeptics: we give credence to the possibility that there is no difference.
+```
+
+&emsp;&emsp;我们回到我们之前计算的均值差（`obsdiff`）。作为一个科研工作者，我们需要有怀疑精神。我们如何知道`obsdiff`是由于饲料差异引起的。如果我们给24只小鼠一样的饲料，结果会怎样呢？我们会看到这么大的差异吗？统计学家将这样的假设称为*零假设*。这里的“零”（英文为Null）是在提醒我们这里我们是怀疑论者：我们相信存在饲料差异不引起体重差异的可能性。
+
+```{block2 echo=FALSE}
+Because we have access to the population, we can actually observe as many values as we want of the difference of the averages when the diet has no effect. We can do this by randomly sampling 24 control mice, giving them the same diet, and then recording the difference in mean between two randomly split groups of 12 and 12. Here is this process written in R code:
+```
+
+&emsp;&emsp;我们可以从对照组雌性小鼠的体重数据随机取24只小鼠，然后提供相同的饲料。接着我们将这24只小鼠随机分成2组，每组12只，同时计算每组的均值。下面是完成这样系列操作的R代码：
+
+
 
 ```{r}
 ##12 control mice
@@ -149,8 +227,13 @@ treatment <- sample(population,12)
 print(mean(treatment) - mean(control))
 ```
 
+```{block2 echo=FALSE}
 Now let's do it 10,000 times. We will use a "for-loop", an operation
 that lets us automate this (a simpler approach that, we will learn later, is to use `replicate`).
+```
+
+&emsp;&emsp;我们接着重复10,000次上面的操作。这里我们将用到`for`循环，这个操作可以使得重复10,000次的操作自动完成（后面我们会介绍一种更简单的函数`replicate`）。
+
 
 ```{r}
 n <- 10000
@@ -162,40 +245,68 @@ for (i in 1:n) {
 }
 ```
 
+```{block2 echo=FALSE}
 The values in `null` form what we call the *null distribution*. We will define this more formally below.
+```
 
+&emsp;&emsp;我们称`null`中的数值分布为*零分布*(*null distribution*)。我们在接下来的部分会更详细的定义这个分布。
+
+```{block2 echo=FALSE}
 So what percent of the 10,000 are bigger than `obsdiff`?
+```
+
+&emsp;&emsp;那么在这10,000次随机取样中，小鼠体重的均值差异大于`obsdiff`的百分比是多少呢？
+
+
 
 ```{r}
 mean(null >= obsdiff)
 ```
 
-Only a small percent of the 10,000 simulations. As skeptics what do
-we conclude? When there is no diet effect, we see a difference as big
-as the one we observed only 1.5% of the time. This is what is known as
-a p-value, which we will define more formally later in the book. 
+```{block2 echo=FALSE}
+Only a small percent of the 10,000 simulations. As skeptics what do we conclude? When there is no diet effect, we see a difference as big as the one we observed only 1.5% of the time. This is what is known as a p-value, which we will define more formally later in the book. 
+```
+&emsp;&emsp;我们发现在这 10,000次随机取样中只有很小的百分比小鼠的体重均值差异大于`obsdiff`。作为怀疑论者，我们的结论是什么呢？当没有饲料差异时，随机取样情况下只有1.5%的可能性我们能观察到的均值差异大于我们的试验中的均值差异。这就是我们所知道的P值，我们在后面会有更正式的定义。
 
-<a name="distributions"></a>
-
+```{block2 echo=FALSE}
 ## Distributions
+```
 
-We have explained what we mean by *null* in the context of null hypothesis, but what exactly is a distribution?
-The simplest way to think of a *distribution* is as a compact description of many numbers. For example, suppose you have measured the heights of all men in a population. Imagine you need to describe these numbers to someone that has no idea what these heights are, such as an alien that has never visited Earth. Suppose all these heights are contained in the following dataset:
+```{block2 echo=FALSE}
+We have explained what we mean by *null* in the context of null hypothesis, but what exactly is a distribution? The simplest way to think of a *distribution* is as a compact description of many numbers. For example, suppose you have measured the heights of all men in a population. Imagine you need to describe these numbers to someone that has no idea what these heights are, such as an alien that has never visited Earth. Suppose all these heights are contained in the following dataset:
+```
+
+&emsp;&emsp;我们已经解释了零假设中的*零*（*null*）的意思，但是究竟分布指什么呢？最简单的方法是你可以将*分布*（*distribution* ）想成许多数字的一个描述。比如，假设你测量一个样本中的所有男性的身高。设想你要对其他人描述这些身高数值，而这些人对你的数据完全一无所知，比如从来没有到过地球的外星人。假设所有的数据都包含在下面的数据中了：
+
 
 ```{r definingHeights, message=FALSE}
 data(father.son,package="UsingR")
 x <- father.son$fheight
 ```
 
+```{block2 echo=FALSE}
 One approach to summarizing these numbers is to simply list them all out for the alien to see. Here are 10 randomly selected heights of 1,078:
+```
+
+&emsp;&emsp;一个方法是直接将所有的身高数值展示给外星人看。下面是我们从这1,078个数据中随机选取的10个：
+
 
 ```{r}
 round(sample(x,10),1)
 ```
 
+```{block2 echo=FALSE}
 #### Cumulative Distribution Function
+```
 
+### 累积分布函数
+
+```{block2 echo=FALSE}
 Scanning through these numbers, we start to get a rough idea of what the entire list looks like, but it is certainly inefficient. We can quickly improve on this approach by defining and visualizing a _distribution_. To define a distribution we compute, for all possible values of $a$, the proportion of numbers in our list that are below $a$. We use the following notation:
+```
+
+&emsp;&emsp;浏览这些数据，我们大概知道整个数据是什么情况，但是这显然是不够的。我们可以通过展示这个数据的分布来进一步的理解数据。对于所有的可能
+
 
 $$ F(a) \equiv \mbox{Pr}(x \leq a) $$
 
@@ -1861,19 +1972,10 @@ chisq.test(tab)$p.value
 
 #### Confidence Intervals for the Odds Ratio
 
-Computing confidence intervals for the OR is not mathematically
-straightforward. Unlike other statistics, for which we can derive
-useful approximations of their distributions, the OR is not only a
-ratio, but a ratio of ratios. Therefore, there is no simple way of
-using, for example, the CLT. 
+Computing confidence intervals for the OR is not mathematically straightforward. Unlike other statistics, for which we can derive useful approximations of their distributions, the OR is not only a ratio, but a ratio of ratios. Therefore, there is no simple way of using, for example, the CLT. 
+
   
-One approach is to use the theory of *generalized linear models* which
-provides estimates of the log odds ratio, rather than the OR itself,
-that can be shown to be asymptotically normal. Here we provide R code
-without presenting the theoretical details (for further details please
-see a reference on generalized linear models such as
-[Wikipedia](https://en.wikipedia.org/wiki/Generalized_linear_model) or
-[McCullagh and Nelder, 1989](https://books.google.com/books?hl=en&lr=&id=h9kFH2_FfBkC)): 
+One approach is to use the theory of *generalized linear models* which provides estimates of the log odds ratio, rather than the OR itself, that can be shown to be asymptotically normal. Here we provide R code without presenting the theoretical details (for further details please see a reference on generalized linear models such as [Wikipedia](https://en.wikipedia.org/wiki/Generalized_linear_model) or [McCullagh and Nelder, 1989](https://books.google.com/books?hl=en&lr=&id=h9kFH2_FfBkC)): 
 
 ```{r}
 fit <- glm(disease~genotype,family="binomial",data=dat)

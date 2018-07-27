@@ -1,15 +1,11 @@
 
 # Acknowledgments {-}
 
-The authors would like to thank Alex Nones for proofreading the manuscript during its various stages. Also, thanks to Karl Broman for contributing the "Plots to Avoid" section and to Stephanie Hicks for designing some of the exercises. Finally, thanks to John Kimmel and three anonymous referees for excellent feedback and 
-constructive criticism of the book.
+The authors would like to thank Alex Nones for proofreading the manuscript during its various stages. Also, thanks to Karl Broman for contributing the "Plots to Avoid" section and to Stephanie Hicks for designing some of the exercises. Finally, thanks to John Kimmel and three anonymous referees for excellent feedback and constructive criticism of the book.
 
-This book was conceived during the teaching of several HarvardX courses, coordinated by Heather Sternshein. We are also grateful 
-to our TAs, Idan Ginsburg and Stephanie Chan, and all the students whose questions and comments helped us improve the book. The courses were
-partially funded by NIH grant R25GM114818.  We are very grateful to the National Institute of Health for its support.  
+This book was conceived during the teaching of several HarvardX courses, coordinated by Heather Sternshein. We are also grateful to our TAs, Idan Ginsburg and Stephanie Chan, and all the students whose questions and comments helped us improve the book. The courses were partially funded by NIH grant R25GM114818.  We are very grateful to the National Institute of Health for its support.  
 
 A special thanks goes to all those that edited the book via GitHub pull requests: vjcitn, yeredh, ste-fan, molx, kern3020, josemrecio, hcorrada, neerajt, massie, jmgore75, molecules, lzamparo, eronisko, obicke, knbknb, and devrajoh. 
-
 
 Cover image credit: this photograph is La Mina Falls, El Yunque National Forest, Puerto Rico, taken by Ron Kroetz
 https://www.flickr.com/photos/ronkroetz/14779273923
@@ -17,107 +13,94 @@ Attribution-NoDerivs 2.0 Generic (CC BY-ND 2.0)
 
 {mainmatter}
 
+
+
+
+```{block2 echo = FALSE}
 ##  Introduction  {-}
+```
+## 简介 {-}
 
-The unprecedented advance in digital technology during the second half
-of the 20th century has produced a measurement revolution that is
-transforming science. In the life sciences, data analysis is now part
-of practically every research project. Genomics, in particular, is
-being driven by new measurement technologies that permit us to observe certain molecular entities for the first time. These observations are leading to discoveries analogous to identifying microorganisms and other breakthroughs permitted by the invention of the microscope. Choice examples of these technologies are microarrays and next generation sequencing.
+```{block2 echo = FALSE}
+The unprecedented advance in digital technology during the second half of the 20th century has produced a measurement revolution that is transforming science. In the life sciences, data analysis is now part of practically every research project. Genomics, in particular, is being driven by new measurement technologies that permit us to observe certain molecular entities for the first time. These observations are leading to discoveries analogous to identifying microorganisms and other breakthroughs permitted by the invention of the microscope. Choice examples of these technologies are microarrays and next generation sequencing.
+```
 
-Scientific fields that have traditionally relied upon simple data
-analysis techniques have been turned on their heads by these
-technologies. In the past, for example, researchers would measure the
-transcription levels of a single gene of interest. Today, it is
-possible to measure all 20,000+ human genes at once.  Advances such as
-these have brought about a shift from hypothesis to discovery-driven
-research. However, interpreting information extracted from these
-massive and complex datasets requires sophisticated statistical skills
-as one can easily be fooled by patterns arising by chance. This has
-greatly elevated the importance of statistics and data analysis in
+&emsp;&emsp;在二十世纪的下半叶，数字技术的革新带来了测量技术的革新，从而也大大的改变了科研领域。在生命科学领域，数据分析已经是科研项目中的家常便饭了。尤其是基因组学，新的技术使得我们们能够观察到我们过去没有办法观察到的特定的。历史上显微镜的发明使得我们能够鉴定新的微生物，而近些年的新技术技术引领我们发现更多生命科学的奥秘，而这些发现不亚于之前显微镜发明带给我们的帮助。这些技术中的代表就是芯片技术和下一代测序技术。
+
+```{block2 echo = FALSE}
+Scientific fields that have traditionally relied upon simple data analysis techniques have been turned on their heads by these technologies. In the past, for example, researchers would measure the transcription levels of a single gene of interest. Today, it is possible to measure all 20,000+ human genes at once.  Advances such as these have brought about a shift from hypothesis to discovery-driven research. However, interpreting information extracted from these massive and complex datasets requires sophisticated statistical skills as one can easily be fooled by patterns arising by chance. This has greatly elevated the importance of statistics and data analysis in
 the life sciences.
+```
 
+&emsp;&emsp;这些技术使得一些传统的依赖简单的数据分析的科研领域发生了翻天覆地的变化。例如，过去科学家如果对某一个基因感兴趣。，可能会测量其表达量。今天，利用新的技术我们可以一次性测量超过2万个人类基因的表达量。以前我们的研究是受假设驱动的，技术进步使得科研领域从
 
+```{block2 echo = FALSE}
 ## Who Will Find This Book Useful?  {-}
+```
 
+```{block2 echo = FALSE}
 This book was written with the many life science researchers who are becoming data analysts due to the increased reliance on data described above. If you are performing your own analysis you have probably computed p-values, applied Bonferroni corrections, performed principal component  analysis, made a heatmap, or used one or more of the techniques listed in the next section. If you don't quite understand what these techniques are actually doing or if you are not sure if you are using them appropriately, this book is for you. 
+```
 
+&emsp;&emsp;由于越来越多的研究开始依赖于上面我们提到的数据，许多生命科学领域的科研工作者开始转变成数据分析专家。这本书就是由这样的一批科研工作者写的。如果你自己分析自己的数据，那么你很可能会计算P值，应用Bonferroni矫正，进行主成分分析，产生一个热图等等。如果你发现你并不是十分理解这些技术，或者你不确定你应用这些技术时是否恰当，那么这本书就是为你写的。
+
+
+```{block2 echo = FALSE}
 Although the content of the book is mostly focused on advanced statistical concepts we start by covering the basics to make sure all readers have a strong grounding on the fundamental statistical concepts required for all data analysis. I find that many introductory statistics courses are taught in a way that makes it hard to relate the concepts to data analysis. Our approach ensures that you learn the connection between practice and theory. For this reason, the first two chapters, Inference and Exploratory Data Analysis, are appropriate for an introductory undergraduate statistics or data science course. After these two chapters the level of statistical sophistication ramps up relatively fast.
+```
 
+&emsp;&emsp;尽管这本书大部分是着重于高级的统计概念，但是我们是从最基本的知识开始的，从而确保所有的读者能够有一个扎实的数据分析的统计基础。我们发现许多基础统计课程的方式是读者很难讲概念性的东西和真正的数据分析联系起来。我们的方法会确保你能学习到实践和理论的结合。所以，前两章的内容（推断与探索性数据分析）适用于本科阶段的统计或者数据科学的入门课程。接着，统计的难度就会慢慢的增加。 
+
+```{block2 echo = FALSE}
 Although the typical reader of this book will have a masters or PhD, we try to keep the mathematical content at undergraduate introductory level. You do not need calculus to use this book. However, we do introduce and use linear algebra which is considered more advanced than calculus. By explaining linear algebra in context of data analysis we believe you will be able to learn the basics without knowing calculus. The harder part may be getting used to the symbols and notation. More on this below.
+```
 
+&emsp;&emsp;尽管本书的读者通常会有硕士或者博士学位，我们会尽量将数学的内容保持在本科入门水平。这本书中你不需要用到微积分。然而，我们会介绍和使用线性代数，而线性代数通常被认为比微积分难的一门学科。但是我们会在数据分析的背景下来理解线性代数，我们相信在这种情况下，你可以在不懂微积分的情况下理解基础的线性代数知识。比较难的部分可能是你需要适应符号和公式。--------
 
-
+```{block2 echo = FALSE}
 ## What Does This Book Cover?  {-}
+```
 
-This book will cover several of the statistical concepts and data
-analytic skills needed to succeed in data-driven life science
-research. We go from relatively basic concepts related to computing
-p-values to advanced topics related to analyzing high-throughput data.
+## 这本书包含什么内容？ {-}
 
-We start with one of the most important topics in statistics and in
-the life sciences: statistical inference. Inference is the use of
-probability to learn population characteristics from data. A typical example
-is deciphering if two groups (for example, cases versus controls) are
-different on average. Specific topics covered include the t-test,
-confidence intervals, association tests, Monte Carlo methods,
-permutation tests and statistical power. We make use of approximations
-made possible by mathematical theory, such as the Central Limit
-Theorem, as well as techniques made possible by modern computing. We
-will learn how to compute p-values and confidence intervals and
-implement basic data analyses. Throughout the book we will describe
-visualization techniques in the statistical computer language *R* that
-are useful for exploring new datasets. For example, we will use these
-to learn when to apply robust statistical techniques.
+```{block2 echo = FALSE}
+This book will cover several of the statistical concepts and data analytic skills needed to succeed in data-driven life science research. We go from relatively basic concepts related to computing p-values to advanced topics related to analyzing high-throughput data.
+```
 
-We will then move on to an introduction to linear models and matrix
-algebra. We will explain why it is beneficial to use linear models to
-analyze differences across groups, and why matrices are useful to
-represent and implement linear models. We continue with a review of
-matrix algebra, including matrix notation and how to multiply matrices
-(both on paper and in R). We will then apply what we covered on matrix
-algebra to linear models. We will learn how to fit linear models in R,
-how to test the significance of differences, and how the standard
-errors for differences are estimated. Furthermore, we will review some
-practical issues with fitting linear models, including collinearity
-and confounding. Finally, we will learn how to fit complex models,
-including interaction terms, how to contrast multiple terms in R, and
-the powerful technique which the functions in R actually use to
-stably fit linear models: the QR decomposition.
+&emsp;&emsp;这本书包含以数据为主的生命科学研究中的一些统计概念和数据分析的技巧。我们从简单的P值计算开始，一步步到分析高通量数据的高级内容。
 
-In the third part of the book we cover topics related to
-high-dimensional data. Specifically, we describe multiple testing,
-error rate controlling procedures, exploratory data analysis for
-high-throughput data, p-value corrections and the false discovery
-rate. From here we move on to covering statistical modeling. In
-particular, we will discuss parametric distributions, including
-binomial and gamma distributions. Next, we will cover maximum
-likelihood estimation. Finally, we will discuss hierarchical models
-and empirical Bayes techniques and how they are applied in genomics.
+```{block2 echo = FALSE}
+We start with one of the most important topics in statistics and in the life sciences: statistical inference. Inference is the use of probability to learn population characteristics from data. A typical example is deciphering if two groups (for example, cases versus controls) are different on average. Specific topics covered include the t-test, confidence intervals, association tests, Monte Carlo methods, permutation tests and statistical power. We make use of approximations made possible by mathematical theory, such as the Central Limit Theorem, as well as techniques made possible by modern computing. We will learn how to compute p-values and confidence intervals and implement basic data analyses. Throughout the book we will describe visualization techniques in the statistical computer language *R* that are useful for exploring new datasets. For example, we will use these to learn when to apply robust statistical techniques.
+```
 
-We then cover the concepts of distance and dimension reduction. We
-will introduce the mathematical definition of distance and use this to
-motivate the singular value decomposition (SVD) for dimension
-reduction and multi-dimensional scaling. Once we learn this, we will
-be ready to cover hierarchical and k-means clustering. We will follow
-this with a basic introduction to machine learning.
+&emsp;&emsp;我们首先会介绍统计和生命科学领域中的一个最重要的内容：统计推断。统计推断是利用概率来掌握数据的群体特征。一个经典的例子是判断两组数据的均值是否有差异。其他的内容包括t检验，置信区间，联想测验（association test），蒙特卡洛方法，置换检验和统计效力。我们会使用经典数学理论带给我们的中心极限定理和当代计算发展...............
 
-We end by learning about batch effects and how component and factor
-analysis are used to deal with this challenge. In particular, we will
-examine confounding, show examples of batch effects, make the
-connection to factor analysis, and describe surrogate variable
-analysis.
- 
+```{block2 echo = FALSE}
+We will then move on to an introduction to linear models and matrix algebra. We will explain why it is beneficial to use linear models to analyze differences across groups, and why matrices are useful to represent and implement linear models. We continue with a review of matrix algebra, including matrix notation and how to multiply matrices (both on paper and in R). We will then apply what we covered on matrix algebra to linear models. We will learn how to fit linear models in R, how to test the significance of differences, and how the standard errors for differences are estimated. Furthermore, we will review some practical issues with fitting linear models, including collinearity and confounding. Finally, we will learn how to fit complex models, including interaction terms, how to contrast multiple terms in R, and the powerful technique which the functions in R actually use to stably fit linear models: the QR decomposition.
+```
+
+
+```{block2 echo = FALSE}
+In the third part of the book we cover topics related to high-dimensional data. Specifically, we describe multiple testing, error rate controlling procedures, exploratory data analysis for high-throughput data, p-value corrections and the false discovery rate. From here we move on to covering statistical modeling. In particular, we will discuss parametric distributions, including binomial and gamma distributions. Next, we will cover maximum likelihood estimation. Finally, we will discuss hierarchical models and empirical Bayes techniques and how they are applied in genomics.
+```
+
+We then cover the concepts of distance and dimension reduction. We will introduce the mathematical definition of distance and use this to motivate the singular value decomposition (SVD) for dimension reduction and multi-dimensional scaling. Once we learn this, we will be ready to cover hierarchical and k-means clustering. We will follow this with a basic introduction to machine learning.
+
+We end by learning about batch effects and how component and factor analysis are used to deal with this challenge. In particular, we will examine confounding, show examples of batch effects, make the connection to factor analysis, and describe surrogate variable analysis.
+
+
+
+```{block2 echo = FALSE}
 ## How Is This Book Different?  {-}
+```
+
+## 这本书有什么不同？{-}
+
  
-While statistics textbooks focus on mathematics, this book focuses on
-using a computer to perform data analysis. This book follows the approach of [Stat Labs](https://www.stat.berkeley.edu/~statlabs/), by Deborah Nolan and Terry Speed.
-Instead of explaining the
-mathematics and theory, and then showing examples, we start by stating
-a practical data-related challenge. This book also includes the computer code that provides a solution to the problem and helps illustrate the
-concepts behind the solution. By running the code yourself, and seeing
-data generation and analysis happen live, you will get a better
-intuition for the concepts, the mathematics, and the theory.
+While statistics textbooks focus on mathematics, this book focuses on using a computer to perform data analysis. This book follows the approach of [Stat Labs](https://www.stat.berkeley.edu/~statlabs/), by Deborah Nolan and Terry Speed.
+Instead of explaining the mathematics and theory, and then showing examples, we start by stating a practical data-related challenge. This book also includes the computer code that provides a solution to the problem and helps illustrate the concepts behind the solution. By running the code yourself, and seeing data generation and analysis happen live, you will get a better intuition for the concepts, the mathematics, and the theory.
+
+通常统计相关的课本重点放在数学公式上，这本书重点是利用计算机来进行数据分析。这本书所遵循的方法与Deborah Nolan和Terry Speed所著的[Stat Labs](https://www.stat.berkeley.edu/~statlabs/)是一样的。通常统计课本是先解释数学和理论知识，然后展示例子，我们是从一个具体的实践中会遇到的数据分析问题开始。这本书也包含解决这些问题的具体的R代码，这些代码可以帮助读者理解解决方法。
 
 We focus on the practical challenges faced by data analysts in the
 life sciences and introduce mathematics as a tool that can help us

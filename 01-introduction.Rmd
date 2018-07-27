@@ -1,23 +1,68 @@
+<<<<<<< HEAD
 ```{{block2 echo = FALSE}}
 # Getting Started
 ```
 # 入门指南
+
+```{{block2 echo = FALSE}}
 In this book we will be using the [R programming language](https://cran.r-project.org/) for all our analysis. You will learn R and statistics simultaneously. However, we assume you have some basic programming skills and knowledge of R syntax. If you don't, your first homework, listed below, is to complete a tutorial. Here we give step-by-step instructions on how to get set up to follow along. 
+```
 
+&emsp;&emsp;本书中我们的所有数据分析将基于[R语言](https://cran.r-project.org/)。 你在学习R语言的同时也将学习统计学。但是我们假设你已经具有一定的编程基础并且了解R语言基本语法。如果你尚不具备这些知识，我们建议你完成下面的教程。我们将手把手一步一步的教你建立和熟悉R环境。
 
+```{{block2 echo = FALSE}}
 ## Installing R
+```
 
+## 安装R
+```{{block2 echo = FALSE}}
 The first step is to install R. You can download and install R from
 the [Comprehensive R Archive Network](https://cran.r-project.org/)
 (CRAN). It is relatively straightforward, but if you need further help
 you can try the following resources: 
+=======
+```{block2 echo = FALSE}
+# Getting Started
+```
 
-* [Installing R on Windows](https://github.com/genomicsclass/windows#installing-r) 
+# 入门介绍
+
+```{block2 echo = FALSE}
+In this book we will be using the [R programming language](https://cran.r-project.org/) for all our analysis. You will learn R and statistics simultaneously. However, we assume you have some basic programming skills and knowledge of R syntax. If you don't, your first homework, listed below, is to complete a tutorial. Here we give step-by-step instructions on how to get set up to follow along. 
+```
+
+&emsp;&emsp;本书中所有的数据分析我们都使用[R语言](https://cran.r-project.org/)。我们假设你有基础的编程能力和R语言语法的知识。如果你没有这些基础知识，你第一个要做的就是学习R的基础知识。这里我们会从安装R开始一步一步的教你如何使用R。
+
+```{block2 echo = FALSE}
+## Installing R
+```
+
+## 安装R
+
+```{block2 echo = FALSE}
+The first step is to install R. You can download and install R from the [Comprehensive R Archive Network](https://cran.r-project.org/) (CRAN). It is relatively straightforward, but if you need further help you can try the following resources: 
+```
+>>>>>>> upstream/master
+
+&emsp;&emsp;第一步是安装R。你可以从R的官网上下载R。安装的过程非常简单，但是如果你需要更多的帮助，你可以下载下面对应的资源。
+
+```{block2 echo = FALSE}
+* [Installing R on Windows](https://github.com/genomicsclass/windows#installing-r)
 * [Installing R on Mac](http://youtu.be/Icawuhf0Yqo)
 * [Installing R on Ubuntu](http://cran.r-project.org/bin/linux/ubuntu/README)
+```
+<<<<<<< HEAD
 
+&emsp;&emsp;第一步是R的安装。你可以从[Comprehensive R Archive Network](https://cran.r-project.org/)（CRAN）免费下载和安装R。R的安装很简单，如果你需要帮助，请参考以下的安装说明：
+* [Windows环境下R的安装](https://github.com/genomicsclass/windows#installing-r)
+* [Mac环境下R的安装](http://youtu.be/Icawuhf0Yqo)
+* [Ubuntu环境下R的安装](http://cran.r-project.org/bin/linux/ubuntu/README)
+
+```{{block2 echo = FALSE}}
 ## Installing RStudio
-
+```
+## 安装RStudio
+```{{block2 echo = FALSE}}
 The next step is to install RStudio, a program for viewing and running
 R scripts. Technically you can run all the code shown here without
 installing RStudio, but we highly recommend this integrated
@@ -25,14 +70,64 @@ development environment (IDE). Instructions are
 [here](http://www.rstudio.com/products/rstudio/download/) and for
 Windows we have special
 [instructions](https://github.com/genomicsclass/windows). 
+```
+&emsp;&emsp;下一步是RStudio的安装。RStudio是目前R语言最好的集成开发环境（Integrated
+Development Environment，IDE），可以用来编辑和运行代码。你无需安装RStudio就可以运行本书中所有的代码，但是我们强烈推荐你安装Rstudio。RStudio的安装程序可以在[此处](http://www.rstudio.com/products/rstudio/download/)下载。windows用户可以参考我们的详细[安装说明](https://github.com/genomicsclass/windows)。
 
+
+```{{block2 echo = FALSE}}
 ## Learn R Basics
-
+```
+## R语言基础入门
+```{{block2 echo = FALSE}}
 The first homework assignment is to complete an R tutorial to
 familiarize yourself with the basics of programming and R syntax. 
 To follow this book you should be familiar with the difference between lists (including data frames) and numeric vectors, for-loops, how to create functions, and how to use the `sapply` and `replicate` functions. 
+```
+&emsp;&emsp;第一个作业是通过完成一个R教程来熟悉编程基础和R语言的基本语法。你应该熟悉列表（包括数据框）和数字向量之间的不同，for循环，如何创建函数，以及如何使用‘sapply’和‘replicate’函数。
 
+
+```{{block2 echo = FALSE}}
 If you are already familiar with R, you can skip to the next section. Otherwise, you should go through the [swirl](http://swirlstats.com/) tutorial, which teaches you R programming and data science interactively, at your own pace and in the R console. Once you have R installed, you can install `swirl` and run it the following way: 
+```
+&emsp;&emsp;如果你已经熟悉R语言，你可以直接跳到下一节。否则，你应该以自己的步调在R控制台中完成[swirl](http://swirlstats.com/)教程，它通过交互方式教你R编程和数据科学。一旦你安装了R，你就可以按以下方式安装和运行‘swirl’：
+=======
+
+* [Windows系统R安装教程](https://github.com/genomicsclass/windows#installing-r)
+* [Mac系统R安装教程](http://youtu.be/Icawuhf0Yqo)
+* [Ubuntu系统R安装教程](http://cran.r-project.org/bin/linux/ubuntu/README)
+
+```{block2 echo = FALSE}
+## Installing RStudio
+```{block2 echo = FALSE}
+
+## 安装Rstudio
+
+```{block2 echo = FALSE}
+The next step is to install RStudio, a program for viewing and running R scripts. Technically you can run all the code shown here without installing RStudio, but we highly recommend this integrated development environment (IDE). Instructions are [here](http://www.rstudio.com/products/rstudio/download/) and for Windows we have special [instructions](https://github.com/genomicsclass/windows). 
+```
+
+&emsp;&emsp;下面的一步是安装Rstudio。Rstudio。在不安装Rstudio的情况下，你可以运行本书中所有的R代码，但是我们强烈推荐使用Rstudio这款集成开发环境软件。具体的下载链接见[这里](http://www.rstudio.com/products/rstudio/download/)(http://www.rstudio.com/products/rstudio/download/)。对于Windows系统，我们也有一个对应的[安装手册](https://github.com/genomicsclass/windows)：https://github.com/genomicsclass/windows.
+
+
+```{block2 echo = FALSE}
+## Learn R Basics
+```
+
+## R基础知识
+
+```{block2 echo = FALSE}
+The first homework assignment is to complete an R tutorial to familiarize yourself with the basics of programming and R syntax. To follow this book you should be familiar with the difference between lists (including data frames) and numeric vectors, for-loops, how to create functions, and how to use the `sapply` and `replicate` functions. 
+```
+
+&emsp;&emsp;你首先要做的是让你自己对R编程和R的语法熟悉起来，你可以通过完成一个R的基本教程来实现这个目的。为了能够理解本书，你需要理解列表（list），数值向量（numeric vectors），能够写函数，以及理解如何使用`sapply`和`replicate`这两个函数。
+
+```{block2 echo = FALSE}
+If you are already familiar with R, you can skip to the next section. Otherwise, you should go through the [swirl](http://swirlstats.com/) tutorial, which teaches you R programming and data science interactively, at your own pace and in the R console. Once you have R installed, you can install `swirl` and run it the following way: 
+```
+
+&emsp;&emsp;如果你已经对R非常熟悉，你可以跳过下一节。如果你不熟悉，我们建议你完成[swirl](http://swirlstats.com/)教程，这个教程会以交互的方式教你R编程和数字科学。在你安装R后，你可以安装`swirl`，然后以下面的方式运行它：
+>>>>>>> upstream/master
 
 ```{r, eval=FALSE}
 install.packages("swirl")
@@ -40,29 +135,78 @@ library(swirl)
 swirl()
 ```
 
+<<<<<<< HEAD
+```{{block2 echo = FALSE}}
+Alternatively you can take the [try R](http://tryr.codeschool.com/) interactive class from Code School.
+=======
+```{block2 echo = FALSE}
 Alternatively you can take the [try R](http://tryr.codeschool.com/) interactive class from Code School. 
+```
 
+&emsp;&emsp;你也可以尝试Code School的[try R](http://tryr.codeschool.com/)课程。
+
+```{block2 echo = FALSE}
+>>>>>>> upstream/master
 There are also many open and free resources and reference
 guides for R. Two examples are:
 
 * [Quick-R](http://www.statmethods.net/): a quick online reference for data input, basic statistics and plots
 * R reference card (PDF)[https://cran.r-project.org/doc/contrib/Short-refcard.pdf] by Tom Short 
+```
+<<<<<<< HEAD
+&emsp;&emsp;或者，你可以参加Code School的[尝试R](http://tryr.codeschool.com/)互动课程。除此之外，还有许多开放和免费的资源和参考资料。
+比如下面的两个例子：
+* [Quick-R](http://www.statmethods.net/)：R数据输入，基本统计和图表的快速在线参考
+* [R参考卡片(PDF)][https://cran.r-project.org/doc/contrib/Short-refcard.pdf] Tom Short 著
 
+```{{block2 echo = FALSE}}
 Two key things you need to know about R is that you can get help for a function using `help` or `?`, like this:
+```
+&emsp;&emsp;你需要知道的关于R的两个关键的事情是你可以使用‘help’或‘?’来获得函数的帮助，如下所示：
+=======
+
+&emsp&emsp同时，你也可以找到许多学习R的开源的资源和手册。这里我们给出两个例子：
+
+* [R快速入门（Quick-R）](http://www.statmethods.net/): a quick online reference for data input, basic statistics and plots
+* R参考卡（R reference card） (PDF)[https://cran.r-project.org/doc/contrib/Short-refcard.pdf] by Tom Short 
+
+```{block2 echo = FALSE}
+Two key things you need to know about R is that you can get help for a function using `help` or `?`, like this:
+```
+
+&emsp&emsp关于R有两个关键的内容：一是你能够使用 `help``?`
+>>>>>>> upstream/master
+
 ```{r,eval=FALSE}
 ?install.packages
 help("install.packages")
 ```
 
+<<<<<<< HEAD
+```{{block2 echo = FALSE}}
 and the hash character represents comments, so text following these
 characters is not interpreted:
+```
+&emsp;&emsp;而‘#’字符代表注释，所以‘#’字符以后的文字将不被执行：
+=======
+```{block2 echo = FALSE}
+and the hash character represents comments, so text following these
+characters is not interpreted:
+```
+
+&emsp&emsp另一个就是#号表示注释，#号后面的内容是不会执行的。注释对编程代码的可读性是非常重要的。良好的注释是优秀代码的主要组成部分。
+
+>>>>>>> upstream/master
 
 ```{r}
 ##This is just a comment
 ```
 
+```{{block2 echo = FALSE}}
 ## Installing Packages
-
+```
+## 包的安装
+```{{block2 echo = FALSE}}
 The first R command we will run is `install.packages`. If you took the
 `swirl` tutorial you should have already done this. R only includes a basic set of
 functions. It can do much more than this, but not everybody needs
@@ -73,27 +217,43 @@ a dedicated maintainer. You can easily install packages from within R if you kno
 the name of the packages. As an example, we are going to install the
 package `rafalib` which we use in our first data
 analysis examples: 
+```
+&emsp;&emsp;我们要运行的第一个R命令是‘install.packages’。如果你完成了‘swirl’教程，你应该已经学习了这个命令。由于不是每个人都需要所有的包，R默认仅安装基本的包。用户可以根据自己的需要，选择和安装不同功能的包来扩展R的功能。这些包通常都存储在[CRAN](https://cran.r-project.org/)，而且已经被审查过是否有常见的错误，是否有一个专门的维护者。如果你知道你要安装的包的名字，那么安装将非常简单。你只需要在R里运行‘install.packages’命令即可。比如安装这个我们将在第一个数据分析例子中使用的‘rafalib’包：
 
 ```{r,eval=FALSE}
 install.packages("rafalib")
 ```
 
+```{{block2 echo = FALSE}}
 We can then load the package into our R sessions using the `library` function:
-
+```
+&emsp;&emsp;然后我们就可以使用‘library’函数将这个包加载到当前的R会话中使用。
 ```{r}
 library(rafalib)
 ```
 
+```{{block2 echo = FALSE}}
 From now on you will see that we sometimes load packages without
 installing them. This is because once you install the package, it
 remains in place and only needs to be loaded with `library`. If you
 try to load a package and get an error, it probably means you need to
 install it first.
+```
 
+&emsp;&emsp;从现在开始，你会发现我们有时直接加载包而不需要安装它们。这是因为一旦你安装了包，它依然存在。下次使用时，你只需要用‘library’函数加载它即可。如果加载包时遇到错误，你可能需要先安装它。
+
+```{{block2 echo = FALSE}}
 ## Importing Data into R
+```
+## 数据的导入
 
+```{{block2 echo = FALSE}}
 The first step when preparing to analyze data is to read in the data into R. There are several ways to do this and we will discuss three of them. But you only need to learn one to follow along. 
+```
+&emsp;&emsp;数据分析的第一步是将数据导入R。数据导入的方法有很多，这里我们将介绍其中的三种。但是学会其中一个就可以跟随本书学习。
 
+<<<<<<< HEAD
+```{{block2 echo = FALSE}}
 In the life sciences, small datasets such as the one used as an
 example in the next sections are typically stored as Excel files. Although there
 are R packages designed to read Excel (xls) format, you generally want
@@ -102,36 +262,100 @@ Value/CSV) or tab delimited (Tab-Separated Value/TSV/TXT) files.
 These plain-text formats are often easier for sharing data with
 collaborators, as commercial software is not required for viewing or
 working with the data.
+```
+&emsp;&emsp;在生命科学中，小数据集，比如下一节用到的示例数据，通常以excel文件格式存储。尽管有专门读取Excel（xls）格式的R包，通常你需要避免存储为excel文件, 而应该保存为以逗号（csv）或者制表符（TSV/TXT）为分割符的文件。因为不需要安装专门的商业软件，这些纯文本文件通常更便于与合作者共享数据。
+
+```{{block2 echo = FALSE}}
 We will start with a simple example dataset containing
 [female mouse weights](https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv).
+```
+&emsp;&emsp;我们将从一个简单的数据开始。这是一个含有[母老鼠体重](https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv)的数据集。
 
+```{{block2 echo = FALSE}}
 The first step is to find the file containing your data and know its *path*. 
+```
+&emsp;&emsp;第一步是找到你要分析的数据文件和它在你电脑上的存储*路径*。
 
-
+```{{block2 echo = FALSE}}
 #### Paths and the Working Directory
+```
 
+#### 路径和工作目录
+
+```{{block2 echo = FALSE}}
 When you are working in R it is useful to know your _working directory_. This is the directory or folder in which R will save or look for files by default. You can see your working directory by typing:
+```
+&emsp;&emsp;当你用R分析数据时，知道你的_工作目录_是很有用的。R默认将文件保存在此目录或者从该目录查找文件。你可以通过输入如下的命令来获取你的工作目录：
+=======
+In the life sciences, small datasets such as the one used as an example in the next sections are typically stored as Excel files. Although there are R packages designed to read Excel (xls) format, you generally want to avoid this and save files as comma delimited (Comma-Separated Value/CSV) or tab delimited (Tab-Separated Value/TSV/TXT) files. These plain-text formats are often easier for sharing data with collaborators, as commercial software is not required for viewing or working with the data.
+We will start with a simple example dataset containing [female mouse weights](https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/femaleMiceWeights.csv).
 
+```{block2 echo = FALSE}
+The first step is to find the file containing your data and know its *path*. 
+```
+
+第一步是找到对应的文件并且弄清楚这个文件的*路径*。
+
+
+```{block2 echo = FALSE}
+#### Paths and the Working Directory
+```
+
+#### 路径和工作目录
+
+```{block2 echo = FALSE}
+When you are working in R it is useful to know your _working directory_. This is the directory or folder in which R will save or look for files by default. You can see your working directory by typing:
+```
+
+当你在
+>>>>>>> upstream/master
+
+  
 ```{r, eval=FALSE}
 getwd()
 ```
-
+```{{block2 echo = FALSE}}
 You can also change your working directory using the function `setwd`. Or you can change it through RStudio by clicking on "Session". 
+```
 
+&emsp;&emsp;改变工作目录，你需要使用‘setwd’函数或者通过RStudio里的‘会话’菜单来更改。
+
+```{{block2 echo = FALSE}}
 The functions that read and write files (there are several in R) assume you mean to look for files or write files in the working directory. Our recommended approach for beginners will have you reading and writing to the working directory. However, you can also type the [full path](http://www.computerhope.com/jargon/a/absopath.htm), which will work independently of the working directory.
+```
+&emsp;&emsp;R语言中有几个在当前工作目录中查找和写入文件的函数。尽管你可以通过输入[完整路径](http://www.computerhope.com/jargon/a/absopath.htm)来读取和写入文件，我们推荐初学者在当前工作目录下操作。
 
+```{{block2 echo = FALSE}}
 #### Projects in RStudio
+```
 
+#### RStudio中的项目
+
+```{{block2 echo = FALSE}}
 We find that the simplest way to organize yourself is to start a Project in RStudio (Click on "File" and "New Project"). When creating the project, you will select a folder to be associated with it. You can then download all your data into this folder. Your working directory will be this folder.
+```
+&emsp;&emsp;在RStudio中新建一个项目是最简单的管理文件的方法（点击“文件”菜单，然后选择“新建项目”）。创建项目时，您将选择一个与之关联的文件夹。然后你就可以将所有数据下载到该文件夹中，而这个文件夹就是你的工作目录。
 
+```{{block2 echo = FALSE}}
 #### Option 1: Read file over the Internet
+```
+
+#### 选项1：通过互联网读取数据
+```{{block2 echo = FALSE}}
 You can navigate to the `femaleMiceWeights.csv` file by visiting the
 data directory of dagdata on
 [GitHub](https://github.com/genomicsclass/dagdata/tree/master/inst/extdata). If you navigate to the file, you need to click on *Raw* on the
 upper right hand corner of the page. 
+```
 
+&emsp;&emsp;“femaleMiceWeights.csv”这个文件保存在[GitHub](https://github.com/genomicsclass/dagdata/tree/master/inst/extdata)上的“dagdata”目录下。打开这个文件，然后点击页面you上角的“Raw”获取该文件的URL地址。
+
+```{{block2 echo = FALSE}}
 ![GitHub page screenshot.](images/handmade/screenshot1.png)
+```
+[GitHub页面截图](images/handmade/screenshot1.png)
 
+```{{block2 echo = FALSE}}
 Now you can copy and paste the URL and use this as the argument to `read.csv`.
 Here we break the URL into a base directory and a filename and then combine
 with `paste0` because the URL would otherwise be too long for the page.
@@ -139,30 +363,43 @@ We use `paste0` because we want to put the strings together as is, if you were
 specifying a file on your machine you should use the smarter function, `file.path`,
 which knows the difference between Windows and Mac file path connectors.
 You can specify the URL using a single string to avoid this extra step.
+```
+&emsp;&emsp;现在你可以复制并粘贴这个文件的URL，并将其作为‘read.csv’的参数。由于这个路径太长，这里我们首先将它分成两部分：基本路径和文件名，然后用‘pasre0’函数合并。如果你要读取你电脑上的一个文件，你应该用更智能的‘file.path’函数去构建文件路径。它知道Windows和Mac文件路径连接器的区别，可以使用单个字符串指定URL，从而避免这一额外的步骤。
 
 ```{r,message=FALSE}
 dir <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/"
 url <- paste0(dir, "femaleMiceWeights.csv")
 dat <- read.csv(url)
 ```
-
+```{{block2 echo = FALSE}}
 #### Option 2: Download file with your browser to your working directory
-
+```
+### 选项2：通过浏览器下载文件到当前工作目录
+```{{block2 echo = FALSE}}
 There are reasons for wanting to keep a local copy of the file. For example, you may want to run the analysis while not connected to the Internet or you may want to ensure reproducibility regardless of the file being available on the original site. To download the file, as in option 1, you can navigate to the `femaleMiceWeights.csv`. In this option we use your browser's "Save
 As" function to ensure that the downloaded file is in a CSV
 format. Some browsers add an extra suffix to your filename by
 default. You do not want this. You want your file to be named
 `femaleMiceWeights.csv`. Once you have this file in your working directory, then you can simply read it in like this:
+```
+&emsp;&emsp;有时候数据备份是很有必要的。比如，您可能希望在未连接到互联网的情况下进行分析，或者需要确保分析结果的可重复性。要下载文件，你需要如选项1所示那样，先导航到‘femaleMiceWeights.csv’这个文件，然后使用浏览器的“另存为”功能下载。下载完毕后，你需要确定文件格式和文件名是否正确。一些浏览器默认会添加额外的后缀到你的文件名。然后你可以用下面的简单命令读取它：
 
 ```{r,eval=FALSE}
 dat <- read.csv("femaleMiceWeights.csv")
 ```
-
+```{{block2 echo = FALSE}}
 If you did not receive any message, then you probably read in the file successfully.
+```
+&emsp;&emsp;如果你没有收到任何提示，那么您可能已成功读入文件。
 
+```{{block2 echo = FALSE}}
 #### Option 3: Download the file from within R
-
+```
+### 选项3：通过R下载文件
+```{{block2 echo = FALSE}}
 We store many of the datasets used here on [GitHub](https://github.com/genomicsclass/). You can save these files directly from the Internet to your computer using R. In this example, we are using the `download.file` function in the `downloader` package to download the file to a specific location and then read it in. We can assign it a random name and a random directory using the function `tempfile`, but you can also save it in directory with the name of your choosing.
+```
+&emsp;&emsp;许多本书中用到的数据集保存在[GitHub](https://github.com/genomicsclass/)。你可以使用R直接将它们下载到你的电脑上。在接下来的例子中，我们使用‘downloader’包中的‘download.file’功能将文件下载到特定位置，然后将其读入。我们可以使用‘tempfile’功能为它随机分配一个名字和一个目录，但是你也可以用你选择的名字将它保存在文件夹中。
 
 ```{r,message=FALSE}
 library(downloader) ##use install.packages to install
@@ -177,26 +414,43 @@ We can then proceed as in option 2:
 dat <- read.csv(filename)
 ```
 
+```{{block2 echo = FALSE}}
 #### Option 4: Download the data package (Advanced)
-
+```
+### 选项4：下载数据包（高级）
+```{{block2 echo = FALSE}}
 Many of the datasets we include in this book are available in custom-built packages from GitHub. The reason we use GitHub, rather than CRAN, is that on GitHub we do not have to vet packages, which gives us much more flexibility. 
 
 To install packages from GitHub you will need to install the `devtools` package:
+```
+本书中的许多数据集都可以从GitHub的定制软件包中获得。我们使用GitHub而不是CRAN的原因在于：在GitHub上我们不需要审核包，这给我们带来了更多的灵活性。
+
+要从GitHub安装软件包，你需要需要安装devtools软件包：
 
 ```{r,eval=FALSE}
 install.packages("devtools")
 ```
 
+```{{block2 echo = FALSE}}
 Note to Windows users: to use devtools you will have to also install `Rtools`. In general you will need to install packages as administrator. One way to do this is to start R as administrator. If you do not have permission to do this, then it is a bit [more complicated](http://www.magesblog.com/2012/04/installing-r-packages-without-admin.html). 
+```
 
+Windows用户注意事项：要使用devtool，你还需要安装Rtools。一般来说，你需要以管理员身份安装软件包。一种方法是以管理员身份启动R。如果你没有权限执行此操作，则会更复杂一些。
+
+
+```{r,eval=FALSE}
 Now you are ready to install a package from GitHub. For this we use a different function:
-
+```
+然后你就可以利用devtools包的install_github函数来安装GitHub上的软件包了：
 ```{r,message=FALSE,eval=FALSE}
 library(devtools)
 install_github("genomicsclass/dagdata")
 ```
 
+```{{block2 echo = FALSE}}
 The file we are working with is actually included in this package. Once you install the package, the file is on your computer. However, finding it requires advanced knowledge. Here are the lines of code:
+```
+我们正在使用的文件就在这个包中。一旦你安装了它，这个文件就被保存在了你的电脑上。要读取这个文件，我们首先需要找到它。以下是代码行：
 
 ```{r}
 dir <- system.file(package="dagdata") #extracts the location of package
@@ -204,18 +458,30 @@ list.files(dir)
 list.files(file.path(dir,"extdata")) #external data is in this directory
 ```
 
+```{{block2 echo = FALSE}}
 And now we are ready to read in the file:
-
+```
+现在我们就可以读入文件数据了：
 ```{r}
 filename <- file.path(dir,"extdata/femaleMiceWeights.csv")
 dat <- read.csv(filename)
 ```
 
+```{{block2 echo = FALSE}}
 ### Getting Started Exercises
-
+```
+### 入门练习
+```{{block2 echo = FALSE}}
 __Exercises__
+```
+练习
 
+```{{block2 echo = FALSE}}
 Here we will test some of the basics of R data manipulation which you should know or should have learned by following the tutorials above. You will need to have the file `femaleMiceWeights.csv` in your working directory. As we showed above, one way to do this is by using the `downloader` package:
+```
+在这里我们将测试一些你已经知道或者通过以上教程学习到的R数据操作的基础知识。
+你需要选用以上我们介绍的下载方法，比如用downloader包，将femaleMiceWeights.csv文件保存到目前工作文件夹中。
+
 
 ```
 library(downloader) 
@@ -224,6 +490,7 @@ filename <- "femaleMiceWeights.csv"
 download(url, destfile=filename)
 ```
 
+```{{block2 echo = FALSE}}
 1. Read in the `file femaleMiceWeights.csv` and report the body weight of the mouse in the exact name of the column containing the weights.
 
 2. The `[` and `]` symbols can be used to extract specific rows and specific columns of the table. What is the entry in the 12th row and second column?
@@ -238,22 +505,39 @@ download(url, destfile=filename)
 
 6. One of the functions we will be using often is sample. Read the help file for sample using ?sample. Now take a random sample of size 1 from the numbers 13 to 24 and report back the weight of the mouse represented by that row. Make sure to type set.seed(1) to ensure that everybody gets the same answer.
 
+```
+1. 读入femaleMiceWeights.csv文件，并。
+2. [和]符号可用于提取表格的特定行和特定列。第12行的第2列是什么？
+3. 你应该已经学会了如何使用$字符从表格中提取一列并将其保存为一个向量。使用$提取重量列，并报告位于第11行的老鼠的重量。
+4. length函数返回向量中元素的数量。我们的数据集中包含了多少只老鼠？
+5. 
+6. sample是我们经常使用的一个功能。请使用?sample命令阅读sample功能的帮助文件。然后使用这个功能从数字13到24中随机抽取一个大小为1的样本，并报告这个样本中老鼠的体重。请务必先运行set.seed(1)， 以保证每个人都获得相同的答案。
 
 
-
-
+```{{block2 echo = FALSE}}
 ## Brief Introduction to `dplyr`
+```
 
+## dplyr简介
+
+```{{block2 echo = FALSE}}
 The learning curve for R syntax is slow. One of the more difficult aspects that requires some getting used to is subsetting data tables. The `dplyr` package brings these tasks closer to English and we are therefore going to introduce two simple functions: one is used to subset and the other to select columns.
 
 Take a look at the dataset we read in:
+```
+R语法的学习是一个缓慢积累的过程。其中一个比较困难的方面是逐步习惯对数据表进行子集化。dplyr包使这些操作更加简单和人性化。这里我们将介绍两个简单的功能：一个（filter）用于选择子数据集，另一个（select）用于选择列。下面我们首先来看看导入的数据集：
+
+
 ```{r}
 filename <- "femaleMiceWeights.csv"
 dat <- read.csv(filename)
 head(dat) #In R Studio use View(dat)
 ```
 
+```{{block2 echo = FALSE}}
 There are two types of diets, which are denoted in the first column. If we want just the weights, we only need the second column. So if we want the weights for mice on the `chow` diet, we subset and filter like this:
+```
+该数据表的第一列给出了喂养老鼠的两种饲料。如果我们只想得到老鼠的体重，我们只需要这个表的第二列。进而，如果我们想得到被chow饲料喂养的老鼠的体重，我们需要如下操作：
 
 ```{r,message=FALSE}
 library(dplyr) 
@@ -261,50 +545,77 @@ chow <- filter(dat, Diet=="chow") #keep only the ones with chow diet
 head(chow)
 ```
 
+```{{block2 echo = FALSE}}
 And now we can select only the column with the values:
+```
+
+现在我们可以使用select功能来选择含有体重的列：
+
 
 ```{r}
 chowVals <- select(chow,Bodyweight)
 head(chowVals)
 ```
 
+```{{block2 echo = FALSE}}
 A nice feature of the `dplyr` package is that you can perform consecutive tasks by using what is called a "pipe". In `dplyr` we use `%>%` to denote a pipe. This symbol tells the program to first do one thing and then do something else to the result of the first. Hence, we can perform several data manipulations in one line. For example:
+```
+dplyr包的一个很好的功能是你可以使用管道函数来执行连续的任务。在dplyr中，符号％>％表示一个管道。它首先运行符号左边的操作，然后将结果传递给右边的函数或表达式。因此，我们可以在一行中对数据进行多步操作。比如：
 
 ```{r}
 chowVals <- filter(dat, Diet=="chow") %>% select(Bodyweight)
 ```
-
+```{{block2 echo = FALSE}}
 In the second task, we no longer have to specify the object we are editing since it is whatever comes from the previous call. 
 
 Also, note that if `dplyr` receives a `data.frame` it will return a `data.frame`. 
+```
+在管道操作的第二个任务中，我们不需要特意制定我们正在编辑的对象，因为该操作将直接作用于从上一个操作传递过来的数据或表达式。
+
+另外，值得注意的一点是：如果dplyr收到一个data.frame，它将返回一个data.frame。
+
 ```{r}
 class(dat)
 class(chowVals)
 ```
 
+```{{block2 echo = FALSE}}
 For pedagogical reasons, we will often want the final result to be a simple `numeric` vector. To obtain such a vector with `dplyr`, we can apply the `unlist` function which turns `lists`, such as `data.frames`, into `numeric` vectors:
+```
+出于教学的目的，我们通常希望最终结果是一个简单的数字向量。我们可以应用unlist函数将dplyr的结果，比如data.frames，转换为数值向量：
 
 ```{r}
 chowVals <- filter(dat, Diet=="chow") %>% select(Bodyweight) %>% unlist
 class( chowVals )
 ```
 
-
+```{{block2 echo = FALSE}}
 To do this in R without `dplyr` the code is the following:
+```
+在没有dplyr包的情况下，你可以用如下代码进行转换：
 
 ```{r}
 chowVals <- dat[ dat$Diet=="chow", colnames(dat)=="Bodyweight"]
 ```
 
-
+```{{block2 echo = FALSE}}
 ### `dplyr` exercises
 
 __Exercises__
+```
+### dplyr练习
+练习
 
+```{{block2 echo = FALSE}}
 For these exercises, we will use a new dataset related to mammalian sleep. This data is described [here](http://ggplot2.tidyverse.org/reference/msleep.html). Download the CSV file from this location:
 
 We are going to read in this data, then test your knowledge of they key `dplyr` functions `select` and `filter`. We are also going to review two different classes: data frames and vectors.
+```
+本练习中，我们将使用与哺乳动物睡眠相关的新数据集。对于该数据集的详细描述可以参见这里[http://ggplot2.tidyverse.org/reference/msleep.html]。CSV文件下载地址：
 
+我们将读入这个数据集，然后测试您对dplyr的关键函数select和filter的了解。我们也将回顾两个不同的数据类型：数据框和向量。
+
+```{{block2 echo = FALSE}}
 1. Read in the `msleep_ggplot2.csv` file with the function `read.csv` and use the function `class` to determine what type of object is returned.
 
 2. Now use the `filter` function to select only the primates. How many animals in the table are primates? Hint: the nrow function gives you the number of rows of a data frame or matrix.
@@ -316,12 +627,24 @@ We are going to read in this data, then test your knowledge of they key `dplyr` 
 5. Now we want to calculate the average amount of sleep for primates (the average of the numbers computed above). One challenge is that the `mean` function requires a vector so, if we simply apply it to the output above, we get an error. Look at the help file for `unlist` and use it to compute the desired average.
 
 6. For the last exercise, we could also use the dplyr `summarize` function. We have not introduced this function, but you can read the help file and repeat exercise 5, this time using just `filter` and `summarize` to get the answer.
+```
+1. 使用read.csv函数读入msleep_ggplot2.csv数据集，然后用class函数来查看返回对象的类属性。
+2. 现在使用filter函数选择灵长类动物（primates），并统计灵长类动物的个数。提示：nrow函数返回数据框或矩阵的行数。
+3. 对表进行子集化（选择灵长类动物）之后，返回的对象是什么类型？
+4. 现在使用select函数来提取灵长类动物的睡眠时间（列sleep_total）。这个对象是什么类型？提示：使用％>％管道将filter函数的结果传递给select函数使用。
+5. 现在我们需要计算灵长类动物的平均睡眠时间（第四题得到的睡眠时间的平均值）。R中计算平均值的mean函数需要一个向量，所以第四题的输出结果不能直接使用，否则我们会得到一个错误提示。查看unlist函数的帮助文件，然后使用它转换数据类型，进而使用mean函数计算平均值。
+6. 我们也可以使用dplyr包中的summarize函数来计算上一题的结果。我们没有介绍这个函数，但是你可以首先查看该功能的帮助文件，然后使用它计算第五题。你只需要使用filter和summarize函数就可以得到结果。
 
 
+```{{block2 echo = FALSE}}
 ## Mathematical Notation
+```
+数学符号
 
+```{{block2 echo = FALSE}}
 This book focuses on teaching statistical concepts and data analysis programming skills. We avoid mathematical notation as much as possible, but we do use it.  We do not want readers to be intimidated by the notation though. Mathematics is actually the easier part of learning statistics. Unfortunately, many text books use mathematical notation in what we believe to be an over-complicated way. For this reason, we do try to keep the notation as simple as possible. However, we do not want to water down the material, and some mathematical notation facilitates a deeper understanding of the concepts. Here we describe a few specific symbols that we use often. If they appear intimidating to you, please take some time to read this section carefully as they are actually simpler than they seem. Because by now you should be somewhat familiar with R, we will make the connection between mathematical notation and R code.
-
+```
+本书主要讲授统计概念和数据分析编程技巧。所以，我们尽可能避免使用数学符号，以免读者被这些符号吓倒。数学实际上是学习统计学中较为容易的部分。但是，在我们看来，许多教科书过于复杂的使用数学符号。因此，我们将尽量简化对它的使用，但是我们也不会忽略那些有助于深入理解这些概念的符号。接下来我们将描述一些经常使用的特定符号。如果你对它们感到恐惧，请花一些时间仔细阅读本节，因为它们实际上比看上去容易理解。现在你应该对R有一定程度的理解，我们将在数学符号和R代码之间建立联系。
 
 #### Indexing
 
@@ -413,12 +736,4 @@ sum( areaofbars )
 ```
 
 The smaller we make `width`, the closer the sum gets to the integral, which is equal to the area.
-
-
-
-
-
-
-
-
 

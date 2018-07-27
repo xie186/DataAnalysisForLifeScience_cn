@@ -2,45 +2,43 @@
 set.seed(1)
 ```
 
+```{block2 echo = FALSE}
 # Exploratory Data Analysis
+```
+
+# 探索性数据分析
 
 "The greatest value of a picture is when it forces us to notice what we never expected to see." -John W. Tukey
 
-Biases, systematic errors and unexpected variability are common in
-data from the life sciences. Failure to discover these problems often
-leads to flawed analyses and false discoveries. As an example,
-consider that experiments sometimes fail and not all data processing
-pipelines, such as the `t.test` function in R, are designed to detect
-these. Yet, these pipelines still give you an answer. Furthermore, it
-may be hard or impossible to notice an error was made just from the
-reported results. 
+```{block2 echo = FALSE}
+Biases, systematic errors and unexpected variability are common in data from the life sciences. Failure to discover these problems often leads to flawed analyses and false discoveries. As an example, consider that experiments sometimes fail and not all data processing pipelines, such as the `t.test` function in R, are designed to detect these. Yet, these pipelines still give you an answer. Furthermore, it may be hard or impossible to notice an error was made just from the reported results. 
+```
 
-Graphing data is a powerful approach to detecting these problems. We
-refer to this as _exploratory data analysis_ (EDA). Many important
-methodological contributions to existing techniques in
-data analysis were initiated by discoveries made via EDA.
-In addition, EDA can lead to interesting biological discoveries which
-would otherwise be missed through simply subjecting the data to a
-battery of hypothesis tests.
-Through this book, we make use of exploratory plots to motivate the analyses we
-choose. Here we present a general introduction to EDA using height
-data.
+&emsp;&emsp;在生命科学领域，偏差，系统误差和未知的变异是非常常见的。这些问题常常会导致有问题的数据分析以及错误的结论。数据处理的方法，例如`t.test`函数，不会去检查实验是否失败。当你将失败实验的结果作为输入信息提供给这些数据处理方法时，你依然会得到一个结果。这个结果可能会导致你得到错误的结论。同时，只从输出的结果是非常难甚至不可能发现错误的。
 
-We have already introduced some EDA approaches for _univariate_ data,
-namely the histograms and qq-plot. Here we describe the qq-plot in more detail and
-some EDA and summary statistics for paired data. We also give a
-demonstration of commonly used figures that we recommend against. 
+```{block2 echo = FALSE}
+Graphing data is a powerful approach to detecting these problems. We refer to this as _exploratory data analysis_ (EDA). Many important methodological contributions to existing techniques in data analysis were initiated by discoveries made via EDA. In addition, EDA can lead to interesting biological discoveries which would otherwise be missed through simply subjecting the data to a battery of hypothesis tests. Through this book, we make use of exploratory plots to motivate the analyses we choose. Here we present a general introduction to EDA using height data.
+```
 
+图形化展示数据是检测这些问题的一个非常有效的方法。这里我们称之为_探索性数据分析_(Exploratory data analysis：EDA)。数据分析中许多重要的方法最初都是从EDA的结果中得到启发而产生的。此外，EDA可以帮助你得到许多重要的生物学观点和结论，而这些发现并不是你通过一连串的假设检验能够得到的。贯穿本书，我们会通过图形化展示来帮助我们进行数据分析。这里我们使用身高的数据来介绍EDA。
+
+```{block2 echo = FALSE}
+We have already introduced some EDA approaches for _univariate_ data, namely the histograms and qq-plot. Here we describe the qq-plot in more detail and some EDA and summary statistics for paired data. We also give a demonstration of commonly used figures that we recommend against. 
+```
+
+&emsp;&emsp;我们已经介绍了一些用于单变量的数据的EDA方法，即直方图和QQ图。这里我们进一步介绍QQ图和一些其他的EDA，以及用于成对数据的汇总统计。我们也会推荐一些常用的作图类型。
+
+```{block2 echo = FALSE}
 ## Quantile Quantile Plots
+```
 
-To corroborate that a theoretical distribution, for example the normal distribution, is in fact a good
-approximation, we can use quantile-quantile plots
-(qq-plots). Quantiles are best understood by considering the special
-case of percentiles. The p-th percentile of a list of a distribution
-is defined as the number q that is bigger than p% of numbers (so the inverse of
-the cumulative distribution function we defined earlier). For
-example, the median 50-th percentile is the median.
-We can compute the percentiles for our list of heights:
+## QQ图
+
+```{block2 echo = FALSE}
+To corroborate that a theoretical distribution, for example the normal distribution, is in fact a good approximation, we can use quantile-quantile plots (qq-plots). Quantiles are best understood by considering the special case of percentiles. The p-th percentile of a list of a distribution is defined as the number q that is bigger than p% of numbers (so the inverse of the cumulative distribution function we defined earlier). For example, the median 50-th percentile is the median. We can compute the percentiles for our list of heights:
+```
+
+&emsp;&emsp;我们可以利用QQ图来来观察我们的数据是否符合某一个分布（例如是否符合正态分布）。分位值是百分位值的特殊......................
 
 
 ```{r definingHeights1, message=FALSE}
@@ -60,18 +58,29 @@ plot(normalqs,qs,xlab="Normal percentiles",ylab="Height percentiles")
 abline(0,1) ##identity line
 ```
 
-Note how close these values are. Also, note that we can see these
-qq-plots with less code (this plot has more points than the one we
-constructed manually, and so tail-behavior can be seen more clearly).
+```{block2 echo = FALSE}
+Note how close these values are. Also, note that we can see these qq-plots with less code (this plot has more points than the one we constructed manually, and so tail-behavior can be seen more clearly).
+```
+
+&emsp;&emsp;注意看这些这两组数值(`normalqs`和`qs`)是非常接近的（这个图比之前我们手动做的图有更多的数据，所以tail-behavior也更明显）。
 
 ```{r qqplot_example2, fig.cap="Second example of qqplot. Here we use the function qqnorm which computes the theoretical normal quantiles automatically."}
 qqnorm(x)
 qqline(x) 
 ```
 
-However, the `qqnorm` function plots against a standard normal distribution. This is why the line has slope `popsd(x)` and intercept `mean(x)`.
 
+
+
+```{block2 echo = FALSE}
+However, the `qqnorm` function plots against a standard normal distribution. This is why the line has slope `popsd(x)` and intercept `mean(x)`.
+```
+
+
+
+```{block2 echo = FALSE}
 In the example above, the points match the line very well. In fact, we can run Monte Carlo simulations to see plots like this for data known to be normally distributed.
+```
 
 
 ```{r qqnorm_example, fig.cap="Example of the qqnorm function. Here we apply it to numbers generated to follow a normal distribution."}
@@ -81,16 +90,9 @@ qqnorm(x)
 qqline(x)
 ```
 
-We can also get a sense for how non-normally distributed data will
-look in a qq-plot. Here we generate data from the t-distribution with
-different degrees of freedom. Notice that the smaller the degrees of
-freedom, the fatter the tails. We call these "fat tails" because if we
-plotted an empirical density or histogram, the density at the extremes would be
-higher than the theoretical curve. In the qq-plot, this can be seen in
-that the curve is lower than the identity line on the left
-side and higher on the right side. This means that there are more
-extreme values than predicted by the theoretical density plotted on
-the x-axis.
+```{block2 echo = FALSE}
+We can also get a sense for how non-normally distributed data will look in a qq-plot. Here we generate data from the t-distribution with different degrees of freedom. Notice that the smaller the degrees of freedom, the fatter the tails. We call these "fat tails" because if we plotted an empirical density or histogram, the density at the extremes would be higher than the theoretical curve. In the qq-plot, this can be seen in that the curve is lower than the identity line on the left side and higher on the right side. This means that there are more extreme values than predicted by the theoretical density plotted on the x-axis.
+```
 
 ```{r qqnorm_of_t, fig.cap="We generate t-distributed data for four degrees of freedom and make qqplots against normal theoretical quantiles.",fig.width=7.5,fig.height=7.5}
 dfs <- c(3,6,12,30)
@@ -104,15 +106,18 @@ for(df in dfs){
 
 <a name="boxplots"></a>
 
+```{block2 echo = FALSE}
 ## Boxplots
+```
 
-Data is not always normally distributed. Income is a widely cited
-example. In these cases, the average and standard deviation are not
-necessarily informative since one can't infer the distribution from
-just these two numbers. The properties described above are specific to
-the normal. For example, the normal distribution does not seem to be a
-good approximation for the direct compensation for 199 United States
-CEOs in the year 2000.
+## 箱线图
+
+```{block2 echo = FALSE}
+Data is not always normally distributed. Income is a widely cited example. In these cases, the average and standard deviation are not necessarily informative since one can't infer the distribution from just these two numbers. The properties described above are specific to the normal. For example, the normal distribution does not seem to be a good approximation for the direct compensation for 199 United States CEOs in the year 2000.
+```
+
+&emsp;&emsp;数据并不是总是服从正态分布的。收入是一个常见的例子。在这些例子中，均值和标准差并不一定有意义，因为你不能仅从这两个数值来判断数据的分布。上面讲到的属性是正态分布特有的。比如，199个美国CEO在2000年的直接薪酬并不符合正态分布。
+
 
 ```{r execpay, fig.width=10.5, fig.height=5.25, fig.cap="Histogram and QQ-plot of executive pay."}
 data(exec.pay,package="UsingR")
@@ -122,34 +127,35 @@ qqnorm(exec.pay)
 qqline(exec.pay)
 ```
 
-In addition to qq-plots, a practical summary of data is to compute 3
-percentiles: 25th, 50th (the median) and the 75th. A boxplot shows
-these 3 values along with a 
-range of the points within median $\pm$ 1.5 (75th percentile -
-25th percentile). Values outside this range are shown as points and
-sometimes referred to as _outliers_. 
+```{block2 echo = FALSE}
+In addition to qq-plots, a practical summary of data is to compute 3 percentiles: 25th, 50th (the median) and the 75th. A boxplot shows these 3 values along with a range of the points within median $\pm$ 1.5 (75th percentile - 25th percentile). Values outside this range are shown as points and sometimes referred to as _outliers_. 
+```
+
+&emsp;&emsp;除了qq图之外，另一个实践中比较常用的方法是计算三个百分位值：25%，50%（中位值）和75%。箱线图中会展示这三个百分位值，箱线图中阈值范围是中位值$\pm$1.5倍的75%与25%百分位值的差值。在这个范围之外的值由点表示，有时这些值也被称为_异常值_。
 
 ```{r fig.width=6, fig.height=6, fig.cap="Simple boxplot of executive pay."}
 boxplot(exec.pay, ylab="10,000s of dollars", ylim=c(0,400))
 ```
 
-Here we show just one boxplot.
-However, one of the great benefits of boxplots is that we could easily
-show many distributions in one plot, by lining them up, side by side. We will see several examples of this throughout the book.
+```{block2 echo = FALSE}
+Here we show just one boxplot. However, one of the great benefits of boxplots is that we could easily show many distributions in one plot, by lining them up, side by side. We will see several examples of this throughout the book.
+```
 
-<a name="scatterplots"></a>
+&emsp;&emsp;这里我们只展示了一个箱线图，然而，箱线图的其中一个很重要的优势是通过将这些图放在一起，我们可以很容易地在一个图中展示很多分布。
 
+
+```{block2 echo = FALSE}
 ## Scatterplots and Correlation
+```
 
-The methods described above relate to _univariate_ variables. In the
-biomedical sciences, it is common to be interested in the relationship
-between two or more variables. A classic example is the father/son
-height data used by
-[Francis Galton](https://en.wikipedia.org/wiki/Francis_Galton) to
-understand heredity. If we were to summarize these data, we could use
-the two averages and two standard deviations since both distributions are
-well approximated by the normal distribution. This summary, however,
-fails to describe an important characteristic of the data. 
+## 散点图和相关性
+
+```{block2 echo = FALSE}
+The methods described above relate to _univariate_ variables. In the biomedical sciences, it is common to be interested in the relationship between two or more variables. A classic example is the father/son height data used by [Francis Galton](https://en.wikipedia.org/wiki/Francis_Galton) to understand heredity. If we were to summarize these data, we could use the two averages and two standard deviations since both distributions are well approximated by the normal distribution. This summary, however, fails to describe an important characteristic of the data. 
+```
+
+&emsp;&emsp;上面介绍的方法都是单因子变量相关的分析。在生物医学领域，研究两个或两个以上变量的关系是很常见的。一个很经典的例子是 [Francis Galton](https://en.wikipedia.org/wiki/Francis_Galton)使用的研究遗传学的父子身高数据。如果我们想总结这些数据，我们可以使用两个均值和两个标准差，因为这两个数据均服从正态分布。但是这个总结并不能展示一个很重要的特征。
+
 
 ```{r scatterplot, fig.cap="Heights of father and son pairs plotted against each other."}
 data(father.son,package="UsingR")
@@ -160,45 +166,60 @@ plot(x,y, xlab="Father's height in inches",
      main=paste("correlation =",signif(cor(x,y),2)))
 ```
 
-The scatter plot shows a general trend: the taller the father, the
-taller the son. A summary of this trend is the correlation coefficient,
-which in this case is 0.5. We will motivate this statistic by trying to
-predict the son's height using the father's height.
+```{block2 echo = FALSE}
+The scatter plot shows a general trend: the taller the father, the taller the son. A summary of this trend is the correlation coefficient, which in this case is 0.5. We will motivate this statistic by trying to predict the son's height using the father's height.
+```
 
+&emsp;&emsp;散点图中我们可以看到一个很明显的趋势：父亲的身高越高，儿子的身高就越高。描述这种趋势我们通常使用相关系数，这个例子中相关系数为0.5。这个数...............
+
+```{block2 echo = FALSE}
 ## Stratification
+```
 
-Suppose we are asked to guess the height of randomly selected sons. The
-average height, 68.7 inches, is the value with the highest proportion
-(see histogram) and would be our prediction. But what if we are told
-that the father is 72 inches tall, do we still guess 68.7? 
+## 数据分层
 
-The father is taller than average. Specifically, he is 1.75
-standard deviations taller than the average father. So should we
-predict that the son is also 1.75 standard deviations taller? It turns
-out that this would be an overestimate. To see this, we look at all the sons
-with fathers who are about 72 inches. We do this by _stratifying_ the
-father heights. 
+```{block2 echo = FALSE}
+Suppose we are asked to guess the height of randomly selected sons. The average height, 68.7 inches, is the value with the highest proportion (see histogram) and would be our prediction. But what if we are told that the father is 72 inches tall, do we still guess 68.7? 
+```
+
+&emsp;&emsp;假设有人问一个随机选择的儿子的身高。我们知道身高的均值（68.7英寸，大约174.50厘米），这些值差不多大小的值在我们的数据中占了很大的比例（见箱线图），所以我们很有可能猜这个值。但是如果有人告诉你他的父亲的身高是72英寸（182.88cm），你还会猜儿子的身高是68.7英寸吗？
+
+```{block2 echo = FALSE}
+The father is taller than average. Specifically, he is 1.75 standard deviations taller than the average father. So should we predict that the son is also 1.75 standard deviations taller? It turns out that this would be an overestimate. To see this, we look at all the sons with fathers who are about 72 inches. We do this by _stratifying_ the father heights. 
+```
+
+&emsp;&emsp;父亲的身高是72英寸比均值要高。严格的说，这位父亲的身高比所有父亲身高均值还要高出1.75个标准差，所以我们是否应该预测这位父亲的儿子的身高也要比均值高出1.75个标准差呢？结果表明，如果这样的预测过高的估计了其儿子的身高。为了说明这一点，我们来看看所有身高为72英寸的父亲的儿子的身高。我们通过对父亲身高_分层_(Stratification)来达到这个目的。
 
 ```{r boxplot, fig.cap="Boxplot of son heights stratified by father heights.", fig.width=10.5, fig.height=5.25}
 groups <- split(y,round(x)) 
 boxplot(groups)
 print(mean(y[ round(x) == 72]))
 ```
-Stratification followed by boxplots lets us see the distribution of
-each group. The average height of sons with fathers that are 72 inches
-tall is 70.7 inches. We also see that the *medians* of the strata appear
-to follow a straight line (remember the middle line in the boxplot
-shows the median, not the mean). This line is similar to the *regression
-line*, with a slope that is related to the correlation, as we will learn
-below. 
+```{block2 echo = FALSE}
+Stratification followed by boxplots lets us see the distribution of each group. The average height of sons with fathers that are 72 inches tall is 70.7 inches. We also see that the *medians* of the strata appear to follow a straight line (remember the middle line in the boxplot shows the median, not the mean). This line is similar to the *regression line*, with a slope that is related to the correlation, as we will learn below. 
+```
 
+&emsp;&emsp;分层后我们对每一组作箱线图。72英寸这一组中儿子的身高均值为70.7英寸。我们同时也看到每一组数据的*中位值*看起来形成一条直线（记住箱线图中间的一条线是中位值而不是均值）。这条线和*回归线*（*regression line*）相似，这条线的斜率与相关性有关，接下来我们会介绍这些内容。
+
+```{block2 echo = FALSE}
 ## Bivariate Normal Distribution
+```
 
+## 二维正态分布
+
+
+```{block2 echo = FALSE}
 Correlation is a widely used summary statistic in the life sciences. However, it is often misused or misinterpreted. To properly interpret correlation we actually have to understand the bivariate normal distribution.
+```
 
-A pair of random variables $(X,Y)$ is considered to be approximated by
-bivariate normal when the proportion of values below, for example $a$
-and $b$, is approximated by this expression: 
+&emsp;&emsp;在生命科学领域中，相关性是一个广泛使用的汇总统计值。然而，很多人却错误的使用，或者错误的理解相关性。为了正确的解释和理解相关性，我们首先要理解二维正态分布。
+
+
+```{block2 echo = FALSE}
+A pair of random variables $(X,Y)$ is considered to be approximated by bivariate normal when the proportion of values below, for example $a$ and $b$, is approximated by this expression: 
+```
+
+&emsp;&emsp;假设我们有一对随机变量$(X,Y)$，如果这对变量中$X$小于a并且$Y$小于b的比例满足下面的公式，那么这对变量就可以近似为二维正态分布。
 
 $$ 
 \mbox{Pr}(X<a,Y<b) = 
@@ -216,13 +237,11 @@ $$
 }
 $$
 
-This may seem like a rather complicated equation, but the concept behind it is rather intuitive. An alternative definition is the following: fix a value $x$
-and look at all the pairs $(X,Y)$ for which $X=x$. Generally, in
-statistics we call this exercise _conditioning_. We are conditioning
-$Y$ on $X$. If a pair of random variables is approximated by a
-bivariate normal distribution, then the distribution of $Y$ conditioned
-on $X=x$ is approximated with a normal distribution, no matter what $x$ we choose. Let's
-see if this holds with our height data. We show 4 different strata: 
+```{block2 echo = FALSE}
+This may seem like a rather complicated equation, but the concept behind it is rather intuitive. An alternative definition is the following: fix a value $x$ and look at all the pairs $(X,Y)$ for which $X=x$. Generally, in statistics we call this exercise _conditioning_. We are conditioning $Y$ on $X$. If a pair of random variables is approximated by a bivariate normal distribution, then the distribution of $Y$ conditioned on $X=x$ is approximated with a normal distribution, no matter what $x$ we choose. Let's see if this holds with our height data. We show 4 different strata: 
+```
+
+&emsp;&emsp;这个公式看起来很复杂，但是背后的概念是很直观的。我们给定一个值$x$，然后查看$(X,Y)$中$X=x$的数据。通常我们称这种操作为_条件作用_(_conditioning_)。我们在给定$X$的条件下取出$Y$。如果一对随机变量服从二维正态分布，那么在$X=x$条件下，不管$x$是多少，$Y$服从正态分布。我们来看看身高数据是否满足这些条件。这里我们展示四组数据。
 
 ```{r qqnorm_of_strata, fig.cap="qqplots of son heights for four strata defined by father heights.",fig.width=7.5,fig.height=7.5}
 groups <- split(y,round(x)) 
@@ -235,8 +254,13 @@ for(i in c(5,8,11,14)){
 ```
 
 
+```{block2 echo = FALSE}
 Now we come back to defining correlation. Mathematical statistics tells us that when two variables follow a bivariate normal distribution, then for any given value of $x$, the average of the $Y$ in pairs for which $X=x$ is:
+```
 
+&emsp;&emsp;现在让我们回到相关性的定义上来。从数学统计学上来讲，如果连个随机变量符合二维正态分布，那么对于任意$x$，对应的$Y$的均值公式为：
+
+  
 $$ 
 \mu_Y +  \rho \frac{X-\mu_X}{\sigma_X}\sigma_Y
 $$
@@ -285,15 +309,39 @@ set.seed(1)
 library(rafalib)
 ```
 
-## Plots to Avoid 
+```{block2 echo = FALSE}
+## Plots to Avoid
+```
 
+## 这些图需要避免使用！
+
+```{block2 echo = FALSE}
 This section is based on a talk by [Karl W. Broman](http://kbroman.org/) titled "How to Display Data Badly," in which he described how the default plots offered by Microsoft Excel "obscure your data and annoy your readers" ([here](http://kbroman.org/pages/talks.html) is a link to a collection of Karl Broman's talks). His lecture was inspired by the 1984 paper by H. Wainer: How to display data badly. American Statistician 38(2): 137--147. Dr. Wainer was the first to elucidate the principles of the bad display of data. However, according to Karl Broman, "The now widespread use of Microsoft Excel has resulted in remarkable advances in the field." Here we show examples of "bad plots" and how to improve them in R.
+```
 
+&emsp;&emsp;
+
+
+```{block2 echo = FALSE}
 #### General principles
+```
 
+```{block2 echo = FALSE}
 The aim of good data graphics is to display data accurately and clearly. According to Karl Broman, some rules for displaying data *badly* are:
+```
 
+&emsp;&emsp;好的数据图形化展示的目的是准确清晰的展示数据。根据的Karl Broman的讲座，下面的准则总是会导致比较差的数据展示效果：
+
+```{block2 echo = FALSE}
 *  Display as little information as possible.
+*  Obscure what you do show (with chart junk).
+*  Use pseudo-3D and color gratuitously.
+*  Make a pie chart (preferably in color and 3D).
+*  Use a poorly chosen scale.
+*  Ignore significant figures.
+```
+
+* 
 *  Obscure what you do show (with chart junk).
 *  Use pseudo-3D and color gratuitously.
 *  Make a pie chart (preferably in color and 3D).
@@ -307,7 +355,12 @@ The aim of good data graphics is to display data accurately and clearly. Accordi
 browsers <- c(Opera=1,Safari=9,Firefox=20,IE=26,Chrome=44)
 ```
 
+```{block2 echo = FALSE}
 Let's say we want to report the results from a poll asking about browser preference (taken in August 2013). The standard way of displaying these is with a pie chart:
+```
+
+这里我们以浏览器的喜好数据
+
 
 ```{r piechart, fig.cap="Pie chart of browser usage."}
 pie(browsers,main="Browser Usage (August 2013)")
@@ -351,20 +404,11 @@ The reason is that by removing the center, we remove one of the visual cues for 
 
 ####  Barplots as data summaries
 
-While barplots are useful for showing percentages, they are
-incorrectly used to display data from two groups being
-compared. Specifically, barplots are created with height equal to the
-group means; an antenna is added at the top to represent standard
-errors. This plot is simply showing two numbers per group and the
-plot adds nothing: 
+While barplots are useful for showing percentages, they are incorrectly used to display data from two groups being compared. Specifically, barplots are created with height equal to the group means; an antenna is added at the top to represent standard errors. This plot is simply showing two numbers per group and the plot adds nothing: 
 
 ![Bad bar plots.](https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig1c.png)
 
-Much more informative is to summarize with a boxplot. If the number of
-points is small enough, we might as well add them to the plot. When
-the number of points is too large for us to see them, just showing a
-boxplot is preferable. We can even set `range=0` in `boxplot` to avoid
-drawing many outliers when the data is in the range of millions.
+Much more informative is to summarize with a boxplot. If the number of points is small enough, we might as well add them to the plot. When the number of points is too large for us to see them, just showing a boxplot is preferable. We can even set `range=0` in `boxplot` to avoid drawing many outliers when the data is in the range of millions.
 
 Let's recreate these barplots as boxplots. First let's download the data:
 
@@ -692,47 +736,56 @@ This suggests that correlations near 1 do not necessarily imply reproducibility.
 
 ## Robust Summaries
 
+```{block2 echo=FALSE}
 The normal approximation is often useful when analyzing life sciences data. However, due to the complexity of the measurement devices, it is also common to mistakenly observe data points generated by an undesired process. For example, a defect on a scanner can produce a handful of very high intensities or a PCR bias can lead to a fragment appearing much more often than others. We therefore may have situations that are approximated by, for example, 99 data points from a standard normal distribution and one large number.
-
+```
+&emsp;&emsp;当分析生命科学类数据的时候通常会利用正态逼近的方法。但是，由于测量设备的复杂性，通常会因为不理想的分析过程而产生错误的观察数据点。例如：一个扫描仪的缺陷会产生一些高亮的点或者一个PCR的偏好性会导致某些片段的扩增效率高于其他片段。因此，我们在一定情况下需要近似值，例如，有99个数据点符合正态分布，但是其中一个位点有较大的数值。
 ```{r boxplot_showing_outlier, fig.cap="Normally distributed data with one point that is very large due to a mistake."}
 set.seed(1)
 x=c(rnorm(100,0,1)) ##real distribution
 x[23] <- 100 ##mistake made in 23th measurement
 boxplot(x)
 ```
-
+```{block2 echo=FALSE}
 In statistics we refer to these type of points as _outliers_. A small number of outliers can throw off an entire analysis. For example, notice how the following one point results in the sample mean and sample variance being very far from the 0 and 1 respectively.
-
+```
+&emsp;&emsp;在统计学中， 我们把这类的值认为是离群值。在整个的分析过程中，我们可以将少数离群值丢弃掉。例如有一个离群值的点影响了样本的平均值或者样本方差距离0和1较远。
 ```{r}
 cat("The average is",mean(x),"and the SD is",sd(x))
 ```
 
 #### The median
 
+```{block2 echo=FALSE}
 The median, defined as the point having half the data larger and half the data smaller, is a summary statistic that is _robust_ to outliers. Note how much closer the median is to 0, the center of our actual distribution:
+```
+&emsp;&emsp;中位数是一个总结性的统计量，不受离群值的影响，因为中位数是一个样本数据中的一个点，对于这个点有一半的数据比他大，有一半的数据比他小。注意，越靠近中位数的点，越能够靠近真实样本分布的中心值。
 ```{r}
 median(x)
 ```
 
 #### The median absolute deviation
-
+```{block2 echo=FALSE}
 The median absolute deviation (MAD) is a robust summary for the standard deviation. It is defined by computing the differences between each point and the median, and then taking the median of their absolute values:
-
+```
+&emsp;&emsp;绝对中位差是对标准偏差的一个强健的总结。它的定义是通过计算每一个样本值与中位数之间的差异，然后取它们和中位数差的的绝对值。
 $$
  1.4826 \mbox{median} \lvert X_i - \mbox{median}(X_i) \rvert
 $$
-
+```{block2 echo=FALSE}
 The number $1.4826$ is a scaling factor such that the MAD is an unbiased 
 estimate of the standard deviation. Notice how much closer we are to 1 with the MAD:
-
+```
+&emsp;&emsp;1.4826是一个换算系数，因此绝对中位差是一个对标准偏差的无偏差估计。注意，我们计算时绝对中位差距离1的距离是多远。
 ```{r}
 mad(x)
 ```
 
 #### Spearman correlation
-
+```{block2 echo=FALSE}
 Earlier we saw that the correlation is also sensitive to outliers. Here we construct an independent list of numbers, but for which a similar mistake was made for the same entry:
-
+```
+&emsp;&emsp;之前我们提到相关性同时也受离群值的影响。因此，我们构建了一个独立的数字列表，但是对于这个列表一个也会产生相同的问题。
 ```{r, scatter_plot_showing_outlier,fig.cap="Scatterplot showing bivariate normal data with one signal outlier resulting in large values in both dimensions."}
 set.seed(1)
 x=rnorm(100,0,1) ##real distribution
@@ -745,9 +798,10 @@ plot(x,y,main=paste0("correlation=",round(cor(x,y),3)),
      pch=21,bg=1,xlim=c(-3,100),ylim=c(-3,100))
 abline(0,1)
 ```
-
+```{block2 echo=FALSE}
 The Spearman correlation follows the general idea of median and MAD, that of using quantiles.  The idea is simple: we convert each dataset to ranks and then compute correlation:
-
+```
+&emsp;&emsp;斯皮尔曼相关系数遵循了中位数和绝对中位差的思想，用分位数来进行相应的相关性计算。这个想法很简单，就是通过将数据集进行排序，然后再进行相关性的计算。
 ```{r spearman_corr_illustration, fig.cap="Scatterplot of original data (left) and ranks (right). Spearman correlation reduces the influence of outliers by considering the ranks instead of original data.",fig.width=10.5,fig.height=5.25}
 mypar(1,2)
 plot(x,y,main=paste0("correlation=",round(cor(x,y),3)),pch=21,bg=1,xlim=c(-3,100),ylim=c(-3,100))
@@ -756,21 +810,27 @@ plot(rank(x),rank(y), main=paste0("correlation=",round(cor(x,y,method="spearman"
 abline(0,1)
 ```
 
+```{block2 echo=FALSE}
+So if these statistics are robust to outliers, why would we ever use the non-robust version? In general, if we know there are outliers, then median and MAD are recommended over the mean and standard deviation counterparts. However, there are examples in which robust statistics are less powerful than the non-robust versions.
+```
+&emsp;&emsp;因此，如果这些统计方法能够很好的避免离群值的影响，我们为什么要用那些受离群值影响的版本呢？通常来说，如果我们知道数据集中有一些离群值，那么我们推荐使用中位数和绝对中位差来代替平均数和标准偏差来进行相关性计算。但是，也有一些例子表明，强健的统计方法较不强健的统计方法结果不是那么的有效。
 
-So if these statistics are robust to outliers, why would we ever use
-the non-robust version? In general, if we know there are outliers,
-then median and MAD are recommended over the mean and standard
-deviation counterparts. However, there are examples in which robust
-statistics are less powerful than the non-robust versions.
+```{block2 echo=FALSE}
+We also note that there is a large statistical literature on robust statistics that go far beyond the median and the MAD.
+```
 
-We also note that there is a large statistical literature on
-robust statistics that go far beyond the median and the MAD.
+&emsp;&emsp;我们也注意到，关于强健的统计方法有大量的统计学文献进行表述，这些方法有些要远远的超过了中位数和绝对中位差统计方法。
 
+```{block2 echo=FALSE}
 #### Symmetry of log ratios
+```
 
-Ratios are not symmetric. To see this, we will start by simulating the
-ratio of two positive random numbers, which will represent the
-expression of genes in two samples:
+#### 比率对数的对称性
+
+```{block2 echo=FALSE}
+Ratios are not symmetric. To see this, we will start by simulating the ratio of two positive random numbers, which will represent the expression of genes in two samples:
+```
+&emsp;&emsp;比率是不对称的。为了验证这个，我们首先通过使用两个正相关的随机数据集的比率来进行模拟，这两个数据集代表了两个样本中基因的表达量。
 
 ```{r}
 x <- 2^(rnorm(100))
@@ -778,13 +838,10 @@ y <- 2^(rnorm(100))
 ratios <- x / y 
 ```
 
-Reporting ratios or fold changes are common in the life
-sciences. Suppose you are studying ratio data showing, say, gene
-expression before and after treatment. You are given ratio data so
-values larger than 1 imply gene expression was higher after the
-treatment. If the treatment has no effect, we should see as many
-values below 1 as above 1. A histogram seems to suggest that the
-treatment does in fact have an effect: 
+```{block2 echo=FALSE}
+Reporting ratios or fold changes are common in the life sciences. Suppose you are studying ratio data showing, say, gene expression before and after treatment. You are given ratio data so values larger than 1 imply gene expression was higher after the treatment. If the treatment has no effect, we should see as many values below 1 as above 1. A histogram seems to suggest that the treatment does in fact have an effect: 
+```
+&emsp;&emsp;在生命科学领域中通常使用比率或者变化倍数。假设你正在研究基因在处理前后表达量的比率。你将得到基因表达量的比率，如果比率的值大于1表明基因在处理后表达量是升高的。如果处理样本没有影响，那么我们将会得到一些比率小于1或者等于1数据。柱状图似乎可以表明处理是否对样本产生了实际的影响。
 
 ```{r why-log-ratios, fig.cap="Histogram of original (left) and log (right) ratios.", fig.width=10.5, fig.height=5.25}
 mypar(1,2)
@@ -793,13 +850,16 @@ hist(ratios)
 logratios <- log2(ratios)
 hist(logratios)
 ```
-
+```{block2 echo=FALSE}
 The problem here is that ratios are not symmetrical around 1. For example, 1/32 is much closer to 1 than 32/1. Using the log takes care of this problem. The log of ratios are of course symmetric around 0 because:
+```
+&emsp;&emsp;在这里存在一个问题，就是比率不是在1左右相互对称的。例如，1/32比32/1更加的靠近1。使用对数可以解决这个问题。对数的比率一定是在0左右相互对称的。因为：
 
 $$\log(x/y) = \log(x)-\log(y) = -(\log(y)-\log(x)) = \log(y/x)$$
-
+```{block2 echo=FALSE}
 As demonstrated by these simple plots:
-
+```
+&emsp;&emsp;正如这个简单的图
 ```{r why-log-ratios2, fig.cap="Histogram of original (left) and log (right) powers of 2 seen as ratios.", fig.width=10.5,fig.height=5.25,echo=FALSE}
 ##y is 1/32,1/16,1/8,...,1,2,...,32
 x=2^seq(1,5)
@@ -814,52 +874,57 @@ text(seq(along=y),y,Names,cex=1.2)
 abline(h=1)
 ```
 
-
+```{block2 echo=FALSE}
 In the life sciences, the log transformation is also commonly used
 because (multiplicative) fold changes are the most widely used quantification of
 interest. Note that a fold change of 100 can be a ratio of 100/1 or
 1/100. However, 1/100 is much closer to 1 (no fold change) than 100:
 ratios are not symmetric about 1. 
+```
+&emsp;&emsp;在生命科学领域，也经常使用将数据进行对数转换，因为在定量感兴趣的数据时（乘法）变化倍数是使用最多的方法。注意，变化倍数为100可能是100/1或1/100。但是，如果不使用变化倍数，1/100比100/1更加的靠近1，这就说明了数据不是在1左右相互对称的。
 
 <!-- 
 #### Footnotes <a name="foot"></a>
 
 #### Robust Statistics
-
+```{block2 echo=FALSE}
 Robust Statistics, Peter. J. Huber and Elvezio M. Ronchetti, Wiley, 2009.
 Introduction to Robust Estimation and Hypothesis Testing, Rand R. Wilcox, 2012.
 Robust Statistics: The Approach Based on Influence Functions, Frank R. Hampel, Elvezio M. Ronchetti, Peter J. Rousseeuw, Werner A. Stahel
+```
 -->
 
-
+```{block2 echo=FALSE}
 ## Wilcoxon Rank Sum Test
+```
 
-We learned how the sample mean and SD are susceptible to outliers. The
-t-test is based on these measures and is susceptible as well. The
-Wilcoxon rank test (equivalent to the Mann-Whitney test) provides an
-alternative. In the code below, we perform a t-test on data for which
-the null is true. However, we change one sum observation by mistake
-in each sample and the values incorrectly entered are different. Here
-we see that the t-test results in a small p-value, while the Wilcoxon
-test does not: 
+## 非参检验方法之Wilcoxon Rank Sum Test
 
+```{block2 echo=FALSE}
+We learned how the sample mean and SD are susceptible to outliers. The t-test is based on these measures and is susceptible as well. The Wilcoxon rank test (equivalent to the Mann-Whitney test) provides an alternative. In the code below, we perform a t-test on data for which the null is true. However, we change one sum observation by mistake in each sample and the values incorrectly entered are different. Here we see that the t-test results in a small p-value, while the Wilcoxon test does not: 
+```
+
+&emsp;&emsp;我们知道样本的平均值和标准偏差是如何受离群值影响的。基于平均值和标准偏差的T-test同样也受离群值的影响。威尔科克森秩检验（曼-惠特尼检验）提供了另外的一个方法。在下面的代码中，我们完成了对一个非空数据集的t-test。但是，当我们在每一个样本中错误的改变一个和的观察值，我们发现得到的每一个错误的值也是不同的。因此，我们发现t-test会产生一个小的p-value值，而威尔科克森检验却不会。
 ```{r}
 set.seed(779) ##779 picked for illustration purposes
 N=25
 x<- rnorm(N,0,1)
 y<- rnorm(N,0,1)
 ```
-
+```{block2 echo=FALSE}
 Create outliers:
-
+```
+&emsp;&emsp;创建离群值。
 ```{r}
 x[1] <- 5
 x[2] <- 7
 cat("t-test pval:",t.test(x,y)$p.value)
 cat("Wilcox test pval:",wilcox.test(x,y)$p.value)
 ```
-
+```{block2 echo=FALSE}
 The basic idea is to 1) combine all the data, 2) turn the values into ranks, 3) separate them back into their groups, and 4) compute the sum or average rank and perform a test.
+```
+&emsp;&emsp;数据处理的基本思想是：1)整合所有的数据。2）将数据转化成秩。3）再把数据分回到它们的组中。4）计算数据的和或者平均秩，然后再进行统计检验。
 
 ```{r rank-test-illustration, fig.cap="Data from two populations with two outliers. The left plot shows the original data and the right plot shows their ranks. The numbers are the w values ",fig.width=10.5,fig.height=5.25}
 library(rafalib)
@@ -877,12 +942,11 @@ ws <- sapply(x,function(z) rank(c(z,y))[1]-1)
 text( rep(1.05,length(ws)), xrank, ws, cex=0.8)
 W <-sum(ws) 
 ```
+```{block2 echo=FALSE}
+`W` is the sum of the ranks for the first group relative to the second group. We can compute an exact p-value for $W$ based on combinatorics. We can also use the CLT since statistical theory tells us that this `W` is approximated by the normal distribution. We can construct a z-score as follows: 
+```
 
-`W` is the sum of the ranks for the first group relative to the second
-group. We can compute an exact p-value for $W$ based on
-combinatorics. We can also use the CLT since
-statistical theory tells us that this `W` is approximated by the
-normal distribution. We can construct a z-score as follows: 
+&emsp;&emsp;其中，w是相对于第二组数据的第一组数据秩的和。我们可以基于组合学对$W$计算出一个准确的p-value值。由于之前的统计学理论告诉我们W是趋于正态分布的，因此我门也可以利用CLT的方法来进行计算。我们可以按照如下的方法计算z-score：
 
 ```{r}
 n1<-length(x);n2<-length(y)
@@ -890,10 +954,10 @@ Z <- (mean(ws)-n2/2)/ sqrt(n2*(n1+n2+1)/12/n1)
 print(Z)
 ```
 
-Here the `Z` is not large enough to give us a p-value less
-than 0.05. These are part of the calculations performed by the R function
-`wilcox.test`. 
+```{block2 echo=FALSE}
+Here the `Z` is not large enough to give us a p-value less than 0.05. These are part of the calculations performed by the R function `wilcox.test`. 
+```
 
-
+&emsp;&emsp;因为这里的Z值不足够的大，因此我们不能计算得到一个小于0.05的p-value值。这里有一部分的数据是通过R语言里面的wilcox.test功能计算得到的.
 
 
